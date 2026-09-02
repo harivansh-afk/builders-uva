@@ -15,53 +15,55 @@
 </script>
 
 <div class="site">
-  <section class="left">
-    <div class="block hero">
-      <p class="eyebrow">Who we are</p>
-      <p class="sub">
-        <span class="hl">builders@uva</span> is a small group of students who believe in making the non-traditional path into tech more accessible. 
+  <main class="left">
+    <h1 class="sr-only">builders@uva</h1>
+
+    <section class="block hero">
+      <h2 class="eyebrow">Who we are</h2>
+      <p class="lede">
+        <span class="hl">builders@uva</span> is a small group of students who believe in making the non-traditional path into tech more accessible.
         We meet weekly, host world-class founders, and hold each other to a higher bar.
       </p>
-    </div>
+    </section>
 
-    <div class="block">
-      <p class="eyebrow">What we believe</p>
+    <section class="block">
+      <h2 class="eyebrow">What we believe</h2>
       <ol class="beliefs">
         {#each beliefs as b}
-          <li>{b.lead} <em>{b.em}</em></li>
+          <li class="lede">{b.lead} <em>{b.em}</em></li>
         {/each}
       </ol>
-    </div>
+    </section>
 
-    <div class="block">
-      <p class="eyebrow">Team</p>
+    <section class="block">
+      <h2 class="eyebrow">Team</h2>
       <ul class="founders">
         {#each founders as f}
           <li>
-            <img src={f.img} alt={f.name} width="160" height="160" />
+            <img src={f.img} alt={f.name} width="160" height="160" decoding="async" />
             <p class="name">{f.name}</p>
             <p class="role">{f.role}</p>
           </li>
         {/each}
       </ul>
-    </div>
-
-  </section>
+    </section>
+  </main>
 
   <aside class="right">
-    <Ascii />
+    <div class="stage"><Ascii /></div>
     <div class="logos">
       <a href="https://www.virginia.edu" target="_blank" rel="noopener" aria-label="University of Virginia">
-        <img src="/uva.svg" alt="University of Virginia" height="34" />
+        <img src="/uva.svg" alt="" height="34" />
       </a>
       <a href="https://uvafoundry.com" target="_blank" rel="noopener" aria-label="The Foundry">
-        <img src="/foundry.svg" alt="The Foundry" height="28" />
+        <img src="/foundry.svg" alt="" height="28" />
       </a>
     </div>
   </aside>
 </div>
 
 <style>
+  /* ---------- two panes: graphic pinned left, copy scrolls right ---------- */
   .site {
     display: grid;
     grid-template-columns: 55fr 45fr;
@@ -70,27 +72,28 @@
     overflow: hidden;
   }
 
-  /* ---------- left, scrolls with the page ---------- */
   .left {
     order: 2;
     height: 100%;
     overflow-y: auto;
+    overscroll-behavior: contain;
     scrollbar-width: none;
     padding: 0 var(--gutter);
   }
   .left::-webkit-scrollbar { display: none; }
+
   .block {
     padding: 36px 0 40px;
     border-top: 1px solid var(--hair);
   }
   .block .eyebrow { margin-bottom: 20px; }
-
   .hero { padding-top: 40px; border-top: 0; }
-  .sub {
-    font-size: clamp(22px, 1.9vw, 28px);
+
+  .lede {
+    font-size: var(--lede);
     line-height: 1.32;
     letter-spacing: -0.008em;
-    max-width: 26ch;
+    max-width: var(--measure);
     text-wrap: pretty;
   }
 
@@ -111,13 +114,6 @@
     display: grid;
     gap: 24px;
   }
-  .beliefs li {
-    font-size: clamp(22px, 1.9vw, 28px);
-    line-height: 1.32;
-    letter-spacing: -0.008em;
-    max-width: 26ch;
-    text-wrap: pretty;
-  }
   .beliefs em {
     font-family: var(--serif);
     font-style: italic;
@@ -129,12 +125,13 @@
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(2, 128px);
+    grid-template-columns: repeat(2, minmax(0, 128px));
     gap: 28px;
   }
   .founders img {
-    width: 128px;
-    height: 128px;
+    width: 100%;
+    aspect-ratio: 1;
+    height: auto;
     object-fit: cover;
     filter: grayscale(1);
     background: #17171a;
@@ -150,37 +147,73 @@
     margin-top: 6px;
   }
 
-
-  /* ---------- right, pinned ---------- */
   .right {
     order: 1;
-    position: relative;
+    display: flex;
+    flex-direction: column;
     height: 100%;
+    min-height: 0;
     overflow: hidden;
     border-right: 1px solid var(--hair);
   }
+  .stage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
   .logos {
-    position: absolute;
-    left: var(--gutter);
-    bottom: 28px;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     gap: 28px;
+    padding: 0 var(--gutter) 20px;
     opacity: 0.7;
     transition: opacity 0.25s ease;
   }
-  .logos:hover { opacity: 1; }
+  .logos:hover, .logos:focus-within { opacity: 1; }
+  /* 44px tall hit area around each logo */
+  .logos a { display: flex; align-items: center; min-height: 44px; }
 
-  /* ---------- small screens: graphic on top, then the content ---------- */
-  @media (max-width: 900px) {
-    .site { grid-template-columns: 1fr; height: auto; min-height: 100dvh; overflow: visible; }
-    .right { height: 46vh; height: 46dvh; border-right: 0; border-bottom: 1px solid var(--hair); }
-    .left { height: auto; overflow: visible; padding-bottom: 48px; }
-    .right :global(.wrap) { inset: 0 0 60px 0; }
-    .logos { bottom: 16px; gap: 20px; }
-    .logos img { height: 22px; }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* ---------- one column: graphic on top, copy below, page scrolls ---------- */
+  @media (max-width: 899px) {
+    .site {
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: auto;
+      height: auto;
+      overflow: visible;
+    }
+    .right {
+      /* square-ish stage on phones, capped on tall or wide tablets */
+      height: clamp(340px, 56dvh, 620px);
+      border-right: 0;
+      border-bottom: 1px solid var(--hair);
+    }
+    .logos { gap: 22px; padding-bottom: 12px; }
+    .logos img { height: 24px; }
+    .left {
+      height: auto;
+      overflow: visible;
+      padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    }
+    .block { padding: 28px 0 32px; }
+    .block .eyebrow { margin-bottom: 16px; }
     .hero { padding-top: 32px; }
-    .founders { grid-template-columns: repeat(2, minmax(0, 128px)); gap: 20px; }
-    .founders img { width: 100%; height: auto; aspect-ratio: 1; }
+    .beliefs { gap: 20px; }
+    .founders { gap: 20px; }
+  }
+
+  /* short landscape phones: don't let the graphic eat the whole screen */
+  @media (max-width: 899px) and (max-height: 500px) {
+    .right { height: 320px; }
   }
 </style>

@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte'
-  import { createField } from './field.js'
+  import { createField, MARK } from './field.js'
 
   let wrap, pre
 
@@ -8,11 +8,15 @@
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const field = createField()
 
-    // Scale the <pre> to cover its container.
+    // Scale the <pre> so the mark itself fills FILL of the pane's shorter
+    // axis. The buffer around the mark spills past the pane edges and is
+    // faded out by the mask, so nothing important is ever cropped.
+    const FILL = 0.8
     const fit = () => {
-      if (!wrap || !pre) return
+      if (!wrap || !pre || !pre.scrollWidth) return
       pre.style.transform = 'none'
-      const s = Math.max(wrap.clientWidth / pre.scrollWidth, wrap.clientHeight / pre.scrollHeight)
+      const markW = pre.scrollWidth * MARK.w, markH = pre.scrollHeight * MARK.h
+      const s = Math.min(wrap.clientWidth / markW, wrap.clientHeight / markH) * FILL
       pre.style.transform = `scale(${s})`
     }
     const ro = new ResizeObserver(fit)
@@ -49,8 +53,9 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000 40%, transparent 100%);
-    mask-image: radial-gradient(70% 70% at 50% 50%, #000 40%, transparent 100%);
+    /* solid across the mark (80% of each axis), then fade the stray particles */
+    -webkit-mask-image: radial-gradient(80% 80% at 50% 50%, #000 50%, transparent 100%);
+    mask-image: radial-gradient(80% 80% at 50% 50%, #000 50%, transparent 100%);
   }
   pre {
     margin: 0;

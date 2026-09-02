@@ -7,6 +7,11 @@ export const BW = 320, BH = 200          // density buffer (2x oversampled)
 export const COLS = BW / 2, ROWS = BH / 2 // characters emitted
 const N = 560                             // particles
 
+// The mark's bounding box, as a fraction of the buffer. Char cells are
+// ~0.6 wide vs 1.08 tall, so a 1.8:1 region of the buffer reads as square.
+const MARK_H = 128, MARK_W = MARK_H * 1.8
+export const MARK = { w: MARK_W / BW, h: MARK_H / BH }
+
 // The mark on a 12-unit grid, as centre-line segments, in stroke order.
 const SEGS = [
   [0.5, 2.5, 6.5, 2.5],   // top course, stops short
@@ -18,9 +23,8 @@ const SEGS = [
 ]
 
 function buildPath() {
-  // Map 12 grid units onto a region that reads as square on screen.
-  // Char cells are ~0.6 wide vs 1.08 tall, so the buffer region is 1.8:1.
-  const H = 128, W = H * 1.8
+  // Map 12 grid units onto the mark's region of the buffer.
+  const H = MARK_H, W = MARK_W
   const x0 = (BW - W) / 2, y0 = (BH - H) / 2
   const sx = W / 12, sy = H / 12
   const segs = SEGS.map(([ax, ay, bx, by]) => {

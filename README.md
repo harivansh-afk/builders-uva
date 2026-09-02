@@ -2,7 +2,7 @@
 
 Single-page site for builders@uva, built with Svelte 5 and Vite. No backend.
 
-Layout is a fixed 1:1 split. The left pane scrolls on its own and holds the copy and founders. The right pane holds the mark rendered as live ASCII, with the UVA and Foundry logos in its corner.
+Layout is a 55/45 split. The left pane holds the mark rendered as live ASCII, with the UVA and Foundry logos beneath it. The right pane scrolls on its own and holds the copy and founders. Below 900px the panes stack, graphic first, and the whole page scrolls.
 
 ```sh
 bun install
