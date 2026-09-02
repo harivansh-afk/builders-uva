@@ -95,9 +95,11 @@
   }
 
   .hl {
+    font-family: var(--mono);
+    font-size: 0.9em;
     background: rgba(242, 240, 234, 0.1);
     border-radius: 6px;
-    padding: 0.04em 0.32em;
+    padding: 0.06em 0.34em;
     margin: 0 -0.04em;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;

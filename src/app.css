@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Berkeley Mono";
+  src: url("/fonts/BerkeleyMono-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
   --bg: #0a0a0b;
   --fg: #f2f0ea;
@@ -6,7 +13,7 @@
   --hair: #242426;
   --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --serif: "EB Garamond", ui-serif, Georgia, "Times New Roman", serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --mono: "Berkeley Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gutter: clamp(24px, 3.4vw, 48px);
 }
 
