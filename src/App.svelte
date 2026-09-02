@@ -19,8 +19,8 @@
     <div class="block hero">
       <p class="eyebrow">Who we are</p>
       <p class="sub">
-        <span class="hl">builders@uva</span> is a small group of students who make things: software, hardware, companies.
-        We meet weekly at the Foundry and hold each other to a higher bar.
+        <span class="hl">builders@uva</span> is a small group of students who believe in making the non-traditional path into tech more accessible. 
+        We meet weekly, host world-class founders, and hold each other to a higher bar.
       </p>
     </div>
 
