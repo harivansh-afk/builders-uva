@@ -60,7 +60,7 @@
 </script>
 
 {#snippet choice(name, options, get, set, err)}
-  <div class="opts" role="radiogroup" data-invalid={err || undefined}>
+  <div class="opts" class:cols={options.length > 2} role="radiogroup" data-invalid={err || undefined}>
     {#each options as o}
       {@const on = get() === o.value}
       <button type="button" class="opt" class:on role="radio" aria-checked={on} onclick={() => set(o.value)}>
@@ -211,10 +211,14 @@
   .sub-input { margin-top: 4px; }
 
   .opts {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, max-content));
-    gap: 12px 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 36px;
     margin-left: calc(3ch + 14px);
+  }
+  .opts.cols {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
   }
   .opt {
     display: inline-flex;
@@ -285,6 +289,7 @@
   @media (max-width: 599px) {
     .q { grid-template-columns: 1fr; gap: 6px; }
     input, .opts, .err, .actions { margin-left: 0; width: 100%; }
+    .opts.cols { grid-template-columns: repeat(2, max-content); }
     .go { justify-self: stretch; text-align: center; }
   }
 </style>
