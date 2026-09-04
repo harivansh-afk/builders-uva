@@ -4,6 +4,7 @@
   import Events from './pages/Events.svelte'
   import Event from './pages/Event.svelte'
   import Join from './pages/Join.svelte'
+  import Footer from './lib/Footer.svelte'
   import { route } from './lib/router.svelte.js'
 
   const page = $derived.by(() => {
@@ -29,7 +30,12 @@
 
 {#if home}
   <div class="site">
-    <main class="left"><Home /></main>
+    <main class="left">
+      <div class="col">
+        <Home />
+        <Footer />
+      </div>
+    </main>
     <aside class="right">
       <div class="stage"><Ascii /></div>
       <div class="logos">
@@ -53,9 +59,10 @@
         <Join />
       {:else}
         <p class="eyebrow">404</p>
-        <p class="lede" style="margin-top: 20px">Nothing here. <a class="home" href="/">Go home.</a></p>
+        <p class="lede" style="margin-top: var(--s4)">Nothing here. <a class="home" href="/">Go home.</a></p>
       {/if}
     {/key}
+    <Footer />
   </main>
 {/if}
 
@@ -71,8 +78,8 @@
     gap: 6px;
     padding: 18px var(--gutter);
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    font-size: 12px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
   .nav a {
@@ -90,10 +97,13 @@
 
   /* ---------- full-width pages: events, join ---------- */
   .page {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: var(--s7);
     min-height: 100dvh;
     width: min(1120px, 100%);
     margin: 0 auto;
-    padding: 112px var(--gutter) 96px;
+    padding: 128px var(--gutter) 0;
   }
   .home { border-bottom: 1px solid var(--dim); }
 
@@ -114,6 +124,11 @@
     padding: 0 var(--gutter);
   }
   .left::-webkit-scrollbar { display: none; }
+  /* the copy sits in one fixed-width column, centred in the pane */
+  .col {
+    width: min(100%, var(--col));
+    margin: 0 auto;
+  }
 
   .right {
     order: 1;
@@ -144,7 +159,7 @@
 
   @media (max-width: 899px) {
     .nav { padding-top: calc(12px + env(safe-area-inset-top)); }
-    .page { padding-top: 96px; padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    .page { padding-top: 96px; }
 
     .site {
       grid-template-columns: minmax(0, 1fr);
@@ -162,8 +177,9 @@
     .left {
       height: auto;
       overflow: visible;
-      padding-bottom: calc(40px + env(safe-area-inset-bottom));
+      padding-bottom: env(safe-area-inset-bottom);
     }
+    .col { width: 100%; }
   }
   @media (max-width: 899px) and (max-height: 500px) {
     .right { height: 320px; }

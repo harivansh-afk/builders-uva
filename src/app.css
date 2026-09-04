@@ -8,22 +8,38 @@
 :root {
   --bg: #0a0a0b;
   --fg: #f2f0ea;
-  --muted: #8f8f94;
-  --dim: #5c5c61;
+  --soft: #b9b7b1;   /* secondary copy that still has to be read */
+  --muted: #8f8f94;  /* metadata: dates, tags, roles */
+  --dim: #5c5c61;    /* numerals and decoration */
   --hair: #242426;
   --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --serif: "EB Garamond", ui-serif, Georgia, "Times New Roman", serif;
   --mono: "Berkeley Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gutter: clamp(20px, 3.4vw, 48px);
+
+  /* spacing scale: every vertical gap on the site is one of these */
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 64px;
+  --s6: 104px;
+  --s7: 160px;
+
   /* lede type: 22–28px across desktop widths */
   --lede: clamp(22px, 1.9vw, 28px);
   --measure: 26ch;
+  /* the copy column on the home page */
+  --col: 480px;
 }
 /* one-column widths: scale the lede with the viewport, let it use the line */
 @media (max-width: 899px) {
   :root {
     --lede: clamp(20px, 3.2vw + 8px, 28px);
     --measure: 30ch;
+    --s4: 32px;
+    --s5: 48px;
+    --s6: 72px;
+    --s7: 96px;
   }
 }
 @media (max-width: 599px) {
@@ -51,22 +67,32 @@ a:focus-visible { outline: 1px solid var(--fg); outline-offset: 4px; }
 img { display: block; }
 p, h1, h2, h3, ol, ul { margin: 0; }
 
+/* section labels: small, mono, but set in the foreground colour so they read */
 .eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--fg);
+}
+.eyebrow .n {
+  font-weight: 400;
+  color: var(--dim);
+  letter-spacing: 0.08em;
 }
 
 /* ---------- shared page pieces (used by every page under src/pages) ---------- */
 .block {
-  padding: 36px 0 40px;
+  padding: var(--s4) 0 var(--s6);
   border-top: 1px solid var(--hair);
 }
-.block .eyebrow { margin-bottom: 20px; }
-.hero { padding-top: 40px; border-top: 0; }
+.block .eyebrow { margin-bottom: var(--s4); }
+.hero { border-top: 0; }
 
 .lede {
   font-size: var(--lede);
@@ -74,6 +100,12 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   letter-spacing: -0.008em;
   max-width: var(--measure);
   text-wrap: pretty;
+}
+.lede em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.12em;
+  line-height: 1;
 }
 
 .hl {
@@ -95,10 +127,4 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-@media (max-width: 899px) {
-  .block { padding: 28px 0 32px; }
-  .block .eyebrow { margin-bottom: 16px; }
-  .hero { padding-top: 32px; }
 }

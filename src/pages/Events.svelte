@@ -32,15 +32,9 @@
 </div>
 
 <style>
-  .events { display: grid; gap: 56px; }
-  .intro .eyebrow { margin-bottom: 20px; }
+  .events { display: grid; gap: var(--s6); }
+  .intro .eyebrow { margin-bottom: var(--s4); }
   .lede { max-width: 30ch; }
-  .lede em {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.12em;
-    line-height: 1;
-  }
 
   .rows {
     list-style: none;
@@ -93,7 +87,7 @@
     color: var(--muted);
   }
   .state {
-    color: var(--dim);
+    color: var(--muted);
     text-transform: uppercase;
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -120,7 +114,7 @@
   }
 
   @media (max-width: 899px) {
-    .events { gap: 40px; }
+    .events { gap: var(--s5); }
     .page { grid-template-columns: 4ch minmax(0, 1fr) auto; gap: 6px 18px; padding: 20px 4px; }
     .state { display: none; }
     .t { font-size: 17px; }

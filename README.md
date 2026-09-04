@@ -1,6 +1,8 @@
 # builders@uva
 
-Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left with the UVA and Foundry logos beneath it, copy scrolling on the right; below 900px the panes stack, graphic first. Events and Join are full-width pages. A fixed nav in the top-left (mark, Events, Join us) is on every page.
+Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left with the UVA and Foundry logos beneath it, copy scrolling on the right in a single 480px column centred in its pane; below 900px the panes stack, graphic first. Events and Join are full-width pages. A fixed nav in the top-left (mark, Events, Join us) and a footer (`src/lib/Footer.svelte`: wordmark, page links, team@uva.builders, a live Charlottesville clock) are on every page.
+
+Vertical spacing comes from one scale in `src/app.css` (`--s2` to `--s7`); use those rather than ad hoc pixel values so sections keep the same rhythm.
 
 ```sh
 bun install
@@ -10,7 +12,7 @@ bun run build    # static output in dist/
 
 ## Pages
 
-- `/` is the home page: `src/pages/Home.svelte`. Copy lives in the `beliefs` and `founders` arrays at the top.
+- `/` is the home page: `src/pages/Home.svelte`. Copy lives in the `beliefs` and `founders` arrays at the top. A founder's `linkedin` URL renders an icon next to their name; leave it `null` to hide it.
 - `/events` lists every Q&A, one row per event: `src/pages/Events.svelte`. Clicking a row opens `/events/<slug>` (`src/pages/Event.svelte`) with the transcript, or "Coming soon" until there is one. The headshot on the right of a row links to the guest's LinkedIn.
 - `/join` is the membership form: `src/pages/Join.svelte`.
 

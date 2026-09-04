@@ -41,9 +41,10 @@
 </div>
 
 <style>
-  .event { display: grid; gap: 48px; max-width: 760px; }
+  .event { display: grid; gap: var(--s5); max-width: 760px; }
   .back {
     justify-self: start;
+    color: var(--muted);
     transition: color 0.15s ease;
   }
   .back:hover { color: var(--fg); }
@@ -56,7 +57,7 @@
     padding-bottom: 48px;
     border-bottom: 1px solid var(--hair);
   }
-  .head .eyebrow { margin-bottom: 16px; }
+  .head .eyebrow { margin-bottom: var(--s3); color: var(--muted); }
   .name {
     font-size: var(--lede);
     font-weight: 400;
@@ -86,7 +87,7 @@
     background: #17171a;
   }
 
-  .body { display: grid; gap: 20px; }
+  .body { display: grid; gap: var(--s3); }
   .soon {
     font-size: var(--lede);
     line-height: 1.32;

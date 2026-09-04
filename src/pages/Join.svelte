@@ -154,18 +154,12 @@
     gap: 64px clamp(48px, 8vw, 128px);
     align-items: start;
   }
-  .intro { position: sticky; top: 96px; }
-  .intro .eyebrow { margin-bottom: 20px; }
-  .lede em {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.12em;
-    line-height: 1;
-  }
+  .intro { position: sticky; top: 128px; }
+  .intro .eyebrow { margin-bottom: var(--s4); }
   .sub {
-    margin-top: 22px;
+    margin-top: var(--s3);
     max-width: 34ch;
-    color: var(--muted);
+    color: var(--soft);
     font-size: 15px;
     line-height: 1.55;
   }
@@ -344,7 +338,8 @@
   .go:disabled { opacity: 0.6; cursor: default; }
   .go:focus-visible { outline: 1px solid var(--fg); outline-offset: 4px; }
 
-  .done { display: grid; gap: 20px; }
+  .done { display: grid; gap: var(--s3); }
+  .done .eyebrow { margin-bottom: var(--s2); }
 
   @media (max-width: 899px) {
     .join { grid-template-columns: minmax(0, 1fr); gap: 48px; }
