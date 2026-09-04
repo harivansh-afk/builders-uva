@@ -88,7 +88,7 @@ p, h1, h2, h3, ol, ul { margin: 0; }
 /* equal room above and below every rule, so the rule sits between sections
    rather than attached to the heading under it */
 .block {
-  padding: var(--s5) 0;
+  padding: var(--s6) 0;
   border-top: 1px solid var(--hair);
 }
 .block .eyebrow { margin-bottom: var(--s4); }
