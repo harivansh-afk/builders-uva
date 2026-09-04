@@ -20,7 +20,7 @@ Routing is `src/lib/router.svelte.js`, a small history-API router. `vercel.json`
 
 ## Adding an event
 
-Edit `src/lib/events.js`. Each entry has a `slug`, `name`, `tag` (e.g. `YC W26`), ISO `date`, `img`, `link`, and an optional `transcript`. Drop the headshot in `public/`. The row number is the array position, so append to the end.
+Edit `src/lib/events.js`. Each entry has a `slug`, `name`, `tag` (e.g. `YC W26`, shown after the name in parentheses), ISO `date`, `img`, `link`, and an optional `transcript`. Drop the headshot in `public/`. The row number is the array position, so append to the end.
 
 The join form ends with an RSVP, "Can you make it Thu, Sep 10?", built from the next event on or after today. The yes/no is stored against that event's slug in `event_responses`, so adding next week's event is all it takes to change the question.
 

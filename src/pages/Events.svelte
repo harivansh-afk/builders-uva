@@ -15,7 +15,7 @@
       <li class="row" class:upcoming={e.date >= today}>
         <a class="page" href="/events/{e.slug}">
           <span class="n">{n(i)}</span>
-          <span class="t">{e.name}<span class="tag">{e.tag}</span></span>
+          <span class="t">{e.name} ({e.tag})</span>
           <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
           <span class="state">{e.date >= today ? 'Upcoming' : e.transcript ? 'Transcript' : 'Transcript soon'}</span>
         </a>
@@ -72,13 +72,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .tag {
-    margin-left: 12px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-  }
   .d, .state {
     font-family: var(--mono);
     font-size: 12px;
@@ -122,7 +115,6 @@
   @media (max-width: 599px) {
     .page { grid-template-columns: 3ch minmax(0, 1fr); }
     .t { white-space: normal; }
-    .tag { display: block; margin: 4px 0 0; }
     .d { grid-column: 2; }
     .pfp { padding-left: 12px; }
     .pfp img { width: 40px; height: 40px; }

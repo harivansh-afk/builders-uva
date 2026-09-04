@@ -117,7 +117,7 @@
             <a class="card" href="/events/{ev.slug}">
               <img src={ev.img} alt="" width="56" height="56" />
               <span class="card-text">
-                <span class="who">{ev.name} <span class="tag">{ev.tag}</span></span>
+                <span class="who">{ev.name} ({ev.tag})</span>
                 <span class="when">Founder Q&amp;A · {midDate(ev.date)}</span>
               </span>
               <span class="more" aria-hidden="true">→</span>
@@ -212,13 +212,6 @@
   }
   .card-text { display: grid; gap: 4px; min-width: 0; }
   .who { font-size: 17px; color: var(--fg); }
-  .tag {
-    margin-left: 8px;
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-  }
   .when {
     font-family: var(--mono);
     font-size: 12px;

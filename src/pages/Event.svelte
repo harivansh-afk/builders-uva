@@ -10,8 +10,7 @@
   {#if e}
     <header class="head">
       <div>
-        <p class="eyebrow">{e.tag}</p>
-        <h1 class="name">{e.name}</h1>
+        <h1 class="name">{e.name} ({e.tag})</h1>
         <p class="meta">
           <time datetime={e.date}>{longDate(e.date)}</time>
           {#if e.link}
@@ -57,7 +56,6 @@
     padding-bottom: 48px;
     border-bottom: 1px solid var(--hair);
   }
-  .head .eyebrow { margin-bottom: var(--s3); color: var(--muted); }
   .name {
     font-size: var(--lede);
     font-weight: 400;
