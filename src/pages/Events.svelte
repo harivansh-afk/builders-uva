@@ -32,7 +32,7 @@
 </div>
 
 <style>
-  .events { display: grid; gap: var(--s6); }
+  .events { display: grid; gap: var(--s5); }
   .intro .eyebrow { margin-bottom: var(--s4); }
   .lede { max-width: 30ch; }
 
@@ -114,7 +114,7 @@
   }
 
   @media (max-width: 899px) {
-    .events { gap: var(--s5); }
+    .events { gap: var(--s4); }
     .page { grid-template-columns: 4ch minmax(0, 1fr) auto; gap: 6px 18px; padding: 20px 4px; }
     .state { display: none; }
     .t { font-size: 17px; }

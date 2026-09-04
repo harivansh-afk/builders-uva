@@ -1,6 +1,6 @@
 # builders@uva
 
-Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left with the UVA and Foundry logos beneath it, copy scrolling on the right in a single 600px column centred in its pane, with section rules running the full pane width; below 900px the panes stack, graphic first. Events and Join are full-width pages. A fixed nav in the top-left (mark, Events, Join us) and a one-line footer (`src/lib/Footer.svelte`: copyright and a live Charlottesville clock) are on every page.
+Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left with the UVA and Foundry logos beneath it, copy scrolling on the right in a single 600px column centred in its pane, with section rules running the full pane width; below 900px the panes stack, graphic first. Events and Join are full-width pages. A nav in the top-left (mark, Events, Join us) and a one-line footer (`src/lib/Footer.svelte`: copyright and a live Charlottesville clock) are on every page.
 
 Vertical spacing comes from one scale in `src/app.css` (`--s2` to `--s7`); use those rather than ad hoc pixel values so sections keep the same rhythm.
 

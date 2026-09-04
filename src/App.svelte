@@ -69,7 +69,7 @@
 <style>
   /* ---------- top-left page switcher, on every page ---------- */
   .nav {
-    position: fixed;
+    position: absolute; /* scrolls away with the page rather than riding over the copy */
     z-index: 10;
     top: 0;
     left: 0;
