@@ -1,42 +1,48 @@
 <script>
   import { onMount } from 'svelte'
-  import { createField, MARK } from './field.js'
+  import { createField } from './field.js'
 
   let wrap, pre
 
   onMount(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const field = createField()
+    let field = null, aspect = 0, raf = 0
 
-    // Scale the <pre> so the mark covers the pane with room to spare: the
-    // hands run corner to corner, the arms leave through the edges, and the
-    // mask fades them out before they get there.
-    const COVER = 1.12
+    // The buffer shares the pane's aspect, so scaling the <pre> to the pane's
+    // width covers it exactly. The hands overshoot the corners by design and
+    // the mask fades them out before the edge.
     const fit = () => {
       if (!wrap || !pre || !pre.scrollWidth) return
       pre.style.transform = 'none'
-      const markW = pre.scrollWidth * MARK.w, markH = pre.scrollHeight * MARK.h
-      const s = Math.max(wrap.clientWidth / markW, wrap.clientHeight / markH) * COVER
+      const s = Math.max(wrap.clientWidth / pre.scrollWidth, wrap.clientHeight / pre.scrollHeight)
       pre.style.transform = `scale(${s})`
     }
-    const ro = new ResizeObserver(fit)
-    ro.observe(wrap)
 
-    let raf = 0
-    let first = true
-    const draw = (text) => {
-      pre.textContent = text
-      if (first) { first = false; fit() }
-    }
-
-    if (reduce) {
+    const still = () => {
       let text = ''
       for (let i = 0; i < 40; i++) text = field.step(i * 16)
-      draw(text)
-    } else {
-      const frame = (now) => { draw(field.step(now)); raf = requestAnimationFrame(frame) }
-      raf = requestAnimationFrame(frame)
+      pre.textContent = text
+      fit()
     }
+    const frame = (now) => { pre.textContent = field.step(now); raf = requestAnimationFrame(frame) }
+
+    // Rebuild the field when the pane's shape changes enough to matter.
+    const build = () => {
+      const a = wrap.clientWidth / Math.max(1, wrap.clientHeight)
+      if (!a || Math.abs(a - aspect) < 0.03) return fit()
+      aspect = a
+      field = createField({ aspect })
+      cancelAnimationFrame(raf)
+      if (reduce) still()
+      else {
+        pre.textContent = field.step(0)
+        fit()
+        raf = requestAnimationFrame(frame)
+      }
+    }
+    const ro = new ResizeObserver(build)
+    ro.observe(wrap)
+    build()
     return () => { cancelAnimationFrame(raf); ro.disconnect() }
   })
 </script>
@@ -54,8 +60,8 @@
     justify-content: center;
     overflow: hidden;
     /* solid through the middle; the arms dissolve into the two corners they leave by */
-    -webkit-mask-image: linear-gradient(to top right, transparent 4%, #000 30%, #000 70%, transparent 96%);
-    mask-image: linear-gradient(to top right, transparent 4%, #000 30%, #000 70%, transparent 96%);
+    -webkit-mask-image: linear-gradient(to top right, transparent 2%, #000 28%, #000 72%, transparent 98%);
+    mask-image: linear-gradient(to top right, transparent 2%, #000 28%, #000 72%, transparent 98%);
   }
   pre {
     margin: 0;

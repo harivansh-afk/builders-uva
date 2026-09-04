@@ -1,49 +1,25 @@
 // The builders@uva mark drawn as ASCII density.
-// The mark is the two hands from Michelangelo's Creation of Adam. Particles
-// ride along the outline of the hands, shimmer, and drift a little across the
-// edge; the shading inside breathes. The shape holds at all times and still
-// feels alive.
+// The mark is the two hands from Michelangelo's Creation of Adam. They run
+// corner to corner across the pane, Adam bottom-left and God top-right, with
+// the gap between the fingertips at the centre. Particles ride along the
+// outline of the hands, shimmer, and drift a little across the edge; the
+// shading inside breathes. The shape holds at all times and still feels alive.
+//
+// The hands ship level (src/lib/hands.json). The field is built for the pane's
+// aspect: the buffer takes that aspect, the hands are rotated onto its
+// diagonal and scaled to overshoot the corners, so the arms leave through the
+// edges whatever shape the pane is.
 
 import hands from './hands.json'
 
 export const RAMP = " .:-=+*#%@"
-export const BW = 400, BH = 280          // density buffer (2x oversampled)
-export const COLS = BW / 2, ROWS = BH / 2 // characters emitted
-const N = 900                             // particles on the outline
-
-// Char cells are ~0.6 wide vs 1.08 tall, so a region of the buffer reads at
-// its buffer aspect divided by 1.8. Fit the hands inside the buffer on both axes.
-const CHAR_ASPECT = 1.8
-const MARK_W = Math.min(BW * 0.98, BH * 0.98 * hands.aspect * CHAR_ASPECT)
-const MARK_H = MARK_W / (hands.aspect * CHAR_ASPECT)
-const X0 = (BW - MARK_W) / 2, Y0 = (BH - MARK_H) / 2
-export const MARK = { w: MARK_W / BW, h: MARK_H / BH }
+const N = 900                 // particles on the outline
+const CHAR_ASPECT = 1.8       // char cells are ~0.6 wide vs 1.08 tall
+const OVERSHOOT = 1.16        // hands' axis length as a multiple of the pane diagonal
 
 // Shading inside the hands, 0..255, zero outside. Sampled by nearest cell.
 const GW = hands.w, GH = hands.h
 const SHADE = Uint8Array.from(atob(hands.shade), (c) => c.charCodeAt(0))
-function shadeAt(x, y) {
-  const gx = (((x - X0) / MARK_W) * GW) | 0, gy = (((y - Y0) / MARK_H) * GH) | 0
-  if (gx < 0 || gy < 0 || gx >= GW || gy >= GH) return 0
-  return SHADE[gy * GW + gx] / 255
-}
-
-// The outline as segments, in buffer space, with cumulative arc length.
-function buildPath() {
-  const segs = []
-  for (const poly of hands.contours) {
-    for (let i = 0; i < poly.length; i++) {
-      const [ax, ay] = poly[i], [bx, by] = poly[(i + 1) % poly.length]
-      const a = { x: X0 + ax * MARK_W, y: Y0 + ay * MARK_H }
-      const b = { x: X0 + bx * MARK_W, y: Y0 + by * MARK_H }
-      const len = Math.hypot(b.x - a.x, b.y - a.y)
-      if (len > 0) segs.push({ a, b, len })
-    }
-  }
-  let acc = 0
-  for (const g of segs) { g.start = acc; acc += g.len }
-  return { segs, total: acc }
-}
 
 function buildKernel(rx, ry) {
   const RX = Math.ceil(rx), RY = Math.ceil(ry)
@@ -65,20 +41,81 @@ function noise(x, y) {
   return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v
 }
 
-// Per character cell: how much of it the hands cover, and for cells on the
-// outline, the contour glyph that follows the edge direction there.
-function buildCells() {
+/**
+ * Build a field for a pane of the given aspect (width / height).
+ * Returns { step(now), cols, rows }.
+ */
+export function createField({ aspect = 0.8, rand = Math.random } = {}) {
+  // Buffer with the pane's aspect, 2x oversampled. Height fixed, width follows.
+  const BH = 280
+  const BW = Math.max(120, Math.round((BH * CHAR_ASPECT * aspect) / 2) * 2)
+  const COLS = BW / 2, ROWS = BH / 2
+
+  // Geometry in visual units: x in buffer px, y in buffer px * CHAR_ASPECT,
+  // origin at the buffer centre. The hands' axis lies on the diagonal.
+  const diag = Math.hypot(BW, BH * CHAR_ASPECT)
+  const theta = Math.atan2(BH * CHAR_ASPECT, BW)      // diagonal angle, up-right
+  const cos = Math.cos(theta), sin = Math.sin(theta)
+  const S = diag * OVERSHOOT                          // hands' width in visual units
+  const SH = S / hands.aspect                         // hands' height
+  const [gapX, gapY] = hands.gap                      // gap position, normalised in the hands' box
+
+  // hand box coords (normalised) -> buffer px
+  function toBuffer(px, py) {
+    const hx = (px - gapX) * S, hy = (py - gapY) * SH
+    const vx = hx * cos + hy * sin, vy = -hx * sin + hy * cos
+    return { x: BW / 2 + vx, y: BH / 2 + vy / CHAR_ASPECT }
+  }
+  // buffer px -> shading, 0..1
+  function shadeAt(x, y) {
+    const vx = x - BW / 2, vy = (y - BH / 2) * CHAR_ASPECT
+    const hx = vx * cos - vy * sin, hy = vx * sin + vy * cos
+    const gx = ((hx / S + gapX) * GW) | 0, gy = ((hy / SH + gapY) * GH) | 0
+    if (gx < 0 || gy < 0 || gx >= GW || gy >= GH) return 0
+    return SHADE[gy * GW + gx] / 255
+  }
+
+  // The outline as segments in buffer space, with cumulative arc length.
+  const segs = []
+  for (const poly of hands.contours) {
+    for (let i = 0; i < poly.length; i++) {
+      const a = toBuffer(...poly[i]), b = toBuffer(...poly[(i + 1) % poly.length])
+      const len = Math.hypot(b.x - a.x, b.y - a.y)
+      if (len > 0) segs.push({ a, b, len })
+    }
+  }
+  let total = 0
+  for (const g of segs) { g.start = total; total += g.len }
+  const starts = segs.map((g) => g.start)
+
+  // Point on the outline at arc length s, plus the normal there.
+  function at(s) {
+    s = ((s % total) + total) % total
+    let lo = 0, hi = starts.length - 1
+    while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (starts[mid] <= s) lo = mid; else hi = mid - 1 }
+    const g = segs[lo]
+    const t = (s - g.start) / g.len
+    const dx = (g.b.x - g.a.x) / g.len, dy = (g.b.y - g.a.y) / g.len
+    return { x: g.a.x + (g.b.x - g.a.x) * t, y: g.a.y + (g.b.y - g.a.y) * t, nx: -dy, ny: dx }
+  }
+
+  // Static shading at buffer resolution, added back each frame under the decay.
+  const base = new Float32Array(BW * BH)
+  for (let y = 0; y < BH; y++)
+    for (let x = 0; x < BW; x++) base[y * BW + x] = Math.pow(shadeAt(x + 0.5, y + 0.5), 0.75)
+
+  // Per character cell: coverage, and for cells on the outline the contour
+  // glyph that follows the edge direction there.
   const cover = new Float32Array(COLS * ROWS)
-  const S = 4 // subsamples per axis
+  const SUB = 4
   for (let r = 0; r < ROWS; r++)
     for (let c = 0; c < COLS; c++) {
       let n = 0
-      for (let j = 0; j < S; j++)
-        for (let i = 0; i < S; i++)
-          if (shadeAt(2 * c + ((i + 0.5) / S) * 2, 2 * r + ((j + 0.5) / S) * 2) > 0) n++
-      cover[r * COLS + c] = n / (S * S)
+      for (let j = 0; j < SUB; j++)
+        for (let i = 0; i < SUB; i++)
+          if (shadeAt(2 * c + ((i + 0.5) / SUB) * 2, 2 * r + ((j + 0.5) / SUB) * 2) > 0) n++
+      cover[r * COLS + c] = n / (SUB * SUB)
     }
-  // smooth a touch so the gradient is stable, then classify
   const sm = new Float32Array(COLS * ROWS)
   for (let r = 1; r < ROWS - 1; r++)
     for (let c = 1; c < COLS - 1; c++) {
@@ -91,7 +128,6 @@ function buildCells() {
     for (let c = 1; c < COLS - 1; c++) {
       const k = r * COLS + c, cv = cover[k]
       if (cv < 0.12 || cv >= 0.8) continue
-      // gradient in isotropic units: cells are 1.8x taller than wide
       const gx = (sm[k + 1] - sm[k - 1]) / 2
       const gy = (sm[k + COLS] - sm[k - COLS]) / 2 / CHAR_ASPECT
       if (gx === 0 && gy === 0) continue
@@ -101,35 +137,13 @@ function buildCells() {
         : ang >= 112.5 && ang < 157.5 ? '/'
         : '|'
     }
-  return { cover, glyph }
-}
 
-export function createField(rand = Math.random) {
-  const path = buildPath()
   const kernel = buildKernel(4.6, 2.6)
-  const cells = buildCells()
   const lut = Array.from({ length: 256 }, (_, i) => RAMP[Math.min(RAMP.length - 1, ((i / 255) * RAMP.length) | 0)])
   const buf = new Float32Array(BW * BH)
 
-  // Static shading, at buffer resolution, added back each frame under the decay.
-  const base = new Float32Array(BW * BH)
-  for (let y = 0; y < BH; y++)
-    for (let x = 0; x < BW; x++) base[y * BW + x] = Math.pow(shadeAt(x + 0.5, y + 0.5), 0.75)
-
-  // Point on the outline at arc length s, plus the normal there.
-  const starts = path.segs.map((g) => g.start)
-  function at(s) {
-    s = ((s % path.total) + path.total) % path.total
-    let lo = 0, hi = starts.length - 1
-    while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (starts[mid] <= s) lo = mid; else hi = mid - 1 }
-    const g = path.segs[lo]
-    const t = (s - g.start) / g.len
-    const dx = (g.b.x - g.a.x) / g.len, dy = (g.b.y - g.a.y) / g.len
-    return { x: g.a.x + (g.b.x - g.a.x) * t, y: g.a.y + (g.b.y - g.a.y) * t, nx: -dy, ny: dx }
-  }
-
   const ps = Array.from({ length: N }, (_, i) => {
-    const s0 = (i / N) * path.total
+    const s0 = (i / N) * total
     const p0 = at(s0)
     return {
       s0,
@@ -200,7 +214,7 @@ export function createField(rand = Math.random) {
       for (let c = 0; c < COLS; c++) {
         const cb = 2 * c
         const s = (buf[rb + cb] + buf[rb + cb + 1] + buf[rb + BW + cb] + buf[rb + BW + cb + 1]) / 4
-        const g = cells.glyph[r * COLS + c]
+        const g = glyph[r * COLS + c]
         out += g && s > 0.1 ? g : lut[Math.min(255, (s * 255) | 0)]
       }
       if (r < ROWS - 1) out += '\n'
@@ -208,5 +222,5 @@ export function createField(rand = Math.random) {
     return out
   }
 
-  return { step }
+  return { step, cols: COLS, rows: ROWS }
 }
