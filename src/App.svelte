@@ -1,55 +1,52 @@
 <script>
   import Ascii from './lib/Ascii.svelte'
+  import Mark from './lib/Mark.svelte'
+  import Home from './pages/Home.svelte'
+  import Events from './pages/Events.svelte'
+  import Event from './pages/Event.svelte'
+  import Join from './pages/Join.svelte'
+  import { route } from './lib/router.svelte.js'
 
-  const beliefs = [
-    { lead: 'The company you keep sets the expectations for', em: 'what you can achieve.' },
-    { lead: 'The world around you was built by people no different than yourself.', em: 'You can just build things.' },
-    { lead: 'Weird will always win.', em: 'Normal choices guarantee normal results.' },
-    { lead: "Fail fast, fail often. Even if you don't win,", em: 'you can lose better.' },
-  ]
+  const page = $derived.by(() => {
+    const p = route.path
+    if (p === '/') return { name: 'home', title: 'builders@uva' }
+    if (p === '/events') return { name: 'events', title: 'Events · builders@uva' }
+    if (p.startsWith('/events/')) return { name: 'event', slug: p.slice('/events/'.length), title: 'Events · builders@uva' }
+    if (p === '/join') return { name: 'join', title: 'Join us · builders@uva' }
+    return { name: 'missing', title: 'builders@uva' }
+  })
 
-  const founders = [
-    { name: 'Nathan Wang', role: 'Co-founder', img: '/nathan.png' },
-    { name: 'Harivansh Rathi', role: 'Co-founder', img: '/hari.png' },
-  ]
+  $effect(() => { document.title = page.title })
+
+  const section = $derived(page.name === 'event' ? 'events' : page.name)
 </script>
 
 <div class="site">
   <main class="left">
-    <h1 class="sr-only">builders@uva</h1>
-
-    <section class="block hero">
-      <h2 class="eyebrow">Who we are</h2>
-      <p class="lede">
-        <span class="hl">builders@uva</span> is a small group of students who believe in making the non-traditional path into tech more accessible.
-        We meet weekly, host world-class founders, and hold each other to a higher bar.
-      </p>
-    </section>
-
-    <section class="block">
-      <h2 class="eyebrow">What we believe</h2>
-      <ol class="beliefs">
-        {#each beliefs as b}
-          <li class="lede">{b.lead} <em>{b.em}</em></li>
-        {/each}
-      </ol>
-    </section>
-
-    <section class="block">
-      <h2 class="eyebrow">Team</h2>
-      <ul class="founders">
-        {#each founders as f}
-          <li>
-            <img src={f.img} alt={f.name} width="160" height="160" decoding="async" />
-            <p class="name">{f.name}</p>
-            <p class="role">{f.role}</p>
-          </li>
-        {/each}
-      </ul>
-    </section>
+    {#key route.path}
+      {#if page.name === 'home'}
+        <Home />
+      {:else if page.name === 'events'}
+        <Events />
+      {:else if page.name === 'event'}
+        <Event slug={page.slug} />
+      {:else if page.name === 'join'}
+        <Join />
+      {:else}
+        <section class="block hero">
+          <h2 class="eyebrow">404</h2>
+          <p class="lede">Nothing here. <a class="home" href="/">Go home.</a></p>
+        </section>
+      {/if}
+    {/key}
   </main>
 
   <aside class="right">
+    <nav class="nav" aria-label="Pages">
+      <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}><Mark size={18} /></a>
+      <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
+      <a href="/join" aria-current={section === 'join' ? 'page' : undefined}>Join us</a>
+    </nav>
     <div class="stage"><Ascii /></div>
     <div class="logos">
       <a href="https://www.virginia.edu" target="_blank" rel="noopener" aria-label="University of Virginia">
@@ -82,73 +79,11 @@
   }
   .left::-webkit-scrollbar { display: none; }
 
-  .block {
-    padding: 36px 0 40px;
-    border-top: 1px solid var(--hair);
-  }
-  .block .eyebrow { margin-bottom: 20px; }
-  .hero { padding-top: 40px; border-top: 0; }
-
-  .lede {
-    font-size: var(--lede);
-    line-height: 1.32;
-    letter-spacing: -0.008em;
-    max-width: var(--measure);
-    text-wrap: pretty;
-  }
-
-  .hl {
-    font-family: var(--mono);
-    font-size: 0.9em;
-    background: rgba(242, 240, 234, 0.1);
-    border-radius: 6px;
-    padding: 0.06em 0.34em;
-    margin: 0 -0.04em;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
-
-  .beliefs {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 24px;
-  }
-  .beliefs em {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.12em;
-    line-height: 1;
-  }
-
-  .founders {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 128px));
-    gap: 28px;
-  }
-  .founders img {
-    width: 100%;
-    aspect-ratio: 1;
-    height: auto;
-    object-fit: cover;
-    filter: grayscale(1);
-    background: #17171a;
-    margin-bottom: 12px;
-  }
-  .founders .name { font-size: 15px; font-weight: 500; }
-  .founders .role {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 6px;
-  }
+  .home { border-bottom: 1px solid var(--dim); }
 
   .right {
     order: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -156,6 +91,36 @@
     overflow: hidden;
     border-right: 1px solid var(--hair);
   }
+
+  /* top-left page switcher, floating over the stage */
+  .nav {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 18px var(--gutter);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 10px;
+    color: var(--muted);
+    border: 1px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .nav a:hover { color: var(--fg); }
+  .nav a[aria-current='page'] { color: var(--fg); border-color: var(--hair); }
+  .nav .mark { padding: 0 8px 0 0; margin-right: 4px; border: 0; }
+  .nav .mark[aria-current='page'] { color: var(--fg); }
+
   .stage {
     position: relative;
     flex: 1 1 auto;
@@ -174,16 +139,6 @@
   /* 44px tall hit area around each logo */
   .logos a { display: flex; align-items: center; min-height: 44px; }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-
   /* ---------- one column: graphic on top, copy below, page scrolls ---------- */
   @media (max-width: 899px) {
     .site {
@@ -198,6 +153,7 @@
       border-right: 0;
       border-bottom: 1px solid var(--hair);
     }
+    .nav { padding-top: calc(12px + env(safe-area-inset-top)); }
     .logos { gap: 22px; padding-bottom: 12px; }
     .logos img { height: 24px; }
     .left {
@@ -205,11 +161,6 @@
       overflow: visible;
       padding-bottom: calc(40px + env(safe-area-inset-bottom));
     }
-    .block { padding: 28px 0 32px; }
-    .block .eyebrow { margin-bottom: 16px; }
-    .hero { padding-top: 32px; }
-    .beliefs { gap: 20px; }
-    .founders { gap: 20px; }
   }
 
   /* short landscape phones: don't let the graphic eat the whole screen */

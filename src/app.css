@@ -59,3 +59,46 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   text-transform: uppercase;
   color: var(--muted);
 }
+
+/* ---------- shared page pieces (used by every page under src/pages) ---------- */
+.block {
+  padding: 36px 0 40px;
+  border-top: 1px solid var(--hair);
+}
+.block .eyebrow { margin-bottom: 20px; }
+.hero { padding-top: 40px; border-top: 0; }
+
+.lede {
+  font-size: var(--lede);
+  line-height: 1.32;
+  letter-spacing: -0.008em;
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+
+.hl {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: rgba(242, 240, 234, 0.1);
+  border-radius: 6px;
+  padding: 0.06em 0.34em;
+  margin: 0 -0.04em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 899px) {
+  .block { padding: 28px 0 32px; }
+  .block .eyebrow { margin-bottom: 16px; }
+  .hero { padding-top: 32px; }
+}
