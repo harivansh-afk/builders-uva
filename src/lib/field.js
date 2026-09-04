@@ -7,14 +7,14 @@
 import hands from './hands.json'
 
 export const RAMP = " .:-=+*#%@"
-export const BW = 480, BH = 160          // density buffer (2x oversampled)
+export const BW = 440, BH = 240          // density buffer (2x oversampled)
 export const COLS = BW / 2, ROWS = BH / 2 // characters emitted
-const N = 720                             // particles on the outline
+const N = 900                             // particles on the outline
 
 // Char cells are ~0.6 wide vs 1.08 tall, so a region of the buffer reads at
 // its buffer aspect divided by 1.8. Fit the hands to the width and derive height.
 const CHAR_ASPECT = 1.8
-const MARK_W = BW * 0.96
+const MARK_W = BW * 0.94
 const MARK_H = MARK_W / (hands.aspect * CHAR_ASPECT)
 const X0 = (BW - MARK_W) / 2, Y0 = (BH - MARK_H) / 2
 export const MARK = { w: MARK_W / BW, h: MARK_H / BH }
@@ -106,7 +106,7 @@ function buildCells() {
 
 export function createField(rand = Math.random) {
   const path = buildPath()
-  const kernel = buildKernel(5.5, 3.1)
+  const kernel = buildKernel(4.6, 2.6)
   const cells = buildCells()
   const lut = Array.from({ length: 256 }, (_, i) => RAMP[Math.min(RAMP.length - 1, ((i / 255) * RAMP.length) | 0)])
   const buf = new Float32Array(BW * BH)

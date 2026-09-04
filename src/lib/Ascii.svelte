@@ -65,7 +65,7 @@
     line-height: 1.08;
     white-space: pre;
     color: var(--fg);
-    opacity: 0.72;
+    opacity: 0.86;
     user-select: none;
     transform-origin: 50% 50%;
     will-change: transform;
