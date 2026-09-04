@@ -80,11 +80,6 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   text-transform: uppercase;
   color: var(--fg);
 }
-.eyebrow .n {
-  font-weight: 400;
-  color: var(--dim);
-  letter-spacing: 0.08em;
-}
 
 /* ---------- shared page pieces (used by every page under src/pages) ---------- */
 .block {

@@ -18,7 +18,7 @@
 <h1 class="sr-only">builders@uva</h1>
 
 <section class="block hero">
-  <h2 class="eyebrow"><span class="n">01</span>Who we are</h2>
+  <h2 class="eyebrow">Who we are</h2>
   <p class="lede">
     <span class="hl">builders@uva</span> is a small group of students who believe in making the non-traditional path into tech more accessible.
     We meet weekly, host world-class founders, and hold each other to a higher bar.
@@ -26,7 +26,7 @@
 </section>
 
 <section class="block">
-  <h2 class="eyebrow"><span class="n">02</span>What we believe</h2>
+  <h2 class="eyebrow">What we believe</h2>
   <ol class="beliefs">
     {#each beliefs as b}
       <li class="lede">{b.lead} <em>{b.em}</em></li>
@@ -35,7 +35,7 @@
 </section>
 
 <section class="block">
-  <h2 class="eyebrow"><span class="n">03</span>Team</h2>
+  <h2 class="eyebrow">Team</h2>
   <ul class="founders">
     {#each founders as f}
       <li>
