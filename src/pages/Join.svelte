@@ -1,6 +1,6 @@
 <script>
   import { YEARS, EMAIL_RE } from '../lib/join.js'
-  import { nextEvent, rsvpQuestion } from '../lib/events.js'
+  import { nextEvent, rsvpQuestion, midDate } from '../lib/events.js'
 
   const ev = nextEvent()
 
@@ -111,15 +111,23 @@
       </div>
 
       {#if ev}
-        <div class="field event">
-          <p class="q">
-            <span class="n">05</span>
-            <span>
-              {rsvpQuestion(ev)}
-              <span class="ctx">{ev.name}, {ev.tag}</span>
-            </span>
-          </p>
-          {@render choice('rsvp', [{ value: true, label: 'Yes' }, { value: false, label: 'No' }], () => rsvp, (v) => (rsvp = v), show('rsvp'))}
+        <div class="field rsvp">
+          <p class="q"><span class="n">05</span>{rsvpQuestion(ev)}</p>
+          <div class="indent">
+            <a class="card" href="/events/{ev.slug}">
+              <img src={ev.img} alt="" width="56" height="56" />
+              <span class="card-text">
+                <span class="who">{ev.name} <span class="tag">{ev.tag}</span></span>
+                <span class="when">Founder Q&amp;A · {midDate(ev.date)}</span>
+              </span>
+              <span class="more" aria-hidden="true">→</span>
+            </a>
+            <div class="seg" role="radiogroup" data-invalid={show('rsvp') || undefined}>
+              <button type="button" class:on={rsvp === true} role="radio" aria-checked={rsvp === true} onclick={() => (rsvp = true)}>Yes, I'll be there</button>
+              <button type="button" class:on={rsvp === false} role="radio" aria-checked={rsvp === false} onclick={() => (rsvp = false)}>Can't make it</button>
+            </div>
+            {#if show('rsvp')}<p class="err">{show('rsvp')}</p>{/if}
+          </div>
         </div>
       {/if}
 
@@ -162,8 +170,16 @@
     line-height: 1.55;
   }
 
-  form { display: grid; gap: 52px; max-width: 560px; }
-  .field { display: grid; gap: 16px; }
+  form { display: grid; max-width: 580px; }
+  .field {
+    display: grid;
+    gap: 18px;
+    padding: 34px 0 38px;
+    border-top: 1px solid var(--hair);
+  }
+  .field:first-child { padding-top: 0; border-top: 0; }
+  .indent { display: grid; gap: 18px; margin-left: calc(3ch + 14px); }
+  .indent .err { margin-left: 0; }
 
   .q {
     display: grid;
@@ -180,14 +196,64 @@
     font-size: 12px;
     color: var(--dim);
   }
-  .ctx {
-    display: block;
-    margin-top: 6px;
+
+  /* the RSVP card */
+  .card {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 18px 16px 16px;
+    border: 1px solid var(--hair);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .card:hover { border-color: var(--dim); background: rgba(242, 240, 234, 0.03); }
+  .card img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(1);
+    background: #17171a;
+  }
+  .card-text { display: grid; gap: 4px; min-width: 0; }
+  .who { font-size: 17px; color: var(--fg); }
+  .tag {
+    margin-left: 8px;
     font-family: var(--mono);
     font-size: 12px;
     letter-spacing: 0.04em;
     color: var(--muted);
   }
+  .when {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+  .more { color: var(--dim); font-size: 18px; transition: color 0.15s ease, transform 0.15s ease; }
+  .card:hover .more { color: var(--fg); transform: translateX(3px); }
+
+  .seg {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--hair);
+  }
+  .seg button {
+    padding: 14px 16px;
+    background: transparent;
+    border: 0;
+    color: var(--muted);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .seg button + button { border-left: 1px solid var(--hair); }
+  .seg button:hover { color: var(--fg); background: rgba(242, 240, 234, 0.04); }
+  .seg button.on { color: var(--bg); background: var(--fg); }
+  .seg button:focus-visible { outline: 1px solid var(--fg); outline-offset: -3px; }
+  .seg[data-invalid] { border-color: #c98484; }
 
   input {
     width: 100%;
@@ -258,7 +324,7 @@
     display: grid;
     gap: 16px;
     margin-left: calc(3ch + 14px);
-    padding-top: 8px;
+    padding-top: 6px;
   }
   .actions .err { margin-left: 0; }
   .go {
@@ -283,12 +349,14 @@
   @media (max-width: 899px) {
     .join { grid-template-columns: minmax(0, 1fr); gap: 48px; }
     .intro { position: static; }
-    form { gap: 44px; }
+    .field { padding: 28px 0 32px; }
     .q { font-size: 18px; }
   }
   @media (max-width: 599px) {
     .q { grid-template-columns: 1fr; gap: 6px; }
-    input, .opts, .err, .actions { margin-left: 0; width: 100%; }
+    input, .opts, .err, .actions, .indent { margin-left: 0; width: 100%; }
+    .card { grid-template-columns: 48px 1fr auto; gap: 14px; padding: 14px; }
+    .card img { width: 48px; height: 48px; }
     .opts.cols { grid-template-columns: repeat(2, max-content); }
     .go { justify-self: stretch; text-align: center; }
   }

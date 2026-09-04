@@ -29,4 +29,6 @@ const fmtLong = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long
 export const shortDate = (iso) => fmt.format(new Date(iso + 'T00:00:00Z'))
 export const longDate = (iso) => fmtLong.format(new Date(iso + 'T00:00:00Z'))
 
-export const rsvpQuestion = (e) => `Can you make it ${shortDate(e.date)}?`
+const fmtMid = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' })
+export const midDate = (iso) => fmtMid.format(new Date(iso + 'T00:00:00Z'))
+export const rsvpQuestion = (e) => `Can you make it ${midDate(e.date)}?`

@@ -8,15 +8,15 @@
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const field = createField()
 
-    // Scale the <pre> so the mark itself fills FILL of the pane's shorter
-    // axis. The buffer around the mark spills past the pane edges and is
-    // faded out by the mask, so nothing important is ever cropped.
-    const FILL = 0.92
+    // Scale the <pre> so the mark covers the pane with room to spare: the
+    // hands run corner to corner, the arms leave through the edges, and the
+    // mask fades them out before they get there.
+    const COVER = 1.12
     const fit = () => {
       if (!wrap || !pre || !pre.scrollWidth) return
       pre.style.transform = 'none'
       const markW = pre.scrollWidth * MARK.w, markH = pre.scrollHeight * MARK.h
-      const s = Math.min(wrap.clientWidth / markW, wrap.clientHeight / markH) * FILL
+      const s = Math.max(wrap.clientWidth / markW, wrap.clientHeight / markH) * COVER
       pre.style.transform = `scale(${s})`
     }
     const ro = new ResizeObserver(fit)
@@ -53,9 +53,9 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /* solid across the mark (80% of each axis), then fade the stray particles */
-    -webkit-mask-image: radial-gradient(80% 80% at 50% 50%, #000 50%, transparent 100%);
-    mask-image: radial-gradient(80% 80% at 50% 50%, #000 50%, transparent 100%);
+    /* solid through the middle; the arms dissolve into the two corners they leave by */
+    -webkit-mask-image: linear-gradient(to top right, transparent 4%, #000 30%, #000 70%, transparent 96%);
+    mask-image: linear-gradient(to top right, transparent 4%, #000 30%, #000 70%, transparent 96%);
   }
   pre {
     margin: 0;

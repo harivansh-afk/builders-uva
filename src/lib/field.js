@@ -7,14 +7,14 @@
 import hands from './hands.json'
 
 export const RAMP = " .:-=+*#%@"
-export const BW = 440, BH = 240          // density buffer (2x oversampled)
+export const BW = 400, BH = 280          // density buffer (2x oversampled)
 export const COLS = BW / 2, ROWS = BH / 2 // characters emitted
 const N = 900                             // particles on the outline
 
 // Char cells are ~0.6 wide vs 1.08 tall, so a region of the buffer reads at
-// its buffer aspect divided by 1.8. Fit the hands to the width and derive height.
+// its buffer aspect divided by 1.8. Fit the hands inside the buffer on both axes.
 const CHAR_ASPECT = 1.8
-const MARK_W = BW * 0.94
+const MARK_W = Math.min(BW * 0.98, BH * 0.98 * hands.aspect * CHAR_ASPECT)
 const MARK_H = MARK_W / (hands.aspect * CHAR_ASPECT)
 const X0 = (BW - MARK_W) / 2, Y0 = (BH - MARK_H) / 2
 export const MARK = { w: MARK_W / BW, h: MARK_H / BH }
