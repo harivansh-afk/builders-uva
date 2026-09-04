@@ -154,7 +154,7 @@
     gap: 64px clamp(48px, 8vw, 128px);
     align-items: start;
   }
-  .intro { position: sticky; top: 128px; }
+  .intro { position: sticky; top: var(--top); }
   .intro .eyebrow { margin-bottom: var(--s4); }
   .sub {
     margin-top: var(--s3);

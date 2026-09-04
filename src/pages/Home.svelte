@@ -57,7 +57,7 @@
 </section>
 
 <style>
-  .hero { padding-top: clamp(96px, 20dvh, 200px); }
+  .hero { padding-top: var(--top); }
 
   /* each belief is its own thought; give it its own room */
   .beliefs {

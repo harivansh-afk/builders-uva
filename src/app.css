@@ -16,6 +16,8 @@
   --serif: "EB Garamond", ui-serif, Georgia, "Times New Roman", serif;
   --mono: "Berkeley Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gutter: clamp(20px, 3.4vw, 48px);
+  /* where the first label on any page sits, measured from the top */
+  --top: 128px;
 
   /* spacing scale: every vertical gap on the site is one of these */
   --s2: 16px;
@@ -36,6 +38,7 @@
   :root {
     --lede: clamp(20px, 3.2vw + 8px, 28px);
     --measure: 30ch;
+    --top: 96px;
     --s4: 32px;
     --s5: 48px;
     --s6: 72px;
@@ -123,6 +126,9 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   position: absolute;
   width: 1px;
   height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
   overflow: hidden;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

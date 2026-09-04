@@ -99,11 +99,12 @@
   .page {
     display: grid;
     grid-template-rows: 1fr auto;
+    align-items: start; /* content keeps its own height; only the footer is pushed down */
     gap: var(--s7);
     min-height: 100dvh;
     width: min(1120px, 100%);
     margin: 0 auto;
-    padding: 128px var(--gutter) 0;
+    padding: var(--top) var(--gutter) 0;
   }
   .home { border-bottom: 1px solid var(--dim); }
 
@@ -126,7 +127,8 @@
   /* Each section spans the pane so its rule runs edge to edge; the copy inside
      sits in a column of --col, centred, never closer to the edge than a gutter. */
   .col { width: 100%; }
-  .col > :global(*) {
+  .col > :global(.block),
+  .col > :global(footer) {
     padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
     padding-right: max(var(--gutter), calc((100% - var(--col)) / 2));
   }
@@ -160,7 +162,7 @@
 
   @media (max-width: 899px) {
     .nav { padding-top: calc(12px + env(safe-area-inset-top)); }
-    .page { padding-top: 96px; }
+
 
     .site {
       grid-template-columns: minmax(0, 1fr);
@@ -180,7 +182,8 @@
       overflow: visible;
       padding-bottom: env(safe-area-inset-bottom);
     }
-    .col > :global(*) { padding-left: var(--gutter); padding-right: var(--gutter); }
+    .col > :global(.block),
+    .col > :global(footer) { padding-left: var(--gutter); padding-right: var(--gutter); }
   }
   @media (max-width: 899px) and (max-height: 500px) {
     .right { height: 320px; }
