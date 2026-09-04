@@ -7,7 +7,7 @@
 <div class="events">
   <header class="intro">
     <p class="eyebrow">Events</p>
-    <h1 class="lede">We invite successful YC founders and host a short Q&amp;A <em>every Thursday.</em></h1>
+    <h1 class="lede">We invite successful founders to give talks and host a short Q&amp;A <em>every Thursday.</em></h1>
   </header>
 
   <ol class="rows">
