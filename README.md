@@ -35,8 +35,8 @@ Only `@virginia.edu` addresses are accepted. A hidden honeypot field silently dr
 
 ## Assets
 
-- `src/lib/field.js` is the particle field. The mark is the two hands from Michelangelo's Creation of Adam. Particles ride the outline of the hands and the shading inside breathes; both are rendered into a text buffer.
-- `src/lib/hands.json` is the hands as data: a shading grid and the outline as polylines, normalised to the bounding box. Generated from the Wikimedia Commons "Creation of Adam (Michelangelo) Detail" file, public domain, with the same mask as the TouchTips app icon.
+- `src/lib/field.js` is the particle field. The mark is the two hands from Michelangelo's Creation of Adam, run corner to corner across the pane with the fingertip gap at the centre. The hands ship level; the field is built for the pane's aspect and rotates them onto its diagonal, sized to overshoot the corners so the arms leave through the edges. Particles ride the outline and the shading inside breathes; both are rendered into a text buffer.
+- `src/lib/hands.json` is the hands as data: a shading grid, the outline as polylines and the gap position, normalised to the bounding box. Generated from the Wikimedia Commons "Creation of Adam (Michelangelo) Detail" file, public domain, with the same mask as the TouchTips app icon.
 - `src/lib/Ascii.svelte` mounts the field into a `<pre>` and scales it to fill its pane.
 - `public/favicon.svg`, `public/favicon-32.png` and `public/apple-touch-icon.png` are the favicon: `b@` set in Berkeley Mono at weight 600, cut to outlines, on a dark tile.
 - `public/foundry.svg` is The Foundry nameplate. `public/uva.svg` is the University of Virginia wordmark, public domain via Wikimedia Commons, recoloured to off-white.

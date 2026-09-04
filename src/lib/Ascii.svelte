@@ -18,32 +18,33 @@
       pre.style.transform = `scale(${s})`
     }
 
-    const still = () => {
-      let text = ''
-      for (let i = 0; i < 40; i++) text = field.step(i * 16)
-      pre.textContent = text
-      fit()
-    }
+    // Run the field to steady state so the hands are whole on the first paint.
+    const prime = () => { let t = ''; for (let i = 0; i < 24; i++) t = field.step(i * 16); return t }
     const frame = (now) => { pre.textContent = field.step(now); raf = requestAnimationFrame(frame) }
 
-    // Rebuild the field when the pane's shape changes enough to matter.
+    // Build for the pane's shape; rebuild when it changes enough to matter.
     const build = () => {
       const a = wrap.clientWidth / Math.max(1, wrap.clientHeight)
       if (!a || Math.abs(a - aspect) < 0.03) return fit()
       aspect = a
       field = createField({ aspect })
       cancelAnimationFrame(raf)
-      if (reduce) still()
-      else {
-        pre.textContent = field.step(0)
-        fit()
-        raf = requestAnimationFrame(frame)
-      }
+      pre.textContent = prime()
+      fit()
+      if (!reduce) raf = requestAnimationFrame(frame)
     }
+
+    // Measure only once the mono face is in, otherwise the scale comes from a
+    // fallback font and the hands land in the wrong place.
     const ro = new ResizeObserver(build)
-    ro.observe(wrap)
-    build()
-    return () => { cancelAnimationFrame(raf); ro.disconnect() }
+    const ready = document.fonts ? document.fonts.ready : Promise.resolve()
+    ready.then(() => { ro.observe(wrap); build() })
+    document.fonts?.addEventListener('loadingdone', fit)
+    return () => {
+      cancelAnimationFrame(raf)
+      ro.disconnect()
+      document.fonts?.removeEventListener('loadingdone', fit)
+    }
   })
 </script>
 
