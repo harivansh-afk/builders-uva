@@ -39,7 +39,7 @@
     justify-content: space-between;
     align-items: baseline;
     gap: 12px var(--s3);
-    padding: var(--s3) 0 var(--s4);
+    padding: var(--s4) 0;
     border-top: 1px solid var(--hair);
     font-family: var(--mono);
     font-size: 11px;

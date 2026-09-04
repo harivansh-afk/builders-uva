@@ -82,11 +82,16 @@ p, h1, h2, h3, ol, ul { margin: 0; }
 }
 
 /* ---------- shared page pieces (used by every page under src/pages) ---------- */
+/* equal room above and below every rule, so the rule sits between sections
+   rather than attached to the heading under it */
 .block {
-  padding: var(--s4) 0 var(--s6);
+  padding: var(--s5) 0;
   border-top: 1px solid var(--hair);
 }
 .block .eyebrow { margin-bottom: var(--s4); }
+/* the label fills its line box; body text does not, so pull the last line's
+   half-leading and descender space back to keep the rule optically centred */
+.block > :last-child { margin-bottom: -10px; }
 .hero { border-top: 0; }
 
 .lede {
