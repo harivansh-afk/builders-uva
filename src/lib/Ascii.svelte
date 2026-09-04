@@ -11,7 +11,7 @@
     // Scale the <pre> so the mark itself fills FILL of the pane's shorter
     // axis. The buffer around the mark spills past the pane edges and is
     // faded out by the mask, so nothing important is ever cropped.
-    const FILL = 0.8
+    const FILL = 0.92
     const fit = () => {
       if (!wrap || !pre || !pre.scrollWidth) return
       pre.style.transform = 'none'
