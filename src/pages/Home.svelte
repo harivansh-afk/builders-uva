@@ -57,7 +57,6 @@
 </section>
 
 <style>
-  .hero { padding-top: var(--top); }
 
   /* each belief is its own thought; give it its own room */
   .beliefs {
@@ -110,7 +109,4 @@
   }
   .li:hover { color: var(--fg); }
 
-  @media (max-width: 899px) {
-    .hero { padding-top: var(--s5); }
-  }
 </style>
