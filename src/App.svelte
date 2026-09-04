@@ -22,7 +22,7 @@
 </script>
 
 <nav class="nav" aria-label="Pages">
-  <a class="mark" href="/" aria-current={section === 'home' ? 'page' : undefined}>builders@uva</a>
+  <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}>b@</a>
   <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
   <a href="/join" aria-current={section === 'join' ? 'page' : undefined}>Join us</a>
 </nav>
@@ -86,7 +86,7 @@
   }
   .nav a:hover { color: var(--fg); }
   .nav a[aria-current='page'] { color: var(--fg); border-color: var(--hair); }
-  .nav .mark { padding: 0 10px 0 0; margin-right: 8px; border: 0; text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--fg); }
+  .nav .mark { padding: 0 10px 0 0; margin-right: 8px; border: 0; text-transform: none; letter-spacing: -0.04em; font-size: 15px; font-weight: 600; color: var(--fg); }
 
   /* ---------- full-width pages: events, join ---------- */
   .page {
