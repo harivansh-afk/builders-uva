@@ -10,7 +10,7 @@
 
   // `linkedin` is optional; the icon only renders when it is set.
   const founders = [
-    { name: 'Nathan Wang', role: 'Co-founder', img: '/nathan.png', linkedin: null },
+    { name: 'Nathan Wang', role: 'Co-founder', img: '/nathan.png', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/' },
     { name: 'Harivansh Rathi', role: 'Co-founder', img: '/hari.png', linkedin: 'https://www.linkedin.com/in/harivansh-rathi' },
   ]
 </script>
