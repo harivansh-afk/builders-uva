@@ -121,13 +121,14 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: none;
-    padding: 0 var(--gutter);
   }
   .left::-webkit-scrollbar { display: none; }
-  /* the copy sits in one fixed-width column, centred in the pane */
-  .col {
-    width: min(100%, var(--col));
-    margin: 0 auto;
+  /* Each section spans the pane so its rule runs edge to edge; the copy inside
+     sits in a column of --col, centred, never closer to the edge than a gutter. */
+  .col { width: 100%; }
+  .col > :global(*) {
+    padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
+    padding-right: max(var(--gutter), calc((100% - var(--col)) / 2));
   }
 
   .right {
@@ -179,7 +180,7 @@
       overflow: visible;
       padding-bottom: env(safe-area-inset-bottom);
     }
-    .col { width: 100%; }
+    .col > :global(*) { padding-left: var(--gutter); padding-right: var(--gutter); }
   }
   @media (max-width: 899px) and (max-height: 500px) {
     .right { height: 320px; }

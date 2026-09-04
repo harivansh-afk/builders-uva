@@ -27,9 +27,9 @@
 
   /* lede type: 22–28px across desktop widths */
   --lede: clamp(22px, 1.9vw, 28px);
-  --measure: 26ch;
+  --measure: 32ch;
   /* the copy column on the home page */
-  --col: 480px;
+  --col: 600px;
 }
 /* one-column widths: scale the lede with the viewport, let it use the line */
 @media (max-width: 899px) {
