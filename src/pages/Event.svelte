@@ -40,7 +40,8 @@
 </div>
 
 <style>
-  .event { display: grid; gap: var(--s5); max-width: 760px; }
+  /* full page width so the rule under the header matches the footer's */
+  .event { display: grid; gap: var(--s5); }
   .back {
     justify-self: start;
     color: var(--muted);
@@ -50,10 +51,10 @@
 
   .head {
     display: flex;
-    align-items: flex-start;
+    align-items: center; /* name and meta sit centred on the portrait */
     justify-content: space-between;
     gap: 32px;
-    padding-bottom: 48px;
+    padding-bottom: var(--s5);
     border-bottom: 1px solid var(--hair);
   }
   .name {
