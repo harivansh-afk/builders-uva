@@ -21,7 +21,9 @@
   <h2 class="eyebrow">Who we are</h2>
   <p class="lede">
     <span class="hl">builders@uva</span> is a small group of students who believe in making the non-traditional path into tech more accessible.
-    We meet weekly, host world-class founders, and hold each other to a higher bar.
+  </p>
+  <p class="lede">
+        We meet weekly, host world-class founders, and hold each other to a higher bar.
   </p>
 </section>
 
