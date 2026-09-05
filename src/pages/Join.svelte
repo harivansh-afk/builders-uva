@@ -167,7 +167,7 @@
   form { display: grid; max-width: 580px; }
   .field {
     display: grid;
-    gap: 12px;
+    gap: 18px;
     padding: 34px 0 38px;
     border-top: 1px solid var(--hair);
   }
@@ -341,7 +341,7 @@
     .q { font-size: 18px; }
   }
   @media (max-width: 599px) {
-    .q { grid-template-columns: 1fr; gap: 6px; }
+    .q { grid-template-columns: 1fr; gap: 0; }
     input, .opts, .err, .actions, .indent { margin-left: 0; width: 100%; }
     .card { grid-template-columns: 48px 1fr auto; gap: 14px; padding: 14px; }
     .card img { width: 48px; height: 48px; }
