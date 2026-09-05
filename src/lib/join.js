@@ -15,13 +15,20 @@ const YEAR_VALUES = new Set(YEARS.map((y) => y.value))
 const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '')
 const bool = (v) => v === true || v === 'true' || v === 'yes'
 
+export function fullNameError(value) {
+  const name = typeof value === 'string' ? value.trim() : ''
+  if (name.split(/\s+/u).length < 2) return 'Enter your first and last name.'
+  if (name.length > 200) return 'Keep your full name under 201 characters.'
+  return ''
+}
+
 // Returns { ok: true, data } or { ok: false, error }.
 export function validate(body) {
   if (!body || typeof body !== 'object') return { ok: false, error: 'Bad request.' }
 
   const fullName = typeof body.fullName === 'string' ? body.fullName.trim() : ''
-  if (!fullName) return { ok: false, error: 'Enter your full name.' }
-  if (fullName.length > 200) return { ok: false, error: 'Keep your full name under 201 characters.' }
+  const nameError = fullNameError(fullName)
+  if (nameError) return { ok: false, error: nameError }
 
   const email = str(body.email, 80).toLowerCase()
   if (!EMAIL_RE.test(email)) return { ok: false, error: 'Use your @virginia.edu email.' }

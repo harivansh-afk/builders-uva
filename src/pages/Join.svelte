@@ -1,5 +1,5 @@
 <script>
-  import { YEARS, EMAIL_RE } from '../lib/join.js'
+  import { YEARS, EMAIL_RE, fullNameError } from '../lib/join.js'
   import { nextEvent, rsvpQuestion, midDate } from '../lib/events.js'
 
   const ev = nextEvent()
@@ -18,7 +18,7 @@
   let error = $state('')
 
   const problems = $derived({
-    fullName: !fullName.trim() ? 'Enter your full name.' : fullName.trim().length > 200 ? 'Keep your full name under 201 characters.' : '',
+    fullName: fullNameError(fullName),
     email: EMAIL_RE.test(email.trim()) ? '' : 'Use your @virginia.edu address.',
     year: year ? '' : 'Pick one.',
     technical: technical === null ? 'Pick one.' : '',
