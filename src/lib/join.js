@@ -19,6 +19,10 @@ const bool = (v) => v === true || v === 'true' || v === 'yes'
 export function validate(body) {
   if (!body || typeof body !== 'object') return { ok: false, error: 'Bad request.' }
 
+  const fullName = typeof body.fullName === 'string' ? body.fullName.trim() : ''
+  if (!fullName) return { ok: false, error: 'Enter your full name.' }
+  if (fullName.length > 200) return { ok: false, error: 'Keep your full name under 201 characters.' }
+
   const email = str(body.email, 80).toLowerCase()
   if (!EMAIL_RE.test(email)) return { ok: false, error: 'Use your @virginia.edu email.' }
 
@@ -46,6 +50,6 @@ export function validate(body) {
 
   return {
     ok: true,
-    data: { email, year, technical: body.technical, founded: body.founded, website, eventSlug, eventQuestion, eventAnswer },
+    data: { fullName, email, year, technical: body.technical, founded: body.founded, website, eventSlug, eventQuestion, eventAnswer },
   }
 }

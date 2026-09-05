@@ -12,6 +12,9 @@ create table if not exists members (
   updated_at  timestamptz not null default now()
 );
 
+-- Existing members have no name until they submit the updated form.
+alter table members add column if not exists full_name text;
+
 -- One row per (person, event). The question is stored with the answer so
 -- it stays readable after the question in src/lib/events.js changes.
 create table if not exists event_responses (

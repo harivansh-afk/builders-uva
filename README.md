@@ -28,7 +28,7 @@ The join form ends with an RSVP, "Can you make it Thu, Sep 10?", built from the 
 
 `api/join.js` is a Vercel serverless function. It validates with the same rules as the page (`src/lib/join.js`), then writes to Postgres:
 
-- `members`, one row per UVA email, upserted on every submission.
+- `members`, one row per UVA email, including the required full name, upserted on every submission. Existing members have a null `full_name` until they resubmit.
 - `event_responses`, one row per (email, event), storing the RSVP question alongside the yes/no answer.
 
 The schema is `db/schema.sql`; the function applies it on first use, so a fresh database needs no manual setup. It reads `DATABASE_URL`. On Vercel that comes from the Neon Postgres integration (Storage tab on the project). Locally, put `DATABASE_URL=...` in `.env.local` and `bun run dev` serves `/api/join` through the same handler.

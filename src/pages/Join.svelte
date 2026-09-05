@@ -4,6 +4,7 @@
 
   const ev = nextEvent()
 
+  let fullName = $state('')
   let email = $state('')
   let year = $state('')
   let technical = $state(null)
@@ -17,6 +18,7 @@
   let error = $state('')
 
   const problems = $derived({
+    fullName: !fullName.trim() ? 'Enter your full name.' : fullName.trim().length > 200 ? 'Keep your full name under 201 characters.' : '',
     email: EMAIL_RE.test(email.trim()) ? '' : 'Use your @virginia.edu address.',
     year: year ? '' : 'Pick one.',
     technical: technical === null ? 'Pick one.' : '',
@@ -40,7 +42,7 @@
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          email: email.trim(), year, technical, founded,
+          fullName: fullName.trim(), email: email.trim(), year, technical, founded,
           website: founded ? website.trim() : '',
           eventSlug: ev?.slug ?? null,
           eventQuestion: ev ? rsvpQuestion(ev) : null,
@@ -86,24 +88,30 @@
     </div>
   {:else}
     <form onsubmit={submit} novalidate>
+      <div class="field" data-invalid={show('fullName') || undefined}>
+        <label class="q" for="full-name"><span class="n">01</span>Full name</label>
+        <input id="full-name" name="fullName" type="text" bind:value={fullName} placeholder="First and last name" autocomplete="name" maxlength="200" required aria-invalid={!!show('fullName')} />
+        {#if show('fullName')}<p class="err">{show('fullName')}</p>{/if}
+      </div>
+
       <div class="field" data-invalid={show('email') || undefined}>
-        <label class="q" for="email"><span class="n">01</span>What is your UVA email?</label>
+        <label class="q" for="email"><span class="n">02</span>What is your UVA email?</label>
         <input id="email" type="email" bind:value={email} placeholder="abc1de@virginia.edu" autocomplete="email" inputmode="email" spellcheck="false" aria-invalid={!!show('email')} />
         {#if show('email')}<p class="err">{show('email')}</p>{/if}
       </div>
 
       <div class="field">
-        <p class="q" id="q-year"><span class="n">02</span>What year are you?</p>
+        <p class="q" id="q-year"><span class="n">03</span>What year are you?</p>
         {@render choice('year', YEARS, () => year, (v) => (year = v), show('year'))}
       </div>
 
       <div class="field">
-        <p class="q"><span class="n">03</span>Do you consider yourself to be technical?</p>
+        <p class="q"><span class="n">04</span>Do you consider yourself to be technical?</p>
         {@render choice('technical', [{ value: true, label: 'Yes' }, { value: false, label: 'No' }], () => technical, (v) => (technical = v), show('technical'))}
       </div>
 
       <div class="field">
-        <p class="q"><span class="n">04</span>Have you founded a company or built a product before?</p>
+        <p class="q"><span class="n">05</span>Have you founded a company or built a product before?</p>
         {@render choice('founded', [{ value: true, label: 'Yes' }, { value: false, label: 'No' }], () => founded, (v) => (founded = v), show('founded'))}
         {#if founded}
           <input class="sub-input" type="url" bind:value={website} placeholder="Link to it (optional)" autocomplete="url" inputmode="url" spellcheck="false" aria-label="Link to your company or product" />
@@ -112,7 +120,7 @@
 
       {#if ev}
         <div class="field rsvp">
-          <p class="q"><span class="n">05</span>{rsvpQuestion(ev)}</p>
+          <p class="q"><span class="n">06</span>{rsvpQuestion(ev)}</p>
           <div class="indent">
             <a class="card" href="/events/{ev.slug}">
               <img src={ev.img} alt="" width="56" height="56" />
