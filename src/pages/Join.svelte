@@ -164,7 +164,7 @@
     line-height: 1.55;
   }
 
-  form { display: grid; max-width: 580px; }
+  form { --gutter: 48px; display: grid; max-width: 580px; }
   .field {
     display: grid;
     gap: 18px;
@@ -172,14 +172,13 @@
     border-top: 1px solid var(--hair);
   }
   .field:first-child { padding-top: 0; border-top: 0; }
-  .indent { display: grid; gap: 18px; margin-left: calc(3ch + 14px); }
+  .indent { display: grid; gap: 18px; margin-left: var(--gutter); }
   .indent .err { margin-left: 0; }
 
   .q {
     display: grid;
-    grid-template-columns: 3ch 1fr;
+    grid-template-columns: var(--gutter) 1fr;
     align-items: baseline;
-    gap: 14px;
     font-size: 19px;
     line-height: 1.35;
     letter-spacing: -0.008em;
@@ -243,9 +242,8 @@
   .seg[data-invalid] { border-color: #c98484; }
 
   input {
-    width: 100%;
-    margin-left: calc(3ch + 14px);
-    width: calc(100% - 3ch - 14px);
+    margin-left: var(--gutter);
+    width: calc(100% - var(--gutter));
     background: transparent;
     color: var(--fg);
     border: 0;
@@ -267,7 +265,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px 36px;
-    margin-left: calc(3ch + 14px);
+    margin-left: var(--gutter);
   }
   .opts.cols {
     display: grid;
@@ -299,7 +297,7 @@
   .opt.on .box { background: var(--fg); border-color: var(--fg); }
 
   .err {
-    margin-left: calc(3ch + 14px);
+    margin-left: var(--gutter);
     font-family: var(--mono);
     font-size: 12px;
     color: #c98484;
@@ -310,7 +308,7 @@
   .actions {
     display: grid;
     gap: 16px;
-    margin-left: calc(3ch + 14px);
+    margin-left: var(--gutter);
     padding-top: 6px;
   }
   .actions .err { margin-left: 0; }
@@ -341,7 +339,8 @@
     .q { font-size: 18px; }
   }
   @media (max-width: 599px) {
-    .q { grid-template-columns: 1fr; gap: 0; }
+    .q { grid-template-columns: 1fr; }
+    .n { line-height: 1; margin-bottom: 8px; }
     input, .opts, .err, .actions, .indent { margin-left: 0; width: 100%; }
     .card { grid-template-columns: 48px 1fr auto; gap: 14px; padding: 14px; }
     .card img { width: 48px; height: 48px; }
