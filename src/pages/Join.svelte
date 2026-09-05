@@ -167,7 +167,7 @@
   form { display: grid; max-width: 580px; }
   .field {
     display: grid;
-    gap: 18px;
+    gap: 12px;
     padding: 34px 0 38px;
     border-top: 1px solid var(--hair);
   }
