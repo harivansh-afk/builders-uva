@@ -50,6 +50,7 @@
 }
 
 * { box-sizing: border-box; }
+html, body { overscroll-behavior: none; }
 html {
   -webkit-text-size-adjust: 100%;
   color-scheme: dark;

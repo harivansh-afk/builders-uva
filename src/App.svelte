@@ -122,8 +122,9 @@
   .left {
     order: 2;
     height: 100%;
+    min-height: 0;
     overflow-y: auto;
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
     scrollbar-width: none;
   }
   .left::-webkit-scrollbar { display: none; }
