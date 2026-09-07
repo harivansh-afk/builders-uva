@@ -20,10 +20,10 @@
 <section class="block hero">
   <h2 class="eyebrow">Who we are</h2>
   <p class="lede">
-    <span class="hl">builders@uva</span> is a small group of students who believe in making the non-traditional path into tech more accessible.
+    <span class="hl">builders@uva</span> is building a culture of independent creation at UVA.
   </p>
   <p class="lede">
-        We meet weekly, host world-class founders, and hold each other accountable to a higher bar.
+    We bring students together to work on their own ideas, learn from founders, and help each other go beyond their perceived limitations.
   </p>
 </section>
 
