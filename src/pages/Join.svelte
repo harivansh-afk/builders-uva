@@ -76,14 +76,13 @@
 <div class="join">
   <header class="intro">
     <p class="eyebrow">Join us</p>
-    <h1 class="lede">Membership takes a minute. <em>Tell us who you are.</em></h1>
-    <p class="sub">We meet Thursdays. Members get the invite, the room, and the people in it.</p>
+    <h1 class="lede">Tell us a bit about yourself.</h1>
   </header>
 
   {#if status === 'done'}
     <div class="done">
       <p class="eyebrow">Done</p>
-      <p class="lede">You're in. <em>See you Thursday.</em></p>
+      <p class="lede">You're in.</p>
       <p class="sub">We'll reach out at {email.trim().toLowerCase()}.</p>
     </div>
   {:else}
@@ -143,7 +142,7 @@
 
       <div class="actions">
         <button type="submit" class="go" disabled={status === 'sending'}>
-          {status === 'sending' ? 'Sending…' : 'Join builders@uva →'}
+          {status === 'sending' ? 'Sending…' : 'Join us →'}
         </button>
         {#if status === 'error'}
           <p class="err" role="alert">{error}</p>
