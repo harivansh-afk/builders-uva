@@ -59,6 +59,9 @@
 </section>
 
 <style>
+  .hero .lede + .lede {
+    margin-top: var(--s4);
+  }
 
   /* each belief is its own thought; give it its own room */
   .beliefs {
