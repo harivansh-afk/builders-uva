@@ -157,12 +157,17 @@
     align-items: center;
     gap: 28px;
     padding: 0 var(--gutter) 20px;
-    opacity: 0.7;
     mix-blend-mode: screen;
-    transition: opacity 0.25s ease;
   }
-  .logos:hover, .logos:focus-within { opacity: 1; }
-  .logos a { display: flex; align-items: center; min-height: 44px; }
+  .logos a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    opacity: 0.7;
+    filter: grayscale(1);
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+  .logos a:hover, .logos a:focus-visible { opacity: 1; filter: grayscale(0); }
 
   @media (max-width: 899px) {
     .nav { padding-top: calc(12px + env(safe-area-inset-top)); }
