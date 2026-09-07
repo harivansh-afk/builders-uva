@@ -125,7 +125,7 @@
               <img src={ev.img} alt="" width="56" height="56" />
               <span class="card-text">
                 <span class="who">{ev.name} ({ev.tag})</span>
-                <span class="when">Founder Q&amp;A · {midDate(ev.date)}</span>
+                <span class="when">Founder Q&amp;A · {midDate(ev.date)}{ev.time ? ` · ${ev.time}` : ''}</span>
               </span>
               <span class="more" aria-hidden="true">→</span>
             </a>

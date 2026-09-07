@@ -10,6 +10,7 @@ export const events = [
     name: 'Quan Huynh',
     tag: 'YC W26',
     date: '2026-09-10',
+    time: '6 p.m.',
     img: '/quan.png',
     link: 'https://www.linkedin.com/in/quanmhuynh/',
     transcript: null,
@@ -31,4 +32,4 @@ export const longDate = (iso) => fmtLong.format(new Date(iso + 'T00:00:00Z'))
 
 const fmtMid = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' })
 export const midDate = (iso) => fmtMid.format(new Date(iso + 'T00:00:00Z'))
-export const rsvpQuestion = (e) => `Can you make it ${midDate(e.date)}?`
+export const rsvpQuestion = (e) => `Can you make it ${midDate(e.date)}${e.time ? ` at ${e.time}` : ''}?`
