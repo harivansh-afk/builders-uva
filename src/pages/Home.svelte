@@ -20,10 +20,10 @@
 <section class="block hero">
   <h2 class="eyebrow">Who we are</h2>
   <p class="lede">
-    <span class="hl">builders@uva</span> is building a culture of independent creation at UVA.
+    <span class="hl">builders@uva</span> is building a culture of <em>independent creation</em> at UVA.
   </p>
   <p class="lede">
-    We bring students together to work on their own ideas, learn from founders, and help each other go beyond their perceived limitations.
+    We bring students together to <em>work</em> on their own ideas, <em>learn</em> from founders, and help each other go beyond their <em>perceived limitations.</em>
   </p>
 </section>
 
