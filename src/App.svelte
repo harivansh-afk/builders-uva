@@ -45,6 +45,9 @@
         <a href="https://uvafoundry.com" target="_blank" rel="noopener" aria-label="The Foundry">
           <img src="/foundry.svg" alt="" height="28" />
         </a>
+        <a href="https://engineering.virginia.edu/offices-programs/ventureforward" target="_blank" rel="noopener" aria-label="VentureForward at UVA Engineering">
+          <img class="ventureforward" src="/ventureforward.png" alt="" height="44" />
+        </a>
       </div>
     </aside>
   </div>
@@ -155,6 +158,7 @@
     gap: 28px;
     padding: 0 var(--gutter) 20px;
     opacity: 0.7;
+    mix-blend-mode: screen;
     transition: opacity 0.25s ease;
   }
   .logos:hover, .logos:focus-within { opacity: 1; }
@@ -177,6 +181,7 @@
     }
     .logos { gap: 22px; padding-bottom: 12px; }
     .logos img { height: 24px; }
+    .logos .ventureforward { height: 34px; }
     .left {
       height: auto;
       overflow: visible;
