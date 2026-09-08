@@ -32,10 +32,10 @@
     padding: var(--s4) 0;
     border-top: 1px solid var(--hair);
     font-family: var(--mono);
-    font-size: 22px;
+    font-size: 13px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--dim);
+    color: var(--muted);
   }
   .clock .t { color: var(--muted); font-variant-numeric: tabular-nums; }
 
