@@ -1,5 +1,5 @@
 import { Auth } from '@auth/core'
-import { authConfig, origin, privateResponse } from '../../server/auth.js'
+import { authConfig, origin, privateResponse } from '../server/auth.js'
 
 export default async function handler(req, res) {
   privateResponse(res)
@@ -17,7 +17,14 @@ export default async function handler(req, res) {
       : headers.get('content-type')?.includes('application/json') ? JSON.stringify(req.body)
       : new URLSearchParams(req.body).toString()
   }
-  const response = await Auth(new Request(new URL(req.url, origin()), {
+  const url = new URL(req.url, origin())
+  // Vercel may pass the rewritten destination; Vite passes the original URL.
+  if (url.pathname === '/api/auth') {
+    const path = url.searchParams.get('authPath') || req.query?.authPath || ''
+    url.pathname = `/api/auth/${path}`
+  }
+  url.searchParams.delete('authPath')
+  const response = await Auth(new Request(url, {
     method: req.method, headers, body,
   }), authConfig())
   response.headers.forEach((value, key) => {

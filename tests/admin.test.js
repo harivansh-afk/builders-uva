@@ -5,7 +5,7 @@ import { encode } from '@auth/core/jwt'
 import { authConfig, adminSession } from '../server/auth.js'
 import { queryOptions } from '../server/admin-data.js'
 import handler from '../api/admin.js'
-import authHandler from '../api/auth/[...path].js'
+import authHandler from '../api/auth.js'
 
 process.env.AUTH_SECRET = randomBytes(32).toString('base64')
 process.env.AUTH_URL = 'https://uva.builders'
@@ -83,4 +83,12 @@ test('filters stay parameterized and sort/page values are validated', () => {
   for (const params of [{ view: 'secrets' }, { sort: 'email; drop table members' }, { page: '-1' }, { page: '1.5' }, { direction: 'desc;--' }, { answer: 'maybe' }]) {
     assert.throws(() => queryOptions(new URLSearchParams(params)))
   }
+})
+
+test('rewritten Vercel auth URLs resolve to the same Auth.js action', async () => {
+  const res = response()
+  await authHandler({ method: 'GET', url: '/api/auth?authPath=csrf', headers: {} }, res)
+  assert.equal(res.code, 200)
+  assert.ok(JSON.parse(res.body).csrfToken)
+  assert.ok(res.headers['set-cookie'].some(c => c.includes('csrf-token')))
 })

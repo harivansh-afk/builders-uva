@@ -11,8 +11,8 @@ function vercelApi() {
       server.middlewares.use(async (req, res, next) => {
         if (!req.url.startsWith('/api/')) return next()
         const path = new URL(req.url, 'http://localhost').pathname
-        const name = path.startsWith('/api/auth/') ? 'auth/[...path]' : path.slice(5)
-        if (name !== 'auth/[...path]' && !/^[a-z0-9_-]+$/i.test(name)) return next()
+        const name = path.startsWith('/api/auth/') ? 'auth' : path.slice(5)
+        if (name !== 'auth' && !/^[a-z0-9_-]+$/i.test(name)) return next()
         let mod
         try { mod = await server.ssrLoadModule(`/api/${name}.js`) } catch { return next() }
         let raw = ''

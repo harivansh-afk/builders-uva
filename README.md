@@ -63,13 +63,13 @@ password separately, and use the correct database name if it is not `neondb`.
 
 Production environment variables (Vercel):
 
-- `AUTH_URL=https://uva.builders`
+- `AUTH_URL=https://www.uva.builders`
 - `AUTH_SECRET`: a cryptographically random session secret of at least 32 bytes.
 - `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`: the Google Web OAuth client.
 - `ADMIN_DATABASE_URL`: the connection URL for `builders_admin_reader`.
 
 Google's authorized redirect URI is
-`https://uva.builders/api/auth/callback/google`. The current client lives in the
+`https://www.uva.builders/api/auth/callback/google`. The current client lives in the
 existing `hari` Google Cloud project, whose consent branding is shared with its
 other clients. Only basic identity scopes are requested.
 

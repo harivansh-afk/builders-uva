@@ -37,7 +37,7 @@ export function authConfig() {
 }
 
 export function origin() {
-  return process.env.AUTH_URL || 'https://uva.builders'
+  return process.env.AUTH_URL || 'https://www.uva.builders'
 }
 
 export function privateResponse(res) {
