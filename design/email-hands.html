@@ -1,0 +1,15 @@
+<!doctype html>
+<html><head><style>
+@font-face{font-family:Berkeley;src:url('/fonts/BerkeleyMono-Variable.woff2')}
+html,body{margin:0;width:100%;height:100%;background:#000;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center}
+pre{margin:0;flex-shrink:0;font-family:Berkeley,monospace;font-size:8px;line-height:1.08;color:#f2f0ea;opacity:.86;transform-origin:center}
+</style></head><body><pre></pre><script type="module">
+import {createField} from '/src/lib/field.js';
+await document.fonts.load('8px Berkeley');
+const pre=document.querySelector('pre');
+const field=createField({aspect:innerWidth/innerHeight});
+for(let i=0;i<24;i++)pre.textContent=field.step(i*16);
+pre.style.transform='scale('+Math.max(innerWidth/pre.scrollWidth,innerHeight/pre.scrollHeight)+')';
+document.body.dataset.ready='true';
+</script></body></html>
