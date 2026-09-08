@@ -32,7 +32,7 @@
     padding: var(--s4) 0;
     border-top: 1px solid var(--hair);
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 22px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--dim);
