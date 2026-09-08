@@ -10,8 +10,8 @@
 
   // `linkedin` is optional; the icon only renders when it is set.
   const founders = [
-    { name: 'Harivansh Rathi', role: 'Co-founder', img: '/hari.png', linkedin: 'https://www.linkedin.com/in/harivansh-rathi' },
-    { name: 'Nathan Wang', role: 'Co-founder', img: '/nathan.png', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/' },
+    { name: 'Harivansh Rathi', img: '/hari.png', linkedin: 'https://www.linkedin.com/in/harivansh-rathi' },
+    { name: 'Nathan Wang', img: '/nathan.png', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/' },
   ]
 </script>
 
@@ -45,7 +45,6 @@
         <div class="who">
           <div>
             <p class="name">{f.name}</p>
-            <p class="role">{f.role}</p>
           </div>
           {#if f.linkedin}
             <a class="li" href={f.linkedin} target="_blank" rel="noopener" aria-label="{f.name} on LinkedIn" title="LinkedIn">
@@ -94,14 +93,6 @@
     gap: 12px;
   }
   .founders .name { font-size: 15px; font-weight: 500; }
-  .founders .role {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 6px;
-  }
   .li {
     display: inline-flex;
     align-items: center;
