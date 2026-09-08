@@ -111,8 +111,8 @@
     <div class="filters">
       <label class="search">Search<input type="search" placeholder="Name or email" bind:value={search} oninput={searchChanged} maxlength="200" /></label>
       {#if view === 'responses'}
-        <label>Event<select bind:value={event} onchange={filter}><option value="">All events</option>{#each data.events as slug}<option value={slug}>{eventName(slug)}</option>{/each}</select></label>
-        <label>RSVP<select bind:value={answer} onchange={filter}><option value="">All answers</option><option value="yes">Yes</option><option value="no">No</option></select></label>
+        <label>Event<select aria-label="Event" bind:value={event} onchange={filter}><option value="">All events</option>{#each data.events as slug}<option value={slug}>{eventName(slug)}</option>{/each}</select></label>
+        <label>RSVP<select aria-label="RSVP" bind:value={answer} onchange={filter}><option value="">All answers</option><option value="yes">Yes</option><option value="no">No</option></select></label>
       {/if}
       <button onclick={load} disabled={busy}>Refresh</button>
     </div>
@@ -174,7 +174,7 @@
   option { background: var(--bg); }
   .result-meta { justify-content: space-between; flex-wrap: wrap; margin-bottom: 12px; }
   .table-wrap { overflow-x: auto; border: 1px solid var(--hair); border-radius: 3px; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+  table { width: 100%; min-width: 1050px; border-collapse: collapse; font-size: 13px; text-align: left; }
   th { color: var(--muted); font-family: var(--mono); font-size: 11px; font-weight: 400; white-space: nowrap; }
   th, td { padding: 14px 16px; border-bottom: 1px solid var(--hair); }
   th button { border: 0; padding: 0; color: inherit; font-size: inherit; }
