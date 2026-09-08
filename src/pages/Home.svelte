@@ -107,7 +107,7 @@
     flex-wrap: wrap;
     gap: 12px;
   }
-  .founders .name { font-size: 15px; font-weight: 500; }
+  .founders .name { font-size: 17px; font-weight: 500; }
   .socials {
     display: flex;
     flex-shrink: 0;

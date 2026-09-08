@@ -60,8 +60,8 @@
   }
   .n {
     font-family: var(--mono);
-    font-size: 13px;
-    color: var(--dim);
+    font-size: 14px;
+    color: var(--muted);
     font-variant-numeric: tabular-nums;
   }
   .t {
@@ -74,7 +74,7 @@
   }
   .d, .state {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.04em;
     white-space: nowrap;
     color: var(--muted);
@@ -82,7 +82,7 @@
   .state {
     color: var(--muted);
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 0.12em;
     min-width: 12ch;
     text-align: right;

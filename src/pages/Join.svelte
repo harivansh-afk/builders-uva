@@ -167,7 +167,7 @@
     margin-top: var(--s3);
     max-width: 34ch;
     color: var(--soft);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.55;
   }
 
@@ -193,8 +193,8 @@
   }
   .n {
     font-family: var(--mono);
-    font-size: 12px;
-    color: var(--dim);
+    font-size: 14px;
+    color: var(--muted);
   }
 
   /* the RSVP card */
@@ -220,7 +220,7 @@
   .who { font-size: 17px; color: var(--fg); }
   .when {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.02em;
     color: var(--muted);
   }
@@ -238,7 +238,7 @@
     border: 0;
     color: var(--muted);
     font: inherit;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
     transition: color 0.15s ease, background 0.15s ease;
   }
@@ -265,7 +265,7 @@
   }
   input:focus { border-bottom-color: var(--fg); }
   input[aria-invalid='true'] { border-bottom-color: #c98484; }
-  input::placeholder { color: var(--dim); }
+  input::placeholder { color: var(--muted); opacity: 1; }
   .sub-input { margin-top: 4px; }
 
   .opts {
@@ -306,7 +306,7 @@
   .err {
     margin-left: var(--gutter);
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     color: #c98484;
   }
 
@@ -322,7 +322,7 @@
   .go {
     justify-self: start;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 16px 28px;

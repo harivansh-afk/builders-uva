@@ -66,7 +66,7 @@
   .meta {
     margin-top: 14px;
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.04em;
     color: var(--muted);
     display: flex;

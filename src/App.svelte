@@ -85,7 +85,7 @@
     gap: 6px;
     padding: 18px var(--gutter);
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
