@@ -1,5 +1,6 @@
 <script>
   import LinkedIn from '../lib/LinkedIn.svelte'
+  import X from '../lib/X.svelte'
 
   const beliefs = [
     { lead: 'The company you keep sets the expectations for', em: 'what you can achieve.' },
@@ -8,10 +9,10 @@
     { lead: "Fail fast, fail often. Even if you don't win,", em: 'you can lose better.' },
   ]
 
-  // `linkedin` is optional; the icon only renders when it is set.
+  // Social icons only render when their links are set.
   const founders = [
-    { name: 'Harivansh Rathi', img: '/hari.png', website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi' },
-    { name: 'Nathan Wang', img: '/nathan.png', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/' },
+    { name: 'Harivansh Rathi', img: '/hari.png', website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
+    { name: 'Nathan Wang', img: '/nathan.png', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/', x: 'https://x.com/NathanWang78302' },
   ]
 </script>
 
@@ -52,11 +53,18 @@
           <div>
             <p class="name">{f.name}</p>
           </div>
-          {#if f.linkedin}
-            <a class="li" href={f.linkedin} target="_blank" rel="noopener" aria-label="{f.name} on LinkedIn" title="LinkedIn">
-              <LinkedIn size={15} />
-            </a>
-          {/if}
+          <div class="socials">
+            {#if f.linkedin}
+              <a class="social" href={f.linkedin} target="_blank" rel="noopener" aria-label="{f.name} on LinkedIn" title="LinkedIn">
+                <LinkedIn size={15} />
+              </a>
+            {/if}
+            {#if f.x}
+              <a class="social" href={f.x} target="_blank" rel="noopener" aria-label="{f.name} on X" title="X">
+                <X size={15} />
+              </a>
+            {/if}
+          </div>
         </div>
       </li>
     {/each}
@@ -96,19 +104,24 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 12px;
   }
   .founders .name { font-size: 15px; font-weight: 500; }
-  .li {
+  .socials {
+    display: flex;
+    flex-shrink: 0;
+    margin: -8px -8px 0 0;
+  }
+  .social {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 32px;
     height: 32px;
-    margin: -8px -8px 0 0;
     color: var(--muted);
     transition: color 0.15s ease;
   }
-  .li:hover { color: var(--fg); }
+  .social:hover { color: var(--fg); }
 
 </style>
