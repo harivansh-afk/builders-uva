@@ -14,7 +14,7 @@ Written for people who already signed up. Venue, room, contact address, and the 
 
 ## Design
 
-Charcoal background, the website’s hosted ASCII hands graphic as the masthead, Berkeley Mono, muted labels, and thin rules. Essential layout styles are inline and use presentation tables. A media query stacks the schedule on narrow screens.
+Charcoal background, the website’s hosted ASCII hands graphic as the masthead, Berkeley Mono, muted labels, and thin rules. Essential layout styles are inline and use presentation tables. There is no separate title or schedule block. Each sentence has its own paragraph, and only venue and times are bold. Quan and Y Combinator are linked. The masthead is 240 by 126 pixels.
 
 Berkeley Mono loads from the website in supported clients; Courier New/Courier/monospace are fallbacks. The hosted image has alternate text, and all event information remains live text when images are blocked. Custom fonts and dark-mode behavior vary between email clients.
 
