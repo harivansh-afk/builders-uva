@@ -1,27 +1,28 @@
-Hey everyone,
+Hello everyone,
 
-Thanks for signing up for builders@uva. I’m excited to meet you all and kick things off this Thursday at Olsson Hall.
+Thank you for signing up for builders@uva. We look forward to welcoming you to our first gathering this Thursday, September 10, in Olsson Hall, Room 103.
 
-For our first gathering, we’ve invited Quan Huynh to join us virtually and share his experience building a company while still a first-year at UVA.
+Quan Huynh (YC W26) will join us virtually to discuss building a company while a first-year student at UVA, participating in Y Combinator, and raising ~$5 million in seed funding.
 
 THURSDAY, SEPTEMBER 10, 2026
-Olsson Hall · {{ROOM}}
+Olsson Hall, Room 103
 All times Eastern.
 
-5:30 p.m. — Meet each other.
-We’ll gather at Olsson and get to know everyone before the talk.
+5:30 p.m. — Arrival and introductions
+Meet fellow members before the guest session.
 
-6:00 p.m. — A conversation with Quan.
-He’ll spend the first 20 minutes sharing his experience.
+6:00 p.m. — Guest talk
+Quan will share his experience in a 20-minute talk.
 
-6:20 p.m. — Your questions.
-We’ll open it up for 10 minutes of Q&A, wrapping up around 6:30.
+6:20 p.m. — Open Q&A
+A 10-minute discussion, concluding the guest session at 6:30 p.m.
 
-Come with a question—or something you’ve been thinking about building. I’d love to hear about it.
+Our aim is to build a community where students pursue their own ideas, learn from founders, and support one another’s work. We look forward to meeting you and hearing about your interests and what you hope to build.
 
-Looking forward to meeting you all on Thursday.
+If you have any questions before Thursday, please contact team@uva.builders.
 
-Hari
+Best regards,
+Harivansh Rathi
 builders@uva
 https://www.uva.builders
 
