@@ -71,7 +71,7 @@ a:focus-visible { outline: 1px solid var(--fg); outline-offset: 4px; }
 img { display: block; }
 p, h1, h2, h3, ol, ul { margin: 0; }
 
-/* section labels: small, mono, but set in the foreground colour so they read */
+/* section labels */
 .eyebrow {
   display: flex;
   align-items: baseline;
@@ -82,7 +82,7 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   line-height: 1;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--fg);
+  color: var(--muted);
 }
 
 /* ---------- shared page pieces (used by every page under src/pages) ---------- */
