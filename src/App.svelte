@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from 'svelte'
+  import { mountInteractionSounds } from './lib/interactionSounds.js'
   import Ascii from './lib/Ascii.svelte'
   import Home from './pages/Home.svelte'
   import Events from './pages/Events.svelte'
@@ -7,6 +9,8 @@
   import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
   import { route } from './lib/router.svelte.js'
+
+  onMount(mountInteractionSounds)
 
   const page = $derived.by(() => {
     const p = route.path
