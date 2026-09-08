@@ -2,7 +2,10 @@ import { Auth } from '@auth/core'
 import Google from '@auth/core/providers/google'
 
 // Admin access is independent of membership and checked on every request.
-export const adminEmails = new Set(['rathiharivansh@gmail.com'])
+export const adminEmails = new Set([
+  'rathiharivansh@gmail.com',
+  'nwangbusiness783@gmail.com',
+])
 export const isAdmin = (email) => typeof email === 'string' && adminEmails.has(email.toLowerCase())
 
 export function authConfig() {
