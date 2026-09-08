@@ -45,7 +45,7 @@ function noise(x, y) {
  * Build a field for a pane of the given aspect (width / height).
  * Returns { step(now), cols, rows }.
  */
-export function createField({ aspect = 0.8, rand = Math.random } = {}) {
+export function createField({ aspect = 0.8, rand = Math.random, horizontal = false } = {}) {
   // Buffer with the pane's aspect, 2x oversampled. Height fixed, width follows.
   const BH = 280
   const BW = Math.max(120, Math.round((BH * CHAR_ASPECT * aspect) / 2) * 2)
@@ -54,9 +54,9 @@ export function createField({ aspect = 0.8, rand = Math.random } = {}) {
   // Geometry in visual units: x in buffer px, y in buffer px * CHAR_ASPECT,
   // origin at the buffer centre. The hands' axis lies on the diagonal.
   const diag = Math.hypot(BW, BH * CHAR_ASPECT)
-  const theta = Math.atan2(BH * CHAR_ASPECT, BW)      // diagonal angle, up-right
+  const theta = horizontal ? 0 : Math.atan2(BH * CHAR_ASPECT, BW)
   const cos = Math.cos(theta), sin = Math.sin(theta)
-  const S = diag * OVERSHOOT                          // hands' width in visual units
+  const S = (horizontal ? BW : diag) * OVERSHOOT     // hands' width in visual units
   const SH = S / hands.aspect                         // hands' height
   const [gapX, gapY] = hands.gap                      // gap position, normalised in the hands' box
 

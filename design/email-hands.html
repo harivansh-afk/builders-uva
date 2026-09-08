@@ -8,7 +8,10 @@ pre{margin:0;flex-shrink:0;font-family:Berkeley,monospace;font-size:8px;line-hei
 import {createField} from '/src/lib/field.js';
 await document.fonts.load('8px Berkeley');
 const pre=document.querySelector('pre');
-const field=createField({aspect:innerWidth/innerHeight});
+// Keep the arms entering from the sides, with black space above and below.
+let seed=7;
+const rand=()=>((seed=(Math.imul(seed,1664525)+1013904223)>>>0)/4294967296);
+const field=createField({aspect:innerWidth/innerHeight,horizontal:true,rand});
 for(let i=0;i<24;i++)pre.textContent=field.step(i*16);
 pre.style.transform='scale('+Math.max(innerWidth/pre.scrollWidth,innerHeight/pre.scrollHeight)+')';
 document.body.dataset.ready='true';
