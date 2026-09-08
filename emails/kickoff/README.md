@@ -4,7 +4,7 @@ Draft for review. Nothing has been sent.
 
 **Subject:** builders@uva | Thursday, September 10 — Olsson 103
 
-**Preheader:** Join us at 5:30 p.m. in Olsson 103. Quan Huynh (YC W26) joins virtually at 6:00 p.m.
+**Preheader:** Join us at 5:30 p.m. in Olsson 103. Quan Huynh joins virtually at 6:00 p.m.
 
 Use index.html as the HTML body and plain.txt as the plain-text alternative. Set the subject separately in the sending tool.
 
