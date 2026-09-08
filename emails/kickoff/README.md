@@ -10,7 +10,7 @@ Use index.html as the HTML body and plain.txt as the plain-text alternative. Set
 
 ## Copy
 
-Written for people who already signed up. Venue, room, contact address, and the corrected ~$5 million seed funding figure follow Hari’s instructions. The draft specifies the guest session ending at 6:30; it makes no claim about activity between 6:30 and 7. Sender and Reply-To still need configuration in the sending tool.
+Written for people who already signed up. Venue, room, contact address, and the seed-round wording follow Hari’s instructions. The draft specifies the guest session ending at 6:30; it makes no claim about activity between 6:30 and 7. Sender and Reply-To still need configuration in the sending tool.
 
 ## Design
 

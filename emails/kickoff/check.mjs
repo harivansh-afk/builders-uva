@@ -10,7 +10,7 @@ for (const [, href] of html.matchAll(/href="([^"]+)"/g)) {
   assert(['https:', 'mailto:'].includes(new URL(href).protocol), 'Links must be HTTPS or email addresses')
 }
 for (const source of [html, plain]) {
-  for (const detail of ['Quan', 'September 10', 'Olsson Hall', 'Room 103', '~$5 million in seed funding', 'team@uva.builders', '5:30 p.m.', '6:00 p.m.', '6:30']) {
+  for (const detail of ['Quan', 'September 10', 'Olsson Hall', 'Room 103', 'navigating his recent seed round', 'team@uva.builders', '5:30 p.m.', '6:00 p.m.', '6:30']) {
     assert(source.toLowerCase().includes(detail.toLowerCase()), `Missing event detail: ${detail}`)
   }
 }
