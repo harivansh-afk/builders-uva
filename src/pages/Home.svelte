@@ -10,7 +10,7 @@
 
   // `linkedin` is optional; the icon only renders when it is set.
   const founders = [
-    { name: 'Harivansh Rathi', img: '/hari.png', linkedin: 'https://www.linkedin.com/in/harivansh-rathi' },
+    { name: 'Harivansh Rathi', img: '/hari.png', website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi' },
     { name: 'Nathan Wang', img: '/nathan.png', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/' },
   ]
 </script>
@@ -41,7 +41,13 @@
   <ul class="founders">
     {#each founders as f}
       <li>
-        <img src={f.img} alt={f.name} width="240" height="240" decoding="async" />
+        {#if f.website}
+          <a href={f.website} aria-label={`${f.name}'s website`}>
+            <img src={f.img} alt={f.name} width="240" height="240" decoding="async" />
+          </a>
+        {:else}
+          <img src={f.img} alt={f.name} width="240" height="240" decoding="async" />
+        {/if}
         <div class="who">
           <div>
             <p class="name">{f.name}</p>
