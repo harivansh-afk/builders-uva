@@ -4,6 +4,7 @@
   import Events from './pages/Events.svelte'
   import Event from './pages/Event.svelte'
   import Join from './pages/Join.svelte'
+  import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
   import { route } from './lib/router.svelte.js'
 
@@ -13,6 +14,7 @@
     if (p === '/events') return { name: 'events', title: 'Events · builders@uva' }
     if (p.startsWith('/events/')) return { name: 'event', slug: p.slice('/events/'.length), title: 'Events · builders@uva' }
     if (p === '/join') return { name: 'join', title: 'Join us · builders@uva' }
+    if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin · builders@uva' }
     return { name: 'missing', title: 'builders@uva' }
   })
 
@@ -52,7 +54,7 @@
     </aside>
   </div>
 {:else}
-  <main class="page">
+  <main class="page" class:admin-page={page.name === 'admin'}>
     {#key route.path}
       {#if page.name === 'events'}
         <Events />
@@ -60,6 +62,8 @@
         <Event slug={page.slug} />
       {:else if page.name === 'join'}
         <Join />
+      {:else if page.name === 'admin'}
+        <Admin />
       {:else}
         <p class="eyebrow">404</p>
         <p class="lede" style="margin-top: var(--s4)">Nothing here. <a class="home" href="/">Go home.</a></p>
@@ -110,6 +114,7 @@
     padding: var(--top) var(--gutter) 0;
   }
   .home { border-bottom: 1px solid var(--dim); }
+  .admin-page { width: min(1600px, 100%); }
 
   /* ---------- home: two panes, graphic pinned left, copy scrolls right ---------- */
   .site {

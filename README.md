@@ -44,3 +44,41 @@ Only `@virginia.edu` addresses are accepted. A hidden honeypot field silently dr
 - `public/og.png` is the Open Graph image, 1200 by 630: the hands rendered as ASCII on the diagonal with the `b@` mark between the fingertips.
 - `public/foundry.svg` is The Foundry nameplate. `public/uva.svg` is the University of Virginia wordmark, public domain via Wikimedia Commons, recoloured to off-white.
 - `public/nathan.png` is a placeholder until a photo is dropped in. `public/hari.png` and `public/quan.png` are real.
+
+## Admin dashboard
+
+`/admin` shows read-only, searchable and sortable Members and Event responses
+views, with 50 rows per page and event/RSVP filters. Times display in Eastern
+Time. Google sign-in uses Auth.js; only verified Google emails in
+`server/auth.js`'s `adminEmails` set can enter. This allowlist is checked again on
+every session read, so removing an email takes effect after deployment even for
+an existing session. Sessions expire after eight hours of inactivity. Sign-out
+clears the browser session. Membership in `members` does not grant admin access.
+
+The `/api/admin` endpoint checks the session before querying Postgres and sends
+`private, no-store` responses. Its connection uses a separate Postgres role with
+SELECT access to `members` and `event_responses`; it never runs schema setup.
+`db/admin-role.sql` records the one-time role grants. Set a randomly generated
+password separately, and use the correct database name if it is not `neondb`.
+
+Production environment variables (Vercel):
+
+- `AUTH_URL=https://uva.builders`
+- `AUTH_SECRET`: a cryptographically random session secret of at least 32 bytes.
+- `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`: the Google Web OAuth client.
+- `ADMIN_DATABASE_URL`: the connection URL for `builders_admin_reader`.
+
+Google's authorized redirect URI is
+`https://uva.builders/api/auth/callback/google`. The current client lives in the
+existing `hari` Google Cloud project, whose consent branding is shared with its
+other clients. Only basic identity scopes are requested.
+
+For local development, put these variables in `.env.local`, set `AUTH_URL` to
+`http://localhost:8797`, and register
+`http://localhost:8797/api/auth/callback/google` on a development OAuth client.
+Production secrets are deliberately scoped to production, not preview builds.
+The Vite development server handles the same API functions as Vercel.
+
+Run `bun run test` for authorization, session, CSRF and query-validation tests;
+`bun run build` checks the production frontend build. Live acceptance also needs
+a Google sign-in, successful table loads, and sign-out followed by an API 401.
