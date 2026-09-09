@@ -1,5 +1,13 @@
 {
   "from": "builders@uva <team@uva.builders>",
   "reply_to": "team@uva.builders",
-  "subject": "builders@uva | Thursday, September 10 — Olsson 103"
+  "subject": "builders@uva | Thursday, September 10 — Olsson 103",
+  "inline_images": [
+    {
+      "src": "https://www.uva.builders/email-hands-horizontal.png",
+      "path": "../../public/email-hands-horizontal.png",
+      "filename": "builders-uva.png",
+      "content_id": "builders-hands@uva.builders"
+    }
+  ]
 }

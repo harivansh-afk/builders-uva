@@ -8,6 +8,15 @@ Final template. A test was accepted by Resend on September 9, 2026, addressed on
 
 Use index.html as the HTML body and plain.txt as the plain-text alternative. `campaign.json` configures the subject, sender, and Reply-To for the sending script.
 
+The script embeds the masthead PNG as a CID attachment using `inline_images` in
+`campaign.json`. The source HTML retains its HTTPS URL for browser previews; the
+outgoing HTML uses the matching `cid:` reference. The attachment bytes are included
+in the send hash. Missing files, unmatched image sources, invalid PNG signatures,
+and missing CID attachments stop payload construction. The copy and visual layout
+are unchanged. Run `node --test tests/email.test.js` for payload fidelity and failure
+checks. This removes the remote image download dependency, but Outlook inbox
+placement and automatic display still require checking in the received test.
+
 ## Sending a test
 
 Put `RESEND_API_KEY` in the gitignored root `.env.local`. From the repository root:
