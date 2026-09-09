@@ -1,16 +1,56 @@
 # First gathering email
 
-Draft for review. Nothing has been sent.
+Final template. A test was accepted by Resend on September 9, 2026, addressed only to rathiharivansh@gmail.com. Full-list distribution has not run. Inbox rendering and delivery still need recipient verification.
 
 **Subject:** builders@uva | Thursday, September 10 — Olsson 103
 
 **Preheader:** Join us at 5:30 p.m. in Olsson 103. Quan Huynh joins virtually at 6:00 p.m.
 
-Use index.html as the HTML body and plain.txt as the plain-text alternative. Set the subject separately in the sending tool.
+Use index.html as the HTML body and plain.txt as the plain-text alternative. `campaign.json` configures the subject, sender, and Reply-To for the sending script.
+
+## Sending a test
+
+Put `RESEND_API_KEY` in the gitignored root `.env.local`. From the repository root:
+
+```sh
+# Validate and preview the envelope without sending.
+npm run email -- --campaign kickoff --test-to rathiharivansh@gmail.com
+
+# Send the exact final HTML, text, and subject to this one address.
+npm run email -- --campaign kickoff --test-to rathiharivansh@gmail.com --send
+```
+
+The script requires one explicit recipient, runs the campaign check before sending,
+and rejects unknown flags. There is no full-list mode. It saves private receipts
+in gitignored `emails/.receipts/`, and refuses a repeated identical test even after
+Resend's 24-hour idempotency window. Preserve those receipts. They are local to this
+checkout, so they are not a shared campaign ledger across machines.
+
+A pending receipt means the request may have reached Resend: inspect its dashboard
+before any retry. Do not delete pending receipts blindly. An accepted receipt records
+the provider ID; acceptance does not establish inbox delivery. The current API key
+is send-only and cannot read delivery status or manage contacts.
+
+## Full-list pipeline
+
+For recurring membership announcements, use Resend Contacts, a Segment, and
+Broadcasts so subscriptions and unsubscribe handling live with the sending service.
+Keep these HTML/text files and campaign metadata as the reviewed source. A future
+command should read members from Postgres, sync contacts without resetting existing
+unsubscribes, and create a draft broadcast for the membership segment. Record its ID
+and content hash durably, inspect the audience count and test delivery, then send
+that same draft explicitly. Delivery/bounce/complaint events should update the
+campaign record. This needs a key with contact/broadcast access; the current
+send-only key cannot implement it. No contacts have been uploaded or broadcasts
+created by the test command.
+
+Resend provides both a [CLI](https://resend.com/docs/cli) and an
+[HTTP API](https://resend.com/docs/api-reference/emails/send-email).
+This script uses the API through Node's built-in fetch, without another dependency.
 
 ## Copy
 
-Written for people who already signed up. Venue, room, contact address, and the seed-round wording follow Hari’s instructions. The draft specifies the guest session ending at 6:30; it makes no claim about activity between 6:30 and 7. Sender and Reply-To still need configuration in the sending tool.
+Written for people who already signed up. Venue, room, contact address, and the seed-round wording follow Hari’s instructions. The email specifies the guest session ending at 6:30; it makes no claim about activity between 6:30 and 7. Sender is builders@uva <team@uva.builders>, with Reply-To team@uva.builders.
 
 ## Design
 

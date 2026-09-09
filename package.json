@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "email": "node --env-file=.env.local emails/send.mjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
