@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/gc",
+      "destination": "https://signal.group/#CjQKIJAZuLlVJDG1Zf_NVAs8AdJWv5GQLhXdlvibgTLVoB5sEhCJd01xILFIQ_qEXpGzpmB8",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     { "source": "/api/auth/:path*", "destination": "/api/auth?authPath=:path*" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
