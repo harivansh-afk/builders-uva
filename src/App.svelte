@@ -174,8 +174,8 @@
      centred on the same line; the rule above it runs the width of the pane */
   .col > :global(footer) {
     margin-top: var(--gap);
-    padding: var(--s4) var(--gutter) 32px;
-    border-top: 1px solid var(--hair);
+    /* left edge lines up with the copy, right edge with the gutter */
+    padding: 0 var(--gutter) 32px max(var(--gutter), calc((100% - var(--col)) / 2));
   }
 
   .right {

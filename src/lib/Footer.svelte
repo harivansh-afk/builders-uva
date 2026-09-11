@@ -46,8 +46,15 @@
   @media (min-width: 900px) {
     .inline {
       justify-content: flex-end;
-      gap: 12px;
+      gap: var(--s4) 12px;
       border-top: 0;
+    }
+    /* the rule spans the content box only, from the copy's left edge to the text's right edge */
+    .inline::before {
+      content: '';
+      flex: 0 0 100%;
+      height: 1px;
+      background: var(--hair);
     }
     .sep { color: var(--dim); }
   }
