@@ -77,14 +77,20 @@
 <div class="join">
   <header class="intro">
     <p class="eyebrow">Apply</p>
-    <h1 class="lede">Tell us a bit about yourself.</h1>
+    {#if status === 'done'}
+      <h1 class="lede">Thanks, {fullName.trim().split(/\s+/)[0]}. Your application is <em>in.</em></h1>
+    {:else}
+      <h1 class="lede">Tell us a bit about yourself.</h1>
+    {/if}
   </header>
 
   {#if status === 'done'}
     <div class="done">
-      <p class="eyebrow">Done</p>
-      <p class="lede">Application received.</p>
-      <p class="sub">We'll review your application and reach out at {email.trim().toLowerCase()}.</p>
+      <p>We'll review it and reach out at <span class="hl">{email.trim().toLowerCase()}</span>.</p>
+      {#if ev && rsvp}
+        <p>See you {midDate(ev.date)} for the Q&amp;A with <a href="/events/{ev.slug}">{ev.name}</a>.</p>
+      {/if}
+      <a class="next eyebrow" href="/events">Events →</a>
     </div>
   {:else}
     <form onsubmit={submit} novalidate>
@@ -287,15 +293,18 @@
   .go:disabled { opacity: 0.6; cursor: default; }
   .go:focus-visible { outline: 1px solid var(--fg); outline-offset: 4px; }
 
-  .done { display: grid; gap: var(--s3); }
-  .done .eyebrow { margin-bottom: var(--s2); }
-  .sub {
-    margin-top: var(--s3);
-    max-width: 34ch;
+  .done { display: grid; gap: var(--s3); justify-items: start; }
+  .done p {
+    max-width: 44ch;
     color: var(--soft);
-    font-size: 16px;
-    line-height: 1.55;
+    font-size: 17px;
+    line-height: 1.6;
+    text-wrap: pretty;
   }
+  .done p a { color: var(--fg); border-bottom: 1px solid var(--dim); transition: border-color 0.15s ease; }
+  .done p a:hover { border-color: var(--fg); }
+  .done .next { margin-top: var(--s3); color: var(--muted); transition: color 0.15s ease; }
+  .done .next:hover { color: var(--fg); }
 
   @media (max-width: 899px) {
     .join { gap: var(--s4); }
