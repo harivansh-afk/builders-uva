@@ -131,11 +131,11 @@
   .site {
     /* the copy fills one screen and no more: type, spacing and portraits
        scale with the viewport height, capped by the pane's width */
-    --lede: clamp(16px, min(2.1vh, 1.45vw), 28px);
+    --lede: clamp(16px, min(2.2vh, 1.5vw), 30px);
     --measure: 38ch;
-    --s4: clamp(14px, 2vh, 36px);
-    --s6: clamp(24px, 3.6vh, 72px);
-    --portrait: clamp(64px, 9vh, 150px);
+    --s4: clamp(14px, 2.2vh, 40px);   /* inside a section */
+    --gap: calc(var(--s4) * 2);       /* between sections, and around the footer */
+    --portrait: clamp(64px, 10vh, 160px);
     display: grid;
     grid-template-columns: 55fr 45fr;
     height: 100vh;
@@ -155,9 +155,18 @@
      sits in a column of --col, centred, never closer to the edge than a gutter. */
   .col {
     width: 100%;
-    padding-top: clamp(76px, 9vh, 128px); /* copy starts under the nav */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 26px; /* first label sits on the nav's line */
   }
-  .col > :global(.hero) { padding-top: 0; }
+  /* sections are separated by one gap, not by padding and rules;
+     the footer rule is the only line on the page */
+  .col > :global(.block) { padding: 0; border-top: 0; }
+  .col > :global(.block) > :global(:last-child) { margin-bottom: 0; }
+  .col > :global(.block) + :global(.block) { margin-top: var(--gap); }
+  .col > :global(.block:last-of-type) { margin-bottom: auto; }
+  .col > :global(footer) { margin-top: var(--gap); padding: var(--s4) 0; }
   .col > :global(.block),
   .col > :global(footer) {
     padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
@@ -172,7 +181,6 @@
     height: 100%;
     min-height: 0;
     overflow: hidden;
-    border-right: 1px solid var(--hair);
   }
   .stage {
     position: relative;
@@ -209,14 +217,12 @@
     }
     .right {
       height: clamp(340px, 56dvh, 620px);
-      border-right: 0;
-      border-bottom: 1px solid var(--hair);
     }
     .logos { gap: 22px; padding-bottom: 12px; }
     .logos img { height: 24px; }
     .logos .ventureforward { height: 34px; }
     .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --s6: 72px; --portrait: 100%; }
-    .col { padding-top: 0; }
+    .col { min-height: 0; display: block; padding-top: 0; }
     .left {
       height: auto;
       overflow: visible;

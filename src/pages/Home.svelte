@@ -50,9 +50,7 @@
           <img src={f.img} alt={f.name} width="240" height="240" decoding="async" />
         {/if}
         <div class="who">
-          <div>
-            <p class="name">{f.name}</p>
-          </div>
+          <p class="name">{f.name}</p>
           <div class="socials">
             {#if f.linkedin}
               <a class="social" href={f.linkedin} target="_blank" rel="noopener" aria-label="{f.name} on LinkedIn" title="LinkedIn">
@@ -100,19 +98,9 @@
     background: #17171a;
     margin-bottom: var(--s2);
   }
-  .who {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+  .who { display: grid; gap: 4px; }
   .founders .name { font-size: 17px; font-weight: 500; }
-  .socials {
-    display: flex;
-    flex-shrink: 0;
-    margin: -8px -8px 0 0;
-  }
+  .socials { display: flex; margin-left: -8px; }
   .social {
     display: inline-flex;
     align-items: center;
