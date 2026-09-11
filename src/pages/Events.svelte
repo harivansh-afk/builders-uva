@@ -15,7 +15,7 @@
       <li class="row" class:upcoming={e.date >= today}>
         <a class="page" href="/events/{e.slug}">
           <span class="n">{n(i)}</span>
-          <span class="t">{e.name}{#if e.tag} ({e.tag}){/if}</span>
+          <span class="t">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</span>
           <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
           <span class="state">{e.date >= today ? 'Upcoming' : e.transcript ? 'Transcript' : e.recap ? 'Recap' : 'Transcript soon'}</span>
         </a>

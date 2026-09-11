@@ -10,17 +10,11 @@
   {#if e}
     <header class="head">
       <div>
-        <h1 class="name">{e.name}{#if e.tag} ({e.tag}){/if}</h1>
+        <h1 class="name">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</h1>
         <p class="meta">
-          <time datetime={e.date}>{longDate(e.date)}</time>
-          {#if e.time}
-            <span class="sep" aria-hidden="true">·</span>
-            <span>{e.time}</span>
-          {/if}
-          {#if e.link}
-            <span class="sep" aria-hidden="true">·</span>
-            <a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a>
-          {/if}
+          <span><time datetime={e.date}>{longDate(e.date)}</time></span>
+          {#if e.time}<span>{e.time}</span>{/if}
+          {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
         </p>
       </div>
       <img class="pfp" src={e.img} alt={e.name} width="160" height="160" decoding="async" />
@@ -83,6 +77,7 @@
     padding-bottom: var(--s5);
     border-bottom: 1px solid var(--hair);
   }
+  .head > div { min-width: 0; } /* the meta wraps instead of pushing the portrait off-screen */
   .name {
     font-size: var(--lede);
     font-weight: 400;
@@ -97,11 +92,11 @@
     color: var(--muted);
     display: flex;
     flex-wrap: wrap;
-    gap: 0 10px;
+    gap: 4px 10px;
   }
+  .meta > * + *::before { content: '·'; margin-right: 10px; color: var(--dim); }
   .meta a { border-bottom: 1px solid var(--hair); transition: border-color 0.15s ease, color 0.15s ease; }
   .meta a:hover { color: var(--fg); border-color: var(--muted); }
-  .sep { color: var(--dim); }
 
   .pfp {
     flex: 0 0 auto;
@@ -130,5 +125,8 @@
     .event { gap: 36px; }
     .head { padding-bottom: 36px; }
     .pfp { width: 80px; height: 80px; }
+    /* one item per line; a leading separator never opens a line */
+    .meta { display: grid; gap: 6px; }
+    .meta > * + *::before { content: none; }
   }
 </style>

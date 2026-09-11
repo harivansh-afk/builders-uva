@@ -9,17 +9,21 @@
   import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
   import { route } from './lib/router.svelte.js'
+  import { eventBySlug } from './lib/events.js'
 
   onMount(mountInteractionSounds)
 
   const page = $derived.by(() => {
     const p = route.path
     if (p === '/') return { name: 'home', title: 'builders@uva' }
-    if (p === '/events') return { name: 'events', title: 'Events · builders@uva' }
-    if (p.startsWith('/events/')) return { name: 'event', slug: p.slice('/events/'.length), title: 'Events · builders@uva' }
-    if (['/apply', '/apply/', '/join', '/join/'].includes(p)) return { name: 'join', title: 'Apply · builders@uva' }
-    if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin · builders@uva' }
-    return { name: 'missing', title: 'builders@uva' }
+    if (p === '/events') return { name: 'events', title: 'Events' }
+    if (p.startsWith('/events/')) {
+      const slug = p.slice('/events/'.length)
+      return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Events' }
+    }
+    if (['/apply', '/apply/', '/join', '/join/'].includes(p)) return { name: 'join', title: 'Apply' }
+    if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin' }
+    return { name: 'missing', title: 'Not found' }
   })
 
   $effect(() => { document.title = page.title })
@@ -69,8 +73,10 @@
       {:else if page.name === 'admin'}
         <Admin />
       {:else}
-        <p class="eyebrow">404</p>
-        <p class="lede" style="margin-top: var(--s4)">Nothing here. <a class="home" href="/">Go home.</a></p>
+        <div class="missing">
+          <p class="eyebrow">404</p>
+          <p class="lede">Nothing here. <a class="home" href="/">Go home.</a></p>
+        </div>
       {/if}
     {/key}
     <Footer />
@@ -117,6 +123,7 @@
     margin: 0 auto;
     padding: var(--top) var(--gutter) 0;
   }
+  .missing { display: grid; gap: var(--s4); }
   .home { border-bottom: 1px solid var(--dim); }
   .admin-page { width: min(1600px, 100%); }
 
