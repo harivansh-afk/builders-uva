@@ -114,7 +114,7 @@
 
   .body { display: grid; gap: var(--s3); }
   .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
-  .recap { display: grid; gap: var(--s4); max-width: 62ch; }
+  .recap { display: grid; gap: var(--s4); }
   .recap section { display: grid; gap: 18px; }
   .recap h3 { font-size: 21px; font-weight: 400; }
   .recap p { font-size: 17px; line-height: 1.6; }
