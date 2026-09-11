@@ -43,7 +43,7 @@
     <main class="left">
       <div class="col">
         <Home />
-        <Footer />
+        <Footer inline />
       </div>
     </main>
     <aside class="right">
@@ -166,7 +166,8 @@
   .col > :global(.block) > :global(:last-child) { margin-bottom: 0; }
   .col > :global(.block) + :global(.block) { margin-top: var(--gap); }
   .col > :global(.block:last-of-type) { margin-bottom: auto; }
-  .col > :global(footer) { margin-top: var(--gap); padding: var(--s4) 0; }
+  /* bottom-right corner, centred on the same line as the logos bottom-left */
+  .col > :global(footer) { margin-top: var(--gap); padding: 0 0 32px; }
   .col > :global(.block),
   .col > :global(footer) {
     padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
