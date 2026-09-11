@@ -12,6 +12,11 @@ export const events = [
     date: '2026-09-10',
     time: '6 p.m.',
     img: '/quan.png',
+    photos: [
+      { file: 'dsc04129', alt: 'Harivansh speaking with Quan Huynh on the classroom display.', width: 1600, height: 2400 },
+      { file: 'dsc04128', alt: 'Students gathered around the classroom tables during the founder Q&A.', width: 2400, height: 1600 },
+      { file: 'dsc04120', alt: 'Harivansh and an attendee in conversation at the front of the room.', width: 2400, height: 1600 },
+    ],
     link: 'https://www.linkedin.com/in/quanmhuynh/',
     transcript: null,
     recap: [

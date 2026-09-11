@@ -20,6 +20,25 @@
       <img class="pfp" src={e.img} alt={e.name} width="160" height="160" decoding="async" />
     </header>
 
+    {#if e.photos?.length}
+      <div class="photos" aria-label="Photos from the event">
+        {#each e.photos as photo, i}
+          <a href="/events/{e.slug}/{photo.file}-clean.jpg" aria-label="View full photo: {photo.alt}">
+            <img
+              src="/events/{e.slug}/{photo.file}-1200.webp"
+              srcset="/events/{e.slug}/{photo.file}-600.webp 600w, /events/{e.slug}/{photo.file}-1200.webp 1200w"
+              sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1100px) 45vw, 520px"
+              alt={photo.alt}
+              width={photo.width}
+              height={photo.height}
+              decoding="async"
+              fetchpriority={i === 0 ? 'high' : 'auto'}
+            />
+          </a>
+        {/each}
+      </div>
+    {/if}
+
     {#if e.description}
       <p class="description">{e.description}</p>
     {/if}
@@ -107,6 +126,13 @@
     background: #17171a;
   }
 
+  .photos { display: grid; grid-template-columns: 8fr 9fr; gap: 12px; }
+  .photos a { display: block; min-width: 0; overflow: hidden; }
+  .photos a:first-child { grid-row: span 2; }
+  .photos a:not(:first-child) { aspect-ratio: 3 / 2; }
+  .photos img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .photos a:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+
   .body { display: grid; gap: var(--s3); }
   .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
   .recap { display: grid; gap: var(--s4); }
@@ -122,6 +148,9 @@
   .transcript p { font-size: 17px; line-height: 1.6; }
 
   @media (max-width: 599px) {
+    .photos { grid-template-columns: 1fr; }
+    .photos a:first-child { grid-row: auto; }
+    .photos img { height: auto; }
     .event { gap: 36px; }
     .head { padding-bottom: 36px; }
     .pfp { width: 80px; height: 80px; }
