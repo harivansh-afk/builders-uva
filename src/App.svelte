@@ -226,15 +226,18 @@
     .logos { gap: 22px; padding-bottom: 12px; }
     .logos img { height: 24px; }
     .logos .ventureforward { height: 34px; }
-    .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --s6: 72px; --portrait: 100%; }
-    .col { min-height: 0; display: block; padding-top: 0; }
+    .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --gap: 72px; --portrait: 100%; }
+    /* stacked: one gap below the logos, between sections, and above the footer */
+    .col { min-height: 0; display: block; padding-top: var(--gap); }
+    .col > :global(.block:last-of-type) { margin-bottom: 0; }
     .left {
       height: auto;
       overflow: visible;
-      padding-bottom: env(safe-area-inset-bottom);
     }
-    .col > :global(.block),
-    .col > :global(footer) { padding-left: var(--gutter); padding-right: var(--gutter); }
+    .col > :global(.block) { padding-left: var(--gutter); padding-right: var(--gutter); }
+    .col > :global(footer) {
+      padding: var(--s4) var(--gutter) calc(var(--s4) + env(safe-area-inset-bottom));
+    }
   }
   @media (max-width: 599px) {
     .site { --measure: none; }
