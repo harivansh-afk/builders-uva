@@ -77,7 +77,6 @@
   <header class="intro">
     <p class="eyebrow">Apply</p>
     <h1 class="lede">Tell us a bit about yourself.</h1>
-    <p class="sub">Membership is by application. We review each one and reach out by email.</p>
   </header>
 
   {#if status === 'done'}
