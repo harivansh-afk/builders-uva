@@ -70,6 +70,7 @@ export const events = [
   {
     slug: 'advait-paliwal',
     name: 'Advait Paliwal',
+    tag: 'YC F24',
     date: '2026-09-17',
     time: null,
     location: null,
