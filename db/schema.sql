@@ -26,3 +26,8 @@ create table if not exists event_responses (
   created_at  timestamptz not null default now(),
   unique (email, event_slug)
 );
+
+-- Grandfather existing signups once; all subsequent applicants start pending.
+alter table members add column if not exists status text not null default 'approved'
+  check (status in ('pending', 'approved', 'declined'));
+alter table members alter column status set default 'pending';

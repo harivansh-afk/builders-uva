@@ -75,15 +75,16 @@
 
 <div class="join">
   <header class="intro">
-    <p class="eyebrow">Join us</p>
+    <p class="eyebrow">Apply</p>
     <h1 class="lede">Tell us a bit about yourself.</h1>
+    <p class="sub">Membership is by application. We review each one and reach out by email.</p>
   </header>
 
   {#if status === 'done'}
     <div class="done">
       <p class="eyebrow">Done</p>
-      <p class="lede">You're in.</p>
-      <p class="sub">We'll reach out at {email.trim().toLowerCase()}.</p>
+      <p class="lede">Application received.</p>
+      <p class="sub">We'll review your application and reach out at {email.trim().toLowerCase()}.</p>
     </div>
   {:else}
     <form onsubmit={submit} novalidate>
@@ -130,7 +131,7 @@
               <span class="more" aria-hidden="true">→</span>
             </a>
             <div class="seg" role="radiogroup" data-invalid={show('rsvp') || undefined}>
-              <button type="button" class:on={rsvp === true} role="radio" aria-checked={rsvp === true} onclick={() => (rsvp = true)}>Yes, I'll be there</button>
+              <button type="button" class:on={rsvp === true} role="radio" aria-checked={rsvp === true} onclick={() => (rsvp = true)}>Yes, I’m interested</button>
               <button type="button" class:on={rsvp === false} role="radio" aria-checked={rsvp === false} onclick={() => (rsvp = false)}>Can't make it</button>
             </div>
             {#if show('rsvp')}<p class="err">{show('rsvp')}</p>{/if}
@@ -142,7 +143,7 @@
 
       <div class="actions">
         <button type="submit" class="go" disabled={status === 'sending'}>
-          {status === 'sending' ? 'Sending…' : 'Join us →'}
+          {status === 'sending' ? 'Sending…' : 'Apply →'}
         </button>
         {#if status === 'error'}
           <p class="err" role="alert">{error}</p>

@@ -1,15 +1,38 @@
-import { adminSession, privateResponse } from '../server/auth.js'
+import { adminSession, privateResponse, origin } from '../server/auth.js'
 import { adminDb, queryOptions } from '../server/admin-data.js'
 
 export default async function handler(req, res) {
   privateResponse(res)
-  if (req.method !== 'GET') {
-    res.setHeader('Allow', 'GET')
+  if (!['GET', 'PATCH'].includes(req.method)) {
+    res.setHeader('Allow', 'GET, PATCH')
     return res.status(405).json({ error: 'Method not allowed.' })
   }
   try {
     const session = await adminSession(req, res)
     if (!session) return
+    if (req.method === 'PATCH') {
+      // Browser mutations require an exact trusted Origin and JSON, preventing CSRF.
+      if (req.headers.origin !== new URL(origin()).origin ||
+          req.headers['content-type']?.split(';')[0].trim() !== 'application/json') {
+        return res.status(403).json({ error: 'Invalid request origin or content type.' })
+      }
+      let body = req.body
+      if (typeof body === 'string') {
+        try { body = JSON.parse(body) }
+        catch { return res.status(400).json({ error: 'Invalid JSON.' }) }
+      }
+      if (!body || typeof body.email !== 'string' || body.email.length > 80 ||
+          !['approved', 'declined'].includes(body.status) ||
+          !['pending', 'declined'].includes(body.expectedStatus)) {
+        return res.status(400).json({ error: 'Invalid application decision.' })
+      }
+      const result = await adminDb().query(
+        'update members set status = $1, updated_at = now() where email = $2 and status = $3 returning email, status',
+        [body.status, body.email, body.expectedStatus],
+      )
+      if (!result.rowCount) return res.status(409).json({ error: 'This application has changed. Refresh and try again.' })
+      return res.status(200).json({ ok: true })
+    }
     let options
     try { options = queryOptions(new URL(req.url, 'http://localhost').searchParams) }
     catch (error) { return res.status(400).json({ error: error.message }) }

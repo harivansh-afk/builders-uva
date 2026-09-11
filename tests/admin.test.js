@@ -6,6 +6,7 @@ import { authConfig, adminSession } from '../server/auth.js'
 import { queryOptions } from '../server/admin-data.js'
 import handler from '../api/admin.js'
 import authHandler from '../api/auth.js'
+import pg from 'pg'
 
 process.env.AUTH_SECRET = randomBytes(32).toString('base64')
 process.env.AUTH_URL = 'https://uva.builders'
@@ -57,10 +58,56 @@ test('sessions require allowlist membership, verified Google provenance, and val
   assert.ok(res.headers['set-cookie'].some(c => c.includes('HttpOnly') && c.includes('Secure') && c.includes('SameSite=Lax')))
 })
 
-test('admin API forbids mutation methods', async () => {
+test('admin API forbids unsupported methods', async () => {
   const res = response()
   await handler({ method: 'POST', headers: {} }, res)
   assert.equal(res.code, 405)
+})
+
+test('application decisions require authentication, trusted origin, JSON, and valid states', async () => {
+  const headers = { cookie: await cookie({ email: 'rathiharivansh@gmail.com', googleVerified: true }), origin: process.env.AUTH_URL, 'content-type': 'application/json' }
+  const body = { email: 'test@virginia.edu', status: 'approved', expectedStatus: 'pending' }
+  for (const [change, expected] of [
+    [{ headers: { ...headers, cookie: '' } }, 401],
+    [{ headers: { ...headers, origin: 'https://evil.test' } }, 403],
+    [{ headers: { ...headers, origin: undefined } }, 403],
+    [{ headers: { ...headers, 'content-type': 'text/plain' } }, 403],
+    [{ body: '{' }, 400],
+    [{ body: { ...body, status: 'pending' } }, 400],
+    [{ body: { ...body, expectedStatus: 'approved' } }, 400],
+  ]) {
+    const res = response()
+    await handler({ method: 'PATCH', headers, body, ...change }, res)
+    assert.equal(res.code, expected)
+  }
+})
+
+test('decisions update only the expected application and report concurrent changes', async (t) => {
+  process.env.ADMIN_DATABASE_URL = 'postgres://unused'
+  const headers = { cookie: await cookie({ email: 'rathiharivansh@gmail.com', googleVerified: true }), origin: process.env.AUTH_URL, 'content-type': 'application/json' }
+  let rowCount = 1
+  t.mock.method(pg.Pool.prototype, 'query', async (sql, values) => {
+    assert.match(sql, /where email = \$2 and status = \$3/)
+    assert.deepEqual(values, ['approved', 'test@virginia.edu', 'pending'])
+    return { rowCount }
+  })
+  for (const count of [1, 0]) {
+    rowCount = count
+    const res = response()
+    await handler({ method: 'PATCH', headers, body: { email: 'test@virginia.edu', status: 'approved', expectedStatus: 'pending' } }, res)
+    assert.equal(res.code, count ? 200 : 409)
+  }
+})
+
+test('member lists exclude applicants and application filters are validated', () => {
+  assert.match(queryOptions(new URLSearchParams()).rows, /m.status = 'approved'/)
+  for (const status of ['pending', 'declined']) {
+    const options = queryOptions(new URLSearchParams({ view: 'applications', status, q: 'Hari' }))
+    assert.match(options.rows, /m.status = \$1/)
+    assert.match(options.rows, /m.email ilike \$2/)
+    assert.equal(options.values[0], status)
+  }
+  assert.throws(() => queryOptions(new URLSearchParams({ view: 'applications', status: 'approved' })))
 })
 
 test('Auth.js rejects sign-in and logout without CSRF proof', async () => {

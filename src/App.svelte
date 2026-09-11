@@ -17,7 +17,7 @@
     if (p === '/') return { name: 'home', title: 'builders@uva' }
     if (p === '/events') return { name: 'events', title: 'Events · builders@uva' }
     if (p.startsWith('/events/')) return { name: 'event', slug: p.slice('/events/'.length), title: 'Events · builders@uva' }
-    if (p === '/join') return { name: 'join', title: 'Join us · builders@uva' }
+    if (['/apply', '/apply/', '/join', '/join/'].includes(p)) return { name: 'join', title: 'Apply · builders@uva' }
     if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin · builders@uva' }
     return { name: 'missing', title: 'builders@uva' }
   })
@@ -31,7 +31,7 @@
 <nav class="nav" aria-label="Pages">
   <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}>b@</a>
   <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
-  <a href="/join" aria-current={section === 'join' ? 'page' : undefined}>Join us</a>
+  <a href="/apply" aria-current={section === 'join' ? 'page' : undefined}>Apply</a>
 </nav>
 
 {#if home}

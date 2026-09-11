@@ -1,6 +1,6 @@
 # builders@uva
 
-Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left with the UVA and Foundry logos beneath it, copy scrolling on the right in a single 600px column centred in its pane, with section rules running the full pane width; below 900px the panes stack, graphic first. Events and Join are full-width pages. A nav in the top-left (mark, Events, Join us) and a one-line footer (`src/lib/Footer.svelte`: copyright and a live Charlottesville clock) are on every page.
+Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left with the UVA and Foundry logos beneath it, copy scrolling on the right in a single 600px column centred in its pane, with section rules running the full pane width; below 900px the panes stack, graphic first. Events and Apply are full-width pages. A nav in the top-left (mark, Events, Apply) and a one-line footer (`src/lib/Footer.svelte`: copyright and a live Charlottesville clock) are on every page.
 
 Vertical spacing comes from one scale in `src/app.css` (`--s2` to `--s7`); use those rather than ad hoc pixel values so sections keep the same rhythm.
 
@@ -14,7 +14,7 @@ bun run build    # static output in dist/
 
 - `/` is the home page: `src/pages/Home.svelte`. Copy lives in the `beliefs` and `founders` arrays at the top. A founder's `linkedin` URL renders an icon next to their name; leave it `null` to hide it.
 - `/events` lists every Q&A, one row per event: `src/pages/Events.svelte`. Clicking a row opens `/events/<slug>` (`src/pages/Event.svelte`) with the transcript, or "Coming soon" until there is one. The headshot on the right of a row links to the guest's LinkedIn.
-- `/join` is the membership form: `src/pages/Join.svelte`.
+- `/apply` is the application form (`/join` remains an alias): `src/pages/Join.svelte`.
 
 Routing is `src/lib/router.svelte.js`, a small history-API router. `vercel.json` rewrites every non-API path to `index.html` so deep links work; the dev server does that on its own.
 
@@ -22,13 +22,13 @@ Routing is `src/lib/router.svelte.js`, a small history-API router. `vercel.json`
 
 Edit `src/lib/events.js`. Each entry has a `slug`, `name`, `tag` (e.g. `YC W26`, shown after the name in parentheses), ISO `date`, `img`, `link`, and an optional `transcript`. Use `linkLabel` for links other than LinkedIn, and `description` for upcoming event details. Meeting notes go in `recap` as sections with a `title` and `paragraphs`; these display as a recap rather than a verbatim transcript. Drop the headshot in `public/`. The row number is the array position, so append to the end. Advait's headshot is from his website at `https://www.advaitpaliwal.com/assets/images/profilepic.png`.
 
-The join form ends with an RSVP, "Can you make it Thu, Sep 10?", built from the next event on or after today. The yes/no is stored against that event's slug in `event_responses`, so adding next week's event is all it takes to change the question.
+The application form ends with an event-interest question, built from the next event on or after today. The yes/no is stored against that event's slug in `event_responses`, so adding next week's event is all it takes to change the question.
 
 ## Form backend
 
 `api/join.js` is a Vercel serverless function. It validates with the same rules as the page (`src/lib/join.js`), then writes to Postgres:
 
-- `members`, one row per UVA email, including the required full name, upserted on every submission. Existing members have a null `full_name` until they resubmit.
+- `members`, one row per UVA email, including the required full name and membership status, upserted on every submission. New applications are pending; submissions cannot change an existing decision. Existing members have a null `full_name` until they resubmit.
 - `event_responses`, one row per (email, event), storing the RSVP question alongside the yes/no answer.
 
 The schema is `db/schema.sql`; the function applies it on first use, so a fresh database needs no manual setup. It reads `DATABASE_URL`. On Vercel that comes from the Neon Postgres integration (Storage tab on the project). Locally, put `DATABASE_URL=...` in `.env.local` and `bun run dev` serves `/api/join` through the same handler.
@@ -47,8 +47,8 @@ Only `@virginia.edu` addresses are accepted. A hidden honeypot field silently dr
 
 ## Admin dashboard
 
-`/admin` shows read-only, searchable and sortable Members and Event responses
-views, with 50 rows per page and event/RSVP filters. Times display in Eastern
+`/admin` shows searchable and sortable Applications, Members, and Event responses
+views. Applications defaults to pending, with a declined filter and Approve/Decline controls. Members lists only approved people. Reviews do not send email; follow up manually. Views have 50 rows per page and event/RSVP filters. Times display in Eastern
 Time. Google sign-in uses Auth.js; only verified Google emails in
 `server/auth.js`'s `adminEmails` set can enter. This allowlist is checked again on
 every session read, so removing an email takes effect after deployment even for
@@ -57,7 +57,7 @@ clears the browser session. Membership in `members` does not grant admin access.
 
 The `/api/admin` endpoint checks the session before querying Postgres and sends
 `private, no-store` responses. Its connection uses a separate Postgres role with
-SELECT access to `members` and `event_responses`; it never runs schema setup.
+SELECT access to `members` and `event_responses` and UPDATE access only to `members.status` and `members.updated_at`; it never runs schema setup. PATCH decisions also require the exact configured Origin and JSON. Concurrent decisions return a conflict instead of overwriting each other.
 `db/admin-role.sql` records the one-time role grants. Set a randomly generated
 password separately, and use the correct database name if it is not `neondb`.
 
@@ -82,3 +82,7 @@ The Vite development server handles the same API functions as Vercel.
 Run `bun run test` for authorization, session, CSRF and query-validation tests;
 `bun run build` checks the production frontend build. Live acceptance also needs
 a Google sign-in, successful table loads, and sign-out followed by an API 401.
+
+## Application migration
+
+Before deploying, run `db/schema.sql` and then `db/application-review-role.sql` as the database owner in one transaction. Existing signups become approved once; the default for new rows is pending. Re-running the schema does not change decisions. The second script grants the existing dashboard role only the review-column updates and disables its transaction read-only default. Event pages remain public.
