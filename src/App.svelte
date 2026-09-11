@@ -129,11 +129,13 @@
 
   /* ---------- home: two panes, graphic pinned left, copy scrolls right ---------- */
   .site {
-    /* the copy fits one screen: type and spacing step down from the site scale */
-    --lede: clamp(16px, 1.2vw, 20px);
+    /* the copy fills one screen and no more: type, spacing and portraits
+       scale with the viewport height, capped by the pane's width */
+    --lede: clamp(16px, min(2.1vh, 1.45vw), 28px);
     --measure: 38ch;
-    --s4: 16px;
-    --s6: 28px;
+    --s4: clamp(14px, 2vh, 36px);
+    --s6: clamp(24px, 3.6vh, 72px);
+    --portrait: clamp(64px, 9vh, 150px);
     display: grid;
     grid-template-columns: 55fr 45fr;
     height: 100vh;
@@ -151,15 +153,11 @@
   .left::-webkit-scrollbar { display: none; }
   /* Each section spans the pane so its rule runs edge to edge; the copy inside
      sits in a column of --col, centred, never closer to the edge than a gutter. */
-  /* copy sits against the bottom edge; on short screens it scrolls as before */
   .col {
     width: 100%;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 76px; /* clears the nav */
+    padding-top: clamp(76px, 9vh, 128px); /* copy starts under the nav */
   }
-  .col > :global(.hero) { margin-top: auto; padding-top: 0; }
+  .col > :global(.hero) { padding-top: 0; }
   .col > :global(.block),
   .col > :global(footer) {
     padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
@@ -217,8 +215,8 @@
     .logos { gap: 22px; padding-bottom: 12px; }
     .logos img { height: 24px; }
     .logos .ventureforward { height: 34px; }
-    .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --s6: 72px; }
-    .col { min-height: 0; display: block; padding-top: 0; }
+    .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --s6: 72px; --portrait: 100%; }
+    .col { padding-top: 0; }
     .left {
       height: auto;
       overflow: visible;

@@ -126,7 +126,7 @@
 
   /* desktop: small portraits so the team fits under the beliefs */
   @media (min-width: 900px) {
-    .founders img { width: 72px; margin-bottom: 8px; }
+    .founders img { width: var(--portrait); margin-bottom: 8px; }
     .founders .name { font-size: 15px; }
   }
 
