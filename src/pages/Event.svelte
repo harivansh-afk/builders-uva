@@ -2,6 +2,27 @@
   import { eventBySlug, longDate } from '../lib/events.js'
   let { slug } = $props()
   const e = $derived(eventBySlug(slug))
+  let photoDialog
+  let closeButton
+  let selectedPhoto = $state(null)
+
+  function expandPhoto(photo) {
+    selectedPhoto = { ...photo, src: `/events/${e.slug}/${photo.file}-clean.jpg` }
+    photoDialog.showModal()
+    closeButton.focus()
+  }
+
+  $effect(() => {
+    if (!selectedPhoto) return
+    const previous = document.documentElement.style.overflow
+    document.documentElement.style.overflow = 'hidden'
+    return () => { document.documentElement.style.overflow = previous }
+  })
+
+  $effect(() => {
+    slug
+    photoDialog?.close()
+  })
 </script>
 
 <div class="event">
@@ -23,7 +44,7 @@
     {#if e.photos?.length}
       <div class="photos" aria-label="Photos from the event">
         {#each e.photos as photo, i}
-          <a href="/events/{e.slug}/{photo.file}-clean.jpg" aria-label="View full photo: {photo.alt}">
+          <button type="button" onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
             <img
               src="/events/{e.slug}/{photo.file}-1200.webp"
               srcset="/events/{e.slug}/{photo.file}-600.webp 600w, /events/{e.slug}/{photo.file}-1200.webp 1200w"
@@ -34,7 +55,7 @@
               decoding="async"
               fetchpriority={i === 0 ? 'high' : 'auto'}
             />
-          </a>
+          </button>
         {/each}
       </div>
     {/if}
@@ -77,6 +98,14 @@
     <p class="lede">No such event.</p>
   {/if}
 </div>
+
+<dialog class="photo-viewer" bind:this={photoDialog} onclose={() => { selectedPhoto = null }} aria-label="Expanded event photo">
+  <button class="dismiss" type="button" tabindex="-1" aria-label="Close photo background" onclick={() => photoDialog.close()}></button>
+  <button class="close" type="button" bind:this={closeButton} aria-label="Close expanded photo" onclick={() => photoDialog.close()}>×</button>
+  {#if selectedPhoto}
+    <img src={selectedPhoto.src} alt={selectedPhoto.alt} width={selectedPhoto.width} height={selectedPhoto.height} />
+  {/if}
+</dialog>
 
 <style>
   /* full page width so the rule under the header matches the footer's */
@@ -127,11 +156,19 @@
   }
 
   .photos { display: grid; grid-template-columns: 8fr 9fr; gap: 12px; }
-  .photos a { display: block; min-width: 0; overflow: hidden; }
-  .photos a:first-child { grid-row: span 2; }
-  .photos a:not(:first-child) { aspect-ratio: 3 / 2; }
+  .photos button { display: block; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; cursor: zoom-in; }
+  .photos button:first-child { grid-row: span 2; }
+  .photos button:not(:first-child) { aspect-ratio: 3 / 2; }
   .photos img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .photos a:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+  .photos button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+
+  .photo-viewer { position: fixed; inset: 0; width: 100%; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 64px 20px 20px; border: 0; background: transparent; overflow: hidden; }
+  .photo-viewer[open] { display: grid; place-items: center; }
+  .photo-viewer::backdrop { background: rgba(0, 0, 0, 0.9); }
+  .photo-viewer .dismiss { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; background: transparent; cursor: zoom-out; }
+  .photo-viewer .close { position: absolute; top: 12px; right: 16px; z-index: 2; width: 44px; height: 44px; border: 1px solid var(--hair); border-radius: 50%; background: var(--bg); color: var(--fg); font-size: 30px; line-height: 1; cursor: pointer; }
+  .photo-viewer .close:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+  .photo-viewer > img { position: relative; width: auto; height: auto; max-width: 100%; max-height: calc(100dvh - 84px); object-fit: contain; }
 
   .body { display: grid; gap: var(--s3); }
   .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
@@ -149,7 +186,7 @@
 
   @media (max-width: 599px) {
     .photos { grid-template-columns: 1fr; }
-    .photos a:first-child { grid-row: auto; }
+    .photos button:first-child { grid-row: auto; }
     .photos img { height: auto; }
     .event { gap: 36px; }
     .head { padding-bottom: 36px; }
