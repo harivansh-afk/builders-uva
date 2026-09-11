@@ -77,7 +77,7 @@
 <div class="join">
   <header class="intro">
     <p class="eyebrow">Apply</p>
-    <h1 class="lede">Tell us a bit about yourself. We review every application and reply <em>by email.</em></h1>
+    <h1 class="lede">Tell us a bit about yourself.</h1>
   </header>
 
   {#if status === 'done'}
@@ -150,7 +150,9 @@
   .intro .eyebrow { margin-bottom: var(--s4); }
   .lede { max-width: 30ch; }
 
-  form { border-top: 1px solid var(--hair); }
+  /* rules sit between questions only */
+  form :global(.field + .field) { border-top: 1px solid var(--hair); }
+  form :global(.field:first-child) { padding-top: 0; }
 
   /* the RSVP card */
   .card {
@@ -261,7 +263,7 @@
   .actions {
     display: grid;
     gap: var(--s2);
-    padding: var(--s4) 8px 0 calc(8px + 4ch + 24px);
+    padding: 0 8px 0 calc(8px + 4ch + 24px); /* the last row's own padding is the gap above */
   }
   .err {
     font-family: var(--mono);
@@ -297,7 +299,7 @@
 
   @media (max-width: 899px) {
     .join { gap: var(--s4); }
-    .actions { padding: var(--s3) 4px 0 calc(4px + 4ch + 18px); }
+    .actions { padding: 0 4px 0 calc(4px + 4ch + 18px); }
   }
   @media (max-width: 599px) {
     .actions { padding-left: calc(4px + 3ch + 18px); }

@@ -24,7 +24,6 @@
     align-items: baseline;
     column-gap: 24px;
     padding: var(--s4) 8px;
-    border-bottom: 1px solid var(--hair);
   }
   .n {
     font-family: var(--mono);
