@@ -135,7 +135,7 @@
     --measure: 38ch;
     --s4: clamp(14px, 2.2vh, 40px);   /* inside a section */
     --gap: calc(var(--s4) * 2);       /* between sections, and around the footer */
-    --portrait: clamp(64px, 10vh, 160px);
+    --portrait: clamp(64px, 9.5vh, 160px);
     display: grid;
     grid-template-columns: 55fr 45fr;
     height: 100vh;
@@ -166,12 +166,16 @@
   .col > :global(.block) > :global(:last-child) { margin-bottom: 0; }
   .col > :global(.block) + :global(.block) { margin-top: var(--gap); }
   .col > :global(.block:last-of-type) { margin-bottom: auto; }
-  /* bottom-right corner, centred on the same line as the logos bottom-left */
-  .col > :global(footer) { margin-top: var(--gap); padding: 0 0 32px; }
-  .col > :global(.block),
-  .col > :global(footer) {
+  .col > :global(.block) {
     padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
     padding-right: max(var(--gutter), calc((100% - var(--col)) / 2));
+  }
+  /* bottom-right corner at the pane's gutter, mirroring the logos bottom-left,
+     centred on the same line; the rule above it runs the width of the pane */
+  .col > :global(footer) {
+    margin-top: var(--gap);
+    padding: var(--s4) var(--gutter) 32px;
+    border-top: 1px solid var(--hair);
   }
 
   .right {
