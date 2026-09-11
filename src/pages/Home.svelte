@@ -114,8 +114,10 @@
 
   /* desktop: small portraits so the team fits under the beliefs */
   @media (min-width: 900px) {
+    .founders { display: flex; gap: var(--s4); }
     .founders img { width: var(--portrait); margin-bottom: 8px; }
     .founders .name { font-size: 15px; }
+    .who { gap: 0; }
   }
 
 </style>
