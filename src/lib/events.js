@@ -14,26 +14,25 @@ export const events = [
     img: '/quan.png',
     link: 'https://www.linkedin.com/in/quanmhuynh/',
     transcript: null,
-    transcriptLink: 'https://notes.granola.ai/t/bda2a7ed-8d72-49d6-af29-438148c23d77',
     recap: [
       {
         title: 'The session',
         paragraphs: [
-          'Harivansh hosted Quan Huynh, co-founder of Halodeer (YC W26), for a conversation about finding a problem, acquiring customers, and building a team. David, assistant dean for entrepreneurship, briefly joined and mentioned the Venture Forward accelerator and Tech Week in October.',
+          'Harivansh hosted Quan Huynh, co-founder of Haladir (YC W26), for a conversation about finding a problem, acquiring customers, and building a team. David Chen, assistant dean for entrepreneurship and innovation partnerships, briefly joined and mentioned the VentureForward program and Tech Week in October.',
         ],
       },
       {
-        title: 'Finding Halodeer',
+        title: 'Finding Haladir',
         paragraphs: [
-          'Halodeer builds logistics software for warehouse efficiency and supply chain optimization. Quan described a team of five, including two hires, with clients across Los Angeles, Salt Lake City, Italy, and Germany. He said their first YC contract was six figures; before logistics, they sold boutique R environments to major AI labs.',
+          'Haladir builds logistics software for warehouse efficiency and supply chain optimization. Quan described a team of five, including two hires, with clients across Los Angeles, Salt Lake City, Italy, and Germany. He said their first YC contract was six figures; before logistics, they sold boutique reinforcement learning (RL) environments to major AI labs.',
           'The team found logistics through his co-founder’s research at Princeton. They saw an industry with substantial room for innovation.',
         ],
       },
       {
         title: 'The path to YC',
         paragraphs: [
-          'Quan started with hackathons in high school, sneaking into college competitions. His first product was a Chrome extension that parsed terms and conditions before signing. After losing at a UVA hackathon, he built a cheating-detection tool, sold it to MIT and Hopkins, and got a YC interview—but did not get in initially.',
-          'The shift came when he stopped optimizing for YC and started asking what problem he could actually solve. During the batch, the team generated ten ideas per person per day and pitched across industries, exploring evolutionary algorithms, COBOL translation, and conversations with companies such as JP Morgan and Walmart. Sales cycle length and willingness to pay helped them eliminate ideas and arrive at logistics.',
+          'Quan started with hackathons in high school, sneaking into college competitions. His first product was a Chrome extension that parsed terms and conditions before signing. After losing at a UVA hackathon, he built a cheating-detection tool, sold it to MIT and Johns Hopkins, and got a YC interview—but did not get in initially.',
+          'The shift came when he stopped optimizing for YC and started asking what problem he could actually solve. During the batch, the team generated ten ideas per person per day and pitched across industries, exploring evolutionary algorithms, COBOL translation, and conversations with companies such as J.P. Morgan and Walmart. Sales cycle length and willingness to pay helped them eliminate ideas and arrive at logistics.',
         ],
       },
       {
@@ -47,7 +46,7 @@ export const events = [
         title: 'Getting in the room',
         paragraphs: [
           'VCs can help with introductions, but warm introductions from happy customers become more valuable over time. Quan recommended reaching out to VPs: they know the problems and are more accessible than the C-suite. He cited a roughly 20% response rate on LinkedIn.',
-          'For Halodeer’s first client, the team contacted roughly 1,000 people. One responded and became a design partner. Quan advised saving major introductions, such as Instacart, until the product is ready instead of figuring out the product with a marquee customer.',
+          'For Haladir’s first client, the team contacted roughly 1,000 people. One responded and became a design partner. Quan advised saving major introductions, such as Instacart, until the product is ready instead of figuring out the product with a marquee customer.',
           'Learn to ask better questions. He recommended The Mom Test and watching how strong sales representatives, including those at Brex, run calls.',
         ],
       },

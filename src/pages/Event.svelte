@@ -33,7 +33,7 @@
     {#if e.recap}
       <section class="body" aria-labelledby="recap-title">
         <h2 class="eyebrow" id="recap-title">Session recap</h2>
-        <p class="source">Based on the meeting notes. <a href={e.transcriptLink} target="_blank" rel="noopener">Chat with the transcript on Granola ↗</a></p>
+        <p class="source">Based on the meeting notes.</p>
         <div class="recap">
           {#each e.recap as section}
             <section>
@@ -116,8 +116,6 @@
   .body { display: grid; gap: var(--s3); }
   .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
   .source { max-width: 62ch; color: var(--muted); font-size: 15px; line-height: 1.6; }
-  .source a { border-bottom: 1px solid var(--hair); }
-  .source a:hover { color: var(--fg); }
   .recap { display: grid; gap: var(--s4); max-width: 62ch; }
   .recap section { display: grid; gap: 18px; }
   .recap h3 { font-size: 21px; font-weight: 400; }
