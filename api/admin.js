@@ -26,10 +26,20 @@ export default async function handler(req, res) {
           !['pending', 'declined'].includes(body.expectedStatus)) {
         return res.status(400).json({ error: 'Invalid application decision.' })
       }
-      const result = await adminDb().query(
-        'update members set status = $1, updated_at = now() where email = $2 and status = $3 returning email, status',
-        [body.status, body.email, body.expectedStatus],
-      )
+      const client = await adminDb().connect()
+      let result
+      try {
+        // Pooled connections may retain the role's previous read-only default.
+        await client.query('begin read write')
+        result = await client.query(
+          'update members set status = $1, updated_at = now() where email = $2 and status = $3 returning email, status',
+          [body.status, body.email, body.expectedStatus],
+        )
+        await client.query('commit')
+      } catch (error) {
+        await client.query('rollback').catch(() => {})
+        throw error
+      } finally { client.release() }
       if (!result.rowCount) return res.status(409).json({ error: 'This application has changed. Refresh and try again.' })
       return res.status(200).json({ ok: true })
     }

@@ -86,17 +86,26 @@ test('decisions update only the expected application and report concurrent chang
   process.env.ADMIN_DATABASE_URL = 'postgres://unused'
   const headers = { cookie: await cookie({ email: 'rathiharivansh@gmail.com', googleVerified: true }), origin: process.env.AUTH_URL, 'content-type': 'application/json' }
   let rowCount = 1
-  t.mock.method(pg.Pool.prototype, 'query', async (sql, values) => {
-    assert.match(sql, /where email = \$2 and status = \$3/)
-    assert.deepEqual(values, ['approved', 'test@virginia.edu', 'pending'])
-    return { rowCount }
-  })
+  const calls = []
+  t.mock.method(pg.Pool.prototype, 'connect', async () => ({
+    async query(sql, values) {
+      calls.push(sql)
+      if (['begin read write', 'commit', 'rollback'].includes(sql)) return
+      assert.match(sql, /where email = \$2 and status = \$3/)
+      assert.deepEqual(values, ['approved', 'test@virginia.edu', 'pending'])
+      return { rowCount }
+    },
+    release() { calls.push('release') },
+  }))
   for (const count of [1, 0]) {
     rowCount = count
     const res = response()
     await handler({ method: 'PATCH', headers, body: { email: 'test@virginia.edu', status: 'approved', expectedStatus: 'pending' } }, res)
     assert.equal(res.code, count ? 200 : 409)
   }
+  assert.equal(calls.filter(sql => sql === 'begin read write').length, 2)
+  assert.equal(calls.filter(sql => sql === 'commit').length, 2)
+  assert.equal(calls.filter(sql => sql === 'release').length, 2)
 })
 
 test('member lists exclude applicants and application filters are validated', () => {
