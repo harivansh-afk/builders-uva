@@ -17,10 +17,10 @@
           <span class="n">{n(i)}</span>
           <span class="t">{e.name} ({e.tag})</span>
           <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
-          <span class="state">{e.date >= today ? 'Upcoming' : e.transcript ? 'Transcript' : 'Transcript soon'}</span>
+          <span class="state">{e.date >= today ? 'Upcoming' : e.transcript ? 'Transcript' : e.recap ? 'Recap' : 'Transcript soon'}</span>
         </a>
         {#if e.link}
-          <a class="pfp" href={e.link} target="_blank" rel="noopener" aria-label="{e.name} on LinkedIn" title="LinkedIn">
+          <a class="pfp" href={e.link} target="_blank" rel="noopener" aria-label="{e.name} — {e.linkLabel ?? 'LinkedIn'}" title={e.linkLabel ?? 'LinkedIn'}>
             <img src={e.img} alt="" width="44" height="44" loading="lazy" />
           </a>
         {:else}

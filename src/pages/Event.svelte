@@ -13,16 +13,42 @@
         <h1 class="name">{e.name} ({e.tag})</h1>
         <p class="meta">
           <time datetime={e.date}>{longDate(e.date)}</time>
+          {#if e.time}
+            <span class="sep" aria-hidden="true">·</span>
+            <span>{e.time}</span>
+          {/if}
           {#if e.link}
             <span class="sep" aria-hidden="true">·</span>
-            <a href={e.link} target="_blank" rel="noopener">LinkedIn</a>
+            <a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a>
           {/if}
         </p>
       </div>
       <img class="pfp" src={e.img} alt={e.name} width="160" height="160" decoding="async" />
     </header>
 
-    <section class="body">
+    {#if e.description}
+      <p class="description">{e.description}</p>
+    {/if}
+
+    {#if e.recap}
+      <section class="body" aria-labelledby="recap-title">
+        <h2 class="eyebrow" id="recap-title">Session recap</h2>
+        <p class="source">Based on the meeting notes. <a href={e.transcriptLink} target="_blank" rel="noopener">Chat with the transcript on Granola ↗</a></p>
+        <div class="recap">
+          {#each e.recap as section}
+            <section>
+              <h3>{section.title}</h3>
+              {#each section.paragraphs as paragraph}
+                <p>{paragraph}</p>
+              {/each}
+            </section>
+          {/each}
+        </div>
+      </section>
+    {/if}
+
+    {#if e.transcript || !e.recap && !e.description}
+      <section class="body">
       <p class="eyebrow">Transcript</p>
       {#if e.transcript}
         <div class="transcript">
@@ -33,7 +59,8 @@
       {:else}
         <p class="soon">Coming soon.</p>
       {/if}
-    </section>
+      </section>
+    {/if}
   {:else}
     <p class="lede">No such event.</p>
   {/if}
@@ -87,6 +114,14 @@
   }
 
   .body { display: grid; gap: var(--s3); }
+  .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
+  .source { max-width: 62ch; color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .source a { border-bottom: 1px solid var(--hair); }
+  .source a:hover { color: var(--fg); }
+  .recap { display: grid; gap: var(--s4); max-width: 62ch; }
+  .recap section { display: grid; gap: 18px; }
+  .recap h3 { font-size: 21px; font-weight: 400; }
+  .recap p { font-size: 17px; line-height: 1.6; }
   .soon {
     font-size: var(--lede);
     line-height: 1.32;
