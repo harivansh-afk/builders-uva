@@ -74,10 +74,7 @@
 {/snippet}
 
 <div class="join">
-  <header class="intro">
-    <p class="eyebrow">Apply</p>
-    <h1 class="lede">Tell us a bit about yourself.</h1>
-  </header>
+  <h1 class="sr-only">Apply</h1>
 
   {#if status === 'done'}
     <div class="done">
@@ -87,13 +84,13 @@
     </div>
   {:else}
     <form onsubmit={submit} novalidate>
-      <div class="field" data-invalid={show('fullName') || undefined}>
+      <div class="field identity" data-invalid={show('fullName') || undefined}>
         <label class="q" for="full-name"><span class="n">01</span>Full name</label>
         <input id="full-name" name="fullName" type="text" bind:value={fullName} placeholder="First and last name" autocomplete="name" maxlength="200" required aria-invalid={!!show('fullName')} />
         {#if show('fullName')}<p class="err">{show('fullName')}</p>{/if}
       </div>
 
-      <div class="field" data-invalid={show('email') || undefined}>
+      <div class="field identity" data-invalid={show('email') || undefined}>
         <label class="q" for="email"><span class="n">02</span>What is your UVA email?</label>
         <input id="email" type="email" bind:value={email} placeholder="abc1de@virginia.edu" autocomplete="email" inputmode="email" spellcheck="false" aria-invalid={!!show('email')} />
         {#if show('email')}<p class="err">{show('email')}</p>{/if}
@@ -157,12 +154,11 @@
 <style>
   .join {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    gap: 64px clamp(48px, 8vw, 128px);
+    grid-template-columns: minmax(0, 1fr);
+    width: min(100%, 720px);
+    margin-inline: auto;
     align-items: start;
   }
-  .intro { position: sticky; top: var(--top); }
-  .intro .eyebrow { margin-bottom: var(--s4); }
   .sub {
     margin-top: var(--s3);
     max-width: 34ch;
@@ -171,22 +167,30 @@
     line-height: 1.55;
   }
 
-  form { --gutter: 48px; display: grid; max-width: 580px; }
+  form {
+    --gutter: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--s4);
+    min-width: 0;
+  }
   .field {
     display: grid;
-    gap: 18px;
-    padding: 34px 0 38px;
+    grid-column: 1 / -1;
+    min-width: 0;
+    gap: var(--s2);
+    padding: var(--s3) 0;
     border-top: 1px solid var(--hair);
   }
-  .field:first-child { padding-top: 0; border-top: 0; }
-  .indent { display: grid; gap: 18px; margin-left: var(--gutter); }
+  .field.identity { grid-column: auto; padding-top: 0; border-top: 0; }
+  .indent { display: grid; gap: var(--s2); margin-left: var(--gutter); }
   .indent .err { margin-left: 0; }
 
   .q {
     display: grid;
     grid-template-columns: var(--gutter) 1fr;
     align-items: baseline;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.35;
     letter-spacing: -0.008em;
     color: var(--fg);
@@ -271,7 +275,7 @@
   .opts {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 36px;
+    gap: 0 var(--s3);
     margin-left: var(--gutter);
   }
   .opts.cols {
@@ -282,7 +286,8 @@
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    padding: 6px 0;
+    min-height: 44px;
+    padding: 8px 0;
     background: none;
     border: 0;
     color: var(--muted);
@@ -314,9 +319,10 @@
 
   .actions {
     display: grid;
-    gap: 16px;
+    grid-column: 1 / -1;
+    gap: var(--s2);
     margin-left: var(--gutter);
-    padding-top: 6px;
+    padding-top: var(--s2);
   }
   .actions .err { margin-left: 0; }
   .go {
@@ -339,16 +345,11 @@
   .done { display: grid; gap: var(--s3); }
   .done .eyebrow { margin-bottom: var(--s2); }
 
-  @media (max-width: 899px) {
-    .join { grid-template-columns: minmax(0, 1fr); gap: 48px; }
-    .intro { position: static; }
-    .field { padding: 28px 0 32px; }
-    .q { font-size: 18px; }
-  }
   @media (max-width: 599px) {
-    .q { grid-template-columns: 1fr; }
-    .n { line-height: 1; margin-bottom: 8px; }
-    input, .opts, .err, .actions, .indent { margin-left: 0; width: 100%; }
+    form { grid-template-columns: minmax(0, 1fr); }
+    .field.identity { padding: var(--s3) 0; border-top: 1px solid var(--hair); }
+    .field:first-child { padding-top: 0; border-top: 0; }
+    .indent, .actions { margin-left: 0; }
     .card { grid-template-columns: 48px 1fr auto; gap: 14px; padding: 14px; }
     .card img { width: 48px; height: 48px; }
     .opts.cols { grid-template-columns: repeat(2, max-content); }
