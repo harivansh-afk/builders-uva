@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import { mountInteractionSounds } from './lib/interactionSounds.js'
+  import Ascii from './lib/Ascii.svelte'
   import Home from './pages/Home.svelte'
   import Events from './pages/Events.svelte'
   import Event from './pages/Event.svelte'
@@ -38,7 +39,28 @@
 </nav>
 
 {#if home}
-  <Home />
+  <div class="site">
+    <main class="left">
+      <div class="col">
+        <Home />
+        <Footer />
+      </div>
+    </main>
+    <aside class="right">
+      <div class="stage"><Ascii /></div>
+      <div class="logos">
+        <a href="https://www.virginia.edu" target="_blank" rel="noopener" aria-label="University of Virginia">
+          <img src="/uva.svg" alt="" height="34" />
+        </a>
+        <a href="https://uvafoundry.com" target="_blank" rel="noopener" aria-label="The Foundry">
+          <img src="/foundry.svg" alt="" height="28" />
+        </a>
+        <a href="https://engineering.virginia.edu/offices-programs/ventureforward" target="_blank" rel="noopener" aria-label="VentureForward at UVA Engineering">
+          <img class="ventureforward" src="/ventureforward.png" alt="" height="44" />
+        </a>
+      </div>
+    </aside>
+  </div>
 {:else}
   <main class="page" class:admin-page={page.name === 'admin'}>
     {#key route.path}
@@ -105,7 +127,110 @@
   .home { border-bottom: 1px solid var(--dim); }
   .admin-page { width: min(1600px, 100%); }
 
+  /* ---------- home: two panes, graphic pinned left, copy scrolls right ---------- */
+  .site {
+    /* the copy fits one screen: type and spacing step down from the site scale */
+    --lede: clamp(16px, 1.2vw, 20px);
+    --measure: 38ch;
+    --s4: 16px;
+    --s6: 28px;
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .left {
+    order: 2;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: none;
+    scrollbar-width: none;
+  }
+  .left::-webkit-scrollbar { display: none; }
+  /* Each section spans the pane so its rule runs edge to edge; the copy inside
+     sits in a column of --col, centred, never closer to the edge than a gutter. */
+  /* copy sits against the bottom edge; on short screens it scrolls as before */
+  .col {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 76px; /* clears the nav */
+  }
+  .col > :global(.hero) { margin-top: auto; padding-top: 0; }
+  .col > :global(.block),
+  .col > :global(footer) {
+    padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
+    padding-right: max(var(--gutter), calc((100% - var(--col)) / 2));
+  }
+
+  .right {
+    order: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    border-right: 1px solid var(--hair);
+  }
+  .stage {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .logos {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 var(--gutter) 20px;
+    mix-blend-mode: screen;
+  }
+  .logos a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    opacity: 0.7;
+    filter: grayscale(1);
+    transition: opacity 0.25s ease, filter 0.25s ease;
+  }
+  .logos a:hover, .logos a:focus-visible { opacity: 1; filter: grayscale(0); }
+
   @media (max-width: 899px) {
     .nav { padding-top: calc(12px + env(safe-area-inset-top)); }
+
+
+    .site {
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: auto;
+      height: auto;
+      overflow: visible;
+    }
+    .right {
+      height: clamp(340px, 56dvh, 620px);
+      border-right: 0;
+      border-bottom: 1px solid var(--hair);
+    }
+    .logos { gap: 22px; padding-bottom: 12px; }
+    .logos img { height: 24px; }
+    .logos .ventureforward { height: 34px; }
+    .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --s6: 72px; }
+    .col { min-height: 0; display: block; padding-top: 0; }
+    .left {
+      height: auto;
+      overflow: visible;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .col > :global(.block),
+    .col > :global(footer) { padding-left: var(--gutter); padding-right: var(--gutter); }
+  }
+  @media (max-width: 599px) {
+    .site { --measure: none; }
+  }
+  @media (max-width: 899px) and (max-height: 500px) {
+    .right { height: 320px; }
   }
 </style>
