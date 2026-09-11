@@ -10,7 +10,7 @@
   {#if e}
     <header class="head">
       <div>
-        <h1 class="name">{e.name} ({e.tag})</h1>
+        <h1 class="name">{e.name}{#if e.tag} ({e.tag}){/if}</h1>
         <p class="meta">
           <time datetime={e.date}>{longDate(e.date)}</time>
           {#if e.time}

@@ -124,7 +124,7 @@
             <a class="card" href="/events/{ev.slug}">
               <img src={ev.img} alt="" width="56" height="56" />
               <span class="card-text">
-                <span class="who">{ev.name} ({ev.tag})</span>
+                <span class="who">{ev.name}{#if ev.tag} ({ev.tag}){/if}</span>
                 <span class="when">Founder Q&amp;A · {midDate(ev.date)}{ev.time ? ` · ${ev.time}` : ''}</span>
               </span>
               <span class="more" aria-hidden="true">→</span>
