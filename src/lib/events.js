@@ -76,10 +76,10 @@ export const events = [
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
 
-// Next event on or after today (local date), else the most recent one.
+// Next event on or after today (UTC date), or undefined if none is upcoming.
 export function nextEvent(today = new Date()) {
   const iso = today.toISOString().slice(0, 10)
-  return events.find((e) => e.date >= iso) ?? events[events.length - 1]
+  return events.find((e) => e.date >= iso)
 }
 
 const fmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' })
