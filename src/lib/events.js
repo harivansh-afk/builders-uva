@@ -72,19 +72,6 @@ export const events = [
       },
     ],
   },
-  {
-    slug: 'advait-paliwal',
-    name: 'Advait Paliwal',
-    tag: 'YC F24',
-    date: '2026-09-17',
-    time: null,
-    location: null,
-    img: '/advait.png',
-    link: 'https://advaitpaliwal.com',
-    linkLabel: 'Website',
-    description: 'Join us for a founder Q&A with Advait Paliwal. Time and location to be announced.',
-    transcript: null,
-  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
