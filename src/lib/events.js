@@ -73,6 +73,16 @@ export const events = [
     ],
   },
   {
+    slug: 'vaibhav-gupta',
+    name: 'Vaibhav Gupta',
+    tag: 'BAML',
+    date: '2026-09-17',
+    img: '/vaibhav.jpeg',
+    link: 'https://boundaryml.com/who-are-we',
+    linkLabel: 'Boundary',
+    description: 'Coming soon: a short interview and audience Q&A with Vaibhav Gupta, co-founder and CEO of Boundary, the team behind BAML. He previously worked on Google’s Pixel 4 and Microsoft’s HoloLens. We’ll talk about his path to starting a company and building tools for developers. Time and location to be announced.',
+  },
+  {
     slug: 'harsha-gaddipati',
     name: 'Harsha Gaddipati',
     tag: 'YC S25',
