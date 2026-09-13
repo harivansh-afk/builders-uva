@@ -5,11 +5,11 @@ import { validateRegistration } from '../src/lib/register.js'
 import { queryOptions } from '../server/admin-data.js'
 import handler from '../api/register.js'
 
-const body = { fullName: 'Test Student', email: 'TEST@virginia.edu', eventSlug: 'vaibhav-gupta' }
+const body = { fullName: 'Test Student', email: 'TEST@virginia.edu', eventSlug: 'vaibhav-gupta', speakerQuestion: 'How did you find your first customer?' }
 const today = new Date('2026-09-13T12:00:00Z')
 const response = () => ({ code: 200, setHeader() {}, status(code) { this.code = code; return this }, json(body) { this.body = body; return this } })
 
-test('registration needs only identity and a known upcoming event', () => {
+test('registration requires identity, a speaker question, and a known upcoming event', () => {
   assert.deepEqual(validateRegistration(body, today).data, { ...body, email: 'test@virginia.edu' })
   for (const change of [{ fullName: '' }, { email: 'test@gmail.com' }, { eventSlug: 'missing' }, { eventSlug: 'quan-huynh' }]) {
     assert.equal(validateRegistration({ ...body, ...change }, today).ok, false)
@@ -44,7 +44,7 @@ test('registration writes one event response and never a membership application'
     assert.match(sql, /insert into event_responses/)
     assert.match(sql, /on conflict \(email, event_slug\) do update/)
     assert.doesNotMatch(sql, /members/)
-    assert.deepEqual(values, ['test@virginia.edu', 'Test Student', 'vaibhav-gupta'])
+    assert.deepEqual(values, ['test@virginia.edu', 'Test Student', 'vaibhav-gupta', body.speakerQuestion])
   }
 })
 
@@ -54,4 +54,18 @@ test('admin registration search and sorting work without a membership row', () =
   assert.match(options.rows, /r.email ilike/)
   assert.match(options.rows, /r.full_name/)
   assert.match(options.rows, /order by r.email/)
+})
+
+test('speaker question is required, bounded, and trimmed on page and API', async t => {
+  t.mock.timers.enable({ apis: ['Date'], now: today.getTime() })
+  for (const speakerQuestion of [undefined, null, '', ' \n\t ', 123, 'x'.repeat(2001)]) {
+    const invalid = { ...body, speakerQuestion }
+    assert.equal(validateRegistration(invalid, today).ok, false)
+    const res = response()
+    await handler({ method: 'POST', body: invalid }, res)
+    assert.equal(res.code, 400)
+  }
+  assert.equal(validateRegistration({ ...body, speakerQuestion: '  A question?\n' }, today).data.speakerQuestion, 'A question?')
+  assert.equal(validateRegistration({ ...body, speakerQuestion: 'x'.repeat(2000) }, today).ok, true)
+  assert.match(queryOptions(new URLSearchParams({ view: 'responses' })).rows, /r.speaker_question/)
 })

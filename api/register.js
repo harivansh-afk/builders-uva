@@ -27,12 +27,12 @@ export default async function handler(req, res) {
     })
     await ready
     await pool.query(
-      `insert into event_responses (email, full_name, event_slug, question, answer)
-       values ($1, $2, $3, 'Event registration', 'yes')
+      `insert into event_responses (email, full_name, event_slug, question, answer, speaker_question)
+       values ($1, $2, $3, 'Event registration', 'yes', $4)
        on conflict (email, event_slug) do update set
          full_name = excluded.full_name, question = excluded.question,
-         answer = excluded.answer, created_at = now()`,
-      [d.email, d.fullName, d.eventSlug],
+         answer = excluded.answer, speaker_question = excluded.speaker_question, created_at = now()`,
+      [d.email, d.fullName, d.eventSlug, d.speakerQuestion],
     )
     return res.status(200).json({ ok: true })
   } catch (error) {

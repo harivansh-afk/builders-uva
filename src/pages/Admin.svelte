@@ -149,7 +149,7 @@
           {#if view !== 'responses'}
             <th aria-sort={ariaSort('year')}><button onclick={() => order('year')}>Year{arrow('year')}</button></th><th>Technical</th><th>Founded</th><th>Website</th>
           {:else}
-            <th aria-sort={ariaSort('event_slug')}><button onclick={() => order('event_slug')}>Event{arrow('event_slug')}</button></th><th>Question</th><th>RSVP</th>
+            <th aria-sort={ariaSort('event_slug')}><button onclick={() => order('event_slug')}>Event{arrow('event_slug')}</button></th><th>RSVP prompt</th><th>RSVP</th><th>Question for speaker</th>
           {/if}
           <th aria-sort={ariaSort('created_at')}><button onclick={() => order('created_at')}>{view !== 'responses' ? 'Submitted' : 'Responded'}{arrow('created_at')}</button></th>
           {#if view !== 'responses'}<th>Updated</th>{/if}
@@ -162,14 +162,14 @@
                 <td>{row.year}</td><td>{row.technical ? 'Yes' : 'No'}</td><td>{row.founded ? 'Yes' : 'No'}</td>
                 <td>{#if safeWebsite(row.website)}<a href={safeWebsite(row.website)} target="_blank" rel="noopener noreferrer">{row.website}</a>{:else}{row.website || '—'}{/if}</td>
               {:else}
-                <td>{eventName(row.event_slug)}<small>{row.event_slug}</small></td><td>{row.question || '—'}</td><td><span class:yes={row.answer === 'yes'} class="answer">{row.answer || '—'}</span></td>
+                <td>{eventName(row.event_slug)}<small>{row.event_slug}</small></td><td>{row.question || '—'}</td><td><span class:yes={row.answer === 'yes'} class="answer">{row.answer || '—'}</span></td><td class="speaker-question">{row.speaker_question || '—'}</td>
               {/if}
               <td class="date">{date(row.created_at)}</td>{#if view !== 'responses'}<td class="date">{date(row.updated_at)}</td>{/if}
               {#if view === 'applications'}
                 <td><div class="review"><button disabled={busy || reviewing} onclick={() => review(row, 'approved')}>Approve</button>{#if row.status === 'pending'}<button disabled={busy || reviewing} onclick={() => review(row, 'declined')}>Decline</button>{/if}</div></td>
               {/if}
             </tr>
-          {:else}<tr><td colspan={view === 'applications' ? 9 : view === 'members' ? 8 : 6} class="empty">{query || event || answer ? 'No matches. Try changing the filters.' : 'Nothing here yet.'}</td></tr>{/each}
+          {:else}<tr><td colspan={view === 'applications' ? 9 : view === 'members' ? 8 : 7} class="empty">{query || event || answer ? 'No matches. Try changing the filters.' : 'Nothing here yet.'}</td></tr>{/each}
         </tbody>
       </table>
     </div>
@@ -202,6 +202,7 @@
   input, select { width: 100%; min-height: 40px; }
   option { background: var(--bg); }
   .result-meta { justify-content: space-between; flex-wrap: wrap; margin-bottom: 12px; }
+  .speaker-question { min-width: 240px; max-width: 480px; white-space: pre-wrap; overflow-wrap: anywhere; }
   .table-wrap { overflow-x: auto; border: 1px solid var(--hair); border-radius: 3px; }
   table { width: 100%; min-width: 1050px; border-collapse: collapse; font-size: 13px; text-align: left; }
   th { color: var(--muted); font-family: var(--mono); font-size: 11px; font-weight: 400; white-space: nowrap; }

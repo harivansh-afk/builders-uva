@@ -37,3 +37,6 @@ alter table event_responses add column if not exists full_name text;
 alter table event_responses drop constraint if exists event_responses_email_fkey;
 update event_responses r set full_name = m.full_name
   from members m where r.email = m.email and r.full_name is null and m.full_name is not null;
+
+-- Required for new registrations; older RSVPs have no submitted question.
+alter table event_responses add column if not exists speaker_question text;

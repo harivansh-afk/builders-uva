@@ -8,6 +8,7 @@
   const open = $derived(event && event.date >= new Date().toISOString().slice(0, 10))
   let fullName = $state('')
   let email = $state('')
+  let speakerQuestion = $state('')
   let hp = $state('')
   let status = $state('idle')
   let error = $state('')
@@ -15,7 +16,7 @@
   async function submit(e) {
     e.preventDefault()
     if (status === 'sending') return
-    const body = { fullName, email, eventSlug: slug, hp }
+    const body = { fullName, email, speakerQuestion, eventSlug: slug, hp }
     const result = validateRegistration(body)
     if (!result.ok) { error = result.error; return }
     status = 'sending'
@@ -55,6 +56,9 @@
       <Field n="02" q="UVA email" id="email">
         <input id="email" name="email" type="email" bind:value={email} autocomplete="email" placeholder="abc1de@virginia.edu" maxlength="80" required />
       </Field>
+      <Field n="03" q="What would you like to ask the speaker?" id="speaker-question">
+        <textarea id="speaker-question" name="speakerQuestion" bind:value={speakerQuestion} rows="4" maxlength="2000" required placeholder="Bring a question you want to discuss."></textarea>
+      </Field>
       <input class="hp" name="company" bind:value={hp} tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="actions">
         <button disabled={status === 'sending'}>{status === 'sending' ? 'Registering…' : 'Register →'}</button>
@@ -74,9 +78,10 @@
   .details { margin-top: var(--s3); color: var(--muted); }
   form :global(.field + .field) { border-top: 1px solid var(--hair); }
   form :global(.field:first-child) { padding-top: 0; }
-  input { width: 100%; max-width: 560px; padding: 10px 0 12px; border: 0; border-bottom: 1px solid var(--hair); border-radius: 0; background: transparent; color: var(--fg); font: 16px var(--mono); }
-  input:focus { outline: none; border-color: var(--fg); }
-  input::placeholder { color: var(--muted); }
+  input, textarea { width: 100%; max-width: 560px; padding: 10px 0 12px; border: 0; border-bottom: 1px solid var(--hair); border-radius: 0; background: transparent; color: var(--fg); font: 16px var(--mono); }
+  textarea { resize: vertical; line-height: 1.6; }
+  input:focus, textarea:focus { outline: none; border-color: var(--fg); }
+  input::placeholder, textarea::placeholder { color: var(--muted); }
   .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
   .actions { display: grid; justify-items: start; gap: var(--s3); padding-left: calc(8px + 4ch + 24px); }
   button { padding: 16px 28px; background: var(--fg); color: var(--bg); border: 1px solid var(--fg); font: 14px var(--mono); text-transform: uppercase; cursor: pointer; }
