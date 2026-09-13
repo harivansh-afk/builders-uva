@@ -85,8 +85,12 @@
   }
   .actions { display: flex; align-items: center; gap: 24px; }
 
-  .register { flex-shrink: 0; padding: 12px; border: 1px solid var(--hair); font-family: var(--mono); font-size: 14px; }
-  .register:hover { border-color: var(--fg); }
+  .register { flex-shrink: 0; padding: 12px; border: 1px solid var(--hair); font-family: var(--mono); font-size: 14px; transition: background-color 0.15s ease, border-color 0.15s ease; }
+  .register:hover { background-color: rgba(242, 240, 234, 0.06); border-color: var(--dim); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .register { transition: none; }
+  }
 
   .pfp {
     display: inline-flex;
