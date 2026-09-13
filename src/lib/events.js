@@ -79,7 +79,7 @@ export const events = [
     date: '2026-09-17',
     img: '/vaibhav.jpeg',
     link: 'https://www.linkedin.com/in/vaigup/',
-    description: 'Coming soon: a short interview and audience Q&A with Vaibhav Gupta, co-founder and CEO of Boundary, the team behind BAML. He previously worked on Google’s Pixel 4 and Microsoft’s HoloLens. We’ll talk about his path to starting a company and building tools for developers. Time and location to be announced.',
+    description: 'Vaibhav Gupta is the co-founder and CEO of Boundary, the team behind BAML. A conversation about his path from Microsoft and Google to building a programming language, finding a problem worth sticking with, and creating tools for developers. Time and location to be announced.',
   },
   {
     slug: 'harsha-gaddipati',
