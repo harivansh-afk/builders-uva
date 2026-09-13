@@ -12,16 +12,17 @@
 
   <ol class="rows">
     {#each events as e, i}
-      <li class="row" class:upcoming={e.date >= today}>
+      <li class="row">
         <a class="page" href="/events/{e.slug}">
           <span class="n">{n(i)}</span>
           <span class="t">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</span>
-          <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
-          <span class="state">{e.date >= today ? 'Upcoming' : e.transcript ? 'Transcript' : e.recap ? 'Recap' : 'Transcript soon'}</span>
         </a>
-        {#if e.date >= today}
-          <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
-        {/if}
+        <div class="actions">
+          {#if e.date >= today}
+            <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
+          {/if}
+          <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
+        </div>
         {#if e.link}
           <a class="pfp" href={e.link} target="_blank" rel="noopener" aria-label="{e.name} — {e.linkLabel ?? 'LinkedIn'}" title={e.linkLabel ?? 'LinkedIn'}>
             <img src={e.img} alt="" width="44" height="44" loading="lazy" />
@@ -56,7 +57,7 @@
     flex: 1;
     min-width: 0;
     display: grid;
-    grid-template-columns: 4ch minmax(0, 1fr) auto auto;
+    grid-template-columns: 4ch minmax(0, 1fr);
     align-items: baseline;
     gap: 0 24px;
     padding: 26px 8px;
@@ -75,22 +76,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .d, .state {
+  .d {
     font-family: var(--mono);
     font-size: 14px;
     letter-spacing: 0.04em;
     white-space: nowrap;
     color: var(--muted);
   }
-  .state {
-    color: var(--muted);
-    text-transform: uppercase;
-    font-size: 14px;
-    letter-spacing: 0.12em;
-    min-width: 12ch;
-    text-align: right;
-  }
-  .upcoming .state { color: var(--fg); }
+  .actions { display: flex; align-items: center; gap: 24px; }
 
   .register { flex-shrink: 0; padding: 12px; border: 1px solid var(--hair); font-family: var(--mono); font-size: 14px; }
   .register:hover { border-color: var(--fg); }
@@ -114,18 +107,16 @@
 
   @media (max-width: 899px) {
     .events { gap: var(--s4); }
-    .page { grid-template-columns: 4ch minmax(0, 1fr) auto; gap: 6px 18px; padding: 20px 4px; }
-    .state { display: none; }
+    .page { gap: 6px 18px; padding: 20px 4px; }
     .t { font-size: 17px; }
+    .actions { gap: 16px; }
   }
   @media (max-width: 599px) {
-    .page { grid-template-columns: 3ch minmax(0, 1fr); }
+    .row { display: grid; grid-template-columns: minmax(0, 1fr) 40px; padding: 20px 4px; gap: 16px 12px; }
+    .page { grid-column: 1; grid-row: 1; grid-template-columns: 3ch minmax(0, 1fr); padding: 0; }
     .t { white-space: normal; }
-    .d { grid-column: 2; }
-    .register { flex-shrink: 0; padding: 12px; border: 1px solid var(--hair); font-family: var(--mono); font-size: 14px; }
-  .register:hover { border-color: var(--fg); }
-
-  .pfp { padding-left: 12px; }
+    .actions { grid-column: 1 / -1; grid-row: 2; padding-left: calc(3ch + 18px); }
+    .pfp { grid-column: 2; grid-row: 1; padding: 0; }
     .pfp img { width: 40px; height: 40px; }
   }
 </style>
