@@ -15,11 +15,11 @@ create table if not exists members (
 -- Existing members have no name until they submit the updated form.
 alter table members add column if not exists full_name text;
 
--- One row per (person, event). The question is stored with the answer so
+-- One row per (person, event), independent of membership. The question is stored with the answer so
 -- it stays readable after the question in src/lib/events.js changes.
 create table if not exists event_responses (
   id          bigint generated always as identity primary key,
-  email       text not null references members(email) on delete cascade,
+  email       text not null,
   event_slug  text not null,
   question    text,
   answer      text,
@@ -31,3 +31,9 @@ create table if not exists event_responses (
 alter table members add column if not exists status text not null default 'approved'
   check (status in ('pending', 'approved', 'declined'));
 alter table members alter column status set default 'pending';
+
+-- Keep existing RSVPs while allowing registration without an application.
+alter table event_responses add column if not exists full_name text;
+alter table event_responses drop constraint if exists event_responses_email_fkey;
+update event_responses r set full_name = m.full_name
+  from members m where r.email = m.email and r.full_name is null and m.full_name is not null;

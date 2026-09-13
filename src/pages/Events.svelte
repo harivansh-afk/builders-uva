@@ -19,6 +19,9 @@
           <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
           <span class="state">{e.date >= today ? 'Upcoming' : e.transcript ? 'Transcript' : e.recap ? 'Recap' : 'Transcript soon'}</span>
         </a>
+        {#if e.date >= today}
+          <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
+        {/if}
         {#if e.link}
           <a class="pfp" href={e.link} target="_blank" rel="noopener" aria-label="{e.name} — {e.linkLabel ?? 'LinkedIn'}" title={e.linkLabel ?? 'LinkedIn'}>
             <img src={e.img} alt="" width="44" height="44" loading="lazy" />
@@ -89,6 +92,9 @@
   }
   .upcoming .state { color: var(--fg); }
 
+  .register { flex-shrink: 0; padding: 12px; border: 1px solid var(--hair); font-family: var(--mono); font-size: 14px; }
+  .register:hover { border-color: var(--fg); }
+
   .pfp {
     display: inline-flex;
     align-items: center;
@@ -116,7 +122,10 @@
     .page { grid-template-columns: 3ch minmax(0, 1fr); }
     .t { white-space: normal; }
     .d { grid-column: 2; }
-    .pfp { padding-left: 12px; }
+    .register { flex-shrink: 0; padding: 12px; border: 1px solid var(--hair); font-family: var(--mono); font-size: 14px; }
+  .register:hover { border-color: var(--fg); }
+
+  .pfp { padding-left: 12px; }
     .pfp img { width: 40px; height: 40px; }
   }
 </style>

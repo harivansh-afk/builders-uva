@@ -6,6 +6,7 @@
   import Events from './pages/Events.svelte'
   import Event from './pages/Event.svelte'
   import Join from './pages/Join.svelte'
+  import Register from './pages/Register.svelte'
   import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
   import { route } from './lib/router.svelte.js'
@@ -17,6 +18,8 @@
     const p = route.path
     if (p === '/') return { name: 'home', title: 'builders@uva' }
     if (p === '/events') return { name: 'events', title: 'Events' }
+    const registration = p.match(/^\/events\/([^/]+)\/register\/?$/)
+    if (registration) return { name: 'register', slug: registration[1], title: 'Register' }
     if (p.startsWith('/events/')) {
       const slug = p.slice('/events/'.length)
       return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Events' }
@@ -28,7 +31,7 @@
 
   $effect(() => { document.title = page.title })
 
-  const section = $derived(page.name === 'event' ? 'events' : page.name)
+  const section = $derived(['event', 'register'].includes(page.name) ? 'events' : page.name)
   const home = $derived(page.name === 'home')
 </script>
 
@@ -68,6 +71,8 @@
         <Events />
       {:else if page.name === 'event'}
         <Event slug={page.slug} />
+      {:else if page.name === 'register'}
+        <Register slug={page.slug} />
       {:else if page.name === 'join'}
         <Join />
       {:else if page.name === 'admin'}

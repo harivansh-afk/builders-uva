@@ -22,14 +22,14 @@ Routing is `src/lib/router.svelte.js`, a small history-API router. `vercel.json`
 
 Edit `src/lib/events.js`. Each entry has a `slug`, `name`, `tag` (e.g. `YC W26`, shown after the name in parentheses), ISO `date`, `img`, `link`, and an optional `transcript`. Use `linkLabel` for links other than LinkedIn, and `description` for upcoming event details. Meeting notes go in `recap` as sections with a `title` and `paragraphs`; these display as a recap rather than a verbatim transcript. Drop the headshot in `public/`. The row number is the array position, so append to the end.
 
-The application form ends with an event-interest question, built from the next event on or after today. The yes/no is stored against that event's slug in `event_responses`, so adding next week's event is all it takes to change the question.
+Upcoming rows have a Register button linking to `/events/<slug>/register`. Registration asks for full name and UVA email. The application form is separate and does not collect RSVPs.
 
 ## Form backend
 
 `api/join.js` is a Vercel serverless function. It validates with the same rules as the page (`src/lib/join.js`), then writes to Postgres:
 
 - `members`, one row per UVA email, including the required full name and membership status, upserted on every submission. New applications are pending; submissions cannot change an existing decision. Existing members have a null `full_name` until they resubmit.
-- `event_responses`, one row per (email, event), storing the RSVP question alongside the yes/no answer.
+- `event_responses`, one row per (email, event), storing the registrant name and RSVP independently of membership. `/api/register` upserts these rows without creating or changing an application. Existing yes/no responses are preserved.
 
 The schema is `db/schema.sql`; the function applies it on first use, so a fresh database needs no manual setup. It reads `DATABASE_URL`. On Vercel that comes from the Neon Postgres integration (Storage tab on the project). Locally, put `DATABASE_URL=...` in `.env.local` and `bun run dev` serves `/api/join` through the same handler.
 
@@ -47,7 +47,7 @@ Only `@virginia.edu` addresses are accepted. A hidden honeypot field silently dr
 
 ## Admin dashboard
 
-`/admin` shows searchable and sortable Applications, Members, and Event responses
+`/admin` shows searchable and sortable Applications, Members, and Event registrations
 views. Applications defaults to pending, with a declined filter and Approve/Decline controls. Members lists only approved people. Reviews do not send email; follow up manually. Views have 50 rows per page and event/RSVP filters. Times display in Eastern
 Time. Google sign-in uses Auth.js; only verified Google emails in
 `server/auth.js`'s `adminEmails` set can enter. This allowlist is checked again on
@@ -86,3 +86,7 @@ a Google sign-in, successful table loads, and sign-out followed by an API 401.
 ## Application migration
 
 Before deploying, run `db/schema.sql` and then `db/application-review-role.sql` as the database owner in one transaction. Existing signups become approved once; the default for new rows is pending. Re-running the schema does not change decisions. The second script grants the existing dashboard role only the review-column updates and disables its transaction read-only default. Event pages remain public.
+
+## Event registration migration
+
+Before deploying this change, run `db/schema.sql` as the database owner. It adds names to event responses, copies names from existing membership records, and removes the membership foreign key. The existing dashboard SELECT grant covers the new column. The migration is repeatable; existing registrations and application decisions are preserved.

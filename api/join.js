@@ -1,5 +1,5 @@
 // POST /api/join — Vercel serverless function.
-// Upserts the member and records this event's answer. Needs DATABASE_URL
+// Upserts the membership application. Needs DATABASE_URL
 // (set by the Neon integration on Vercel; put it in .env.local for `bun run dev`).
 
 import { readFileSync } from 'node:fs'
@@ -45,15 +45,6 @@ export default async function handler(req, res) {
            website = coalesce(excluded.website, members.website), updated_at = now()`,
         [d.email, d.year, d.technical, d.founded, d.website, d.fullName],
       )
-      if (d.eventSlug && d.eventAnswer) {
-        await client.query(
-          `insert into event_responses (email, event_slug, question, answer)
-           values ($1, $2, $3, $4)
-           on conflict (email, event_slug) do update set
-             question = excluded.question, answer = excluded.answer, created_at = now()`,
-          [d.email, d.eventSlug, d.eventQuestion, d.eventAnswer],
-        )
-      }
       await client.query('commit')
     } catch (err) {
       await client.query('rollback').catch(() => {})

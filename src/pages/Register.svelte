@@ -1,0 +1,88 @@
+<script>
+  import { eventBySlug, longDate } from '../lib/events.js'
+  import { validateRegistration } from '../lib/register.js'
+  import Field from '../lib/Field.svelte'
+
+  let { slug } = $props()
+  const event = $derived(eventBySlug(slug))
+  const open = $derived(event && event.date >= new Date().toISOString().slice(0, 10))
+  let fullName = $state('')
+  let email = $state('')
+  let hp = $state('')
+  let status = $state('idle')
+  let error = $state('')
+
+  async function submit(e) {
+    e.preventDefault()
+    if (status === 'sending') return
+    const body = { fullName, email, eventSlug: slug, hp }
+    const result = validateRegistration(body)
+    if (!result.ok) { error = result.error; return }
+    status = 'sending'
+    error = ''
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body),
+      })
+      const data = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(data.error || 'Could not save your registration. Try again.')
+      status = 'done'
+      window.scrollTo(0, 0)
+    } catch (err) { status = 'idle'; error = err.message }
+  }
+</script>
+
+<div class="registration">
+  <header>
+    <p class="eyebrow">Event registration</p>
+    {#if !event}
+      <h1 class="lede">Event not found.</h1>
+    {:else if status === 'done'}
+      <h1 class="lede">You're registered.</h1>
+      <p class="details">See you for the Q&amp;A with {event.name}.</p>
+    {:else}
+      <h1 class="lede">{event.name}{#if event.tag}{` (${event.tag})`}{/if}</h1>
+    {/if}
+    {#if event}<p class="details">{longDate(event.date)}{event.time ? ` · ${event.time}` : ''}</p>{/if}
+  </header>
+  {#if status === 'done'}
+    <a class="back eyebrow" href="/events/{slug}">Event details →</a>
+  {:else if open}
+    <form onsubmit={submit}>
+      <Field n="01" q="Full name" id="full-name">
+        <input id="full-name" name="fullName" bind:value={fullName} autocomplete="name" placeholder="First and last name" maxlength="200" required />
+      </Field>
+      <Field n="02" q="UVA email" id="email">
+        <input id="email" name="email" type="email" bind:value={email} autocomplete="email" placeholder="abc1de@virginia.edu" maxlength="80" required />
+      </Field>
+      <input class="hp" name="company" bind:value={hp} tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div class="actions">
+        <button disabled={status === 'sending'}>{status === 'sending' ? 'Registering…' : 'Register →'}</button>
+        {#if error}<p class="error" role="alert">{error}</p>{/if}
+      </div>
+    </form>
+  {:else}
+    {#if event}<p>Registration is closed for this event.</p>{/if}
+    <a class="back eyebrow" href="/events">All events →</a>
+  {/if}
+</div>
+
+<style>
+  .registration { display: grid; gap: var(--s5); }
+  .eyebrow { margin-bottom: var(--s4); }
+  .lede { max-width: 30ch; }
+  .details { margin-top: var(--s3); color: var(--muted); }
+  form :global(.field + .field) { border-top: 1px solid var(--hair); }
+  form :global(.field:first-child) { padding-top: 0; }
+  input { width: 100%; max-width: 560px; padding: 10px 0 12px; border: 0; border-bottom: 1px solid var(--hair); border-radius: 0; background: transparent; color: var(--fg); font: 16px var(--mono); }
+  input:focus { outline: none; border-color: var(--fg); }
+  input::placeholder { color: var(--muted); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .actions { display: grid; justify-items: start; gap: var(--s3); padding-left: calc(8px + 4ch + 24px); }
+  button { padding: 16px 28px; background: var(--fg); color: var(--bg); border: 1px solid var(--fg); font: 14px var(--mono); text-transform: uppercase; cursor: pointer; }
+  button:disabled { opacity: 0.6; cursor: default; }
+  .error { color: #c98484; }
+  .back { justify-self: start; }
+  @media (max-width: 899px) { .registration { gap: var(--s4); } .actions { padding-left: calc(4px + 4ch + 18px); } }
+  @media (max-width: 599px) { .actions { padding-left: calc(4px + 3ch + 18px); } }
+</style>

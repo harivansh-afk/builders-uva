@@ -127,7 +127,7 @@
     <div class="tabs" aria-label="Database views">
       <button class:active={view === 'applications'} aria-pressed={view === 'applications'} onclick={() => switchView('applications')}>Applications</button>
       <button class:active={view === 'members'} aria-pressed={view === 'members'} onclick={() => switchView('members')}>Members</button>
-      <button class:active={view === 'responses'} aria-pressed={view === 'responses'} onclick={() => switchView('responses')}>Event responses</button>
+      <button class:active={view === 'responses'} aria-pressed={view === 'responses'} onclick={() => switchView('responses')}>Event registrations</button>
     </div>
     <div class="filters">
       <label class="search">Search<input type="search" placeholder="Name or email" bind:value={search} oninput={searchChanged} maxlength="200" /></label>

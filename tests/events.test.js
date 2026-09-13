@@ -24,7 +24,7 @@ test('applications are valid without an event RSVP', () => {
     eventAnswer: '',
   })
   assert.equal(result.ok, true)
-  assert.equal(result.data.eventSlug, null)
-  assert.equal(result.data.eventQuestion, null)
-  assert.equal(result.data.eventAnswer, null)
+  assert.equal(result.data.eventSlug, undefined)
+  assert.equal(result.data.eventQuestion, undefined)
+  assert.equal(result.data.eventAnswer, undefined)
 })

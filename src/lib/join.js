@@ -50,13 +50,8 @@ export function validate(body) {
     }
   }
 
-  const eventSlug = str(body.eventSlug, 64) || null
-  const eventQuestion = str(body.eventQuestion, 300) || null
-  const eventAnswer = str(body.eventAnswer, 2000) || null
-  if (eventSlug && !/^[a-z0-9-]+$/.test(eventSlug)) return { ok: false, error: 'Bad request.' }
-
   return {
     ok: true,
-    data: { fullName, email, year, technical: body.technical, founded: body.founded, website, eventSlug, eventQuestion, eventAnswer },
+    data: { fullName, email, year, technical: body.technical, founded: body.founded, website },
   }
 }

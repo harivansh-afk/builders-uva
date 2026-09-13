@@ -1,8 +1,8 @@
 // Every event the club has hosted or will host. Newest last; the row number
 // on the events page is the array index + 1.
 //
-// The join form ends with an RSVP for the next upcoming event (see nextEvent
-// and rsvpQuestion). The yes/no lands in event_responses keyed by `slug`.
+// Upcoming event rows link to /events/<slug>/register.
+// Registrations live in event_responses, independently of membership.
 
 export const events = [
   {

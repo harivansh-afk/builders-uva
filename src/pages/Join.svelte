@@ -1,9 +1,7 @@
 <script>
   import { YEARS, EMAIL_RE, fullNameError } from '../lib/join.js'
-  import { nextEvent, rsvpQuestion, midDate } from '../lib/events.js'
   import Field from '../lib/Field.svelte'
 
-  const ev = nextEvent()
   const YES_NO = [{ value: true, label: 'Yes' }, { value: false, label: 'No' }]
 
   let fullName = $state('')
@@ -12,7 +10,6 @@
   let technical = $state(null)
   let founded = $state(null)
   let website = $state('')
-  let rsvp = $state(null)
   let hp = $state('') // honeypot; bots fill it, people never see it
 
   let attempted = $state(false)
@@ -25,7 +22,6 @@
     year: year ? '' : 'Pick one.',
     technical: technical === null ? 'Pick one.' : '',
     founded: founded === null ? 'Pick one.' : '',
-    rsvp: ev && rsvp === null ? 'Pick one.' : '',
   })
   const valid = $derived(Object.values(problems).every((p) => !p))
   const show = (k) => (attempted ? problems[k] : '')
@@ -46,9 +42,6 @@
         body: JSON.stringify({
           fullName: fullName.trim(), email: email.trim(), year, technical, founded,
           website: founded ? website.trim() : '',
-          eventSlug: ev?.slug ?? null,
-          eventQuestion: ev ? rsvpQuestion(ev) : null,
-          eventAnswer: rsvp === null ? '' : rsvp ? 'yes' : 'no',
           hp,
         }),
       })
@@ -87,9 +80,6 @@
   {#if status === 'done'}
     <div class="done">
       <p>We'll review it and reach out at <span class="hl">{email.trim().toLowerCase()}</span>.</p>
-      {#if ev && rsvp}
-        <p>See you {midDate(ev.date)} for the Q&amp;A with <a href="/events/{ev.slug}">{ev.name}</a>.</p>
-      {/if}
       <a class="next eyebrow" href="/events">Events →</a>
     </div>
   {:else}
@@ -117,23 +107,6 @@
         {/if}
       </Field>
 
-      {#if ev}
-        <Field n="06" q={rsvpQuestion(ev)} err={show('rsvp')}>
-          <a class="card" href="/events/{ev.slug}">
-            <img src={ev.img} alt="" width="56" height="56" />
-            <span class="card-text">
-              <span class="who">{ev.name}{#if ev.tag}{` (${ev.tag})`}{/if}</span>
-              <span class="when">Founder Q&amp;A · {midDate(ev.date)}{ev.time ? ` · ${ev.time}` : ''}</span>
-            </span>
-            <span class="more" aria-hidden="true">→</span>
-          </a>
-          <div class="seg" role="radiogroup" data-invalid={show('rsvp') || undefined}>
-            <button type="button" class:on={rsvp === true} role="radio" aria-checked={rsvp === true} onclick={() => (rsvp = true)}>Yes, I'm interested</button>
-            <button type="button" class:on={rsvp === false} role="radio" aria-checked={rsvp === false} onclick={() => (rsvp = false)}>Can't make it</button>
-          </div>
-        </Field>
-      {/if}
-
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" bind:value={hp} aria-hidden="true" />
 
       <div class="actions">
@@ -159,59 +132,6 @@
   /* rules sit between questions only */
   form :global(.field + .field) { border-top: 1px solid var(--hair); }
   form :global(.field:first-child) { padding-top: 0; }
-
-  /* the RSVP card */
-  .card {
-    display: grid;
-    grid-template-columns: 56px 1fr auto;
-    align-items: center;
-    gap: 18px;
-    max-width: 560px;
-    padding: 16px 18px 16px 16px;
-    border: 1px solid var(--hair);
-    transition: border-color 0.15s ease, background 0.15s ease;
-  }
-  .card:hover { border-color: var(--dim); background: rgba(242, 240, 234, 0.03); }
-  .card img {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    object-fit: cover;
-    filter: grayscale(1);
-    background: #17171a;
-  }
-  .card-text { display: grid; gap: 4px; min-width: 0; }
-  .who { font-size: 17px; color: var(--fg); }
-  .when {
-    font-family: var(--mono);
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    color: var(--muted);
-  }
-  .more { color: var(--dim); font-size: 18px; transition: color 0.15s ease, transform 0.15s ease; }
-  .card:hover .more { color: var(--fg); transform: translateX(3px); }
-
-  .seg {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 560px;
-    border: 1px solid var(--hair);
-  }
-  .seg button {
-    padding: 14px 16px;
-    background: transparent;
-    border: 0;
-    color: var(--muted);
-    font: inherit;
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.15s ease, background 0.15s ease;
-  }
-  .seg button + button { border-left: 1px solid var(--hair); }
-  .seg button:hover { color: var(--fg); background: rgba(242, 240, 234, 0.04); }
-  .seg button.on { color: var(--bg); background: var(--fg); }
-  .seg button:focus-visible { outline: 1px solid var(--fg); outline-offset: -3px; }
-  .seg[data-invalid] { border-color: #c98484; }
 
   input {
     width: 100%;
@@ -301,8 +221,6 @@
     line-height: 1.6;
     text-wrap: pretty;
   }
-  .done p a { color: var(--fg); border-bottom: 1px solid var(--dim); transition: border-color 0.15s ease; }
-  .done p a:hover { border-color: var(--fg); }
   .done .next { margin-top: var(--s3); color: var(--muted); transition: color 0.15s ease; }
   .done .next:hover { color: var(--fg); }
 
@@ -312,8 +230,6 @@
   }
   @media (max-width: 599px) {
     .actions { padding-left: calc(4px + 3ch + 18px); }
-    .card { grid-template-columns: 48px 1fr auto; gap: 14px; padding: 14px; }
-    .card img { width: 48px; height: 48px; }
     .opts.cols { grid-template-columns: repeat(2, max-content); }
     .go { justify-self: stretch; text-align: center; }
   }
