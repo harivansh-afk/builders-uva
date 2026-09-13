@@ -57,7 +57,7 @@
         <input id="email" name="email" type="email" bind:value={email} autocomplete="email" placeholder="abc1de@virginia.edu" maxlength="80" required />
       </Field>
       <Field n="03" q="What would you like to ask the speaker?" id="speaker-question">
-        <textarea id="speaker-question" name="speakerQuestion" bind:value={speakerQuestion} rows="4" maxlength="2000" required placeholder="Bring a question you want to discuss."></textarea>
+        <textarea id="speaker-question" name="speakerQuestion" bind:value={speakerQuestion} rows="2" maxlength="2000" required placeholder="Bring a question you want to discuss."></textarea>
       </Field>
       <input class="hp" name="company" bind:value={hp} tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="actions">
