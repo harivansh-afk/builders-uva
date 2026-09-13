@@ -75,7 +75,7 @@ export const events = [
   {
     slug: 'vaibhav-gupta',
     name: 'Vaibhav Gupta',
-    tag: 'BAML',
+    tag: 'YC W23',
     date: '2026-09-17',
     img: '/vaibhav.jpeg',
     link: 'https://www.linkedin.com/in/vaigup/',
