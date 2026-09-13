@@ -85,8 +85,8 @@
   }
   .actions { display: flex; align-items: center; gap: 24px; }
 
-  .register { flex-shrink: 0; padding: 12px; border: 1px solid var(--hair); font-family: var(--mono); font-size: 14px; transition: background-color 0.15s ease, border-color 0.15s ease; }
-  .register:hover { background-color: rgba(242, 240, 234, 0.06); border-color: var(--dim); }
+  .register { flex-shrink: 0; padding: 12px; background: var(--fg); color: var(--bg); border: 1px solid var(--fg); font-family: var(--mono); font-size: 14px; transition: opacity 0.15s ease; }
+  .register:hover { opacity: 0.88; }
 
   @media (prefers-reduced-motion: reduce) {
     .register { transition: none; }
