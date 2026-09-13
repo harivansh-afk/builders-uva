@@ -72,6 +72,15 @@ export const events = [
       },
     ],
   },
+  {
+    slug: 'harsha-gaddipati',
+    name: 'Harsha Gaddipati',
+    tag: 'YC S25',
+    date: '2026-09-24',
+    img: '/harsha.jpg',
+    link: 'https://www.linkedin.com/in/harsha-gaddipati-032bb820a/',
+    description: 'Harsha Gaddipati is the co-founder and CEO of Slashy. A conversation about his path from a college dating app to AI email, knowing when to change direction, and building something people come back to. Time and location to be announced.',
+  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
