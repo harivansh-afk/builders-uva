@@ -11,8 +11,8 @@
 
   // Social icons only render when their links are set.
   const founders = [
-    { name: 'Harivansh Rathi', img: '/hari-linkedin.png', website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
-    { name: 'Nathan Wang', img: '/nathan.png', website: 'https://nathanwang.dev/#about', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/', x: 'https://x.com/NathanWang78302' },
+    { name: 'Hari', img: '/hari-linkedin.png', zoom: 1.25, website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
+    { name: 'Nathan', img: '/nathan.png', website: 'https://nathanwang.dev/#about', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/', x: 'https://x.com/NathanWang78302' },
   ]
 </script>
 
@@ -43,11 +43,13 @@
     {#each founders as f}
       <li>
         {#if f.website}
-          <a href={f.website} aria-label={`${f.name}'s website`}>
+          <a class="portrait" style:--zoom={f.zoom ?? 1} href={f.website} aria-label={`${f.name}'s website`}>
             <img src={f.img} alt={f.name} width="240" height="240" decoding="async" />
           </a>
         {:else}
-          <img src={f.img} alt={f.name} width="240" height="240" decoding="async" />
+          <span class="portrait" style:--zoom={f.zoom ?? 1}>
+            <img src={f.img} alt={f.name} width="240" height="240" decoding="async" />
+          </span>
         {/if}
         <div class="who">
           <p class="name">{f.name}</p>
@@ -89,14 +91,22 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--s4) var(--s3);
   }
+  .portrait {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: var(--s2);
+  }
   .founders img {
+    display: block;
     width: 100%;
     aspect-ratio: 1;
     height: auto;
     object-fit: cover;
     filter: grayscale(1);
     background: #17171a;
-    margin-bottom: var(--s2);
+    transform: scale(var(--zoom, 1));
   }
   .who { display: grid; gap: 4px; }
   .founders .name { font-size: 17px; font-weight: 500; }
@@ -115,7 +125,7 @@
   /* desktop: small portraits so the team fits under the beliefs */
   @media (min-width: 900px) {
     .founders { display: flex; gap: var(--s4); }
-    .founders img { width: var(--portrait); margin-bottom: 8px; }
+    .portrait { width: var(--portrait); margin-bottom: 8px; }
     .founders .name { font-size: 15px; }
     .who { gap: 0; }
   }
