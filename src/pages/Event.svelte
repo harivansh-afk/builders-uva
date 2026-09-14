@@ -2,6 +2,7 @@
   import { eventBySlug, longDate } from '../lib/events.js'
   let { slug } = $props()
   const e = $derived(eventBySlug(slug))
+  const today = new Date().toISOString().slice(0, 10)
   let photoDialog
   let closeButton
   let selectedPhoto = $state(null)
@@ -37,6 +38,9 @@
           {#if e.time}<span>{e.time}</span>{/if}
           {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
         </p>
+        {#if e.date >= today}
+          <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
+        {/if}
       </div>
       <img class="pfp" src={e.img} alt={e.name} width="160" height="160" decoding="async" />
     </header>
@@ -145,6 +149,14 @@
   .meta > * + *::before { content: '·'; margin-right: 10px; color: var(--dim); }
   .meta a { border-bottom: 1px solid var(--hair); transition: border-color 0.15s ease, color 0.15s ease; }
   .meta a:hover { color: var(--fg); border-color: var(--muted); }
+
+  .register { display: inline-block; margin-top: 20px; padding: 12px; background: var(--fg); color: var(--bg); border: 1px solid var(--fg); font-family: var(--mono); font-size: 14px; transition: opacity 0.15s ease; }
+  .register:hover { opacity: 0.88; }
+  .register:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .register { transition: none; }
+  }
 
   .pfp {
     flex: 0 0 auto;
