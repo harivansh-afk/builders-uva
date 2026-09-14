@@ -11,7 +11,7 @@
 
   // Social icons only render when their links are set.
   const founders = [
-    { name: 'Harivansh Rathi', img: '/hari.png', website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
+    { name: 'Harivansh Rathi', img: '/hari-linkedin.png', website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
     { name: 'Nathan Wang', img: '/nathan.png', website: 'https://nathanwang.dev/#about', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/', x: 'https://x.com/NathanWang78302' },
   ]
 </script>
