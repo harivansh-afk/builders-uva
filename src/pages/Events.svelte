@@ -77,7 +77,7 @@
     text-overflow: ellipsis;
   }
   .d {
-    min-width: 11ch;
+    min-width: 12ch;
     text-align: right;
     font-family: var(--mono);
     font-size: 14px;
