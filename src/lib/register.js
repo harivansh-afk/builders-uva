@@ -12,7 +12,7 @@ export function validateRegistration(body, today = new Date()) {
   if (!speakerQuestion) return { ok: false, error: 'Add a question for the speaker.' }
   if (speakerQuestion.length > 2000) return { ok: false, error: 'Keep your question under 2,001 characters.' }
   const event = eventBySlug(body.eventSlug)
-  if (!event?.date || event.date < today.toISOString().slice(0, 10)) {
+  if (!event || event.date < today.toISOString().slice(0, 10)) {
     return { ok: false, error: 'Registration is closed for this event.' }
   }
   return { ok: true, data: { fullName, email, speakerQuestion, eventSlug: event.slug } }

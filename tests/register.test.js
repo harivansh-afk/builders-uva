@@ -27,24 +27,18 @@ test('registration endpoint rejects malformed requests before database access', 
   }
 })
 
-test('Dan registration waits for a date and uses the shared validator once scheduled', t => {
+test('Dan registration stays open through October 1 and closes afterward', () => {
   const event = eventBySlug('dan-hall')
-  const originalDate = event.date
-  t.after(() => { event.date = originalDate })
+  assert.equal(event.date, '2026-10-01')
   const registration = { ...body, eventSlug: event.slug }
-  event.date = null
-  assert.equal(validateRegistration(registration, today).ok, false)
-  event.date = '2026-10-01'
   assert.equal(validateRegistration(registration, today).data.eventSlug, 'dan-hall')
+  assert.equal(validateRegistration(registration, new Date('2026-10-01T23:59:00Z')).ok, true)
   assert.equal(validateRegistration(registration, new Date('2026-10-02T12:00:00Z')).ok, false)
 })
 
 test('registration writes one event response and never a membership application', async t => {
   t.mock.timers.enable({ apis: ['Date'], now: today.getTime() })
   const dan = eventBySlug('dan-hall')
-  const originalDate = dan.date
-  t.after(() => { dan.date = originalDate })
-  dan.date = '2026-10-01'
   process.env.DATABASE_URL = 'postgres://unused'
   const writes = []
   t.mock.method(pg.Pool.prototype, 'query', async (sql, values) => {

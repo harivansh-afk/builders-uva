@@ -24,8 +24,6 @@ Edit `src/lib/events.js`. Each entry has a `slug`, `name`, `tag` (e.g. `YC W26`,
 
 Upcoming rows have a Register button linking to `/events/<slug>/register`. Registration asks for full name, UVA email, and a required question for the speaker (up to 2,000 characters). Questions appear in the admin Event registrations view; older registrations show no question. The application form is separate and does not collect RSVPs.
 
-Use `date: null` while scheduling is pending. These events show “Date to be announced” and cannot accept registrations until an ISO date is set.
-
 ## Form backend
 
 `api/join.js` is a Vercel serverless function. It validates with the same rules as the page (`src/lib/join.js`), then writes to Postgres:

@@ -21,7 +21,7 @@
           {#if e.date >= today}
             <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
           {/if}
-          {#if e.date}<time class="d" datetime={e.date}>{shortDate(e.date)}</time>{:else}<span class="d">Date TBA</span>{/if}
+          <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
         </div>
         {#if e.link}
           <a class="pfp" href={e.link} target="_blank" rel="noopener" aria-label="{e.name} — {e.linkLabel ?? 'LinkedIn'}" title={e.linkLabel ?? 'LinkedIn'}>

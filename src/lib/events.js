@@ -94,7 +94,7 @@ export const events = [
     slug: 'dan-hall',
     name: 'Dan Hall',
     tag: 'Kyrus / Legion',
-    date: null,
+    date: '2026-10-01',
     img: '/events/dan-hall/kyrus.png',
     imgType: 'logo',
     imgAlt: 'Kyrus Technology logo',

@@ -34,14 +34,12 @@
       <div>
         <h1 class="name">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</h1>
         <p class="meta">
-          <span>{#if e.date}<time datetime={e.date}>{longDate(e.date)}</time>{:else}Date to be announced{/if}</span>
+          <span><time datetime={e.date}>{longDate(e.date)}</time></span>
           {#if e.time}<span>{e.time}</span>{/if}
           {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
         </p>
         {#if e.date >= today}
           <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
-        {:else if !e.date}
-          <p class="meta">Registration opens when the date is confirmed.</p>
         {/if}
       </div>
       <img class="pfp" class:logo={e.imgType === 'logo'} src={e.img} alt={e.imgAlt ?? e.name} width="160" height="160" decoding="async" />

@@ -4,7 +4,7 @@ import { events, nextEvent } from '../src/lib/events.js'
 import { validate } from '../src/lib/join.js'
 
 test('RSVP event remains available on its date and disappears after the final event', () => {
-  const last = events.filter(event => event.date).at(-1)
+  const last = events[events.length - 1]
   const date = new Date(`${last.date}T12:00:00Z`)
   assert.equal(nextEvent(date)?.date, last.date)
   date.setUTCDate(date.getUTCDate() + 1)
