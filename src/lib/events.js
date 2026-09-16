@@ -100,11 +100,7 @@ export const events = [
     imgAlt: 'Kyrus Technology logo',
     link: 'https://www.kyrus-tech.com/',
     linkLabel: 'Kyrus Tech',
-    description: [
-      'Dan Hall is the co-founder of Kyrus Tech, a specialist cybersecurity firm acquired by SIXGEN in 2024, and a managing partner at Legion Capital. His work spans building cyber tools, growing companies, and backing technical founders.',
-      'Legion Capital helps early-stage cybersecurity companies develop their technology, build teams, and reach customers. Its portfolio includes Carbon Black, acquired by VMware for **$2.1 billion**, and Red Canary, acquired by Zscaler in 2025. Dan served on Red Canary’s board. Another portfolio company, Appsulate, was also acquired by Zscaler. At Legion, Dan focuses on the people behind the companies.',
-      'Previously, Dan was a vice president at ManTech, where he helped build its Computer Forensics and Intrusion Analysis group. He began his career as a U.S. Air Force Special Agent, investigating computer crimes and counterintelligence cases. He holds a Bachelor of Science from the Virginia Military Institute.',
-    ].join('\n\n'),
+    description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital. He previously worked at ManTech and investigated computer crimes as a U.S. Air Force Special Agent. Time and location to be announced.',
   },
 ]
 
@@ -116,7 +112,7 @@ export function nextEvent(today = new Date()) {
   return events.find((e) => e.date >= iso)
 }
 
-const fmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC' })
+const fmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' })
 const fmtLong = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
 export const shortDate = (iso) => fmt.format(new Date(iso + 'T00:00:00Z'))
 export const longDate = (iso) => fmtLong.format(new Date(iso + 'T00:00:00Z'))

@@ -65,11 +65,7 @@
     {/if}
 
     {#if e.description}
-      <div class="description">
-        {#each e.description.split('\n\n') as paragraph}
-          <p>{#each paragraph.split('**') as text, i}{#if i % 2}<strong>{text}</strong>{:else}{text}{/if}{/each}</p>
-        {/each}
-      </div>
+      <p class="description">{e.description}</p>
     {/if}
 
     {#if e.recap}
@@ -189,7 +185,7 @@
   .photo-viewer > img { position: relative; width: auto; height: auto; max-width: 100%; max-height: calc(100dvh - 84px); object-fit: contain; }
 
   .body { display: grid; gap: var(--s3); }
-  .description { display: grid; gap: var(--s3); max-width: 62ch; font-size: 19px; line-height: 1.6; }
+  .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
   .recap { display: grid; gap: var(--s4); }
   .recap section { display: grid; gap: 18px; }
   .recap h3 { font-size: 21px; font-weight: 400; }
