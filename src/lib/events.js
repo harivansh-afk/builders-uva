@@ -116,7 +116,7 @@ export function nextEvent(today = new Date()) {
   return events.find((e) => e.date >= iso)
 }
 
-const fmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' })
+const fmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: '2-digit', timeZone: 'UTC' })
 const fmtLong = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
 export const shortDate = (iso) => fmt.format(new Date(iso + 'T00:00:00Z'))
 export const longDate = (iso) => fmtLong.format(new Date(iso + 'T00:00:00Z'))
