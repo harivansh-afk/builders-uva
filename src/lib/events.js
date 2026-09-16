@@ -90,6 +90,18 @@ export const events = [
     link: 'https://www.linkedin.com/in/harsha-gaddipati-032bb820a/',
     description: 'Harsha Gaddipati is the co-founder and CEO of Slashy. A conversation about his path from a college dating app to AI email, knowing when to change direction, and building something people come back to. Time and location to be announced.',
   },
+  {
+    slug: 'dan-hall',
+    name: 'Dan Hall',
+    tag: 'Kyrus / Legion',
+    date: '2026-10-01',
+    img: '/events/dan-hall/kyrus.png',
+    imgType: 'logo',
+    imgAlt: 'Kyrus Technology logo',
+    link: 'https://www.kyrus-tech.com/',
+    linkLabel: 'Kyrus Tech',
+    description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital. He previously worked at ManTech and investigated computer crimes as a U.S. Air Force Special Agent. Time and location to be announced.',
+  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)

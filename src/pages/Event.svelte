@@ -42,7 +42,7 @@
           <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
         {/if}
       </div>
-      <img class="pfp" src={e.img} alt={e.name} width="160" height="160" decoding="async" />
+      <img class="pfp" class:logo={e.imgType === 'logo'} src={e.img} alt={e.imgAlt ?? e.name} width="160" height="160" decoding="async" />
     </header>
 
     {#if e.photos?.length}
@@ -166,6 +166,8 @@
     filter: grayscale(1);
     background: #17171a;
   }
+
+  .pfp.logo { object-fit: contain; padding: 12px; }
 
   .photos { display: grid; grid-template-columns: 8fr 9fr; gap: 12px; }
   .photos button { display: block; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; cursor: zoom-in; }

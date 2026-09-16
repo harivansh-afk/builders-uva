@@ -25,10 +25,10 @@
         </div>
         {#if e.link}
           <a class="pfp" href={e.link} target="_blank" rel="noopener" aria-label="{e.name} — {e.linkLabel ?? 'LinkedIn'}" title={e.linkLabel ?? 'LinkedIn'}>
-            <img src={e.img} alt="" width="44" height="44" loading="lazy" />
+            <img class:logo={e.imgType === 'logo'} src={e.img} alt="" width="44" height="44" loading="lazy" />
           </a>
         {:else}
-          <span class="pfp"><img src={e.img} alt="" width="44" height="44" loading="lazy" /></span>
+          <span class="pfp"><img class:logo={e.imgType === 'logo'} src={e.img} alt="" width="44" height="44" loading="lazy" /></span>
         {/if}
       </li>
     {/each}
@@ -77,6 +77,8 @@
     text-overflow: ellipsis;
   }
   .d {
+    min-width: 11ch;
+    text-align: right;
     font-family: var(--mono);
     font-size: 14px;
     letter-spacing: 0.04em;
@@ -108,6 +110,8 @@
     filter: grayscale(1);
     background: #17171a;
   }
+
+  .pfp img.logo { border-radius: 0; object-fit: contain; padding: 4px; }
 
   @media (max-width: 899px) {
     .events { gap: var(--s4); }
