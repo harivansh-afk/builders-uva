@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import pg from 'pg'
 import { validateRegistration } from '../src/lib/register.js'
+import { eventBySlug } from '../src/lib/events.js'
 import { queryOptions } from '../server/admin-data.js'
 import handler from '../api/register.js'
 
@@ -26,25 +27,43 @@ test('registration endpoint rejects malformed requests before database access', 
   }
 })
 
+test('Dan registration waits for a date and uses the shared validator once scheduled', t => {
+  const event = eventBySlug('dan-hall')
+  const originalDate = event.date
+  t.after(() => { event.date = originalDate })
+  const registration = { ...body, eventSlug: event.slug }
+  event.date = null
+  assert.equal(validateRegistration(registration, today).ok, false)
+  event.date = '2026-10-01'
+  assert.equal(validateRegistration(registration, today).data.eventSlug, 'dan-hall')
+  assert.equal(validateRegistration(registration, new Date('2026-10-02T12:00:00Z')).ok, false)
+})
+
 test('registration writes one event response and never a membership application', async t => {
   t.mock.timers.enable({ apis: ['Date'], now: today.getTime() })
+  const dan = eventBySlug('dan-hall')
+  const originalDate = dan.date
+  t.after(() => { dan.date = originalDate })
+  dan.date = '2026-10-01'
   process.env.DATABASE_URL = 'postgres://unused'
   const writes = []
   t.mock.method(pg.Pool.prototype, 'query', async (sql, values) => {
     if (values) writes.push({ sql, values })
     return { rows: [] }
   })
-  for (let i = 0; i < 2; i++) {
-    const res = response()
-    await handler({ method: 'POST', body }, res)
-    assert.equal(res.code, 200)
+  for (const eventSlug of [body.eventSlug, dan.slug]) {
+    for (let i = 0; i < 2; i++) {
+      const res = response()
+      await handler({ method: 'POST', body: { ...body, eventSlug } }, res)
+      assert.equal(res.code, 200)
+    }
   }
-  assert.equal(writes.length, 2)
-  for (const { sql, values } of writes) {
+  assert.equal(writes.length, 4)
+  for (const [i, { sql, values }] of writes.entries()) {
     assert.match(sql, /insert into event_responses/)
     assert.match(sql, /on conflict \(email, event_slug\) do update/)
     assert.doesNotMatch(sql, /members/)
-    assert.deepEqual(values, ['test@virginia.edu', 'Test Student', 'vaibhav-gupta', body.speakerQuestion])
+    assert.deepEqual(values, ['test@virginia.edu', 'Test Student', i < 2 ? body.eventSlug : dan.slug, body.speakerQuestion])
   }
 })
 

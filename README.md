@@ -20,9 +20,11 @@ Routing is `src/lib/router.svelte.js`, a small history-API router. `vercel.json`
 
 ## Adding an event
 
-Edit `src/lib/events.js`. Each entry has a `slug`, `name`, `tag` (e.g. `YC W26`, shown after the name in parentheses), ISO `date`, `img`, `link`, and an optional `transcript`. Use `linkLabel` for links other than LinkedIn, and `description` for upcoming event details. Meeting notes go in `recap` as sections with a `title` and `paragraphs`; these display as a recap rather than a verbatim transcript. Drop the headshot in `public/`. The row number is the array position, so append to the end.
+Edit `src/lib/events.js`. Each entry has a `slug`, `name`, `tag` (e.g. `YC W26`, shown after the name in parentheses), ISO `date`, `img`, `link`, and an optional `transcript`. Use `linkLabel` for links other than LinkedIn, and `description` for upcoming event details. Descriptions support blank lines between paragraphs and `**bold**` emphasis; other text is displayed literally. Set `imgType: 'logo'` and `imgAlt` for a company logo that must fit without cropping. Meeting notes go in `recap` as sections with a `title` and `paragraphs`; these display as a recap rather than a verbatim transcript. Drop the headshot in `public/`. The row number is the array position, so append to the end.
 
 Upcoming rows have a Register button linking to `/events/<slug>/register`. Registration asks for full name, UVA email, and a required question for the speaker (up to 2,000 characters). Questions appear in the admin Event registrations view; older registrations show no question. The application form is separate and does not collect RSVPs.
+
+Use `date: null` while scheduling is pending. These events show “Date to be announced” and cannot accept registrations until an ISO date is set.
 
 ## Form backend
 

@@ -34,15 +34,17 @@
       <div>
         <h1 class="name">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</h1>
         <p class="meta">
-          <span><time datetime={e.date}>{longDate(e.date)}</time></span>
+          <span>{#if e.date}<time datetime={e.date}>{longDate(e.date)}</time>{:else}Date to be announced{/if}</span>
           {#if e.time}<span>{e.time}</span>{/if}
           {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
         </p>
         {#if e.date >= today}
           <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
+        {:else if !e.date}
+          <p class="meta">Registration opens when the date is confirmed.</p>
         {/if}
       </div>
-      <img class="pfp" src={e.img} alt={e.name} width="160" height="160" decoding="async" />
+      <img class="pfp" class:logo={e.imgType === 'logo'} src={e.img} alt={e.imgAlt ?? e.name} width="160" height="160" decoding="async" />
     </header>
 
     {#if e.photos?.length}
@@ -65,7 +67,11 @@
     {/if}
 
     {#if e.description}
-      <p class="description">{e.description}</p>
+      <div class="description">
+        {#each e.description.split('\n\n') as paragraph}
+          <p>{#each paragraph.split('**') as text, i}{#if i % 2}<strong>{text}</strong>{:else}{text}{/if}{/each}</p>
+        {/each}
+      </div>
     {/if}
 
     {#if e.recap}
@@ -167,6 +173,8 @@
     background: #17171a;
   }
 
+  .pfp.logo { object-fit: contain; padding: 12px; }
+
   .photos { display: grid; grid-template-columns: 8fr 9fr; gap: 12px; }
   .photos button { display: block; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; cursor: zoom-in; }
   .photos button:first-child { grid-row: span 2; }
@@ -183,7 +191,7 @@
   .photo-viewer > img { position: relative; width: auto; height: auto; max-width: 100%; max-height: calc(100dvh - 84px); object-fit: contain; }
 
   .body { display: grid; gap: var(--s3); }
-  .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
+  .description { display: grid; gap: var(--s3); max-width: 62ch; font-size: 19px; line-height: 1.6; }
   .recap { display: grid; gap: var(--s4); }
   .recap section { display: grid; gap: 18px; }
   .recap h3 { font-size: 21px; font-weight: 400; }

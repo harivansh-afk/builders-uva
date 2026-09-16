@@ -90,6 +90,22 @@ export const events = [
     link: 'https://www.linkedin.com/in/harsha-gaddipati-032bb820a/',
     description: 'Harsha Gaddipati is the co-founder and CEO of Slashy. A conversation about his path from a college dating app to AI email, knowing when to change direction, and building something people come back to. Time and location to be announced.',
   },
+  {
+    slug: 'dan-hall',
+    name: 'Dan Hall',
+    tag: 'Kyrus / Legion',
+    date: null,
+    img: '/events/dan-hall/kyrus.png',
+    imgType: 'logo',
+    imgAlt: 'Kyrus Technology logo',
+    link: 'https://www.kyrus-tech.com/',
+    linkLabel: 'Kyrus Tech',
+    description: [
+      'Dan Hall is the co-founder of Kyrus Tech, a specialist cybersecurity firm acquired by SIXGEN in 2024, and a managing partner at Legion Capital. His work spans building cyber tools, growing companies, and backing technical founders.',
+      'Legion Capital helps early-stage cybersecurity companies develop their technology, build teams, and reach customers. Its portfolio includes Carbon Black, acquired by VMware for **$2.1 billion**, and Red Canary, acquired by Zscaler in 2025. Dan served on Red Canary’s board. Another portfolio company, Appsulate, was also acquired by Zscaler. At Legion, Dan focuses on the people behind the companies.',
+      'Previously, Dan was a vice president at ManTech, where he helped build its Computer Forensics and Intrusion Analysis group. He began his career as a U.S. Air Force Special Agent, investigating computer crimes and counterintelligence cases. He holds a Bachelor of Science from the Virginia Military Institute.',
+    ].join('\n\n'),
+  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)

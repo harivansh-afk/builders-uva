@@ -44,7 +44,7 @@
     {:else}
       <h1 class="lede">{event.name}{#if event.tag}{` (${event.tag})`}{/if}</h1>
     {/if}
-    {#if event}<p class="details">{longDate(event.date)}{event.time ? ` · ${event.time}` : ''}</p>{/if}
+    {#if event}<p class="details">{event.date ? longDate(event.date) : 'Date to be announced'}{event.time ? ` · ${event.time}` : ''}</p>{/if}
   </header>
   {#if status === 'done'}
     <a class="back eyebrow" href="/events/{slug}">Event details →</a>
@@ -66,7 +66,7 @@
       </div>
     </form>
   {:else}
-    {#if event}<p>Registration is closed for this event.</p>{/if}
+    {#if event}<p>{event.date ? 'Registration is closed for this event.' : 'Registration opens when the date is confirmed.'}</p>{/if}
     <a class="back eyebrow" href="/events">All events →</a>
   {/if}
 </div>
