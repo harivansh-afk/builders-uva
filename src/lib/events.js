@@ -85,7 +85,6 @@ export const events = [
     registration: 'closed',
     video: { youtube: 'N1GfBds-8lc', title: 'Vaibhav Gupta at builders@uva, September 17, 2026' },
     photos: [
-      { file: 'vaibhav', alt: 'Vaibhav Gupta speaking to the room over Google Meet from the Boundary office.', width: 1280, height: 720 },
       { file: 'pivots', alt: 'Vaibhav sharing the Boundary blog post that charts the company\u2019s pivots from 2021 to BAML.', width: 840, height: 472 },
       { file: 'room', alt: 'Students around the classroom tables listening to the talk.', width: 1280, height: 720 },
     ],
