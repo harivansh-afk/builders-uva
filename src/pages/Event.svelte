@@ -59,7 +59,7 @@
     {/if}
 
     {#if e.photos?.length}
-      <div class="photos" class:wide={e.photos[0].width > e.photos[0].height} aria-label="Photos from the event">
+      <div class="photos" class:wide={e.photos.length > 2 && e.photos[0].width > e.photos[0].height} class:pair={e.photos.length === 2} aria-label="Photos from the event">
         {#each e.photos as photo, i}
           <button type="button" onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
             <img
@@ -193,6 +193,9 @@
   .photos.wide { grid-template-columns: 1fr 1fr; }
   .photos.wide button:first-child { grid-row: auto; grid-column: 1 / -1; aspect-ratio: 16 / 9; }
   .photos.wide button:not(:first-child) { aspect-ratio: 16 / 9; }
+  /* two photos sit side by side at the same size */
+  .photos.pair { grid-template-columns: 1fr 1fr; }
+  .photos.pair button { grid-row: auto; aspect-ratio: 16 / 9; }
   .photos img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .photos button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
@@ -219,7 +222,7 @@
   .transcript p { font-size: 17px; line-height: 1.6; }
 
   @media (max-width: 599px) {
-    .photos { grid-template-columns: 1fr; }
+    .photos, .photos.pair { grid-template-columns: 1fr; }
     .photos button:first-child { grid-row: auto; grid-column: auto; }
     .photos img { height: auto; }
     .event { gap: 36px; }
