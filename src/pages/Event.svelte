@@ -1,8 +1,8 @@
 <script>
-  import { eventBySlug, longDate } from '../lib/events.js'
+  import { eventBySlug, longDate, registrationOpen } from '../lib/events.js'
   let { slug } = $props()
   const e = $derived(eventBySlug(slug))
-  const today = new Date().toISOString().slice(0, 10)
+  const today = new Date()
   let photoDialog
   let closeButton
   let selectedPhoto = $state(null)
@@ -38,15 +38,28 @@
           {#if e.time}<span>{e.time}</span>{/if}
           {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
         </p>
-        {#if e.date >= today}
+        {#if registrationOpen(e, today)}
           <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
         {/if}
       </div>
       <img class="pfp" class:logo={e.imgType === 'logo'} src={e.img} alt={e.imgAlt ?? e.name} width="160" height="160" decoding="async" />
     </header>
 
+    {#if e.video?.youtube}
+      <div class="video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/{e.video.youtube}?rel=0"
+          title={e.video.title ?? `Recording of ${e.name}`}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    {/if}
+
     {#if e.photos?.length}
-      <div class="photos" aria-label="Photos from the event">
+      <div class="photos" class:wide={e.photos[0].width > e.photos[0].height} aria-label="Photos from the event">
         {#each e.photos as photo, i}
           <button type="button" onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
             <img
@@ -169,10 +182,17 @@
 
   .pfp.logo { object-fit: contain; padding: 12px; }
 
+  .video { aspect-ratio: 16 / 9; background: #17171a; }
+  .video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
   .photos { display: grid; grid-template-columns: 8fr 9fr; gap: 12px; }
   .photos button { display: block; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; cursor: zoom-in; }
   .photos button:first-child { grid-row: span 2; }
   .photos button:not(:first-child) { aspect-ratio: 3 / 2; }
+  /* a landscape lead photo runs full width, the rest sit side by side beneath it */
+  .photos.wide { grid-template-columns: 1fr 1fr; }
+  .photos.wide button:first-child { grid-row: auto; grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+  .photos.wide button:not(:first-child) { aspect-ratio: 16 / 9; }
   .photos img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .photos button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
@@ -200,7 +220,7 @@
 
   @media (max-width: 599px) {
     .photos { grid-template-columns: 1fr; }
-    .photos button:first-child { grid-row: auto; }
+    .photos button:first-child { grid-row: auto; grid-column: auto; }
     .photos img { height: auto; }
     .event { gap: 36px; }
     .head { padding-bottom: 36px; }
