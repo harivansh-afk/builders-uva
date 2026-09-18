@@ -1,11 +1,11 @@
 <script>
-  import { eventBySlug, longDate } from '../lib/events.js'
+  import { eventBySlug, longDate, registrationOpen } from '../lib/events.js'
   import { validateRegistration } from '../lib/register.js'
   import Field from '../lib/Field.svelte'
 
   let { slug } = $props()
   const event = $derived(eventBySlug(slug))
-  const open = $derived(event && event.date >= new Date().toISOString().slice(0, 10))
+  const open = $derived(registrationOpen(event))
   let fullName = $state('')
   let email = $state('')
   let speakerQuestion = $state('')

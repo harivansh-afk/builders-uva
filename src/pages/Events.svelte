@@ -1,7 +1,7 @@
 <script>
-  import { events, shortDate } from '../lib/events.js'
+  import { events, shortDate, registrationOpen } from '../lib/events.js'
   const n = (i) => String(i + 1).padStart(2, '0')
-  const today = new Date().toISOString().slice(0, 10)
+  const today = new Date()
 </script>
 
 <div class="events">
@@ -18,7 +18,7 @@
           <span class="t">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</span>
         </a>
         <div class="actions">
-          {#if e.date >= today}
+          {#if registrationOpen(e, today)}
             <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
           {/if}
           <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
