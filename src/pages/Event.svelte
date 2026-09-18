@@ -63,7 +63,7 @@
         {#if e.photos?.length}
           <div class="photos" class:wide={e.photos.length > 2 && e.photos[0].width > e.photos[0].height} class:pair={e.photos.length === 2} aria-label="Photos from the event">
             {#each e.photos as photo, i}
-              <button type="button" onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
+              <button type="button" class:contain={photo.fit === 'contain'} onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
                 <img
                   src="/events/{e.slug}/{photo.file}-1200.webp"
                   srcset="/events/{e.slug}/{photo.file}-600.webp 600w, /events/{e.slug}/{photo.file}-1200.webp 1200w"
@@ -191,8 +191,12 @@
   .video iframe { display: block; width: 100%; height: 100%; border: 0; }
   /* recording on the left, photos stacked beside it at the same total height */
   .media.split { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
+  /* the video keeps 16:9 at its column width and sets the row height; stretching it would widen it into the gap */
+  .media.split .video { align-self: start; }
   .media.split .photos { display: grid; grid-template-columns: 1fr; grid-auto-rows: 1fr; gap: 12px; min-height: 0; }
-  .media.split .photos button { grid-row: auto; grid-column: auto; aspect-ratio: auto; min-height: 0; }
+  .media.split .photos button { position: relative; grid-row: auto; grid-column: auto; aspect-ratio: auto; min-height: 0; }
+  /* photos fill the row the video sets instead of sizing it themselves */
+  .media.split .photos img { position: absolute; inset: 0; }
 
   .photos { display: grid; grid-template-columns: 8fr 9fr; gap: 12px; }
   .photos button { display: block; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; cursor: zoom-in; }
@@ -206,6 +210,9 @@
   .photos.pair { grid-template-columns: 1fr 1fr; }
   .photos.pair button { grid-row: auto; aspect-ratio: 16 / 9; }
   .photos img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  /* a diagram is shown whole on white rather than cropped */
+  .photos button.contain { background: #fff; }
+  .photos button.contain img { object-fit: contain; }
   .photos button:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
 
   .photo-viewer { position: fixed; inset: 0; width: 100%; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 64px 20px 20px; border: 0; background: transparent; overflow: hidden; }
@@ -234,7 +241,7 @@
     .media.split { display: flex; flex-direction: column; }
     .media.split .photos { display: grid; grid-template-columns: 1fr; grid-auto-rows: auto; }
     .media.split .photos button { aspect-ratio: 16 / 9; height: auto; align-self: auto; }
-    .media.split .photos img { height: 100%; }
+    .media.split .photos img { position: static; height: 100%; }
     .photos, .photos.pair { grid-template-columns: 1fr; }
     .photos button:first-child { grid-row: auto; grid-column: auto; }
     .photos img { height: auto; }
