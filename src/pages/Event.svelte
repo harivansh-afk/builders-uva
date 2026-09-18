@@ -45,35 +45,39 @@
       <img class="pfp" class:logo={e.imgType === 'logo'} src={e.img} alt={e.imgAlt ?? e.name} width="160" height="160" decoding="async" />
     </header>
 
-    {#if e.video?.youtube}
-      <div class="video">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/{e.video.youtube}?rel=0"
-          title={e.video.title ?? `Recording of ${e.name}`}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
-    {/if}
+    {#if e.video?.youtube || e.photos?.length}
+      <div class="media" class:split={e.video?.youtube && e.photos?.length}>
+        {#if e.video?.youtube}
+          <div class="video">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/{e.video.youtube}?rel=0"
+              title={e.video.title ?? `Recording of ${e.name}`}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        {/if}
 
-    {#if e.photos?.length}
-      <div class="photos" class:wide={e.photos.length > 2 && e.photos[0].width > e.photos[0].height} class:pair={e.photos.length === 2} aria-label="Photos from the event">
-        {#each e.photos as photo, i}
-          <button type="button" onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
-            <img
-              src="/events/{e.slug}/{photo.file}-1200.webp"
-              srcset="/events/{e.slug}/{photo.file}-600.webp 600w, /events/{e.slug}/{photo.file}-1200.webp 1200w"
-              sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1100px) 45vw, 520px"
-              alt={photo.alt}
-              width={photo.width}
-              height={photo.height}
-              decoding="async"
-              fetchpriority={i === 0 ? 'high' : 'auto'}
-            />
-          </button>
-        {/each}
+        {#if e.photos?.length}
+          <div class="photos" class:wide={e.photos.length > 2 && e.photos[0].width > e.photos[0].height} class:pair={e.photos.length === 2} aria-label="Photos from the event">
+            {#each e.photos as photo, i}
+              <button type="button" onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
+                <img
+                  src="/events/{e.slug}/{photo.file}-1200.webp"
+                  srcset="/events/{e.slug}/{photo.file}-600.webp 600w, /events/{e.slug}/{photo.file}-1200.webp 1200w"
+                  sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1100px) 45vw, 520px"
+                  alt={photo.alt}
+                  width={photo.width}
+                  height={photo.height}
+                  decoding="async"
+                  fetchpriority={i === 0 ? 'high' : 'auto'}
+                />
+              </button>
+            {/each}
+          </div>
+        {/if}
       </div>
     {/if}
 
@@ -182,8 +186,13 @@
 
   .pfp.logo { object-fit: contain; padding: 12px; }
 
+  .media { display: grid; gap: 12px; }
   .video { aspect-ratio: 16 / 9; background: #17171a; }
   .video iframe { display: block; width: 100%; height: 100%; border: 0; }
+  /* recording on the left, photos stacked beside it at the same total height */
+  .media.split { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
+  .media.split .photos { display: grid; grid-template-columns: 1fr; grid-auto-rows: 1fr; gap: 12px; min-height: 0; }
+  .media.split .photos button { grid-row: auto; grid-column: auto; aspect-ratio: auto; min-height: 0; }
 
   .photos { display: grid; grid-template-columns: 8fr 9fr; gap: 12px; }
   .photos button { display: block; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; cursor: zoom-in; }
@@ -222,6 +231,10 @@
   .transcript p { font-size: 17px; line-height: 1.6; }
 
   @media (max-width: 599px) {
+    .media.split { display: flex; flex-direction: column; }
+    .media.split .photos { display: grid; grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .media.split .photos button { aspect-ratio: 16 / 9; height: auto; align-self: auto; }
+    .media.split .photos img { height: 100%; }
     .photos, .photos.pair { grid-template-columns: 1fr; }
     .photos button:first-child { grid-row: auto; grid-column: auto; }
     .photos img { height: auto; }

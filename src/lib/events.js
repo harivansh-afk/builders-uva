@@ -4,8 +4,6 @@
 // Upcoming event rows link to /events/<slug>/register while registrationOpen().
 // Registrations live in event_responses, independently of membership.
 
-import { vaibhavGuptaTranscript } from './transcripts/vaibhav-gupta.js'
-
 export const events = [
   {
     slug: 'quan-huynh',
@@ -88,7 +86,7 @@ export const events = [
       { file: 'pivots', alt: 'Vaibhav sharing the Boundary blog post that charts the company\u2019s pivots from 2021 to BAML.', width: 840, height: 472 },
       { file: 'room', alt: 'Students around the classroom tables listening to the talk.', width: 1280, height: 720 },
     ],
-    transcript: vaibhavGuptaTranscript,
+    transcript: null,
     recap: [
       {
         title: 'The session',
