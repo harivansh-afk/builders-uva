@@ -81,7 +81,7 @@ export const events = [
     img: '/vaibhav.jpeg',
     link: 'https://www.linkedin.com/in/vaigup/',
     registration: 'closed',
-    video: { youtube: 'N1GfBds-8lc', title: 'Vaibhav Gupta at builders@uva, September 17, 2026' },
+    video: { youtube: 'N1GfBds-8lc', title: 'Vaibhav Gupta at builders@uva, September 17, 2026', thumbnail: '/events/vaibhav-gupta/thumbnail.jpg' },
     photos: [
       { file: 'pivots', alt: 'Boundary\u2019s timeline of pivots from 2021 to BAML, from the 5 years, 12 pivots blog post.', width: 1660, height: 1132, fit: 'contain' },
       { file: 'room', alt: 'Students around the classroom tables listening to the talk.', width: 1280, height: 720 },
