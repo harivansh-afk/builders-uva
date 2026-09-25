@@ -6,7 +6,7 @@ import { eventBySlug, registrationOpen } from '../src/lib/events.js'
 import { queryOptions } from '../server/admin-data.js'
 import handler from '../api/register.js'
 
-const body = { fullName: 'Test Student', email: 'TEST@virginia.edu', eventSlug: 'harsha-gaddipati', speakerQuestion: 'How did you find your first customer?' }
+const body = { fullName: 'Test Student', email: 'TEST@virginia.edu', eventSlug: 'dan-hall', speakerQuestion: 'How did you find your first customer?' }
 const today = new Date('2026-09-13T12:00:00Z')
 const response = () => ({ code: 200, setHeader() {}, status(code) { this.code = code; return this }, json(body) { this.body = body; return this } })
 
@@ -15,16 +15,18 @@ test('registration requires identity, a speaker question, and a known upcoming e
   for (const change of [{ fullName: '' }, { email: 'test@gmail.com' }, { eventSlug: 'missing' }, { eventSlug: 'quan-huynh' }]) {
     assert.equal(validateRegistration({ ...body, ...change }, today).ok, false)
   }
-  assert.equal(validateRegistration(body, new Date('2026-09-24T23:59:00Z')).ok, true)
-  assert.equal(validateRegistration(body, new Date('2026-09-25T00:00:00Z')).ok, false)
+  assert.equal(validateRegistration(body, new Date('2026-10-01T23:59:00Z')).ok, true)
+  assert.equal(validateRegistration(body, new Date('2026-10-02T00:00:00Z')).ok, false)
 })
 
 test('an explicitly closed event refuses registration even before its date', () => {
-  const event = eventBySlug('vaibhav-gupta')
-  assert.equal(event.registration, 'closed')
-  assert.equal(validateRegistration({ ...body, eventSlug: event.slug }, today).ok, false)
-  assert.equal(registrationOpen(event, today), false)
-  assert.equal(registrationOpen(eventBySlug('harsha-gaddipati'), today), true)
+  for (const slug of ['vaibhav-gupta', 'harsha-gaddipati']) {
+    const event = eventBySlug(slug)
+    assert.equal(event.registration, 'closed')
+    assert.equal(validateRegistration({ ...body, eventSlug: event.slug }, today).ok, false)
+    assert.equal(registrationOpen(event, today), false)
+  }
+  assert.equal(registrationOpen(eventBySlug('dan-hall'), today), true)
 })
 
 test('registration endpoint rejects malformed requests before database access', async () => {
@@ -46,26 +48,23 @@ test('Dan registration stays open through October 1 and closes afterward', () =>
 
 test('registration writes one event response and never a membership application', async t => {
   t.mock.timers.enable({ apis: ['Date'], now: today.getTime() })
-  const dan = eventBySlug('dan-hall')
   process.env.DATABASE_URL = 'postgres://unused'
   const writes = []
   t.mock.method(pg.Pool.prototype, 'query', async (sql, values) => {
     if (values) writes.push({ sql, values })
     return { rows: [] }
   })
-  for (const eventSlug of [body.eventSlug, dan.slug]) {
-    for (let i = 0; i < 2; i++) {
-      const res = response()
-      await handler({ method: 'POST', body: { ...body, eventSlug } }, res)
-      assert.equal(res.code, 200)
-    }
+  for (let i = 0; i < 2; i++) {
+    const res = response()
+    await handler({ method: 'POST', body }, res)
+    assert.equal(res.code, 200)
   }
-  assert.equal(writes.length, 4)
-  for (const [i, { sql, values }] of writes.entries()) {
+  assert.equal(writes.length, 2)
+  for (const { sql, values } of writes) {
     assert.match(sql, /insert into event_responses/)
     assert.match(sql, /on conflict \(email, event_slug\) do update/)
     assert.doesNotMatch(sql, /members/)
-    assert.deepEqual(values, ['test@virginia.edu', 'Test Student', i < 2 ? body.eventSlug : dan.slug, body.speakerQuestion])
+    assert.deepEqual(values, ['test@virginia.edu', 'Test Student', body.eventSlug, body.speakerQuestion])
   }
 })
 
