@@ -2,7 +2,6 @@
   import { events, shortDate, registrationOpen } from '../lib/events.js'
   const n = (i) => String(i + 1).padStart(2, '0')
   const today = new Date()
-  const todayISO = today.toISOString().slice(0, 10)
 </script>
 
 <div class="events">
@@ -13,7 +12,7 @@
 
   <ol class="rows">
     {#each events as e, i}
-      <li class="row" class:past={e.date < todayISO}>
+      <li class="row">
         <a class="page" href="/events/{e.slug}">
           <span class="n">{n(i)}</span>
           <span class="t">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</span>
@@ -77,7 +76,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .past .t { color: var(--muted); }
   .d {
     min-width: 12ch;
     text-align: right;
