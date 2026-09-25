@@ -7,6 +7,7 @@
   let photoDialog
   let closeButton
   let selectedPhoto = $state(null)
+  let playingVideo = $state(false)
 
   function expandPhoto(photo) {
     selectedPhoto = { ...photo, src: `/events/${e.slug}/${photo.file}-clean.jpg` }
@@ -24,6 +25,7 @@
   $effect(() => {
     slug
     photoDialog?.close()
+    playingVideo = false
   })
 </script>
 
@@ -52,14 +54,21 @@
         style:--portrait-ratio={portraitPhoto ? `${portraitPhoto.width} / ${portraitPhoto.height}` : null}>
         {#if e.video?.youtube}
           <div class="video">
+            {#if e.video.thumbnail && !playingVideo}
+              <button class="video-poster" type="button" onclick={() => { playingVideo = true }} aria-label={`Play ${e.video.title ?? `recording of ${e.name}`}`}>
+                <img src={e.video.thumbnail} alt="" width="1280" height="720" decoding="async" />
+                <svg class="play-icon" viewBox="0 0 68 48" aria-hidden="true"><rect width="68" height="48" rx="12" fill="#f03" /><path d="M27 14 45 24 27 34Z" fill="#fff" /></svg>
+              </button>
+            {:else}
             <iframe
-              src="https://www.youtube-nocookie.com/embed/{e.video.youtube}?rel=0"
+              src="https://www.youtube-nocookie.com/embed/{e.video.youtube}?rel=0{playingVideo ? '&autoplay=1' : ''}"
               title={e.video.title ?? `Recording of ${e.name}`}
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
             ></iframe>
+            {/if}
           </div>
         {/if}
 
@@ -192,6 +201,11 @@
   .media { display: grid; gap: 12px; }
   .video { aspect-ratio: 16 / 9; background: #17171a; }
   .video iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .video-poster { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+  .video-poster img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .play-icon { position: absolute; width: 68px; height: 48px; inset: 0; margin: auto; }
+  .video-poster:hover .play-icon { filter: brightness(0.9); }
+  .video-poster:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
   /* recording on the left, photos stacked beside it at the same total height */
   .media.split { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
   /* A single portrait keeps its full frame at the same height as the recording. */
