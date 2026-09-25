@@ -162,6 +162,9 @@ export const events = [
     link: 'https://www.linkedin.com/in/harsha-gaddipati-032bb820a/',
     registration: 'closed',
     video: { youtube: 'xWbcvfpUOn0', title: 'Harsha Gaddipati at builders@uva, September 24, 2026' },
+    photos: [
+      { file: 'selfie', alt: 'Students gathered for a group selfie in the classroom after Harsha’s talk.', width: 1600, height: 2133 },
+    ],
     transcript: null,
     recap: [
       {

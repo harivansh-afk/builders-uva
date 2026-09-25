@@ -2,6 +2,7 @@
   import { eventBySlug, longDate, registrationOpen } from '../lib/events.js'
   let { slug } = $props()
   const e = $derived(eventBySlug(slug))
+  const portraitPhoto = $derived(e?.photos?.length === 1 && e.photos[0].height > e.photos[0].width ? e.photos[0] : null)
   const today = new Date()
   let photoDialog
   let closeButton
@@ -46,7 +47,9 @@
     </header>
 
     {#if e.video?.youtube || e.photos?.length}
-      <div class="media" class:split={e.video?.youtube && e.photos?.length}>
+      <div class="media" class:split={e.video?.youtube && e.photos?.length} class:portrait={portraitPhoto}
+        style:--portrait-column={portraitPhoto ? `${9 * portraitPhoto.width / portraitPhoto.height}fr` : null}
+        style:--portrait-ratio={portraitPhoto ? `${portraitPhoto.width} / ${portraitPhoto.height}` : null}>
         {#if e.video?.youtube}
           <div class="video">
             <iframe
@@ -191,6 +194,8 @@
   .video iframe { display: block; width: 100%; height: 100%; border: 0; }
   /* recording on the left, photos stacked beside it at the same total height */
   .media.split { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); align-items: stretch; }
+  /* A single portrait keeps its full frame at the same height as the recording. */
+  .media.split.portrait { grid-template-columns: minmax(0, 16fr) minmax(0, var(--portrait-column)); }
   /* the video keeps 16:9 at its column width and sets the row height; stretching it would widen it into the gap */
   .media.split .video { align-self: start; }
   .media.split .photos { display: grid; grid-template-columns: 1fr; grid-auto-rows: 1fr; gap: 12px; min-height: 0; }
@@ -241,6 +246,7 @@
     .media.split { display: flex; flex-direction: column; }
     .media.split .photos { display: grid; grid-template-columns: 1fr; grid-auto-rows: auto; }
     .media.split .photos button { aspect-ratio: 16 / 9; height: auto; align-self: auto; }
+    .media.split.portrait .photos button { aspect-ratio: var(--portrait-ratio); }
     .media.split .photos img { position: static; height: 100%; }
     .photos, .photos.pair { grid-template-columns: 1fr; }
     .photos button:first-child { grid-row: auto; grid-column: auto; }
