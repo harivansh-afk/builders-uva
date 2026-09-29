@@ -69,4 +69,3 @@ Source: https://www.uva.builders/events/vaibhav-gupta/pivots-1200.webp
 ![Students around the classroom tables listening to the talk.](../../public/events/vaibhav-gupta/room-1200.webp)
 
 Source: https://www.uva.builders/events/vaibhav-gupta/room-1200.webp
-

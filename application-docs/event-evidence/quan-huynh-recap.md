@@ -65,4 +65,3 @@ Source: https://www.uva.builders/events/quan-huynh/dsc04128-1200.webp
 ![Harivansh and an attendee in conversation at the front of the room.](../../public/events/quan-huynh/dsc04120-1200.webp)
 
 Source: https://www.uva.builders/events/quan-huynh/dsc04120-1200.webp
-
