@@ -1,30 +1,31 @@
-# CIO application - co-leader review
+# CIO application review packet
 
-Updated September 29, 2026. The application has not been submitted. The constitution is a review draft; no adoption date or signed CIO Agreement has been supplied.
+Updated September 29, 2026 from the saved Hoos Involved draft. **Do not submit yet.** The signed agreement and constitution are uploaded, but the non-affiliation/electronic-signature declaration remains unchecked. The application has not been submitted or approved.
 
-## Review these files
+## Review order
 
-1. [Application answers, sections 1-11](builders-cio-application-draft.md): current confirmed facts, proposed narratives, and remaining form issues in one file.
-2. [Constitution and bylaws](builders-constitution-2026-2027-draft.md): follows the UVA template's eleven-article order. [Read the PDF](builders-constitution-2026-2027-draft.pdf).
+1. [Full application policy review](cio-policy-review-2026-09-29.md) - prioritized findings, every form section, source conflicts, evidence gaps, and next actions.
+2. [Current saved answers](builders-cio-application-draft.md) - preserves the actual saved wording, including remaining “Proposed rule” language and the Other Grants/Awards choice.
+3. [Uploaded constitution](builders-constitution-2026-2027-draft.pdf) and [editable source](builders-constitution-2026-2027-draft.md) - exact four-page upload, with the requested September 29 adoption date and 2026-2027 SAF/Cav opt-out. The filenames retain “draft” for continuity; the audit explains the outstanding adoption evidence.
+4. [Constitution and agreement analysis](constitution-policy-research-2026-09-29.md) - independent article-by-article review.
 
-Nathan confirmed the club email, September 2026 founding date, Thursday 6 p.m. meetings, open membership, attendance of 25/17/13 for the three September talks, travel/speaker cost priorities, no funds or account yet, no programs involving non-UVA minors, and the existing contact details. He approved the constitution draft.
+## Main findings
 
-Saved officers: **Harivansh Rathi - President; Nathan Wang - Vice-President; Veera Sai Joshik Unnam - Treasurer.**
+- The public website lacks the required non-affiliation notice. The next checkbox certifies it exists and also acts as an electronic signature.
+- The home page uses a standard UVA wordmark, outside the default CIO permission. The alias/domain and linked program marks also need review.
+- There are 51 saved roster entries, but 49 have blank first and last name fields. Only Hari and Veera have displayed names.
+- The three event totals are 25, 17, and 13. Retain evidence of a recurring active student cohort, not just email signups.
+- VEO's current directory profile overlaps with the mission and programs, but lists interview/selective entry. Use this current evidence to strengthen the open-membership distinction without overstating uniqueness.
+- Confirm actual adoption/initial leadership/signing authority and clarify the current-funding checkbox. No SAF/Cav participation or current bank account is required merely to remove an old checklist item.
 
-## Review and finish
+## Confirmed progress
 
-- [ ] **Funding field:** the correct fact is no funding received. The form has no None option and still holds a provisional SAF choice. Ask Student Engagement or Student Council how to record this before submission.
-- [ ] **Member roster:** import the remaining actual members and resolve the one duplicate name with conflicting emails. Only the three officers are confirmed saved. The prepared member list remains local and is not included here.
-- [ ] **Narratives:** check the founding account, planned work/demo sessions, recruitment dates, and comparison with other clubs. Remove REVIEW/proposal markers only when the statements reflect the club's plans and rules.
-- [ ] **Formal name:** align the live profile, constitution, agreement, and account. The constitution uses Builders at UVA; the live profile still uses Builders@UVA.
-- [ ] **Constitution adoption:** complete the member adoption process and record its actual date and result. Nathan's draft approval is not recorded as a member vote.
-- [ ] **Hari's agreement:** complete the [official CIO Transition Training](https://view.genially.com/69b24785e3daa7c855c2a53b), sign the 2026-2027 CIO Agreement provided at the end as President, and save the signed PDF for upload.
-- [ ] **Final form:** upload the required documents, inspect the still-unreviewed section 11, review the complete saved application, and submit.
+Formal name: **Builders at UVA**. Saved officers: **Harivansh Rathi - President; Nathan Wang - Vice-President; Veera Sai Joshik Unnam - Treasurer**. The 48 unambiguous member entries are imported; Conrad is excluded as requested. No-SAF/no-Cav, no existing account, and the opt-out acknowledgement are saved. Both nondiscrimination declarations were checked by Nathan and saved.
 
-## Funding setup for Veera
+Hari's signed 2026-2027 agreement and the constitution are attached to the application. The final-page informational text is visible in the print view, but interactive completion remains behind the unaccepted non-affiliation declaration. Its truth and the signer's authority must be established before acceptance.
 
-For the Alumni Hall route, follow [Open a UVA Fund Account](https://alumni.virginia.edu/uvafund/open-an-account/), sign up through the helpdesk, and request an account using team@uva.builders. Explain that the CIO application is pending. Staff will request details and arrange a meeting; confirm fees and whether recognition is needed before opening.
+## Evidence and privacy
 
-The [payment instructions](https://studentaffairs.virginia.edu/topic/financial-resources/funding-instructions) allow an Alumni Hall account number for payment requests, while the application uses supplier-number wording. Confirm the requirements for the intended SAF request with Student Engagement. For a commercial club account, use the [supplier request form](https://studentaffairs.virginia.edu/supplier_number_request_form) and complete the PaymentWorks invitation with the same club email.
+The report links the primary policies and [public-site screenshot](evidence/website-2026-09-29.jpg). The [signature-gate screenshot](evidence/non-affiliation-gate-2026-09-29.jpg) shows the current required declaration. The signed agreement, signature image, full member email list, raw application export, and attendance records are not committed. Only the three officers' institutional contacts and the user-confirmed application contact details are included in this private review packet.
 
-The browser sometimes displayed blank pages. Saved-state claims above refer to the checks made during this task, not a fresh September 29 application audit. No account, supplier registration, signature, or document upload was completed.
+This PR records the review and current answers. It does not fix/deploy the public website, alter substantive live answers during the audit, or submit the application.

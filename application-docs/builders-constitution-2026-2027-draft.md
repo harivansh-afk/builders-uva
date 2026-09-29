@@ -1,9 +1,7 @@
 # Builders at UVA
 # Constitution and Bylaws — 2026–2027
 
-**DRAFT FOR MEMBER REVIEW — NOT YET ADOPTED**
-
-Updated September 26, 2026. Student Council recognition date: pending. Adoption date: __________.
+Adoption date: September 29, 2026.
 
 ## Article I — Name
 
@@ -73,7 +71,7 @@ Project participation is voluntary. Members retain ownership of their own work u
 
 There are no required membership dues. Any change to this rule requires a constitutional amendment before dues are collected. Financial hardship must not be used to exclude students from core participation.
 
-Potential sources include approved University funding, permitted fundraising, and voluntary donations. These are possible sources, not claims that funds have been received. Accept funds only under rules the club can meet, and do not offer sponsors control of membership, officer selection, or member projects.
+The organization will not request or use SAF or Cav Funds during the 2026–2027 academic year. Potential sources include permitted fundraising and voluntary donations. These are possible sources, not claims that funds have been received. Accept funds only under rules the club can meet, and do not offer sponsors control of membership, officer selection, or member projects.
 
 Funds may support club trips, including a possible trip to San Francisco, and travel, lodging, and related costs for visiting speakers. Each activity requires an approved budget and must meet the funding source’s restrictions. No trip, expense, or award is guaranteed.
 
@@ -105,7 +103,7 @@ The officers may form temporary committees for events or projects. Any member ma
 
 ## Article X — Advisors
 
-The organization may choose an advisor by a majority vote at a meeting with quorum. Members may remove an advisor by a majority vote at a meeting with quorum after seven days’ notice. No advisor has been appointed. An advisor may offer guidance but does not vote, hold a student office, control club funds, or bind the organization. No advisor or institutional partnership is assumed by this draft.
+The organization may choose an advisor by a majority vote at a meeting with quorum. Members may remove an advisor by a majority vote at a meeting with quorum after seven days’ notice. No advisor has been appointed. An advisor may offer guidance but does not vote, hold a student office, control club funds, or bind the organization. This constitution does not establish a formal institutional partnership.
 
 Collaborations with other clubs, The Foundry, or other resources must be described accurately. A link, guest appearance, or informal contact is not a formal partnership or endorsement.
 
@@ -114,25 +112,3 @@ Collaborations with other clubs, The Foundry, or other resources must be describ
 Any voting member may propose an amendment in writing. Give all members the exact proposed text at least seven days before the vote. Adoption requires two-thirds of valid votes cast at a meeting with quorum. Record the date and approved version and update the University’s copy where required.
 
 Review this document each spring before renewal. Required policy updates must be incorporated through the applicable process and communicated to members.
-
-## Adoption record
-
-Formal organization name: __________
-
-Date adopted: __________
-
-Eligible voting members: __________
-
-Members participating: __________
-
-Votes in favor / against / abstaining: __________
-
-Recorded by: __________
-
-## Review notes — remove before submission
-
-This draft follows the article order in the [Student Council constitution template](https://www.uvastudco.com/s/UpdatedConstitutionTemplate1forCIOSUpdated022725.pdf). It retains the updated nondiscrimination clause from the [2026 CIO guidance](https://studentaffairs.virginia.edu/subsite/student-engagement/cio-support/renew).
-
-Confirmed officers: Harivansh Rathi, President; Nathan Wang, Vice-President; Veera Sai Joshik Unnam, Treasurer. The three roles are held by three different students.
-
-Review and record adoption before submission. The club is not yet recognized; do not invent a recognition or adoption date.
