@@ -5,6 +5,7 @@ import Google from '@auth/core/providers/google'
 export const adminEmails = new Set([
   'rathiharivansh@gmail.com',
   'nwangbusiness783@gmail.com',
+  'joshikdevelop@gmail.com',
 ])
 export const isAdmin = (email) => typeof email === 'string' && adminEmails.has(email.toLowerCase())
 
