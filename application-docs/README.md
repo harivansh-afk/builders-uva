@@ -9,6 +9,13 @@ Updated September 29, 2026 from the saved Hoos Involved draft. **Do not submit y
 3. [Uploaded constitution](builders-constitution-2026-2027-draft.pdf) and [editable source](builders-constitution-2026-2027-draft.md) - exact four-page upload, with the requested September 29 adoption date and 2026-2027 SAF/Cav opt-out. The filenames retain “draft” for continuity; the audit explains the outstanding adoption evidence.
 4. [Constitution and agreement analysis](constitution-policy-research-2026-09-29.md) - independent article-by-article review.
 
+## Latest follow-up
+
+- [Site PR #11](https://github.com/harivansh-afk/builders-uva/pull/11): notice added and logo row removed; not merged or deployed. Production verification remains required.
+- [Collected event evidence](event-evidence/README.md): all three recaps, six images, two existing machine-generated transcript links, and a 12-page PDF. Quan has no full transcript in the available material.
+- VEO's reported closure and approved governance wording are now reflected in the saved answers.
+- Linked member cards have names in the two cases inspected, despite blank draft-table cells. Name correction is not yet complete; the attempted direct add did not update the existing entry.
+
 ## Main findings
 
 - The public website lacks the required non-affiliation notice. The next checkbox certifies it exists and also acts as an electronic signature.

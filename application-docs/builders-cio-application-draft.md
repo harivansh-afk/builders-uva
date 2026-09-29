@@ -1,6 +1,6 @@
 # Builders at UVA - saved CIO application answers
 
-Snapshot: September 29, 2026. Read from the authenticated Hoos Involved print view for submission **114977930** after the latest edits and document uploads. This is a record of the saved draft, not a submitted or approved application. Wording marked “Proposed rule” or “constitution draft” below is still in the live answers; it has not been silently cleaned up for this PR.
+Snapshot: September 29, 2026. Read from the authenticated Hoos Involved print view for submission **114977930** after the latest edits and document uploads. This is a record of the saved draft, not a submitted or approved application. The governance answers now refer to the approved constitution. The VEO operating-status statement is attributed to the organizers’ knowledge.
 
 Read the [policy review](cio-policy-review-2026-09-29.md) for concerns and proposed corrections. The [constitution source](builders-constitution-2026-2027-draft.md) and [PDF](builders-constitution-2026-2027-draft.pdf) match the uploaded four-page version, despite their historical filenames. The signed agreement, full member list, and raw print export are not included in this repository update.
 
@@ -85,7 +85,7 @@ The club has no funds or bank account and will not request or use SAF or Cav Fun
 
 ### Membership
 
-Membership is open to all currently enrolled UVA students who support the organization’s purpose and register on its roster. No prior experience, completed project, competitive application, interview, or dues are required. The form at https://uva.builders/apply is an open registration and member-expertise survey, not a selection process. Under the constitution draft, UVA student members on the roster for at least 14 days may vote. The club follows UVA’s required nondiscrimination policy.
+Membership is open to all currently enrolled UVA students who support the organization’s purpose and register on its roster. No prior experience, completed project, competitive application, interview, or dues are required. The form at https://uva.builders/apply is an open registration and member-expertise survey, not a selection process. Under our constitution, UVA student members on the roster for at least 14 days may vote. The club follows UVA’s required nondiscrimination policy.
 
 ### Reason for CIO status
 
@@ -105,7 +105,7 @@ We will use a consistent Thursday event schedule, relevant founder Q&A sessions,
 
 ### Officer elections
 
-Proposed rule: Elect the President, Vice-President, and Treasurer once each year in March, with at least 14 days’ notice of nominations and the election. Complete the handover in April before new terms begin May 1. Hold a special election for a vacancy within 30 days when the academic calendar permits.
+Under our constitution: Elect the President, Vice-President, and Treasurer once each year in March, with at least 14 days’ notice of nominations and the election. Complete the handover in April before new terms begin May 1. Hold a special election for a vacancy within 30 days when the academic calendar permits.
 
 ### Officer terms
 
@@ -113,11 +113,11 @@ One year, May 1 through April 30. A vacancy appointment serves the remainder of 
 
 ### Voting
 
-Proposed rule: Each currently enrolled UVA student member listed on the roster at least 14 days before the election has one vote. A majority of eligible voting members constitutes quorum. Elections use a secret ballot, including an accessible remote option. A candidate must receive a majority of votes cast; if no candidate does, hold a runoff between the top two candidates.
+Under our constitution: Each currently enrolled UVA student member listed on the roster at least 14 days before the election has one vote. A majority of eligible voting members constitutes quorum. Elections use a secret ballot, including an accessible remote option. A candidate must receive a majority of votes cast; if no candidate does, hold a runoff between the top two candidates.
 
 ### Officer removal
 
-Proposed rule: A written request stating the grounds for removal may be submitted by at least three voting members. Grounds include serious misconduct, misuse of funds, or repeated failure to perform stated duties. Give the officer written notice at least seven days before a removal vote and an opportunity to respond. An uninvolved member chairs the process; the officer does not preside over or vote on their own removal. Removal requires a two-thirds vote of votes cast by eligible members at a meeting with quorum. Record the decision, protect private information, and fill any vacancy through a special election. Urgent safety concerns will be referred to the appropriate UVA office.
+Under our constitution: A written request stating the grounds for removal may be submitted by at least three voting members. Grounds include serious misconduct, misuse of funds, or repeated failure to perform stated duties. Give the officer written notice at least seven days before a removal vote and an opportunity to respond. An uninvolved member chairs the process; the officer does not preside over or vote on their own removal. Removal requires a two-thirds vote of votes cast by eligible members at a meeting with quorum. Record the decision, protect private information, and fill any vacancy through a special election. Urgent safety concerns will be referred to the appropriate UVA office.
 
 ### Unique mission and programs
 
@@ -127,11 +127,11 @@ Our model has open membership, no required dues, no prior technical experience r
 
 ### Similar organizations
 
-1. Virginia Entrepreneurship Organization (VEO): VEO’s published description supports students working on side projects and startups through workshops, entrepreneur talks, and project questions. This is a close overlap. Builders at UVA’s proposed emphasis is a regular build-and-share practice around students’ self-directed projects, including projects with no commercial goal, supported by our Thursday founder Q&A series. We will not claim that founder talks alone are unique; the case for a separate organization is the sustained peer practice and community we plan to operate.
+1. Virginia Entrepreneurship Organization (VEO): Based on our organizers’ current knowledge, VEO is no longer operating. We address it because its Hoos Involved listing remains and describes a similar focus on side projects, startups, workshops, and founder talks. That listing also describes interviews and selective entry. Builders at UVA is actively holding weekly founder talks and offers open participation with no interview, prior technical experience, or company requirement. We plan peer work and feedback around members’ self-directed commercial or noncommercial projects. We do not claim that founder talks alone are unique or that UVA has formally deactivated VEO.
 
-2. Virginia Venture Fund (VVF): VVF describes an investment-focused program with training in accounting, valuation, and investing, partner-firm projects, and a student-managed investment fund. Builders at UVA focuses on creating and testing members’ own projects rather than investment analysis. It has open membership and no finance training or selection process as a condition of joining.
+2. Virginia Venture Fund (VVF): VVF describes investment-focused analyst training, partner-firm experience, and an impact fund. Builders at UVA focuses on creating and testing members’ own projects rather than investment analysis. Our membership is open and does not require finance training or a selection process.
 
-The Foundry is also a relevant UVA resource for venture advising, workshops, and workspace. We would refer members to those services and explore collaboration; we do not claim a formal partnership. Sources: https://veovirginia.substack.com/p/veo-updates-101 ; https://www.virginiaventurefund.com/ ; https://innovates.virginia.edu/foundry/about-foundry
+The Foundry is a relevant UVA resource for venture advising, events, and workspace. We refer members to useful campus resources and may seek collaboration; we do not claim a formal partnership. Sources: https://hoosinvolved.virginia.edu/organization/virginiaentrepreneurshiporganization ; https://www.virginiaventurefund.com/ ; https://innovates.virginia.edu/foundry/about-foundry
 
 ## 6. General organization administration
 
@@ -162,7 +162,7 @@ Nathan chose Other Grants/Awards after the form rejected an empty response. The 
 | Vice-President | Nathan Wang | hmg2vg@virginia.edu | Blank / blank |
 | Treasurer | Veera Sai Joshik Unnam | nkb8pw@virginia.edu | Veera Sai Joshik / Unnam |
 
-The form's President and Treasurer requirement checks pass. Row count does not establish eligibility, recurring participation, or invitation acceptance.
+The form's President and Treasurer requirement checks pass. Row count does not establish eligibility, recurring participation, or invitation acceptance. Follow-up inspection found names on Nathan’s linked member card and one other linked member card despite blank cells in this table. Adding an existing email with first/last names did not update these draft cells; no entry has been removed while a replacement test awaits approval.
 
 ## 9. Profile picture
 

@@ -4,6 +4,16 @@
 
 This is a detailed application-readiness review, not a prediction of approval or a legal opinion. No substantive answers, website code, signatures, or submission were changed during this audit. The two nondiscrimination boxes that Nathan had checked were saved by advancing to the next page. The newly revealed non-affiliation/electronic-signature checkbox remains **unchecked**.
 
+## Follow-up progress on September 29
+
+- [Site PR #11](https://github.com/harivansh-afk/builders-uva/pull/11) adds the exact notice to the shared footer and removes the UVA, Foundry, and VentureForward logos. Build and browser checks passed. The PR is open, unmerged, and not deployed; Vercel reported a blocked deployment. The public-site certification remains premature until deployment is verified.
+- [Event evidence](event-evidence/README.md) now includes all three live recaps, the six published images, a 12-page PDF, and links to the two existing machine-generated transcripts. Quan has interview questions and a recap, not a full transcript. Photos/content support occurrence and mission, not a recurring named cohort or independent headcounts.
+- Nathan reports that VEO is no longer running. The saved comparison now attributes that operating-status statement to organizers’ knowledge and does not claim official UVA deactivation. This is additional user-provided context; the directory listing alone did not establish current activity.
+- Governance answers were aligned with the approved constitution instead of retaining “Proposed rule”/“constitution draft.” Nathan accepted the adoption/signing plan; no vote counts or additional signature were invented.
+- **Roster finding refined:** the draft table still has 49 blank names, but the linked member cards inspected for Nathan and one other member do contain names. This may be a draft-view/snapshot issue rather than missing university-profile identity. Adding an existing email with names did not update the draft cells. No existing entry has been removed; a reversible replacement test is awaiting user approval. Do not describe all 49 university profiles as nameless.
+
+The findings below preserve the original audit and should be read with these updates. No final application or non-affiliation signature was submitted.
+
 ## Read this first
 
 | Priority | Finding | Status and smallest next step |
