@@ -51,17 +51,6 @@
     </main>
     <aside class="right">
       <div class="stage"><Ascii /></div>
-      <div class="logos">
-        <a href="https://www.virginia.edu" target="_blank" rel="noopener" aria-label="University of Virginia">
-          <img src="/uva.svg" alt="" height="34" />
-        </a>
-        <a href="https://uvafoundry.com" target="_blank" rel="noopener" aria-label="The Foundry">
-          <img src="/foundry.svg" alt="" height="28" />
-        </a>
-        <a href="https://engineering.virginia.edu/offices-programs/ventureforward" target="_blank" rel="noopener" aria-label="VentureForward at UVA Engineering">
-          <img class="ventureforward" src="/ventureforward.png" alt="" height="44" />
-        </a>
-      </div>
     </aside>
   </div>
 {:else}
@@ -175,8 +164,7 @@
     padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
     padding-right: max(var(--gutter), calc((100% - var(--col)) / 2));
   }
-  /* bottom-right corner at the pane's gutter, mirroring the logos bottom-left,
-     centred on the same line; the rule above it runs the width of the pane */
+  /* footer aligned with the copy; the rule runs the width of the pane */
   .col > :global(footer) {
     margin-top: var(--gap);
     /* left edge lines up with the copy, right edge with the gutter */
@@ -197,23 +185,6 @@
     flex: 1 1 auto;
     min-height: 0;
   }
-  .logos {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    padding: 0 var(--gutter) 20px;
-    mix-blend-mode: screen;
-  }
-  .logos a {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    opacity: 0.7;
-    filter: grayscale(1);
-    transition: opacity 0.25s ease, filter 0.25s ease;
-  }
-  .logos a:hover, .logos a:focus-visible { opacity: 1; filter: grayscale(0); }
 
   @media (max-width: 899px) {
     .nav { padding-top: calc(12px + env(safe-area-inset-top)); }
@@ -228,11 +199,8 @@
     .right {
       height: clamp(340px, 56dvh, 620px);
     }
-    .logos { gap: 22px; padding-bottom: 12px; }
-    .logos img { height: 24px; }
-    .logos .ventureforward { height: 34px; }
     .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --gap: 72px; --portrait: 100%; }
-    /* stacked: one gap below the logos, between sections, and above the footer */
+    /* stacked: one gap below the graphic, between sections, and above the footer */
     .col { min-height: 0; display: block; padding-top: var(--gap); }
     .col > :global(.block:last-of-type) { margin-bottom: 0; }
     .left {

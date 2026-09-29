@@ -1,6 +1,6 @@
 # builders@uva
 
-Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left with the UVA and Foundry logos beneath it, copy scrolling on the right in a single 600px column centred in its pane, with section rules running the full pane width; below 900px the panes stack, graphic first. Events and Apply are full-width pages. A nav in the top-left (mark, Events, Apply) and a one-line footer (`src/lib/Footer.svelte`: copyright and a live Charlottesville clock) are on every page.
+Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The home page is a 55/45 split: the mark rendered as live ASCII on the left, copy scrolling on the right in a single 600px column centred in its pane, with section rules running the full pane width; below 900px the panes stack, graphic first. Events and Apply are full-width pages. A nav in the top-left (mark, Events, Apply) and a shared footer (`src/lib/Footer.svelte`: copyright, a live Charlottesville clock, and the University non-affiliation notice) are on every page.
 
 Vertical spacing comes from one scale in `src/app.css` (`--s2` to `--s7`); use those rather than ad hoc pixel values so sections keep the same rhythm.
 
@@ -42,7 +42,6 @@ Only `@virginia.edu` addresses are accepted. A hidden honeypot field silently dr
 - `src/lib/Ascii.svelte` mounts the field into a `<pre>` and scales it to fill its pane.
 - `public/favicon.svg`, `public/favicon-16.png`, `public/favicon-32.png` and `public/apple-touch-icon.png` are the favicon: `b@` set in Berkeley Mono at weight 700, cut to outlines, dark on an off-white tile so it reads on light and dark browser chrome.
 - `public/og.png` is the Open Graph image, 1200 by 630: the hands rendered as ASCII on the diagonal with the `b@` mark between the fingertips.
-- `public/foundry.svg` is The Foundry nameplate. `public/uva.svg` is the University of Virginia wordmark, public domain via Wikimedia Commons, recoloured to off-white.
 - `public/nathan.png` is a placeholder until a photo is dropped in. `public/hari.png` and `public/quan.png` are real.
 
 ## Admin dashboard

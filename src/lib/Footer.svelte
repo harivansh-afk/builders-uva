@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
 
-  // `inline`: one line, no rule, for the home page's bottom-right corner.
+  // `inline`: right-aligned metadata for the home page.
   let { inline = false } = $props()
 
   // Charlottesville time, ticking. A small sign the site is a live thing.
@@ -24,6 +24,10 @@
   <span>© {year} builders@uva</span>
   {#if inline}<span class="sep" aria-hidden="true">|</span>{/if}
   <span class="clock" aria-label="Current time in Charlottesville">Charlottesville <span class="t">{now}</span></span>
+  <p class="notice">
+    <strong>Non-affiliation notice</strong>
+    Although this organization has members who are University of Virginia students and may have University employees associated or engaged in its activities and affairs, the organization is not a part of or an agency of the University. It is a separate and independent organization, which is responsible for and manages its own activities and affairs. The University does not direct, supervise or control the organization and is not responsible for the organization’s contracts, acts or omissions.
+  </p>
 </footer>
 
 <style>
@@ -42,6 +46,15 @@
     color: var(--muted);
   }
   .clock .t { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .notice {
+    flex: 0 0 100%;
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--soft);
+  }
+  .notice strong { display: block; margin-bottom: 8px; color: var(--fg); }
 
   @media (min-width: 900px) {
     .inline {
