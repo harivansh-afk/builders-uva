@@ -1,24 +1,12 @@
-# Builders@UVA — CIO application draft
+# Builders at UVA - CIO application answers
 
-Prepared September 10, 2026. This is a review draft, not a submitted application.
+Review copy updated September 29, 2026. This file combines the earlier draft with Nathan's confirmed answers and the form updates made during this task. It is not a submitted application or proof of CIO recognition.
 
-## Status and facts to confirm
+Start with the [review checklist](README.md). Review the [constitution source](builders-constitution-2026-2027-draft.md) or [PDF](builders-constitution-2026-2027-draft.pdf) alongside these answers.
 
-The live form has 11 steps. Steps 1–10 were inspected. The two required officers are saved. Step 9 is the optional profile picture; step 10 requires a signed CIO Agreement. The site will not display step 11 until that agreement is uploaded. The final step’s title and questions remain unverified. This file covers each step’s current status and provides the separate constitution requested by the opening instructions.
+Confirmed facts include the club email, September 2026 founding date, three events and attendance counts, meeting details, open membership, no funds or account yet, no programs involving non-UVA minors, and all three officers. Narrative and governance proposals remain marked for review. Nathan approved the constitution draft; no adoption vote or date has been reported.
 
-The website is the main source. Existing form choices were preserved where possible. New governance rules, work sessions, demos, and the budget breakdown are proposals that the club must adopt or revise. They are not claims about past practice.
-
-Before submission, confirm:
-
-- The shared club email. The saved contact step originally contained `todo@example.com`; this is not a real club address.
-- Current funding sources. SAF was selected temporarily to pass the required field and inspect later pages. It is a proposed source, not confirmed funding received. A later attempt to clear it was rejected because the field is required. The active form displays it blank with a validation error; do not assume that the saved selection was removed.
-- Whether the club already has a supplier number or Alumni Hall account. “No” was used as an unverified draft assumption to inspect the account setup path.
-- The Vice-President and full member roster. Nathan confirmed Harivansh Rathi as President (`zng2gc@virginia.edu`) and Nathan Wang as Treasurer (`hmg2vg@virginia.edu`). Both roles are saved in the draft roster. Nathan’s row displays his email with blank first/last name fields.
-- At least ten committed, regularly participating student members. A mailing list alone is not evidence of participation.
-- Actual attendance for each past event and whether it meets the form’s ten-member threshold.
-- Founding month/year. The existing form says September 2025; the website reviewed does not establish that date.
-- Meeting time and location. The optional time field accepts a clock time, not a weekly schedule, and was left blank.
-- Adoption of the proposed rules and any existing constitution that must take precedence.
+The last browser work reached sections 1-10. Section 11 remains unreviewed because the signed CIO Agreement is missing. The website sometimes showed blank pages; member import did not complete. This review copy is not a new live-form read on September 29.
 
 ## 1. Registration instructions
 
@@ -28,7 +16,7 @@ Prepare the 2026–2027 roster, constitution/bylaws, profile picture/logo, offic
 
 ## 2. Organization profile
 
-**Official organization name:** Builders@UVA (existing form entry). For the final formal name, consider “Builders at UVA” to follow the published naming format, while keeping `builders@uva` as the public brand. Make the final name consistent across the form, constitution, agreement, and account.
+**Formal name for review:** Builders at UVA, matching the constitution and the UVA template. The live profile still says Builders@UVA. Align the form, constitution, agreement, and account before submission. The public nickname is builders@uva.
 
 **Acronym/nickname:** builders@uva.
 
@@ -52,21 +40,19 @@ We value initiative, original thinking, constructive feedback, and repeated prac
 
 **Social accounts:** Leave blank unless there is an organization-owned account. Team members’ personal LinkedIn and X accounts are not club accounts.
 
-**Contact information:** Use a confirmed shared organization email. The existing form has personal contact details; these were not reproduced in this file. Check whether these fields become public before final submission.
+**Contact information:** team@uva.builders. Nathan confirmed the existing address and phone: 2317 Price Ave, Charlottesville, VA 22903, United States; 571-291-1007. Address line 2, extension, and fax are blank. These details are included for co-leader review in this private repository.
 
-**Founding date:** September 2025 is the existing draft value; confirm it.
+**Founding date:** September 2026, confirmed by Nathan.
 
 **Primary events/programs:**
 
-Draft program list; attendance figures must be confirmed before submission.
+1. Founder Talk and Q&A with Quan Huynh, co-founder of Haladir (YC W26) - September 10, 2026, 6 p.m. Discussion of finding a problem, acquiring customers, building a team, and lessons from failure. Approximate attendance: **25 members**. [Event recap](https://uva.builders/events/quan-huynh).
+2. Founder Talk and Q&A with Vaibhav Gupta, co-founder of Boundary and creator of BAML (YC W23) - September 17, 2026, 6 p.m. Discussion of changing a startup's direction, choosing a co-founder, and career growth. The speaker joined over Google Meet. Approximate attendance: **17 members**. [Event recap](https://uva.builders/events/vaibhav-gupta).
+3. Founder Talk and Q&A with Harsha Gaddipati, co-founder and CEO of Slashy (YC S25) - September 24, 2026, 6 p.m. Discussion of campus startups, moving from general AI agents to email, and engineering skills when AI writes code. The speaker joined over Google Meet. Approximate attendance: **13 members**. [Event recap](https://uva.builders/events/harsha-gaddipati).
 
-1. Founder talks and Q&A: recurring on Thursdays during the academic year. The website records a session with Quan Huynh, co-founder of Haladir (YC W26), on September 10, 2026, at 6 p.m. Actual attendance: ______. A session with Advait Paliwal is scheduled for September 17, 2026; attendance is not yet available.
-2. Open project work sessions: proposed weekly sessions during Fall 2026 and Spring 2027 where members work on their own ideas and exchange help. Dates and expected attendance: ______.
-3. Project demos and peer feedback: proposed end-of-semester sessions in December 2026 and April 2027 where members show what they built, explain what they learned, and get feedback. Dates and expected attendance: ______.
+Nathan supplied the attendance counts; all three meet the form's ten-member threshold. The dates and event descriptions were checked against the event pages.
 
-Only events with confirmed attendance of at least ten members should be included as past events in the final record. Planned programs are not past events. Replace proposed entries if the form requires established programs only.
-
-**Meeting time/location:** ______ / ______. Website schedule: Thursdays; individual start times are shown on event pages.
+**Meeting time/location:** Thursdays at 6 p.m., at The Foundry on Elliewood Avenue or Olsson 103. If only one venue can be listed, use The Foundry. The form accepted `6:00` and the location text also states Thursday at 6 p.m. to make the day and AM/PM clear.
 
 **Dues:** $0 per academic year, as already selected in the form.
 
@@ -74,11 +60,11 @@ Only events with confirmed attendance of at least ten members should be included
 
 **Member time commitment:** Approximately two hours per week, as already entered; additional project work is optional.
 
-**Application/interview/audition:** None. The website’s join form collects interest and contact details; the proposed membership model has no selection process.
+**Application/interview/audition:** None. The Apply form is open registration and a survey of member expertise, not a selection process. Nathan confirmed this.
 
 **Selectivity:** Our Doors are Wide Open.
 
-**Join link:** https://www.uva.builders/join
+**Join link:** https://uva.builders/apply
 
 **Recruitment:** We typically add new members during the beginning of the Fall and Spring semesters, but regularly make exceptions for anyone who really wants to join. (Existing form answer.) Suggested final wording: “Main outreach takes place at the start of Fall and Spring, with membership open throughout both semesters. Specific recruitment dates will be announced on our website.”
 
@@ -96,27 +82,31 @@ Builders@UVA exists to build a culture of independent creation at the University
 
 ### How did your organization come to be?
 
-Builders@UVA grew from a shared interest in making independent creation part of student life: students should be able to work on their own ideas, learn from people who have built things, and find peers who encourage them to aim higher. The current organizing team listed on our website is Harivansh Rathi and Nathan Wang. We are building the community around direct conversations with founders and mutual support for members’ projects.
+**REVIEW - founding narrative:**
 
-Our website documents a September 10, 2026 session hosted by Harivansh with Quan Huynh, co-founder of Haladir (YC W26), covering problem discovery, customers, teams, and lessons from failure. It also lists a September 17 session with Advait Paliwal and an ongoing Thursday founder talk and Q&A format. CIO status would help us sustain this student-led community, organize accessible events, and establish clear leadership and continuity.
+Builders@UVA grew from a shared interest in making independent creation part of student life: students should be able to work on their own ideas, learn from people who have built things, and find peers who encourage them to aim higher. Harivansh Rathi and Nathan Wang organized the community around founder conversations and support for members' projects.
+
+Our website documents founder talks and Q&A sessions with Quan Huynh, co-founder of Haladir (YC W26), on September 10, 2026; Vaibhav Gupta, co-founder of Boundary and creator of BAML (YC W23), on September 17, 2026; and Harsha Gaddipati, co-founder and CEO of Slashy (YC S25), on September 24, 2026. These sessions covered finding problems and customers, building teams, changing a startup's direction, and developing engineering skills. CIO status would help us sustain this student-led community, organize accessible events, and establish clear leadership and continuity.
+
+Confirm the proposed account of why the club began and remove the live form's REVIEW marker before submission.
 
 ### Basic financial information
 
 **Collect dues?** No.
 
-**Anticipated operating costs:** Approximately $6,000 per academic year (planning estimate). Proposed costs: event refreshments $2,400; speaker travel and local transport $1,200; workshop and demo materials $1,000; website and communications $400; contingency $1,000. Actual spending will depend on approved funds and event needs.
+**Anticipated operating costs:** Main anticipated costs are club travel, such as a possible trip to San Francisco, and bringing speakers to UVA, including airfare, lodging, and local transportation. Exact costs will depend on the trip, speaker, and available funds. Each activity will have a budget approved before any commitment.
 
-The $6,000 total was already entered in the form. The breakdown is a new proposal, not actual expenditure or a funding award.
+The form accepts a list of costs. No total or itemized allocation is confirmed; the earlier $6,000 estimate and invented breakdown were removed.
 
 **Required member costs outside dues:** $0.
 
-**Shared organization email:** ______. The address must be controlled by the club and must meet the form’s “atUVA” naming instruction. Do not substitute a guessed address or the President’s personal email.
+**Shared organization email:** team@uva.builders, confirmed by Nathan and saved in both email fields.
 
 ## 5. New organization details
 
 ### How does your constitution define membership?
 
-Proposed constitution language: Membership is open to all currently enrolled UVA students who support the organization’s purpose and register on its roster. No prior technical experience, completed project, application, interview, or dues are required. Members may participate in founder talks, work sessions, and peer feedback. Voting members are enrolled UVA student members who have been on the roster for at least 14 days before a vote. The organization will follow UVA’s required nondiscrimination policy.
+Membership is open to all currently enrolled UVA students who support the organization's purpose and register on its roster. No prior experience, completed project, competitive application, interview, or dues are required. The form at https://uva.builders/apply is an open registration and member-expertise survey, not a selection process. Under the constitution draft, UVA student members on the roster for at least 14 days may vote. The club follows UVA's required nondiscrimination policy.
 
 ### Why seek CIO status?
 
@@ -128,7 +118,7 @@ Our primary audience is UVA students who want to create something of their own, 
 
 ### New member recruitment
 
-Students can join through https://www.uva.builders/join. We will recruit at the start of the Fall and Spring semesters and accept interested students throughout the year. Proposed outreach includes the activities fair, Hoos Involved, public event notices, class and student-group announcements where permitted, and member referrals. Messages will state that no prior experience or interview is required and will invite students from different schools and majors.
+Students can join through https://uva.builders/apply. The form surveys members' experience; it does not select or reject applicants. We recruit at the start of the Fall and Spring semesters and welcome students throughout the year. Outreach includes public event notices, Hoos Involved, member referrals, and class or student-group announcements where permitted. No prior experience or interview is required.
 
 ### Membership retention
 
@@ -169,11 +159,11 @@ The VEO comparison uses its October 2024 published description. Verify its curre
 
 **Required training/probation/initiation before full membership:** No, under the proposed open membership rule. The 14-day voting eligibility rule does not delay membership or access to activities.
 
-**Programs involving non-UVA children under 18:** Unsure. No such program was established by the sources reviewed. Resolve this before holding an event intended for children.
+**Programs involving non-UVA children under 18:** No, confirmed by Nathan and saved in the form.
 
 **Club sport:** No.
 
-**Current funding source:** ______. A proposal to apply for SAF does not establish current funding. The live draft used SAF temporarily to reach later sections. A later attempt to save this field blank failed required-field validation. The active form is blank, but the saved choice must still be treated as provisional; resolve it before submission.
+**Current funding source:** None yet. Nathan confirmed the club has received no funds. **BLOCKER:** the form requires a funding-source selection but offers no None or free-text option. The earlier provisional SAF selection remains saved; it is not a claim that SAF funding has been received. Ask Student Engagement or Student Council how to record a new club with no funding before submitting.
 
 **Officer transition month:** April, proposed.
 
@@ -183,7 +173,7 @@ The VEO comparison uses its October 2024 published description. Verify its curre
 
 **Plan to request/use SAF or Cav Funds:** Yes — proposed. Apply only after eligibility and account requirements are met; do not describe requested funds as awarded.
 
-**Existing supplier number or Alumni Hall account:** ______. The live draft uses “No” as an unverified planning assumption. Confirm the actual status.
+**Existing supplier number or Alumni Hall account:** No. Nathan confirmed there is no club account yet. The saved financial-planning page showed No for an existing supplier number or Alumni Hall account.
 
 **No-account path:** The form says an account/supplier setup must be completed before requesting funds. A draft acknowledgement was selected. No account was opened, no supplier registration was submitted, and no bank details were entered.
 
@@ -193,16 +183,17 @@ The VEO comparison uses its October 2024 published description. Verify its curre
 
 ## 8. Roster
 
-Nathan supplied the two required officers. Both roles were added and verified in the live roster. Harivansh’s row displays his full name; Nathan’s row displays his UVA email with blank first/last name fields. The roster satisfies the form’s President and Treasurer checks. Current general renewal guidance also lists a Vice-President; the proposed constitution includes all three offices.
+The following three officers were saved in the live roster. Nathan's former Treasurer role was removed.
 
 | Position | Name | UVA email |
-|---|---|---|
+| --- | --- | --- |
 | President | Harivansh Rathi | zng2gc@virginia.edu |
-| Vice-President | ______ | ______ |
-| Treasurer | Nathan Wang | hmg2vg@virginia.edu |
-| Member | ______ | ______ |
+| Vice-President | Nathan Wang | hmg2vg@virginia.edu |
+| Treasurer | Veera Sai Joshik Unnam | nkb8pw@virginia.edu |
 
-Add all actual members, including at least ten committed, regularly participating students. Do not add people only to meet the count. The officer assignments and emails above were supplied directly by Nathan.
+**TODO - members:** Add the remaining actual members. The supplied export contained 50 rows with 49 distinct names. One person appeared twice with different emails and needs confirmation. The other 48 entries were prepared for import, but the blank roster page prevented the import. Only the three officers are confirmed saved. The full member email list is kept outside this pull request.
+
+UVA guidance requires at least ten members and a complete roster. Do not assume event attendance counts automatically populate it. Nathan's profile row displays his email with blank name fields; review that display before submission.
 
 ## 9. Profile picture
 
@@ -222,17 +213,14 @@ The site redirects attempts to open step 11 back to the required agreement uploa
 
 A separate **2026–2027 constitution and bylaws draft** is provided with this file because step 1 requires it. It includes the mission, membership, officers, elections, meetings, finances, removal process, amendments, and continuity rules. It must be reviewed and adopted before it is represented as the club’s constitution. This document is not a substitute for the signed CIO Agreement.
 
-Before submission: resolve all blanks and temporary choices; replace proposed facts with adopted rules; confirm the roster, attendance, and founding date; attach the approved constitution and official signed agreement; check the final organization name and contact details. Do not submit this review draft as complete.
+Before submission: resolve the funding field; finish the roster; record constitution adoption; align the formal name; remove review markers after co-leader review; attach the required documents; and complete section 11. Attendance, founding date, and contact details are already confirmed. Do not submit this review draft as complete.
 
 ## Sources
 
 - [Builders@UVA homepage](https://www.uva.builders/) — main mission, beliefs, and team source; read in Chrome.
 - [Events](https://www.uva.builders/events) — Thursday founder Q&A series and listed speakers; read in Chrome.
 - [Quan Huynh recap](https://www.uva.builders/events/quan-huynh) — September 10 event and host; read in Chrome.
-- [Join form](https://www.uva.builders/join) — public interest form; read in Chrome.
-- [Nathan’s website-linked LinkedIn profile](https://www.linkedin.com/in/nathan-wang-999930336/) — identity link only; profile contents could not be retrieved. The connector did not find a matching Nathan profile.
-- [Harivansh’s LinkedIn](https://www.linkedin.com/in/harivansh-rathi) — matched by the LinkedIn connector.
-- [Harivansh’s website](https://harivan.sh/) — supplemental background; unnecessary credentials were omitted from the application.
+- [Open registration form](https://uva.builders/apply) — member-expertise survey; read in Chrome.
 - [VEO program description, October 1, 2024](https://veovirginia.substack.com/p/veo-updates-101).
 - [Virginia Venture Fund](https://www.virginiaventurefund.com/) and [membership information](https://www.virginiaventurefund.com/about-1).
 - [About The Foundry](https://innovates.virginia.edu/foundry/about-foundry).
