@@ -4,6 +4,8 @@ Site for builders@uva, built with Svelte 5 and Vite, deployed on Vercel. The hom
 
 Vertical spacing comes from one scale in `src/app.css` (`--s2` to `--s7`); use those rather than ad hoc pixel values so sections keep the same rhythm.
 
+The header’s top-right “Non-affiliation policy” button opens the full statement. Click outside it or press Escape to close. Logo assets remain in `public/`, but are not displayed on the site.
+
 ```sh
 bun install
 bun run dev      # http://127.0.0.1:8797
