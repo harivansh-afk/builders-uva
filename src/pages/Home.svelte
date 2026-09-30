@@ -11,8 +11,8 @@
 
   // Social icons only render when their links are set.
   const founders = [
-    { name: 'Hari', img: '/hari-linkedin.png', zoom: 1.25, website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
-    { name: 'Nathan', img: '/nathan.png', website: 'https://nathanwang.dev/#about', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/', x: 'https://x.com/NathanWang78302' },
+    { name: 'Hari', role: 'President', img: '/hari-linkedin.png', zoom: 1.25, website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
+    { name: 'Nathan', role: 'Vice-President', img: '/nathan.png', website: 'https://nathanwang.dev/#about', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/', x: 'https://x.com/NathanWang78302' },
   ]
 </script>
 
@@ -52,6 +52,7 @@
           </span>
         {/if}
         <div class="who">
+          <p class="role">{f.role}</p>
           <p class="name">{f.name}</p>
           <div class="socials">
             {#if f.linkedin}
@@ -109,6 +110,7 @@
     transform: scale(var(--zoom, 1));
   }
   .who { display: grid; gap: 4px; }
+  .founders .role { font-size: 13px; color: var(--muted); }
   .founders .name { font-size: 17px; font-weight: 500; }
   .socials { display: flex; margin-left: -8px; }
   .social {
