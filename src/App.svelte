@@ -9,6 +9,7 @@
   import Register from './pages/Register.svelte'
   import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
+  import NonAffiliation from './lib/NonAffiliation.svelte'
   import { route } from './lib/router.svelte.js'
   import { eventBySlug } from './lib/events.js'
 
@@ -35,11 +36,14 @@
   const home = $derived(page.name === 'home')
 </script>
 
-<nav class="nav" aria-label="Pages">
-  <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}>b@</a>
-  <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
-  <a href="/apply" aria-current={section === 'join' ? 'page' : undefined}>Apply</a>
-</nav>
+<header class="header">
+  <nav class="nav" aria-label="Pages">
+    <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}>b@</a>
+    <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
+    <a href="/apply" aria-current={section === 'join' ? 'page' : undefined}>Apply</a>
+  </nav>
+  {#key route.path}<NonAffiliation />{/key}
+</header>
 
 {#if home}
   <div class="site">
@@ -51,17 +55,6 @@
     </main>
     <aside class="right">
       <div class="stage"><Ascii /></div>
-      <div class="logos">
-        <a href="https://www.virginia.edu" target="_blank" rel="noopener" aria-label="University of Virginia">
-          <img src="/uva.svg" alt="" height="34" />
-        </a>
-        <a href="https://uvafoundry.com" target="_blank" rel="noopener" aria-label="The Foundry">
-          <img src="/foundry.svg" alt="" height="28" />
-        </a>
-        <a href="https://engineering.virginia.edu/offices-programs/ventureforward" target="_blank" rel="noopener" aria-label="VentureForward at UVA Engineering">
-          <img class="ventureforward" src="/ventureforward.png" alt="" height="44" />
-        </a>
-      </div>
     </aside>
   </div>
 {:else}
@@ -90,15 +83,26 @@
 
 <style>
   /* ---------- top-left page switcher, on every page ---------- */
-  .nav {
+  .header {
     position: absolute; /* scrolls away with the page rather than riding over the copy */
     z-index: 10;
     top: 0;
     left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px var(--gutter);
+    pointer-events: none;
+  }
+  .header > :global(*) { pointer-events: auto; }
+  .nav {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 18px var(--gutter);
+    flex-shrink: 0;
+    padding: 6px 0;
     font-family: var(--mono);
     font-size: 14px;
     letter-spacing: 0.14em;
@@ -175,8 +179,7 @@
     padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
     padding-right: max(var(--gutter), calc((100% - var(--col)) / 2));
   }
-  /* bottom-right corner at the pane's gutter, mirroring the logos bottom-left,
-     centred on the same line; the rule above it runs the width of the pane */
+  /* bottom-right corner at the pane's gutter; the rule runs the width of the pane */
   .col > :global(footer) {
     margin-top: var(--gap);
     /* left edge lines up with the copy, right edge with the gutter */
@@ -197,26 +200,8 @@
     flex: 1 1 auto;
     min-height: 0;
   }
-  .logos {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    padding: 0 var(--gutter) 20px;
-    mix-blend-mode: screen;
-  }
-  .logos a {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
-    opacity: 0.7;
-    filter: grayscale(1);
-    transition: opacity 0.25s ease, filter 0.25s ease;
-  }
-  .logos a:hover, .logos a:focus-visible { opacity: 1; filter: grayscale(0); }
-
   @media (max-width: 899px) {
-    .nav { padding-top: calc(12px + env(safe-area-inset-top)); }
+    .header { padding-top: calc(6px + env(safe-area-inset-top)); }
 
 
     .site {
@@ -228,11 +213,8 @@
     .right {
       height: clamp(340px, 56dvh, 620px);
     }
-    .logos { gap: 22px; padding-bottom: 12px; }
-    .logos img { height: 24px; }
-    .logos .ventureforward { height: 34px; }
     .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --gap: 72px; --portrait: 100%; }
-    /* stacked: one gap below the logos, between sections, and above the footer */
+    /* stacked: one gap below the graphic, between sections, and above the footer */
     .col { min-height: 0; display: block; padding-top: var(--gap); }
     .col > :global(.block:last-of-type) { margin-bottom: 0; }
     .left {
@@ -246,6 +228,9 @@
   }
   @media (max-width: 599px) {
     .site { --measure: none; }
+    .nav { gap: 4px; font-size: 12px; }
+    .nav a { padding-inline: 6px; }
+    .nav .mark { margin-right: 4px; padding-right: 6px; }
   }
   @media (max-width: 899px) and (max-height: 500px) {
     .right { height: 320px; }
