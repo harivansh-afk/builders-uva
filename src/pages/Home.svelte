@@ -110,8 +110,7 @@
     transform: scale(var(--zoom, 1));
   }
   .who { display: grid; gap: 4px; }
-  .founders .role { text-transform: uppercase; }
-  .founders .role,
+  .founders .role { font-size: 12px; color: var(--muted); text-transform: uppercase; }
   .founders .name { font-size: 17px; font-weight: 500; }
   .socials { display: flex; margin-left: -8px; }
   .social {
@@ -129,7 +128,6 @@
   @media (min-width: 900px) {
     .founders { display: flex; gap: var(--s4); }
     .portrait { width: var(--portrait); margin-bottom: 8px; }
-    .founders .role,
     .founders .name { font-size: 15px; }
     .who { gap: 0; }
   }
