@@ -10,6 +10,12 @@ bun run dev      # http://127.0.0.1:8797
 bun run build    # static output in dist/
 ```
 
+## Non-affiliation notice
+
+The shared footer contains the complete statement behind a “Non-affiliation policy” disclosure. At desktop widths it sits at the bottom left and opens on mouse hover or keyboard activation. Below 900px it sits in the normal footer and expands in place by tap/click, without a floating overlay.
+
+This presentation is not confirmed compliant with UVA’s [prominent-display requirement](https://uvapolicy.virginia.edu/policy/STAF-002#Dealings_with_Third_Parties). Obtain UVA approval for a closed disclosure, or display the full statement by default, before certifying compliance in the CIO application.
+
 ## Pages
 
 - `/` is the home page: `src/pages/Home.svelte`. Copy lives in the `beliefs` and `founders` arrays at the top. A founder's `linkedin` URL renders an icon next to their name; leave it `null` to hide it.
