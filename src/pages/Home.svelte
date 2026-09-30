@@ -52,8 +52,8 @@
           </span>
         {/if}
         <div class="who">
-          <p class="role">{f.role}</p>
           <p class="name">{f.name}</p>
+          <p class="role">{f.role}</p>
           <div class="socials">
             {#if f.linkedin}
               <a class="social" href={f.linkedin} target="_blank" rel="noopener" aria-label="{f.name} on LinkedIn" title="LinkedIn">
