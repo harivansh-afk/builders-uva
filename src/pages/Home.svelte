@@ -110,7 +110,7 @@
     transform: scale(var(--zoom, 1));
   }
   .who { display: grid; gap: 4px; }
-  .founders .role { font-size: 12px; color: var(--muted); text-transform: uppercase; }
+  .founders .role { font-size: 13px; color: var(--muted); text-transform: uppercase; }
   .founders .name { font-size: 17px; font-weight: 500; }
   .socials { display: flex; margin-left: -8px; }
   .social {
