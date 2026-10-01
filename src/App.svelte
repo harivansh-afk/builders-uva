@@ -9,7 +9,7 @@
   import Register from './pages/Register.svelte'
   import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
-  import NonAffiliation from './lib/NonAffiliation.svelte'
+  import Legal from './pages/Legal.svelte'
   import { route } from './lib/router.svelte.js'
   import { eventBySlug } from './lib/events.js'
 
@@ -18,6 +18,7 @@
   const page = $derived.by(() => {
     const p = route.path
     if (p === '/') return { name: 'home', title: 'builders@uva' }
+    if (p === '/legal') return { name: 'legal', title: 'Legal · builders@uva' }
     if (p === '/events') return { name: 'events', title: 'Events' }
     const registration = p.match(/^\/events\/([^/]+)\/register\/?$/)
     if (registration) return { name: 'register', slug: registration[1], title: 'Register' }
@@ -42,7 +43,6 @@
     <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
     <a href="/apply" aria-current={section === 'join' ? 'page' : undefined}>Apply</a>
   </nav>
-  {#key route.path}<NonAffiliation />{/key}
 </header>
 
 {#if home}
@@ -68,6 +68,8 @@
         <Register slug={page.slug} />
       {:else if page.name === 'join'}
         <Join />
+      {:else if page.name === 'legal'}
+        <Legal />
       {:else if page.name === 'admin'}
         <Admin />
       {:else}

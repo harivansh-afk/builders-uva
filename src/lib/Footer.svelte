@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
 
-  // `inline`: one line, no rule, for the home page's bottom-right corner.
+  // `inline`: compact spacing for the home page footer.
   let { inline = false } = $props()
 
   // Charlottesville time, ticking. A small sign the site is a live thing.
@@ -21,15 +21,17 @@
 </script>
 
 <footer class="foot" class:inline>
-  <span>© {year} builders@uva</span>
-  {#if inline}<span class="sep" aria-hidden="true">|</span>{/if}
-  <span class="clock" aria-label="Current time in Charlottesville">Charlottesville <span class="t">{now}</span></span>
+  <a class="legal" href="/legal">Legal</a>
+  <div class="details">
+    <span>© {year} builders@uva</span>
+    {#if inline}<span class="sep" aria-hidden="true">|</span>{/if}
+    <span class="clock" aria-label="Current time in Charlottesville">Charlottesville <span class="t">{now}</span></span>
+  </div>
 </footer>
 
 <style>
   .foot {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: baseline;
     gap: 12px var(--s3);
@@ -41,11 +43,23 @@
     text-transform: uppercase;
     color: var(--muted);
   }
+  .legal { flex-shrink: 0; }
+  .legal:hover { color: var(--fg); }
+  .details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 12px;
+    min-width: 0;
+    margin-left: auto;
+    text-align: right;
+  }
   .clock .t { color: var(--muted); font-variant-numeric: tabular-nums; }
 
   @media (min-width: 900px) {
     .inline {
-      justify-content: flex-end;
+      flex-wrap: wrap;
       gap: var(--s4) 12px;
       border-top: 0;
     }
@@ -63,6 +77,6 @@
   }
 
   @media (max-width: 599px) {
-    .foot { flex-direction: column; align-items: flex-start; }
+    .details { flex-direction: column; align-items: flex-end; }
   }
 </style>
