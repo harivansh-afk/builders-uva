@@ -24,7 +24,7 @@
   <a class="legal" href="/legal">Legal</a>
   <div class="details">
     <span>© {year} builders@uva</span>
-    {#if inline}<span class="sep" aria-hidden="true">|</span>{/if}
+    <span class="sep" aria-hidden="true">|</span>
     <span class="clock" aria-label="Current time in Charlottesville">Charlottesville <span class="t">{now}</span></span>
   </div>
 </footer>
