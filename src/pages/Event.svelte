@@ -73,7 +73,7 @@
         {/if}
 
         {#if e.photos?.length}
-          <div class="photos" class:wide={e.photos.length > 2 && e.photos[0].width > e.photos[0].height} class:pair={e.photos.length === 2} aria-label="Photos from the event">
+          <div class="photos" class:single={!e.video?.youtube && e.photos.length === 1} class:wide={e.photos.length > 2 && e.photos[0].width > e.photos[0].height} class:pair={e.photos.length === 2} aria-label="Photos from the event">
             {#each e.photos as photo, i}
               <button type="button" class:contain={photo.fit === 'contain'} onclick={() => expandPhoto(photo)} aria-haspopup="dialog" aria-label="Expand photo: {photo.alt}">
                 <img
@@ -196,7 +196,7 @@
     background: #17171a;
   }
 
-  .pfp.logo { object-fit: contain; padding: 12px; }
+  .pfp.logo { object-fit: contain; padding: 12px; border-radius: 50%; }
 
   .media { display: grid; gap: 12px; }
   .video { aspect-ratio: 16 / 9; background: #17171a; }
@@ -229,6 +229,9 @@
   .photos.pair { grid-template-columns: 1fr 1fr; }
   .photos.pair button { grid-row: auto; aspect-ratio: 16 / 9; }
   .photos img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .photos.single { grid-template-columns: 1fr; }
+  .photos.single button { grid-row: auto; }
+  .photos.single img { height: auto; }
   /* a diagram is shown whole on white rather than cropped */
   .photos button.contain { background: #fff; }
   .photos button.contain img { object-fit: contain; }

@@ -252,7 +252,6 @@ export const events = [
     linkLabel: 'Kyrus Tech',
     description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital.',
     photos: [
-      { file: 'audience', alt: 'Students gathered at the Foundry for our first in-person speaker session.', width: 1800, height: 2400 },
       { file: 'conversation', alt: 'The room during our conversation with Dan Hall, with the speaker blurred for privacy.', width: 2400, height: 1800 },
     ],
     recap: [
@@ -260,7 +259,7 @@ export const events = [
         title: 'TL;DR',
         paragraphs: [
           'Dan joined us as our first in-person guest speaker for a conversation about his journey through tech, building companies, and the experience of selling them. It was a great evening at the Foundry—thanks to Dan and everyone who came out.',
-          'We kept the conversation unrecorded to respect Dan’s preference for privacy. These two photos capture a little of the evening.',
+          'We kept the conversation unrecorded to respect Dan’s preference for privacy. This photo captures a little of the evening.',
         ],
       },
     ],

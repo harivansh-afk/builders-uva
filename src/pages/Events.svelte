@@ -107,11 +107,10 @@
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    filter: grayscale(1);
     background: #17171a;
   }
 
-  .pfp img.logo { border-radius: 0; object-fit: contain; padding: 4px; }
+  .pfp img.logo { object-fit: contain; padding: 4px; }
 
   @media (max-width: 899px) {
     .events { gap: var(--s4); }
