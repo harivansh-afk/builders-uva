@@ -39,7 +39,7 @@
 
 <header class="header">
   <nav class="nav" aria-label="Pages">
-    <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}>b@</a>
+    <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}><img src="/mark.svg" width="32" height="32" alt="*b" /></a>
     <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
     <a href="/apply" aria-current={section === 'join' ? 'page' : undefined}>Apply</a>
   </nav>
