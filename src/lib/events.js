@@ -243,7 +243,6 @@ export const events = [
   {
     slug: 'dan-hall',
     name: 'Dan Hall',
-    tag: 'Kyrus / Legion',
     date: '2026-10-01',
     img: '/events/dan-hall/kyrus.png',
     imgType: 'logo',
@@ -267,7 +266,6 @@ export const events = [
   {
     slug: 'steve-morin',
     name: 'Steve Morin',
-    tag: 'Flox',
     date: '2026-10-08',
     img: '/steve-morin.webp',
     link: 'https://www.linkedin.com/in/stevebmorin/',
