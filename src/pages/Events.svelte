@@ -107,6 +107,7 @@
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
+    filter: grayscale(1);
     background: #17171a;
   }
 
