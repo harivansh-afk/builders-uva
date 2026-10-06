@@ -6,7 +6,6 @@
 
 <div class="events">
   <header class="intro">
-    <p class="eyebrow">Events</p>
     <h1 class="lede">We invite successful founders to give talks and host a short Q&amp;A <em>every Thursday.</em></h1>
   </header>
 
@@ -37,7 +36,6 @@
 
 <style>
   .events { display: grid; gap: var(--s5); }
-  .intro .eyebrow { margin-bottom: var(--s4); }
   .lede { max-width: 30ch; }
 
   .rows {

@@ -67,7 +67,7 @@
     </form>
   {:else}
     {#if event}<p>Registration is closed for this event.</p>{/if}
-    <a class="back eyebrow" href="/events">All events →</a>
+    <a class="back eyebrow" href="/events">All Thursdays →</a>
   {/if}
 </div>
 

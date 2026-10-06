@@ -19,12 +19,12 @@
     const p = route.path
     if (p === '/') return { name: 'home', title: 'builders@uva' }
     if (p === '/legal') return { name: 'legal', title: 'Legal · builders@uva' }
-    if (p === '/events') return { name: 'events', title: 'Events' }
+    if (p === '/events') return { name: 'events', title: 'Thursdays' }
     const registration = p.match(/^\/events\/([^/]+)\/register\/?$/)
     if (registration) return { name: 'register', slug: registration[1], title: 'Register' }
     if (p.startsWith('/events/')) {
       const slug = p.slice('/events/'.length)
-      return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Events' }
+      return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Thursdays' }
     }
     if (['/apply', '/apply/', '/join', '/join/'].includes(p)) return { name: 'join', title: 'Apply' }
     if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin' }
@@ -40,7 +40,7 @@
 <header class="header">
   <nav class="nav" aria-label="Pages">
     <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}><img src="/mark.svg" width="32" height="32" alt="*b" /></a>
-    <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Events</a>
+    <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Thursdays</a>
     <a href="/apply" aria-current={section === 'join' ? 'page' : undefined}>Apply</a>
   </nav>
 </header>
@@ -120,7 +120,7 @@
     transition: color 0.15s ease, border-color 0.15s ease;
   }
   .nav a:hover { color: var(--fg); }
-  .nav a[aria-current='page'] { color: var(--fg); border-color: var(--hair); }
+  .nav a[aria-current='page'] { color: var(--fg); }
   .nav .mark { padding: 0 10px 0 0; margin-right: 8px; border: 0; text-transform: none; letter-spacing: -0.04em; font-size: 15px; font-weight: 600; color: var(--fg); }
 
   /* ---------- full-width pages: events, join ---------- */

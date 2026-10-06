@@ -69,7 +69,6 @@
 
 <div class="join">
   <header class="intro">
-    <p class="eyebrow">Apply</p>
     {#if status === 'done'}
       <h1 class="lede">Thanks, {fullName.trim().split(/\s+/)[0]}. Your application is <em>in.</em></h1>
     {:else}
@@ -80,7 +79,7 @@
   {#if status === 'done'}
     <div class="done">
       <p>We'll review it and reach out at <span class="hl">{email.trim().toLowerCase()}</span>.</p>
-      <a class="next eyebrow" href="/events">Events →</a>
+      <a class="next eyebrow" href="/events">Thursdays →</a>
     </div>
   {:else}
     <form onsubmit={submit} novalidate>
@@ -125,8 +124,7 @@
 
 <style>
   /* same skeleton as /events: label, lede, then full-width rows under one rule */
-  .join { display: grid; gap: var(--s5); }
-  .intro .eyebrow { margin-bottom: var(--s4); }
+  .join { display: grid; gap: var(--s4); }
   .lede { max-width: 30ch; }
 
   /* rules sit between questions only */
@@ -141,7 +139,7 @@
     border: 0;
     border-bottom: 1px solid var(--hair);
     border-radius: 0;
-    padding: 10px 0 12px;
+    padding: 6px 0 10px;
     font: inherit;
     font-family: var(--mono);
     font-size: 16px;
@@ -155,14 +153,14 @@
   .opts { display: flex; flex-wrap: wrap; gap: 0 var(--s3); }
   .opts.cols {
     display: grid;
-    grid-template-columns: repeat(3, max-content);
+    grid-template-columns: repeat(5, max-content);
   }
   .opt {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    min-height: 44px;
-    padding: 8px 0;
+    min-height: 40px;
+    padding: 6px 0;
     background: none;
     border: 0;
     color: var(--muted);
@@ -202,7 +200,7 @@
     font-size: 14px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 16px 28px;
+    padding: 14px 24px;
     background: var(--fg);
     color: var(--bg);
     border: 1px solid var(--fg);
@@ -225,7 +223,8 @@
   .done .next:hover { color: var(--fg); }
 
   @media (max-width: 899px) {
-    .join { gap: var(--s4); }
+    .join { gap: var(--s3); }
+    .opts.cols { grid-template-columns: repeat(3, max-content); }
     .actions { padding: 0 4px 0 calc(4px + 4ch + 18px); }
   }
   @media (max-width: 599px) {
