@@ -250,7 +250,31 @@ export const events = [
     imgAlt: 'Kyrus Technology logo',
     link: 'https://www.kyrus-tech.com/',
     linkLabel: 'Kyrus Tech',
-    description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital. He previously worked at ManTech and investigated computer crimes as a U.S. Air Force Special Agent. Time and location to be announced.',
+    description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital.',
+    photos: [
+      { file: 'audience', alt: 'Students gathered at the Foundry for our first in-person speaker session.', width: 1800, height: 2400 },
+      { file: 'conversation', alt: 'The room during our conversation with Dan Hall, with the speaker blurred for privacy.', width: 2400, height: 1800 },
+    ],
+    recap: [
+      {
+        title: 'TL;DR',
+        paragraphs: [
+          'Dan joined us as our first in-person guest speaker for a conversation about his journey through tech, building companies, and the experience of selling them. It was a great evening at the Foundry—thanks to Dan and everyone who came out.',
+          'We kept the conversation unrecorded to respect Dan’s preference for privacy. These two photos capture a little of the evening.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'steve-morin',
+    name: 'Steve Morin',
+    tag: 'Flox',
+    date: '2026-10-08',
+    img: '/steve-morin.webp',
+    link: 'https://www.linkedin.com/in/stevebmorin/',
+    // Bio: https://stevemorin.com/ (checked October 6, 2026).
+    // Portrait: his linked GitHub account, https://github.com/smorin.
+    description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo. Join us for a conversation about his career, building products, and leading teams. Time and location to be announced.',
   },
 ]
 
