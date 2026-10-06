@@ -265,6 +265,7 @@
     .photos, .photos.pair { grid-template-columns: 1fr; }
     .photos button:first-child { grid-row: auto; grid-column: auto; }
     .photos img { height: auto; }
+    .photos.pair img { height: 100%; }
     .event { gap: 36px; }
     .head { padding-bottom: 36px; }
     .pfp { width: 80px; height: 80px; }
