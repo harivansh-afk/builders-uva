@@ -44,7 +44,7 @@
     {:else}
       <h1 class="lede">{event.name}{#if event.tag}{` (${event.tag})`}{/if}</h1>
     {/if}
-    {#if event}<p class="details">{longDate(event.date)}{event.time ? ` · ${event.time}` : ''}</p>{/if}
+    {#if event}<p class="details">{longDate(event.date)}{event.time ? ` · ${event.time}` : ''}{event.format ? ` · ${event.format}` : ''}</p>{/if}
   </header>
   {#if status === 'done'}
     <a class="back eyebrow" href="/events/{slug}">Event details →</a>

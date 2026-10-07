@@ -273,6 +273,16 @@ export const events = [
     // Portrait: his linked GitHub account, https://github.com/smorin.
     description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo. Join us for a conversation about his career, building products, and leading teams. Time and location to be announced.',
   },
+  {
+    slug: 'maxwell-nardi',
+    name: 'Maxwell Nardi',
+    date: '2026-10-22',
+    format: 'In person',
+    img: '/maxwell-nardi.webp',
+    link: 'https://www.linkedin.com/in/maxwellnardi/',
+    // Bio and portrait: his LinkedIn profile (checked October 7, 2026).
+    description: 'Maxwell Nardi is building Runlayer, which helps companies connect AI agents to their tools and data securely. He studied at UVA and joins us in person for a Q&A. Time and location to be announced.',
+  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
