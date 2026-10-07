@@ -277,7 +277,6 @@ export const events = [
     slug: 'maxwell-nardi',
     name: 'Maxwell Nardi',
     date: '2026-10-22',
-    format: 'In person',
     img: '/maxwell-nardi.webp',
     link: 'https://www.linkedin.com/in/maxwellnardi/',
     // Bio and portrait: his LinkedIn profile (checked October 7, 2026).
