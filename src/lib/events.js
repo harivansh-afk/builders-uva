@@ -271,7 +271,21 @@ export const events = [
     link: 'https://www.linkedin.com/in/stevebmorin/',
     // Bio: https://stevemorin.com/ (checked October 6, 2026).
     // Portrait: his linked GitHub account, https://github.com/smorin.
-    description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo. Join us for a conversation about his career, building products, and leading teams. Time and location to be announced.',
+    description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo.',
+    registration: 'closed',
+    photos: [
+      { file: 'room', alt: 'Harivansh, Nathan, and members in the room during the call with Steve Morin.', width: 2400, height: 1236 },
+      { file: 'steve', alt: 'Steve Morin joining over Google Meet.', width: 1020, height: 1360 },
+    ],
+    recap: [
+      {
+        title: 'TL;DR',
+        paragraphs: [
+          'Steve joined us over Google Meet for a conversation about his career and leading engineering teams. We talked about being CTO of Tripping.com through its acquisition, what separates a good acquisition from a bad one, and how founders can negotiate terms that protect their team.',
+          'From there we got into treating founding engineers well, the difference between leading Instagram Shopping at Meta and working at a smaller startup, how he measures engineers, hiring for culture, and handling scope creep on large teams. Thanks to Steve and everyone who came out.',
+        ],
+      },
+    ],
   },
   {
     slug: 'maxwell-nardi',
