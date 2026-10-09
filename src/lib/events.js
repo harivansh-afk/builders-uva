@@ -274,7 +274,7 @@ export const events = [
     description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo.',
     registration: 'closed',
     photos: [
-      { file: 'call', alt: 'Steve Morin on Google Meet beside the room of members listening.', width: 2422, height: 1820 },
+      { file: 'call', alt: 'Steve Morin answering a question over Google Meet beside Harivansh, Nathan, and members in the room.', width: 2653, height: 896 },
     ],
     recap: [
       {
