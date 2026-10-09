@@ -274,15 +274,44 @@ export const events = [
     description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo.',
     registration: 'closed',
     photos: [
-      { file: 'room', alt: 'Harivansh, Nathan, and members in the room during the call with Steve Morin.', width: 2400, height: 1236 },
-      { file: 'steve', alt: 'Steve Morin joining over Google Meet.', width: 1020, height: 1360 },
+      { file: 'call', alt: 'Steve Morin on Google Meet beside the room of members listening.', width: 2422, height: 1820 },
     ],
     recap: [
       {
-        title: 'TL;DR',
+        title: 'The session',
         paragraphs: [
-          'Steve joined us over Google Meet for a conversation about his career and leading engineering teams. We talked about being CTO of Tripping.com through its acquisition, what separates a good acquisition from a bad one, and how founders can negotiate terms that protect their team.',
-          'From there we got into treating founding engineers well, the difference between leading Instagram Shopping at Meta and working at a smaller startup, how he measures engineers, hiring for culture, and handling scope creep on large teams. Thanks to Steve and everyone who came out.',
+          'Steve joined us over Google Meet for a conversation about leading engineering teams, acquisitions, and what it takes to build a team people want to work on. He is VP of Engineering at Flox, which builds reproducible developer environments on Nix, and has held engineering leadership roles at Instagram, Asana, and Yahoo. He holds 14 U.S. patents and applications, advises early-stage developer-tools and AI companies, and has made more than 27 angel investments, including Raycast and CopilotKit.',
+        ],
+      },
+      {
+        title: 'Through an acquisition',
+        paragraphs: [
+          'Nathan opened with Steve\u2019s time as CTO of Tripping.com, which was acquired by HomeToGo. We asked what that period was like for the team, whether it was a deal the company wanted, and what separates a good acquisition from a bad one. The practical question for the founders in the room: how do you negotiate terms that look after the people who built the company with you?',
+        ],
+      },
+      {
+        title: 'Founding engineers',
+        paragraphs: [
+          'Being a founder has been de-risked: even a failed company builds a reputation and a network. Being the first engineer has not, and it rarely carries the same credit. We asked how founders can treat founding engineers well and build a place that sets them up for the rest of their careers.',
+        ],
+      },
+      {
+        title: 'Big company or startup',
+        paragraphs: [
+          'At Instagram, Steve worked on shopping, with patents on recognizing catalog products in user photos and building 3D product models. We asked how much autonomy an engineering leader has inside Meta compared with a small startup, and the tradeoffs of each.',
+        ],
+      },
+      {
+        title: 'Measuring engineers and building culture',
+        paragraphs: [
+          'Judging engineers is part of an engineering leader\u2019s job, so we asked which metrics actually matter. We also asked how to hire for culture at scale: how to find engineers who keep morale up and how to spot those who would game the numbers with commit hacking.',
+        ],
+      },
+      {
+        title: 'Scope creep on large teams',
+        paragraphs: [
+          'The last question was about managing junior engineers on a big team: what to do when someone builds an ambitious side project on their own initiative, and how leaders handle scope creep without killing the drive behind it.',
+          'Thanks to Steve and everyone who came out.',
         ],
       },
     ],
