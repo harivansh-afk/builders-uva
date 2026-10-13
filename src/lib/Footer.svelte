@@ -21,7 +21,7 @@
 </script>
 
 <footer class="foot" class:inline>
-  <a class="legal" href="/legal">Legal</a>
+  <a class="legal ink" href="/legal">Legal</a>
   <div class="details">
     <span>© {year} builders@uva</span>
     <span class="sep" aria-hidden="true">|</span>
@@ -44,7 +44,7 @@
     color: var(--muted);
   }
   .legal { flex-shrink: 0; }
-  .legal:hover { color: var(--fg); }
+
   .details {
     display: flex;
     flex-wrap: wrap;

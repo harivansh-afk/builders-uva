@@ -3,13 +3,15 @@
   import { mountInteractionSounds } from './lib/interactionSounds.js'
   import Ascii from './lib/Ascii.svelte'
   import Home from './pages/Home.svelte'
-  import Events from './pages/Events.svelte'
   import Event from './pages/Event.svelte'
-  import Join from './pages/Join.svelte'
   import Register from './pages/Register.svelte'
   import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
+  import Brackets from './lib/Brackets.svelte'
   import Legal from './pages/Legal.svelte'
+  import Events from './pages/Events.svelte'
+  import Join from './pages/Join.svelte'
+  import Team from './pages/Team.svelte'
   import { route } from './lib/router.svelte.js'
   import { eventBySlug } from './lib/events.js'
 
@@ -20,6 +22,7 @@
     if (p === '/') return { name: 'home', title: 'builders@uva' }
     if (p === '/legal') return { name: 'legal', title: 'Legal · builders@uva' }
     if (p === '/events') return { name: 'events', title: 'Thursdays' }
+    if (p === '/team') return { name: 'team', title: 'Team · builders@uva' }
     const registration = p.match(/^\/events\/([^/]+)\/register\/?$/)
     if (registration) return { name: 'register', slug: registration[1], title: 'Register' }
     if (p.startsWith('/events/')) {
@@ -39,23 +42,18 @@
 
 <header class="header">
   <nav class="nav" aria-label="Pages">
-    <a class="mark" href="/" aria-label="builders@uva home" aria-current={section === 'home' ? 'page' : undefined}><img src="/mark.svg" width="32" height="32" alt="*b" /></a>
-    <a href="/events" aria-current={section === 'events' ? 'page' : undefined}>Thursdays</a>
-    <a href="/apply" aria-current={section === 'join' ? 'page' : undefined}>Apply</a>
+    <a class="mark" href="/" aria-label="builders@uva home" aria-current={page.name === 'home' ? 'page' : undefined}><img src="/mark.svg" width="32" height="32" alt="*b" /></a>
+    <a class="tab" href="/events" aria-current={section === 'events' ? 'page' : undefined}><Brackets side="left" />Thursdays<Brackets side="right" /></a>
+    <a class="tab" href="/team" aria-current={section === 'team' ? 'page' : undefined}><Brackets side="left" />Team<Brackets side="right" /></a>
+    <a class="tab" href="/apply" aria-current={section === 'join' ? 'page' : undefined}><Brackets side="left" />Apply<Brackets side="right" /></a>
   </nav>
 </header>
 
 {#if home}
+  <div class="backdrop" aria-hidden="true"><Ascii split={[0.08, 0.13]} /></div>
   <div class="site">
-    <main class="left">
-      <div class="col">
-        <Home />
-        <Footer inline />
-      </div>
-    </main>
-    <aside class="right">
-      <div class="stage"><Ascii /></div>
-    </aside>
+    <main class="site-main"><Home /></main>
+    <div class="site-foot"><Footer inline /></div>
   </div>
 {:else}
   <main class="page" class:admin-page={page.name === 'admin'}>
@@ -68,6 +66,8 @@
         <Register slug={page.slug} />
       {:else if page.name === 'join'}
         <Join />
+      {:else if page.name === 'team'}
+        <Team />
       {:else if page.name === 'legal'}
         <Legal />
       {:else if page.name === 'admin'}
@@ -95,7 +95,7 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
-    padding: 12px var(--gutter);
+    padding: var(--edge);
     pointer-events: none;
   }
   .header > :global(*) { pointer-events: auto; }
@@ -104,7 +104,6 @@
     align-items: center;
     gap: 6px;
     flex-shrink: 0;
-    padding: 6px 0;
     font-family: var(--mono);
     font-size: 14px;
     letter-spacing: 0.14em;
@@ -121,6 +120,10 @@
   }
   .nav a:hover { color: var(--fg); }
   .nav a[aria-current='page'] { color: var(--fg); }
+  /* dotted brackets: faint on hover, solid on the current page */
+  .tab { position: relative; margin-inline: 10px; padding-inline: 4px !important; }
+  .tab:is(:hover, :focus-visible) > :global(.dots) { opacity: 1; color: var(--dim); }
+  .tab[aria-current='page'] > :global(.dots) { opacity: 1; color: var(--fg); }
   .nav .mark { padding: 0 10px 0 0; margin-right: 8px; border: 0; text-transform: none; letter-spacing: -0.04em; font-size: 15px; font-weight: 600; color: var(--fg); }
 
   /* ---------- full-width pages: events, join ---------- */
@@ -138,103 +141,48 @@
   .home { border-bottom: 1px solid var(--dim); }
   .admin-page { width: min(1600px, 100%); }
 
-  /* ---------- home: two panes, graphic pinned left, copy scrolls right ---------- */
+  /* ---------- home: one screen, the hands pinned behind it ---------- */
+  .backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  /* home is exactly one screen: the copy in the middle, the footer at the bottom */
   .site {
-    /* the copy fills one screen and no more: type, spacing and portraits
-       scale with the viewport height, capped by the pane's width */
-    --lede: clamp(16px, min(2.2vh, 1.5vw), 30px);
-    --measure: 38ch;
-    --s4: clamp(14px, 2.2vh, 40px);   /* inside a section */
-    --gap: calc(var(--s4) * 2);       /* between sections, and around the footer */
-    --portrait: clamp(64px, 9.5vh, 160px);
+    position: relative;
+    z-index: 1;
     display: grid;
-    grid-template-columns: 55fr 45fr;
+    grid-template-rows: minmax(0, 1fr) auto;
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
   }
-  .left {
-    order: 2;
-    height: 100%;
-    min-height: 0;
-    overflow-y: auto;
-    overscroll-behavior: none;
-    scrollbar-width: none;
-  }
-  .left::-webkit-scrollbar { display: none; }
-  /* Each section spans the pane so its rule runs edge to edge; the copy inside
-     sits in a column of --col, centred, never closer to the edge than a gutter. */
-  .col {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 26px; /* first label sits on the nav's line */
-  }
-  /* sections are separated by one gap, not by padding and rules;
-     the footer rule is the only line on the page */
-  .col > :global(.block) { padding: 0; border-top: 0; }
-  .col > :global(.block) > :global(:last-child) { margin-bottom: 0; }
-  .col > :global(.block) + :global(.block) { margin-top: var(--gap); }
-  .col > :global(.block:last-of-type) { margin-bottom: auto; }
-  .col > :global(.block) {
-    padding-left: max(var(--gutter), calc((100% - var(--col)) / 2));
-    padding-right: max(var(--gutter), calc((100% - var(--col)) / 2));
-  }
-  /* bottom-right corner at the pane's gutter; the rule runs the width of the pane */
-  .col > :global(footer) {
-    margin-top: var(--gap);
-    /* left edge lines up with the copy, right edge with the gutter */
-    padding: 0 var(--gutter) 32px max(var(--gutter), calc((100% - var(--col)) / 2));
-  }
+  .site-main { min-height: 0; }
 
-  .right {
-    order: 1;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
+  /* the footer keeps its old place and shape: the bottom of the right pane,
+     left edge on the copy column, right and bottom edges on the window inset */
+  .site-foot {
+    --s4: clamp(14px, 2.2vh, 40px);
+    width: 45%;
+    margin-left: auto;
   }
-  .stage {
-    position: relative;
-    flex: 1 1 auto;
-    min-height: 0;
+  .site-foot > :global(footer) {
+    padding: 0 var(--edge) var(--edge) max(var(--gutter), calc((100% - var(--col)) / 2));
   }
   @media (max-width: 899px) {
-    .header { padding-top: calc(6px + env(safe-area-inset-top)); }
+    .site-foot { width: 100%; --s4: 32px; }
+    .site-foot > :global(footer) {
+      padding: var(--s4) var(--edge) max(var(--edge), env(safe-area-inset-bottom));
+    }
+  }
 
-
-    .site {
-      grid-template-columns: minmax(0, 1fr);
-      grid-auto-rows: auto;
-      height: auto;
-      overflow: visible;
-    }
-    .right {
-      height: clamp(340px, 56dvh, 620px);
-    }
-    .site { --lede: clamp(20px, 3.2vw + 8px, 28px); --measure: 30ch; --s4: 32px; --gap: 72px; --portrait: 100%; }
-    /* stacked: one gap below the graphic, between sections, and above the footer */
-    .col { min-height: 0; display: block; padding-top: var(--gap); }
-    .col > :global(.block:last-of-type) { margin-bottom: 0; }
-    .left {
-      height: auto;
-      overflow: visible;
-    }
-    .col > :global(.block) { padding-left: var(--gutter); padding-right: var(--gutter); }
-    .col > :global(footer) {
-      padding: var(--s4) var(--gutter) calc(var(--s4) + env(safe-area-inset-bottom));
-    }
+  @media (max-width: 899px) {
+    .header { padding-top: max(var(--edge), env(safe-area-inset-top)); }
   }
   @media (max-width: 599px) {
-    .site { --measure: none; }
-    .nav { gap: 4px; font-size: 12px; }
-    .nav a { padding-inline: 6px; }
-    .nav .mark { margin-right: 4px; padding-right: 6px; }
-  }
-  @media (max-width: 899px) and (max-height: 500px) {
-    .right { height: 320px; }
+    .nav { gap: 2px; font-size: 12px; }
+    .nav a { padding-inline: 8px; }
   }
 </style>

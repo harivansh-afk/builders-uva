@@ -45,7 +45,10 @@ function noise(x, y) {
  * Build a field for a pane of the given aspect (width / height).
  * Returns { step(now), cols, rows }.
  */
-export function createField({ aspect = 0.8, rand = Math.random, horizontal = false } = {}) {
+// `split` pushes each hand outward along the axis by that fraction of the
+// hands' width, opening the gap between the fingertips. A number moves both
+// hands equally; [adam, god] moves each its own way.
+export function createField({ aspect = 0.8, rand = Math.random, horizontal = false, split = 0 } = {}) {
   // Buffer with the pane's aspect, 2x oversampled. Height fixed, width follows.
   const BH = 280
   const BW = Math.max(120, Math.round((BH * CHAR_ASPECT * aspect) / 2) * 2)
@@ -60,16 +63,21 @@ export function createField({ aspect = 0.8, rand = Math.random, horizontal = fal
   const SH = S / hands.aspect                         // hands' height
   const [gapX, gapY] = hands.gap                      // gap position, normalised in the hands' box
 
-  // hand box coords (normalised) -> buffer px
-  function toBuffer(px, py) {
-    const hx = (px - gapX) * S, hy = (py - gapY) * SH
+  const [SPLIT_A, SPLIT_G] = (Array.isArray(split) ? split : [split, split]).map((v) => v * S)
+
+  // hand box coords (normalised) -> buffer px; `side` is -1 for Adam, +1 for God
+  function toBuffer(px, py, side = px < gapX ? -1 : 1) {
+    const hx = (px - gapX) * S + (side < 0 ? -SPLIT_A : SPLIT_G), hy = (py - gapY) * SH
     const vx = hx * cos + hy * sin, vy = -hx * sin + hy * cos
     return { x: BW / 2 + vx, y: BH / 2 + vy / CHAR_ASPECT }
   }
   // buffer px -> shading, 0..1
   function shadeAt(x, y) {
     const vx = x - BW / 2, vy = (y - BH / 2) * CHAR_ASPECT
-    const hx = vx * cos - vy * sin, hy = vx * sin + vy * cos
+    let hx = vx * cos - vy * sin
+    const hy = vx * sin + vy * cos
+    if (hx > -SPLIT_A && hx < SPLIT_G) return 0
+    hx += hx < 0 ? SPLIT_A : -SPLIT_G
     const gx = ((hx / S + gapX) * GW) | 0, gy = ((hy / SH + gapY) * GH) | 0
     if (gx < 0 || gy < 0 || gx >= GW || gy >= GH) return 0
     return SHADE[gy * GW + gx] / 255
@@ -78,8 +86,10 @@ export function createField({ aspect = 0.8, rand = Math.random, horizontal = fal
   // The outline as segments in buffer space, with cumulative arc length.
   const segs = []
   for (const poly of hands.contours) {
+    // a whole outline moves with its hand
+    const side = poly.reduce((m, q) => m + q[0], 0) / poly.length < gapX ? -1 : 1
     for (let i = 0; i < poly.length; i++) {
-      const a = toBuffer(...poly[i]), b = toBuffer(...poly[(i + 1) % poly.length])
+      const a = toBuffer(...poly[i], side), b = toBuffer(...poly[(i + 1) % poly.length], side)
       const len = Math.hypot(b.x - a.x, b.y - a.y)
       if (len > 0) segs.push({ a, b, len })
     }

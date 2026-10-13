@@ -16,6 +16,8 @@
   --serif: "EB Garamond", ui-serif, Georgia, "Times New Roman", serif;
   --mono: "Berkeley Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gutter: clamp(20px, 3.4vw, 48px);
+  /* the header and the home footer sit this far from the window's edges */
+  --edge: 20px;
   /* where the first label on any page sits, measured from the top */
   --top: 128px;
 
@@ -114,14 +116,30 @@ p, h1, h2, h3, ol, ul { margin: 0; }
 
 .hl {
   font-family: var(--mono);
-  font-size: 0.9em;
-  background: rgba(242, 240, 234, 0.1);
-  border-radius: 6px;
-  padding: 0.06em 0.34em;
-  margin: 0 -0.04em;
+  font-size: 0.8em;
+  letter-spacing: -0.02em;
+  background: rgba(242, 240, 234, 0.08);
+  padding: 0.06em 0.32em 0.1em;
+  margin: 0 0.04em;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
+.hl .at { color: var(--muted); }
+
+/* links in running text, after hari.cafe: a faint fill that inverts on hover */
+.ink, .hl {
+  cursor: default;
+}
+a.ink {
+  cursor: pointer;
+  background: rgba(242, 240, 234, 0.08);
+  padding: 0 0.18em;
+  margin: 0 -0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+:is(a.ink, .hl):is(:hover, :focus-visible) { background: var(--fg); color: var(--bg); }
+:is(a.ink, .hl):is(:hover, :focus-visible) :is(em, .at) { color: inherit; }
 
 .sr-only {
   position: absolute;

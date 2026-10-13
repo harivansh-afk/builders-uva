@@ -40,7 +40,7 @@
           <span><time datetime={e.date}>{longDate(e.date)}</time></span>
           {#if e.time}<span>{e.time}</span>{/if}
           {#if e.format}<span>{e.format}</span>{/if}
-          {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
+          {#if e.link}<span><a class="ink" href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
         </p>
         {#if registrationOpen(e, today)}
           <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>

@@ -2,6 +2,9 @@
   import { onMount } from 'svelte'
   import { createField } from './field.js'
 
+  // `split` opens the gap between the fingertips (see createField)
+  let { split = 0 } = $props()
+
   let wrap, pre
 
   onMount(() => {
@@ -27,7 +30,7 @@
       const a = wrap.clientWidth / Math.max(1, wrap.clientHeight)
       if (!a || Math.abs(a - aspect) < 0.03) return fit()
       aspect = a
-      field = createField({ aspect })
+      field = createField({ aspect, split })
       cancelAnimationFrame(raf)
       pre.textContent = prime()
       fit()
@@ -61,8 +64,8 @@
     justify-content: center;
     overflow: hidden;
     /* solid through the middle; the arms dissolve into the two corners they leave by */
-    -webkit-mask-image: linear-gradient(to top right, transparent 2%, #000 28%, #000 72%, transparent 98%);
-    mask-image: linear-gradient(to top right, transparent 2%, #000 28%, #000 72%, transparent 98%);
+    -webkit-mask-image: linear-gradient(to top right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(to top right, transparent 0%, #000 14%, #000 86%, transparent 100%);
   }
   pre {
     margin: 0;
