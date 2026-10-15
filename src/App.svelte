@@ -149,32 +149,29 @@
     opacity: 0.55;
     pointer-events: none;
   }
-  /* home is exactly one screen: the copy in the middle, the footer at the bottom */
+  /* home is exactly one screen. The copy centres on the window, which is where
+     the hands' gap sits, so the footer stays out of the flow. */
   .site {
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
   }
-  .site-main { min-height: 0; }
+  .site-main { height: 100%; }
 
-  /* the footer keeps its old place and shape: the bottom of the right pane,
-     left edge on the copy column, right and bottom edges on the window inset */
+  /* the colophon mirrors the nav: nav top-left, footer bottom-right, the two
+     corners the hands leave empty */
   .site-foot {
-    --s4: clamp(14px, 2.2vh, 40px);
-    width: 45%;
-    margin-left: auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
-  .site-foot > :global(footer) {
-    padding: 0 var(--edge) var(--edge) max(var(--gutter), calc((100% - var(--col)) / 2));
-  }
+  .site-foot > :global(footer) { padding: 0 var(--edge) var(--edge); }
   @media (max-width: 899px) {
-    .site-foot { width: 100%; --s4: 32px; }
     .site-foot > :global(footer) {
-      padding: var(--s4) var(--edge) max(var(--edge), env(safe-area-inset-bottom));
+      padding: 0 var(--edge) max(var(--edge), env(safe-area-inset-bottom));
     }
   }
 
