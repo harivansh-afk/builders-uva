@@ -57,20 +57,28 @@
   }
   .clock .t { color: var(--muted); font-variant-numeric: tabular-nums; }
 
+  /* home: one row in the bottom-right corner, on the nav's 32px line */
+  .inline {
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 32px;
+    border-top: 0;
+  }
+  .inline .details { margin-left: 0; }
   @media (min-width: 900px) {
-    .inline {
-      flex-wrap: wrap;
-      gap: var(--s4) 12px;
-      border-top: 0;
-    }
-    /* the rule spans the content box only, from the copy's left edge to the text's right edge */
+    .inline { gap: 12px; }
+    .inline .legal { order: 1; }
     .inline::before {
-      content: '';
-      flex: 0 0 100%;
-      height: 1px;
-      background: var(--hair);
+      content: '|';
+      order: 1;
+      color: var(--dim);
     }
+    .inline .details { order: 0; }
     .sep { color: var(--dim); }
+  }
+  /* narrow: Legal at the left edge, sitting on the clock's line */
+  @media (max-width: 899px) {
+    .inline { justify-content: space-between; align-items: flex-end; }
   }
   @media (max-width: 899px) {
     .sep { display: none; }

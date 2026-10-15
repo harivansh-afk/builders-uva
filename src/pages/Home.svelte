@@ -35,7 +35,7 @@
   .copy {
     position: relative;
     display: grid;
-    gap: var(--s3);
+    gap: 0.66em; /* scales with the type, about one line's leading */
     width: min(30ch, 100%);
     font-size: clamp(22px, 2.4vw, 36px);
     text-align: center;
