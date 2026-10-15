@@ -1,9 +1,9 @@
 // The builders@uva mark drawn as ASCII density.
 // The mark is the two hands from Michelangelo's Creation of Adam. They run
 // corner to corner across the pane, Adam bottom-left and God top-right, with
-// the gap between the fingertips at the centre. Particles ride along the
-// outline of the hands, shimmer, and drift a little across the edge; the
-// shading inside breathes. The shape holds at all times and still feels alive.
+// the gap between the fingertips at the centre. The outline holds still and
+// sharp; the only motion is a soft band of light that runs along the arms from
+// God's hand to Adam's every few seconds, like light passing over a statue.
 //
 // The hands ship level (src/lib/hands.json). The field is built for the pane's
 // aspect: the buffer takes that aspect, the hands are rotated onto its
@@ -13,33 +13,12 @@
 import hands from './hands.json'
 
 export const RAMP = " .:-=+*#%@"
-const N = 900                 // particles on the outline
 const CHAR_ASPECT = 1.8       // char cells are ~0.6 wide vs 1.08 tall
 const OVERSHOOT = 1.16        // hands' axis length as a multiple of the pane diagonal
 
 // Shading inside the hands, 0..255, zero outside. Sampled by nearest cell.
 const GW = hands.w, GH = hands.h
 const SHADE = Uint8Array.from(atob(hands.shade), (c) => c.charCodeAt(0))
-
-function buildKernel(rx, ry) {
-  const RX = Math.ceil(rx), RY = Math.ceil(ry)
-  const sx = 2 * RX + 1, sy = 2 * RY + 1
-  const v = new Float32Array(sx * sy)
-  for (let j = -RY; j <= RY; j++)
-    for (let i = -RX; i <= RX; i++) {
-      const d = Math.sqrt((i / rx) ** 2 + (j / ry) ** 2)
-      v[(j + RY) * sx + (i + RX)] = d >= 1 ? 0 : d <= 0.25 ? 0.55 + (d / 0.25) * (0.3 - 0.55) : 0.3 * (1 - (d - 0.25) / 0.75) ** 1.3
-    }
-  return { rx: RX, ry: RY, sx, sy, v }
-}
-
-const hash = (x, y) => { const s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return s - Math.floor(s) }
-function noise(x, y) {
-  const xi = Math.floor(x), yi = Math.floor(y), fx = x - xi, fy = y - yi
-  const a = hash(xi, yi), b = hash(xi + 1, yi), c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1)
-  const u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy)
-  return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v
-}
 
 /**
  * Build a field for a pane of the given aspect (width / height).
@@ -48,7 +27,7 @@ function noise(x, y) {
 // `split` pushes each hand outward along the axis by that fraction of the
 // hands' width, opening the gap between the fingertips. A number moves both
 // hands equally; [adam, god] moves each its own way.
-export function createField({ aspect = 0.8, rand = Math.random, horizontal = false, split = 0 } = {}) {
+export function createField({ aspect = 0.8, horizontal = false, split = 0 } = {}) {
   // Buffer with the pane's aspect, 2x oversampled. Height fixed, width follows.
   const BH = 280
   const BW = Math.max(120, Math.round((BH * CHAR_ASPECT * aspect) / 2) * 2)
@@ -83,33 +62,7 @@ export function createField({ aspect = 0.8, rand = Math.random, horizontal = fal
     return SHADE[gy * GW + gx] / 255
   }
 
-  // The outline as segments in buffer space, with cumulative arc length.
-  const segs = []
-  for (const poly of hands.contours) {
-    // a whole outline moves with its hand
-    const side = poly.reduce((m, q) => m + q[0], 0) / poly.length < gapX ? -1 : 1
-    for (let i = 0; i < poly.length; i++) {
-      const a = toBuffer(...poly[i], side), b = toBuffer(...poly[(i + 1) % poly.length], side)
-      const len = Math.hypot(b.x - a.x, b.y - a.y)
-      if (len > 0) segs.push({ a, b, len })
-    }
-  }
-  let total = 0
-  for (const g of segs) { g.start = total; total += g.len }
-  const starts = segs.map((g) => g.start)
-
-  // Point on the outline at arc length s, plus the normal there.
-  function at(s) {
-    s = ((s % total) + total) % total
-    let lo = 0, hi = starts.length - 1
-    while (lo < hi) { const mid = (lo + hi + 1) >> 1; if (starts[mid] <= s) lo = mid; else hi = mid - 1 }
-    const g = segs[lo]
-    const t = (s - g.start) / g.len
-    const dx = (g.b.x - g.a.x) / g.len, dy = (g.b.y - g.a.y) / g.len
-    return { x: g.a.x + (g.b.x - g.a.x) * t, y: g.a.y + (g.b.y - g.a.y) * t, nx: -dy, ny: dx }
-  }
-
-  // Static shading at buffer resolution, added back each frame under the decay.
+  // Static shading at buffer resolution.
   const base = new Float32Array(BW * BH)
   for (let y = 0; y < BH; y++)
     for (let x = 0; x < BW; x++) base[y * BW + x] = Math.pow(shadeAt(x + 0.5, y + 0.5), 0.75)
@@ -148,84 +101,40 @@ export function createField({ aspect = 0.8, rand = Math.random, horizontal = fal
         : '|'
     }
 
-  const kernel = buildKernel(4.6, 2.6)
+  // Per character cell: the shading, averaged 2x2, and the position along the
+  // hands' axis (-0.5 at Adam's end, +0.5 at God's) that the light runs along.
+  const shade = new Float32Array(COLS * ROWS)
+  const axis = new Float32Array(COLS * ROWS)
+  for (let r = 0; r < ROWS; r++)
+    for (let c = 0; c < COLS; c++) {
+      const y = 2 * r, x = 2 * c
+      shade[r * COLS + c] = (base[y * BW + x] + base[y * BW + x + 1] + base[(y + 1) * BW + x] + base[(y + 1) * BW + x + 1]) / 4
+      const vx = x + 1 - BW / 2, vy = (y + 1 - BH / 2) * CHAR_ASPECT
+      axis[r * COLS + c] = (vx * cos - vy * sin) / S
+    }
+
   const lut = Array.from({ length: 256 }, (_, i) => RAMP[Math.min(RAMP.length - 1, ((i / 255) * RAMP.length) | 0)])
-  const buf = new Float32Array(BW * BH)
 
-  const ps = Array.from({ length: N }, (_, i) => {
-    const s0 = (i / N) * total
-    const p0 = at(s0)
-    return {
-      s0,
-      speed: 0.012 * (0.9 + rand() * 0.2),  // buffer px per ms along the outline
-      seed: rand() * 1000,
-      x: p0.x, y: p0.y, vx: 0, vy: 0,
-    }
-  })
+  const PERIOD = 11000   // ms between passes
+  const TRAVEL = 6500    // ms the light takes from God's hand to Adam's
+  const WIDTH = 0.1      // band width, in hand widths
+  const ease = (t) => t * t * (3 - 2 * t)
 
-  function stamp(x, y, gain) {
-    if (gain <= 0) return
-    const cx = Math.round(x), cy = Math.round(y)
-    for (let j = -kernel.ry; j <= kernel.ry; j++) {
-      const row = cy + j
-      if (row < 0 || row >= BH) continue
-      const rb = row * BW, kb = (j + kernel.ry) * kernel.sx
-      for (let i = -kernel.rx; i <= kernel.rx; i++) {
-        const col = cx + i
-        if (col < 0 || col >= BW) continue
-        const k = kernel.v[kb + i + kernel.rx] * gain
-        if (k === 0) continue
-        const idx = rb + col
-        buf[idx] = Math.min(1, buf[idx] + k)
-      }
-    }
-  }
-
-  /** Advance one frame at time `now` (ms) and return the ASCII frame. */
+  /** Return the ASCII frame at time `now` (ms). */
   function step(now) {
-    const drift = now * 0.00025
-    const t = now * 0.00035
-    // decay, then lay the shading back in with a slow breathing across it.
-    // steady state is base * 1.05 * breath, clamped to 1 by the stamp; the decay eats 22% a frame.
-    for (let y = 0; y < BH; y++) {
-      const rb = y * BW
-      for (let x = 0; x < BW; x++) {
-        const i = rb + x
-        let v = buf[i] * 0.78
-        const b = base[i]
-        if (b > 0) v += b * 1.05 * 0.22 * (0.78 + 0.22 * noise(x * 0.035 + t, y * 0.06 - t * 0.6))
-        buf[i] = v
-      }
-    }
+    // the band runs God -> Adam, then rests off-screen until the next pass
+    const t = (now % PERIOD) / TRAVEL
+    const centre = t < 1 ? 0.65 - 1.3 * ease(t) : -9
 
-    for (let i = 0; i < ps.length; i++) {
-      const p = ps[i]
-      const tg = at(p.s0 + now * p.speed)
-      // wander a little across the outline so the edge breathes
-      const off = (noise(p.seed + now * 0.0006, drift) - 0.5) * 4
-      const tx = tg.x + tg.nx * off, ty = tg.y + tg.ny * off
-
-      p.vx += (tx - p.x) * 0.08; p.vy += (ty - p.y) * 0.08
-      p.vx += (rand() - 0.5) * 0.06; p.vy += (rand() - 0.5) * 0.06
-      p.vx *= 0.72; p.vy *= 0.72
-      p.x += p.vx; p.y += p.vy
-
-      // fade while far from the outline and flicker gently
-      const dist = Math.hypot(tx - p.x, ty - p.y)
-      const near = Math.max(0, 1 - dist / 5)
-      const flick = 0.7 + 0.3 * Math.sin(now * 0.004 + i * 0.73)
-      stamp(p.x + (rand() - 0.5) * 1.2, p.y + (rand() - 0.5) * 1.2, near * flick)
-    }
-
-    // downsample 2x2 and map to glyphs; outline cells take the contour glyph
     let out = ''
     for (let r = 0; r < ROWS; r++) {
-      const rb = 2 * r * BW
       for (let c = 0; c < COLS; c++) {
-        const cb = 2 * c
-        const s = (buf[rb + cb] + buf[rb + cb + 1] + buf[rb + BW + cb] + buf[rb + BW + cb + 1]) / 4
-        const g = glyph[r * COLS + c]
-        out += g && s > 0.1 ? g : lut[Math.min(255, (s * 255) | 0)]
+        const k = r * COLS + c
+        const g = glyph[k]
+        if (g) { out += g; continue }
+        const d = (axis[k] - centre) / WIDTH
+        const v = Math.min(1, shade[k] * (0.85 + 0.4 * Math.exp(-d * d)))
+        out += lut[(v * 255) | 0]
       }
       if (r < ROWS - 1) out += '\n'
     }

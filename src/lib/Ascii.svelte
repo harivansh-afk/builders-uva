@@ -21,9 +21,12 @@
       pre.style.transform = `scale(${s})`
     }
 
-    // Run the field to steady state so the hands are whole on the first paint.
-    const prime = () => { let t = ''; for (let i = 0; i < 24; i++) t = field.step(i * 16); return t }
-    const frame = (now) => { pre.textContent = field.step(now); raf = requestAnimationFrame(frame) }
+    // The light moves slowly, so ~15fps is plenty and keeps the layout work down.
+    let last = -Infinity
+    const frame = (now) => {
+      if (now - last >= 66) { pre.textContent = field.step(now); last = now }
+      raf = requestAnimationFrame(frame)
+    }
 
     // Build for the pane's shape; rebuild when it changes enough to matter.
     const build = () => {
@@ -32,7 +35,8 @@
       aspect = a
       field = createField({ aspect, split })
       cancelAnimationFrame(raf)
-      pre.textContent = prime()
+      pre.textContent = field.step(0)
+      last = -Infinity
       fit()
       if (!reduce) raf = requestAnimationFrame(frame)
     }
