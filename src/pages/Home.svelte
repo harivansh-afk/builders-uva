@@ -4,7 +4,7 @@
   <div class="pool" aria-hidden="true"></div>
   <div class="copy">
     <p class="lede">
-      <span class="hl">builders<span class="at">@</span>uva</span> is building a culture of <em>independent creation</em> at UVA.
+      <span class="hl">builders<span class="at">@</span>uva</span> is building a culture of <em>independent creation</em> at <a class="uva" href="https://www.virginia.edu/" target="_blank" rel="noopener noreferrer">UVA</a>.
     </p>
     <p class="lede">
       We bring students together to <em>work</em> on their own ideas, <em>learn</em> from founders, and help each other go beyond their <em>perceived limitations.</em>
@@ -45,5 +45,10 @@
     font-size: 1em;
     line-height: 1.28;
     text-wrap: balance;
+  }
+  .uva {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
   }
 </style>
