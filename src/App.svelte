@@ -53,34 +53,36 @@
   <div class="backdrop" aria-hidden="true"><Ascii split={[0.08, 0.13]} /></div>
   <div class="site">
     <main class="site-main"><Home /></main>
-    <div class="site-foot"><Footer inline /></div>
+    <div class="site-foot"><Footer /></div>
   </div>
 {:else}
-  <main class="page" class:admin-page={page.name === 'admin'}>
-    {#key route.path}
-      {#if page.name === 'events'}
-        <Events />
-      {:else if page.name === 'event'}
-        <Event slug={page.slug} />
-      {:else if page.name === 'register'}
-        <Register slug={page.slug} />
-      {:else if page.name === 'join'}
-        <Join />
-      {:else if page.name === 'team'}
-        <Team />
-      {:else if page.name === 'legal'}
-        <Legal />
-      {:else if page.name === 'admin'}
-        <Admin />
-      {:else}
-        <div class="missing">
-          <p class="eyebrow">404</p>
-          <p class="lede">Nothing here. <a class="home" href="/">Go home.</a></p>
-        </div>
-      {/if}
-    {/key}
+  <div class="shell">
+    <main class="page" class:admin-page={page.name === 'admin'}>
+      {#key route.path}
+        {#if page.name === 'events'}
+          <Events />
+        {:else if page.name === 'event'}
+          <Event slug={page.slug} />
+        {:else if page.name === 'register'}
+          <Register slug={page.slug} />
+        {:else if page.name === 'join'}
+          <Join />
+        {:else if page.name === 'team'}
+          <Team />
+        {:else if page.name === 'legal'}
+          <Legal />
+        {:else if page.name === 'admin'}
+          <Admin />
+        {:else}
+          <div class="missing">
+            <p class="eyebrow">404</p>
+            <p class="lede">Nothing here. <a class="home" href="/">Go home.</a></p>
+          </div>
+        {/if}
+      {/key}
+    </main>
     <Footer />
-  </main>
+  </div>
 {/if}
 
 <style>
@@ -127,15 +129,16 @@
   .nav .mark { padding: 0 10px 0 0; margin-right: 8px; border: 0; text-transform: none; letter-spacing: -0.04em; font-size: 15px; font-weight: 600; color: var(--fg); }
 
   /* ---------- full-width pages: events, join ---------- */
-  .page {
+  /* the footer sits at the bottom of the window, or below the content when it runs longer */
+  .shell {
     display: grid;
     grid-template-rows: 1fr auto;
-    align-items: start; /* content keeps its own height; only the footer is pushed down */
-    gap: var(--s7);
     min-height: 100dvh;
+  }
+  .page {
     width: min(1120px, 100%);
     margin: 0 auto;
-    padding: var(--top) var(--gutter) 0;
+    padding: var(--top) var(--gutter) var(--s7);
   }
   .missing { display: grid; gap: var(--s4); }
   .home { border-bottom: 1px solid var(--dim); }
@@ -167,12 +170,6 @@
     right: 0;
     bottom: 0;
     left: 0;
-  }
-  .site-foot > :global(footer) { padding: 0 var(--edge) var(--edge); }
-  @media (max-width: 899px) {
-    .site-foot > :global(footer) {
-      padding: 0 var(--edge) max(var(--edge), env(safe-area-inset-bottom));
-    }
   }
 
   @media (max-width: 899px) {
