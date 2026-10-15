@@ -46,7 +46,7 @@
   .clock .t { font-variant-numeric: tabular-nums; }
   .sep { color: var(--dim); }
   .legal { margin-left: 4px; }
-  .social { display: inline-flex; padding-block: 0.18em; }
+  .social :global(svg) { vertical-align: -0.1em; }
 
   /* narrow: the clock takes its own line above the rest */
   @media (max-width: 599px) {
