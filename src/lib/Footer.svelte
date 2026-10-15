@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte'
+  import Instagram from './Instagram.svelte'
 
   // Charlottesville time, ticking. A small sign the site is a live thing.
   const clock = new Intl.DateTimeFormat('en-US', {
@@ -23,6 +24,7 @@
   <span class="sep" aria-hidden="true">|</span>
   <span>© {year} builders@uva</span>
   <a class="legal ink" href="/legal">Legal</a>
+  <a class="social ink" href="https://www.instagram.com/builders.uva/" target="_blank" rel="noopener" aria-label="builders@uva on Instagram" title="Instagram"><Instagram size={11} /></a>
 </footer>
 
 <style>
@@ -44,6 +46,7 @@
   .clock .t { font-variant-numeric: tabular-nums; }
   .sep { color: var(--dim); }
   .legal { margin-left: 4px; }
+  .social { display: inline-flex; padding-block: 0.18em; }
 
   /* narrow: the clock takes its own line above the rest */
   @media (max-width: 599px) {
