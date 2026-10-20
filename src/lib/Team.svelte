@@ -4,7 +4,7 @@
 
   // Social icons only render when their links are set.
   const founders = [
-    { name: 'Hari', role: 'President', img: '/hari-linkedin.png', zoom: 1.25, website: 'https://harivan.sh', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
+    { name: 'Hari', role: 'President', img: '/hari-linkedin.png', zoom: 1.25, website: 'https://hari.cafe', linkedin: 'https://www.linkedin.com/in/harivansh-rathi', x: 'https://x.com/HarivanshRathi' },
     { name: 'Nathan', role: 'Vice-President', img: '/nathan.png', website: 'https://nathanwang.dev/#about', linkedin: 'https://www.linkedin.com/in/nathan-wang-999930336/', x: 'https://x.com/NathanWang78302' },
   ]
 </script>
