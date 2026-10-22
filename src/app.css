@@ -114,6 +114,18 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   line-height: 1;
 }
 
+/* home and team stress words with an underline rather than italic, the rule
+   sitting just under the baseline */
+.lede.stress em {
+  font-family: inherit;
+  font-style: normal;
+  font-size: 1em;
+  line-height: inherit;
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 0.13em) / 100% 1px no-repeat;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .hl {
   font-family: var(--mono);
   font-size: 0.8em;
