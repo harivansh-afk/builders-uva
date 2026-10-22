@@ -35,7 +35,7 @@
   {#if e}
     <header class="head">
       <div>
-        <h1 class="name">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</h1>
+        <h1 class="name">{e.name}{#if e.tag}{' '}<em class="tag">({e.tag})</em>{/if}</h1>
         <p class="meta">
           <span><time datetime={e.date}>{longDate(e.date)}</time></span>
           {#if e.time}<span>{e.time}</span>{/if}

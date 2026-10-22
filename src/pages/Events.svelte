@@ -14,7 +14,7 @@
       <li class="row">
         <a class="page" href="/events/{e.slug}">
           <span class="n">{n(i)}</span>
-          <span class="t">{e.name}{#if e.tag}{` (${e.tag})`}{/if}</span>
+          <span class="t">{e.name}{#if e.tag}{' '}<em class="tag">({e.tag})</em>{/if}</span>
         </a>
         <div class="actions">
           {#if registrationOpen(e, today)}

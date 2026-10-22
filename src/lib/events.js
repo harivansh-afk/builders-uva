@@ -243,6 +243,7 @@ export const events = [
   {
     slug: 'dan-hall',
     name: 'Dan Hall',
+    tag: 'Carbon Black',
     date: '2026-10-01',
     img: '/events/dan-hall/kyrus.png',
     imgType: 'logo',
@@ -266,6 +267,7 @@ export const events = [
   {
     slug: 'steve-morin',
     name: 'Steve Morin',
+    tag: 'ex-Instagram',
     date: '2026-10-08',
     img: '/steve-morin.webp',
     link: 'https://www.linkedin.com/in/stevebmorin/',
@@ -319,6 +321,7 @@ export const events = [
   {
     slug: 'maxwell-nardi',
     name: 'Maxwell Nardi',
+    tag: 'Runlayer',
     date: '2026-10-22',
     img: '/maxwell-nardi.webp',
     link: 'https://www.linkedin.com/in/maxwellnardi/',
@@ -328,6 +331,7 @@ export const events = [
   {
     slug: 'andrew-schoka',
     name: 'Andrew Schoka',
+    tag: 'Hardshell',
     date: '2026-11-12',
     img: '/andrew-schoka.webp',
     link: 'https://www.linkedin.com/in/andrew-schoka/',
@@ -338,6 +342,7 @@ export const events = [
   {
     slug: 'alex-oliver',
     name: 'Alex Oliver',
+    tag: 'a16z',
     date: '2026-11-19',
     img: '/alex-oliver.webp',
     link: 'https://a16z.com/author/alex-oliver/',

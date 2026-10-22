@@ -107,7 +107,8 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   max-width: var(--measure);
   text-wrap: pretty;
 }
-.lede em {
+.lede em,
+.tag {
   font-family: var(--serif);
   font-style: italic;
   font-size: 1.12em;
