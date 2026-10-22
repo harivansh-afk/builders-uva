@@ -20,18 +20,37 @@ const OVERSHOOT = 1.16        // hands' axis length as a multiple of the pane di
 const GW = hands.w, GH = hands.h
 const SHADE = Uint8Array.from(atob(hands.shade), (c) => c.charCodeAt(0))
 
-/**
- * Build a field for a pane of the given aspect (width / height).
- * Returns { step(now), cols, rows }.
- */
+// Which hand each inked pixel belongs to (-1 Adam, +1 God), by the connected
+// shape it is part of rather than by which side of the gap it falls. God's
+// fingertip reaches a column past the gap, and splitting by the gap line alone
+// would carry that sliver off with Adam's hand.
+const SIDE = new Int8Array(GW * GH)
+for (let i = 0; i < GW * GH; i++) {
+  if (!SHADE[i] || SIDE[i]) continue
+  const shape = [i]
+  let sx = 0
+  SIDE[i] = 2
+  for (let n = 0; n < shape.length; n++) {
+    const k = shape[n], x = k % GW, y = (k / GW) | 0
+    sx += x
+    for (const j of [x > 0 && k - 1, x < GW - 1 && k + 1, y > 0 && k - GW, y < GH - 1 && k + GW])
+      if (j !== false && SHADE[j] && !SIDE[j]) { SIDE[j] = 2; shape.push(j) }
+  }
+  const side = sx / shape.length < hands.gap[0] * GW ? -1 : 1
+  for (const k of shape) SIDE[k] = side
+}
+
+// The hands' placement in a buffer of the pane's aspect: the buffer size, the
+// axis, and shadeAt(x, y) for any buffer px. Shared by createField and inkAt.
+//
 // `split` pushes each hand outward along the axis by that fraction of the
 // hands' width, opening the gap between the fingertips. A number moves both
-// hands equally; [adam, god] moves each its own way.
-export function createField({ aspect = 0.8, horizontal = false, split = 0 } = {}) {
+// hands equally; [adam, god] moves each its own way. `only` (-1 Adam, +1 God)
+// draws just that hand, so each can sit on its own layer and move by itself.
+function place({ aspect = 0.8, horizontal = false, split = 0, only = 0 } = {}) {
   // Buffer with the pane's aspect, 2x oversampled. Height fixed, width follows.
   const BH = 280
   const BW = Math.max(120, Math.round((BH * CHAR_ASPECT * aspect) / 2) * 2)
-  const COLS = BW / 2, ROWS = BH / 2
 
   // Geometry in visual units: x in buffer px, y in buffer px * CHAR_ASPECT,
   // origin at the buffer centre. The hands' axis lies on the diagonal.
@@ -44,23 +63,44 @@ export function createField({ aspect = 0.8, horizontal = false, split = 0 } = {}
 
   const [SPLIT_A, SPLIT_G] = (Array.isArray(split) ? split : [split, split]).map((v) => v * S)
 
-  // hand box coords (normalised) -> buffer px; `side` is -1 for Adam, +1 for God
-  function toBuffer(px, py, side = px < gapX ? -1 : 1) {
-    const hx = (px - gapX) * S + (side < 0 ? -SPLIT_A : SPLIT_G), hy = (py - gapY) * SH
-    const vx = hx * cos + hy * sin, vy = -hx * sin + hy * cos
-    return { x: BW / 2 + vx, y: BH / 2 + vy / CHAR_ASPECT }
-  }
-  // buffer px -> shading, 0..1
+  // buffer px -> shading, 0..1. Each hand is pushed out by its own split, so
+  // look for Adam where he would be and God where he would be.
   function shadeAt(x, y) {
     const vx = x - BW / 2, vy = (y - BH / 2) * CHAR_ASPECT
-    let hx = vx * cos - vy * sin
+    const hx = vx * cos - vy * sin
     const hy = vx * sin + vy * cos
-    if (hx > -SPLIT_A && hx < SPLIT_G) return 0
-    hx += hx < 0 ? SPLIT_A : -SPLIT_G
-    const gx = ((hx / S + gapX) * GW) | 0, gy = ((hy / SH + gapY) * GH) | 0
-    if (gx < 0 || gy < 0 || gx >= GW || gy >= GH) return 0
-    return SHADE[gy * GW + gx] / 255
+    const gy = ((hy / SH + gapY) * GH) | 0
+    if (gy < 0 || gy >= GH) return 0
+    let v = 0
+    for (const side of only ? [only] : [-1, 1]) {
+      const gx = (((hx + (side < 0 ? SPLIT_A : -SPLIT_G)) / S + gapX) * GW) | 0
+      if (gx < 0 || gx >= GW) continue
+      const k = gy * GW + gx
+      if (SIDE[k] === side) v = Math.max(v, SHADE[k] / 255)
+    }
+    return v
   }
+
+  return { BW, BH, S, cos, sin, shadeAt }
+}
+
+/**
+ * Where the hands are in a pane of the given aspect, without building the
+ * whole field: returns (nx, ny) => shading 0..1 for a point given as
+ * fractions of the pane's width and height.
+ */
+export function inkAt(opts) {
+  const { BW, BH, shadeAt } = place(opts)
+  return (nx, ny) => shadeAt(nx * BW, ny * BH)
+}
+
+/**
+ * Build a field for a pane of the given aspect (width / height).
+ * Returns { step(now), cols, rows }. Options as for place().
+ */
+export function createField(opts = {}) {
+  const { BW, BH, S, cos, sin, shadeAt } = place(opts)
+  const COLS = BW / 2, ROWS = BH / 2
 
   // Static shading at buffer resolution.
   const base = new Float32Array(BW * BH)
@@ -120,10 +160,21 @@ export function createField({ aspect = 0.8, horizontal = false, split = 0 } = {}
   const WIDTH = 0.1      // band width, in hand widths
   const ease = (t) => t * t * (3 - 2 * t)
 
-  /** Return the ASCII frame at time `now` (ms). */
-  function step(now) {
-    // the band runs God -> Adam, then rests off-screen until the next pass
-    const t = (now % PERIOD) / TRAVEL
+  // For the entrance: each inked cell resolves at its own moment, wrist first
+  // and fingertip last, and shows a flickering glyph until it does.
+  const settle = new Float32Array(COLS * ROWS)
+  for (let k = 0; k < COLS * ROWS; k++)
+    settle[k] = 0.55 * (1 - Math.min(1, Math.abs(axis[k]) * 2)) + 0.45 * Math.random()
+  const NOISE = '.:-=+*#%'
+
+  /**
+   * Return the ASCII frame at time `now` (ms). `reveal` runs 0..1 through the
+   * entrance; at 1 every cell shows its settled glyph.
+   */
+  function step(now, reveal = 1) {
+    // the band runs God -> Adam, then rests off-screen until the next pass;
+    // before time zero it waits off-screen
+    const t = now < 0 ? 9 : (now % PERIOD) / TRAVEL
     const centre = t < 1 ? 0.65 - 1.3 * ease(t) : -9
 
     let out = ''
@@ -131,6 +182,10 @@ export function createField({ aspect = 0.8, horizontal = false, split = 0 } = {}
       for (let c = 0; c < COLS; c++) {
         const k = r * COLS + c
         const g = glyph[k]
+        if (reveal < 1 && settle[k] > reveal) {
+          out += g || shade[k] > 0.02 ? (reveal > settle[k] - 0.18 ? NOISE[(Math.random() * NOISE.length) | 0] : ' ') : ' '
+          continue
+        }
         if (g) { out += g; continue }
         const d = (axis[k] - centre) / WIDTH
         const v = Math.min(1, shade[k] * (0.85 + 0.4 * Math.exp(-d * d)))

@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
   import { mountInteractionSounds } from './lib/interactionSounds.js'
-  import Ascii from './lib/Ascii.svelte'
   import Home from './pages/Home.svelte'
   import Event from './pages/Event.svelte'
   import Register from './pages/Register.svelte'
@@ -50,7 +49,6 @@
 </header>
 
 {#if home}
-  <div class="backdrop" aria-hidden="true"><Ascii split={[0.08, 0.13]} /></div>
   <div class="site">
     <main class="site-main"><Home /></main>
     <div class="site-foot"><Footer /></div>
@@ -144,14 +142,7 @@
   .home { border-bottom: 1px solid var(--dim); }
   .admin-page { width: min(1600px, 100%); }
 
-  /* ---------- home: one screen, the hands pinned behind it ---------- */
-  .backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    opacity: 0.55;
-    pointer-events: none;
-  }
+  /* ---------- home: one screen, the hands pinned behind it (see Home) ---------- */
   /* home is exactly one screen. The copy centres on the window, which is where
      the hands' gap sits, so the footer stays out of the flow. */
   .site {
