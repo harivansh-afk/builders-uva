@@ -325,6 +325,16 @@ export const events = [
     // Bio and portrait: his LinkedIn profile (checked October 7, 2026).
     description: 'Maxwell Nardi is building Runlayer, which helps companies connect AI agents to their tools and data securely. He studied at UVA and joins us in person for a Q&A. Time and location to be announced.',
   },
+  {
+    slug: 'andrew-schoka',
+    name: 'Andrew Schoka',
+    date: '2026-11-12',
+    img: '/andrew-schoka.webp',
+    link: 'https://www.linkedin.com/in/andrew-schoka/',
+    // Bio and portrait: https://hardshell.ai/ team section, which links this
+    // LinkedIn profile (checked October 22, 2026).
+    description: 'Andrew Schoka is co-founder and CEO of Hardshell, which secures the data used to train AI systems. A former Army cyber operations officer at U.S. Cyber Command and U.S. Special Operations Command, he is a Darden MBA student and joins us in person for a Q&A. Time and location to be announced.',
+  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
