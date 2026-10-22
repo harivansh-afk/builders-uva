@@ -335,6 +335,17 @@ export const events = [
     // LinkedIn profile (checked October 22, 2026).
     description: 'Andrew Schoka is co-founder and CEO of Hardshell, which secures the data used to train AI systems. A former Army cyber operations officer at U.S. Cyber Command and U.S. Special Operations Command, he is a Darden MBA student and joins us in person for a Q&A. Time and location to be announced.',
   },
+  {
+    slug: 'alex-oliver',
+    name: 'Alex Oliver',
+    date: '2026-11-19',
+    img: '/alex-oliver.webp',
+    link: 'https://a16z.com/author/alex-oliver/',
+    linkLabel: 'a16z',
+    // Bio and portrait: his a16z author page, which lists no LinkedIn
+    // (checked October 22, 2026).
+    description: 'Alex Oliver is a partner at Andreessen Horowitz, where he supports founders building in aerospace and national security. He spent 15 years as a U.S. Army infantry and intelligence officer, deploying to Iraq, Afghanistan, and West Africa, and led the maritime autonomy portfolio at the Defense Innovation Unit. He joins us in person for a Q&A. Time and location to be announced.',
+  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
