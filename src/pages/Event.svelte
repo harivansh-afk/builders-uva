@@ -177,8 +177,8 @@
     gap: 4px 10px;
   }
   .meta > * + *::before { content: '·'; margin-right: 10px; color: var(--dim); }
-  .meta a { border-bottom: 1px solid var(--hair); transition: border-color 0.15s ease, color 0.15s ease; }
-  .meta a:hover { color: var(--fg); border-color: var(--muted); }
+  .meta a:not(.ink) { border-bottom: 1px solid var(--hair); transition: border-color 0.15s ease, color 0.15s ease; }
+  .meta a:not(.ink):hover { color: var(--fg); border-color: var(--muted); }
 
   .register { display: inline-block; margin-top: 20px; padding: 12px; background: var(--fg); color: var(--bg); border: 1px solid var(--fg); font-family: var(--mono); font-size: 14px; transition: opacity 0.15s ease; }
   .register:hover { opacity: 0.88; }
