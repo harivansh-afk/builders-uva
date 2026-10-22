@@ -1,0 +1,13 @@
+{
+  "from": "builders@uva <team@uva.builders>",
+  "reply_to": "team@uva.builders",
+  "subject": "builders@uva | Thursday, October 22 — Maxwell Nardi at the Foundry",
+  "inline_images": [
+    {
+      "src": "https://www.uva.builders/email-hands-horizontal.png",
+      "path": "../../public/email-hands-horizontal.png",
+      "filename": "builders-uva.png",
+      "content_id": "builders-hands@uva.builders"
+    }
+  ]
+}
