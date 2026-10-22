@@ -157,9 +157,9 @@ a.ink {
 /* Speaker credential next to a name: metadata, so mono and muted. */
 .tag {
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 0.85em;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--muted);
   white-space: nowrap;
 }
