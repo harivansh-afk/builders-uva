@@ -42,7 +42,7 @@
       <h1 class="lede">You're registered.</h1>
       <p class="details">See you for the Q&amp;A with {event.name}.</p>
     {:else}
-      <h1 class="lede">{event.name}{#if event.tag}{' '}<em class="tag">({event.tag})</em>{/if}</h1>
+      <h1 class="lede">{event.name}{#if event.tag}{' '}<span class="tag">{event.tag}</span>{/if}</h1>
     {/if}
     {#if event}<p class="details">{longDate(event.date)}{event.time ? ` · ${event.time}` : ''}{event.format ? ` · ${event.format}` : ''}</p>{/if}
   </header>

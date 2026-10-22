@@ -14,12 +14,13 @@
       <li class="row">
         <a class="page" href="/events/{e.slug}">
           <span class="n">{n(i)}</span>
-          <span class="t">{e.name}{#if e.tag}{' '}<em class="tag">({e.tag})</em>{/if}</span>
+          <span class="t">{e.name}</span>
         </a>
         <div class="actions">
           {#if registrationOpen(e, today)}
             <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
           {/if}
+          {#if e.tag}<span class="tag">{e.tag}</span>{/if}
           <time class="d" datetime={e.date}>{shortDate(e.date)}</time>
         </div>
         {#if e.link}
@@ -121,7 +122,9 @@
     .row { display: grid; grid-template-columns: minmax(0, 1fr) 40px; padding: 20px 4px; gap: 16px 12px; }
     .page { grid-column: 1; grid-row: 1; grid-template-columns: 3ch minmax(0, 1fr); padding: 0; }
     .t { white-space: normal; }
-    .actions { grid-column: 1 / -1; grid-row: 2; padding-left: calc(3ch + 18px); }
+    .actions { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: auto auto; justify-content: start; gap: 12px 16px; padding-left: calc(3ch + 18px); }
+    .d { min-width: 0; text-align: left; }
+    .register { order: 1; grid-column: 1 / -1; justify-self: start; }
     .pfp { grid-column: 2; grid-row: 1; padding: 0; }
     .pfp img { width: 40px; height: 40px; }
   }

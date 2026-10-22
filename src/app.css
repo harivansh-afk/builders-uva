@@ -107,8 +107,7 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   max-width: var(--measure);
   text-wrap: pretty;
 }
-.lede em,
-.tag {
+.lede em {
   font-family: var(--serif);
   font-style: italic;
   font-size: 1.12em;
@@ -152,5 +151,15 @@ a.ink {
   overflow: hidden;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Speaker credential next to a name: metadata, so mono and muted. */
+.tag {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--muted);
   white-space: nowrap;
 }
