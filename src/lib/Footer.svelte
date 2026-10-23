@@ -1,5 +1,6 @@
 <script>
   import Instagram from './Instagram.svelte'
+  import LinkedIn from './LinkedIn.svelte'
 
   const year = new Date().getFullYear()
 </script>
@@ -9,6 +10,7 @@
   <span>© {year} builders@uva</span>
   <a class="legal ink" href="/legal">Legal</a>
   <a class="social ink" href="https://www.instagram.com/builders.uva/" target="_blank" rel="noopener" aria-label="builders@uva on Instagram" title="Instagram"><Instagram size={11} /></a>
+  <a class="social ink" href="https://www.linkedin.com/company/uva-builders/" target="_blank" rel="noopener" aria-label="builders@uva on LinkedIn" title="LinkedIn"><LinkedIn size={11} /></a>
 </footer>
 
 <style>
