@@ -37,13 +37,12 @@ export default async function handler(req, res) {
     try {
       await client.query('begin')
       await client.query(
-        `insert into members (email, year, technical, founded, website, full_name)
-         values ($1, $2, $3, $4, $5, $6)
+        `insert into members (email, year, linkedin, full_name)
+         values ($1, $2, $3, $4)
          on conflict (email) do update set
-           full_name = excluded.full_name,
-           year = excluded.year, technical = excluded.technical, founded = excluded.founded,
-           website = coalesce(excluded.website, members.website), updated_at = now()`,
-        [d.email, d.year, d.technical, d.founded, d.website, d.fullName],
+           full_name = excluded.full_name, year = excluded.year,
+           linkedin = coalesce(excluded.linkedin, members.linkedin), updated_at = now()`,
+        [d.email, d.year, d.linkedin, d.fullName],
       )
       await client.query('commit')
     } catch (err) {

@@ -147,7 +147,7 @@
           <th aria-sort={ariaSort('full_name')}><button onclick={() => order('full_name')}>Name{arrow('full_name')}</button></th>
           <th aria-sort={ariaSort('email')}><button onclick={() => order('email')}>Email{arrow('email')}</button></th>
           {#if view !== 'responses'}
-            <th aria-sort={ariaSort('year')}><button onclick={() => order('year')}>Year{arrow('year')}</button></th><th>Technical</th><th>Founded</th><th>Website</th>
+            <th aria-sort={ariaSort('year')}><button onclick={() => order('year')}>Year{arrow('year')}</button></th><th>LinkedIn</th><th>Technical</th><th>Founded</th><th>Website</th>
           {:else}
             <th aria-sort={ariaSort('event_slug')}><button onclick={() => order('event_slug')}>Event{arrow('event_slug')}</button></th><th>RSVP prompt</th><th>RSVP</th><th>Question for speaker</th>
           {/if}
@@ -159,7 +159,9 @@
           {#each data.rows as row (view !== 'responses' ? row.email : row.id)}
             <tr><td>{row.full_name || '—'}</td><td>{row.email}</td>
               {#if view !== 'responses'}
-                <td>{row.year}</td><td>{row.technical ? 'Yes' : 'No'}</td><td>{row.founded ? 'Yes' : 'No'}</td>
+                <td>{row.year}</td>
+                <td>{#if safeWebsite(row.linkedin)}<a href={safeWebsite(row.linkedin)} target="_blank" rel="noopener noreferrer">{row.linkedin}</a>{:else}{row.linkedin || '—'}{/if}</td>
+                <td>{row.technical == null ? '—' : row.technical ? 'Yes' : 'No'}</td><td>{row.founded == null ? '—' : row.founded ? 'Yes' : 'No'}</td>
                 <td>{#if safeWebsite(row.website)}<a href={safeWebsite(row.website)} target="_blank" rel="noopener noreferrer">{row.website}</a>{:else}{row.website || '—'}{/if}</td>
               {:else}
                 <td>{eventName(row.event_slug)}<small>{row.event_slug}</small></td><td>{row.question || '—'}</td><td><span class:yes={row.answer === 'yes'} class="answer">{row.answer || '—'}</span></td><td class="speaker-question">{row.speaker_question || '—'}</td>

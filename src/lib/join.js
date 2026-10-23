@@ -13,7 +13,17 @@ export const EMAIL_RE = /^[a-z0-9][a-z0-9._-]{0,63}@virginia\.edu$/i
 const YEAR_VALUES = new Set(YEARS.map((y) => y.value))
 
 const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '')
-const bool = (v) => v === true || v === 'true' || v === 'yes'
+
+// Blank is fine; otherwise a linkedin.com link, with or without the scheme.
+export function linkedinError(value) {
+  const v = typeof value === 'string' ? value.trim() : ''
+  if (!v) return ''
+  try {
+    const host = new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v).hostname.toLowerCase()
+    if (host === 'linkedin.com' || host.endsWith('.linkedin.com')) return ''
+  } catch {}
+  return 'Use a linkedin.com link, or leave it blank.'
+}
 
 export function fullNameError(value) {
   const name = typeof value === 'string' ? value.trim() : ''
@@ -36,22 +46,10 @@ export function validate(body) {
   const year = str(body.year, 16)
   if (!YEAR_VALUES.has(year)) return { ok: false, error: 'Pick your year.' }
 
-  if (body.technical !== true && body.technical !== false) return { ok: false, error: 'Answer the technical question.' }
-  if (body.founded !== true && body.founded !== false) return { ok: false, error: 'Answer the founder question.' }
+  let linkedin = str(body.linkedin, 200)
+  const linkedinProblem = linkedinError(linkedin)
+  if (linkedinProblem) return { ok: false, error: linkedinProblem }
+  if (linkedin && !/^https?:\/\//i.test(linkedin)) linkedin = 'https://' + linkedin
 
-  let website = null
-  if (body.founded) {
-    website = str(body.website, 200)
-    if (website) {
-      if (!/^https?:\/\//i.test(website)) website = 'https://' + website
-      try { new URL(website) } catch { return { ok: false, error: 'That website link does not look right.' } }
-    } else {
-      website = null
-    }
-  }
-
-  return {
-    ok: true,
-    data: { fullName, email, year, technical: body.technical, founded: body.founded, website },
-  }
+  return { ok: true, data: { fullName, email, year, linkedin: linkedin || null } }
 }

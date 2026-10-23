@@ -38,5 +38,11 @@ alter table event_responses drop constraint if exists event_responses_email_fkey
 update event_responses r set full_name = m.full_name
   from members m where r.email = m.email and r.full_name is null and m.full_name is not null;
 
+-- The interest form no longer asks the technical or founder questions; earlier
+-- answers stay. LinkedIn is optional.
+alter table members alter column technical drop not null;
+alter table members alter column founded drop not null;
+alter table members add column if not exists linkedin text;
+
 -- Required for new registrations; older RSVPs have no submitted question.
 alter table event_responses add column if not exists speaker_question text;

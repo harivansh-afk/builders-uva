@@ -19,7 +19,7 @@
   .foot {
     display: flex;
     justify-content: flex-end;
-    padding: 0 var(--edge) max(var(--edge), env(safe-area-inset-bottom));
+    padding: 0 var(--edge) max(12px, env(safe-area-inset-bottom));
     font-family: var(--mono);
     font-size: 13px;
     letter-spacing: 0.08em;
@@ -34,8 +34,8 @@
     justify-content: flex-end;
     align-items: center;
     gap: 8px 12px;
-    min-height: 32px;
-    padding-top: 10px;
+    /* the same room above the row as below it, to the window's edge */
+    padding-top: 12px;
     border-top: 1px solid var(--hair);
   }
   .legal { margin-left: 4px; }

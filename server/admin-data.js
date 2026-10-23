@@ -39,7 +39,7 @@ export function queryOptions(params) {
   const from = view !== 'responses' ? 'members m' : 'event_responses r'
   const where = conditions.length ? ` where ${conditions.join(' and ')}` : ''
   const columns = view !== 'responses'
-    ? 'm.status, m.email, m.full_name, m.year, m.technical, m.founded, m.website, m.created_at, m.updated_at'
+    ? 'm.status, m.email, m.full_name, m.year, m.technical, m.founded, m.website, m.linkedin, m.created_at, m.updated_at'
     : 'r.id, r.email, r.full_name, r.event_slug, r.question, r.answer, r.speaker_question, r.created_at'
   return { page, values,
     count: `select count(*)::int as total from ${from}${where}`,

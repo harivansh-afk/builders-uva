@@ -1,15 +1,11 @@
 <script>
-  import { YEARS, EMAIL_RE, fullNameError } from '../lib/join.js'
+  import { YEARS, EMAIL_RE, fullNameError, linkedinError } from '../lib/join.js'
   import Field from '../lib/Field.svelte'
-
-  const YES_NO = [{ value: true, label: 'Yes' }, { value: false, label: 'No' }]
 
   let fullName = $state('')
   let email = $state('')
   let year = $state('')
-  let technical = $state(null)
-  let founded = $state(null)
-  let website = $state('')
+  let linkedin = $state('')
   let hp = $state('') // honeypot; bots fill it, people never see it
 
   let attempted = $state(false)
@@ -20,8 +16,7 @@
     fullName: fullNameError(fullName),
     email: EMAIL_RE.test(email.trim()) ? '' : 'Use your @virginia.edu address.',
     year: year ? '' : 'Pick one.',
-    technical: technical === null ? 'Pick one.' : '',
-    founded: founded === null ? 'Pick one.' : '',
+    linkedin: linkedinError(linkedin),
   })
   const valid = $derived(Object.values(problems).every((p) => !p))
   const show = (k) => (attempted ? problems[k] : '')
@@ -40,9 +35,7 @@
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          fullName: fullName.trim(), email: email.trim(), year, technical, founded,
-          website: founded ? website.trim() : '',
-          hp,
+          fullName: fullName.trim(), email: email.trim(), year, linkedin: linkedin.trim(), hp,
         }),
       })
       const body = await res.json().catch(() => ({}))
@@ -95,15 +88,8 @@
         {@render choice(YEARS, () => year, (v) => (year = v), show('year'))}
       </Field>
 
-      <Field n="04" q="Do you consider yourself to be technical?" err={show('technical')}>
-        {@render choice(YES_NO, () => technical, (v) => (technical = v), show('technical'))}
-      </Field>
-
-      <Field n="05" q="Have you founded a company or built a product before?" err={show('founded')}>
-        {@render choice(YES_NO, () => founded, (v) => (founded = v), show('founded'))}
-        {#if founded}
-          <input type="url" bind:value={website} placeholder="Link to it (optional)" autocomplete="url" inputmode="url" spellcheck="false" aria-label="Link to your company or product" />
-        {/if}
+      <Field n="04" q="What is your LinkedIn?" id="linkedin" err={show('linkedin')}>
+        <input id="linkedin" type="url" bind:value={linkedin} placeholder="linkedin.com/in/you (optional)" autocomplete="url" inputmode="url" spellcheck="false" maxlength="200" aria-invalid={!!show('linkedin')} />
       </Field>
 
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" bind:value={hp} aria-hidden="true" />
