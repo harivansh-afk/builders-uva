@@ -18,7 +18,7 @@ const glyph = {
 }
 
 export const logos = [
-  { name: 'Y Combinator', color: '#F0652F', glyph: glyph.ycombinator, who: ['quan-huynh', 'vaibhav-gupta', 'harsha-gaddipati'] },
+  { name: 'Combinator', color: '#F0652F', glyph: glyph.ycombinator, who: ['quan-huynh', 'vaibhav-gupta', 'harsha-gaddipati'] },
   { name: 'a16z', face: 'sans', who: ['alex-oliver'] },
   { name: 'Instagram', color: '#FF0069', glyph: glyph.instagram, who: ['steve-morin'] },
   { name: 'Asana', color: '#F06A6A', glyph: glyph.asana, who: ['steve-morin'] },
