@@ -89,7 +89,7 @@
       </Field>
 
       <Field n="04" q="What is your LinkedIn?" id="linkedin" err={show('linkedin')}>
-        <input id="linkedin" type="url" bind:value={linkedin} placeholder="linkedin.com/in/you (optional)" autocomplete="url" inputmode="url" spellcheck="false" maxlength="200" aria-invalid={!!show('linkedin')} />
+        <input id="linkedin" type="url" bind:value={linkedin} placeholder="linkedin.com/in/you" autocomplete="url" inputmode="url" spellcheck="false" maxlength="200" required aria-invalid={!!show('linkedin')} />
       </Field>
 
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" bind:value={hp} aria-hidden="true" />

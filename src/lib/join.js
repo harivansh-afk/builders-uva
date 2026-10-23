@@ -14,15 +14,15 @@ const YEAR_VALUES = new Set(YEARS.map((y) => y.value))
 
 const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '')
 
-// Blank is fine; otherwise a linkedin.com link, with or without the scheme.
+// A linkedin.com link, with or without the scheme.
 export function linkedinError(value) {
   const v = typeof value === 'string' ? value.trim() : ''
-  if (!v) return ''
+  if (!v) return 'Add your LinkedIn.'
   try {
     const host = new URL(/^https?:\/\//i.test(v) ? v : 'https://' + v).hostname.toLowerCase()
     if (host === 'linkedin.com' || host.endsWith('.linkedin.com')) return ''
   } catch {}
-  return 'Use a linkedin.com link, or leave it blank.'
+  return 'Use a linkedin.com link.'
 }
 
 export function fullNameError(value) {
@@ -49,7 +49,7 @@ export function validate(body) {
   let linkedin = str(body.linkedin, 200)
   const linkedinProblem = linkedinError(linkedin)
   if (linkedinProblem) return { ok: false, error: linkedinProblem }
-  if (linkedin && !/^https?:\/\//i.test(linkedin)) linkedin = 'https://' + linkedin
+  if (!/^https?:\/\//i.test(linkedin)) linkedin = 'https://' + linkedin
 
-  return { ok: true, data: { fullName, email, year, linkedin: linkedin || null } }
+  return { ok: true, data: { fullName, email, year, linkedin } }
 }

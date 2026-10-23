@@ -39,7 +39,7 @@ update event_responses r set full_name = m.full_name
   from members m where r.email = m.email and r.full_name is null and m.full_name is not null;
 
 -- The interest form no longer asks the technical or founder questions; earlier
--- answers stay. LinkedIn is optional.
+-- answers stay. LinkedIn is required by the form; older rows have none.
 alter table members alter column technical drop not null;
 alter table members alter column founded drop not null;
 alter table members add column if not exists linkedin text;

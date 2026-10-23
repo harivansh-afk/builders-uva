@@ -41,7 +41,7 @@ export default async function handler(req, res) {
          values ($1, $2, $3, $4)
          on conflict (email) do update set
            full_name = excluded.full_name, year = excluded.year,
-           linkedin = coalesce(excluded.linkedin, members.linkedin), updated_at = now()`,
+           linkedin = excluded.linkedin, updated_at = now()`,
         [d.email, d.year, d.linkedin, d.fullName],
       )
       await client.query('commit')

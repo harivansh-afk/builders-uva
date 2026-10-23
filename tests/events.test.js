@@ -27,9 +27,9 @@ test('applications are valid without an event RSVP', () => {
   assert.equal(result.data.eventAnswer, undefined)
 })
 
-test('interest form takes an optional linkedin.com link and nothing else', () => {
+test('interest form requires a linkedin.com link', () => {
   const base = { fullName: 'Test Student', email: 'test@virginia.edu', year: 'first' }
-  assert.equal(validate(base).data.linkedin, null)
+  assert.equal(validate(base).ok, false)
   assert.equal(validate({ ...base, linkedin: 'linkedin.com/in/test' }).data.linkedin, 'https://linkedin.com/in/test')
   assert.equal(validate({ ...base, linkedin: 'https://www.linkedin.com/in/test/' }).ok, true)
   assert.equal(validate({ ...base, linkedin: 'https://evil.com/linkedin.com' }).ok, false)
