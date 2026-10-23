@@ -267,7 +267,7 @@ export const events = [
   {
     slug: 'steve-morin',
     name: 'Steve Morin',
-    tag: 'ex-Instagram',
+    tag: 'Instagram, Asana',
     date: '2026-10-08',
     img: '/steve-morin.webp',
     link: 'https://www.linkedin.com/in/stevebmorin/',
