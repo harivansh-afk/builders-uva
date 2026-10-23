@@ -323,10 +323,94 @@ export const events = [
     name: 'Maxwell Nardi',
     tag: 'Runlayer',
     date: '2026-10-22',
+    time: '6 p.m.',
     img: '/maxwell-nardi.webp',
     link: 'https://www.linkedin.com/in/maxwellnardi/',
     // Bio and portrait: his LinkedIn profile (checked October 7, 2026).
-    description: 'Maxwell Nardi is building Runlayer, which helps companies connect AI agents to their tools and data securely. He studied at UVA and joins us in person for a Q&A. Time and location to be announced.',
+    description: 'Maxwell Nardi was the founding business hire at Runlayer, which helps companies connect AI agents to their tools and data securely. He studied at UVA.',
+    registration: 'closed',
+    video: { youtube: 'jlQfz4_yK1M', title: 'Maxwell Nardi at builders@uva, October 22, 2026', thumbnail: '/events/maxwell-nardi/thumbnail.jpg' },
+    photos: [
+      { file: 'room', alt: 'Max on the Foundry display, with members gathered around.', width: 1745, height: 1308 },
+    ],
+    recap: [
+      {
+        title: 'The session',
+        paragraphs: [
+          'Max joined us over Google Meet for a conversation about vibe coding with taste, what junior engineers can bring to a team, where startups can still build a moat, and the always-on agent he runs his work through.',
+        ],
+      },
+      {
+        title: 'From UVA to Runlayer',
+        paragraphs: [
+          'He started in computer science at UVA, decided it was not for him long-term, and moved to the Comm School. After graduating he worked at Insight Partners, a growth equity firm, then joined MongoDB as a founding member of its corporate development and ventures team.',
+          'He spent a year in San Francisco on a zero-to-one startup backed by Founders Fund and Greylock, bringing AI to HVAC, plumbing, and electrical businesses. He then joined Runlayer as its founding business hire. He was employee number three; the company is now 75 people and is backed by Khosla Ventures.',
+        ],
+      },
+      {
+        title: 'Know what good looks like',
+        paragraphs: [
+          'The number one skill for a college student, in his view, is mastering AI systems: connecting tools through MCP, writing skills, choosing and combining harnesses and models, and running agents on cloud machines so they keep working after the laptop closes.',
+          'The biggest mistake he sees is not knowing what good looks like. Without a clear end state, people treat the model like a slot machine, asking it to redo the work until they burn through tokens for almost no improvement. The same applies to an Excel model as to software.',
+        ],
+      },
+      {
+        title: 'Taste',
+        paragraphs: [
+          'He called taste the hardest skill to learn and the most valuable one going forward. It depends on the field, and it is not the same as experience: people with 20 years in a field can have poor taste because they are set in older ways of working. He pointed to early Uber as an example of engineering taste.',
+          'There is no shortcut. You develop taste most naturally in things you care about, so chase what you find genuinely interesting and put the effort into learning what good looks like there.',
+        ],
+      },
+      {
+        title: 'Junior engineers',
+        paragraphs: [
+          'It is a hard market for junior engineers because senior engineers can now do far more themselves. A junior can still stand out as the person who brings new tools and better ways of working to a team that is set in its habits.',
+          'Find startups that reward high-slope people, those who learn fast and keep up with the field. Runlayer does not use LeetCode; it asks systems architecture questions to see how candidates think. The line he drew was between people who use AI well and people who ship unreviewed slop, which spreads quickly once agents can act across a company’s systems.',
+        ],
+      },
+      {
+        title: 'Starting a company now',
+        paragraphs: [
+          'He called this a great time to join a fast-growing startup, and a harder one to start a company: he has friends whose companies were crushed by the model labs. His test is whether better models improve your business or shrink its moat. An AI code review tool is likely to lose to the labs; a business that helps traditional companies adopt AI gets stronger as the models improve.',
+        ],
+      },
+      {
+        title: 'His agent setup',
+        paragraphs: [
+          'Max shared the screen to show Atlas, an assistant he built that runs Claude Code on a virtual machine on Render. He can reach it by text, Slack, or Claude Code. A dispatcher handles quick tasks immediately and sends longer ones, such as rebuilding a financial model, to background workers that can run for hours.',
+          'It keeps its core rules in a SOUL.md file. Each day a dreaming step reviews his chats and decides what belongs in its core rules, what goes into other memory files, and what to discard. He uses agents for financial models, legal processes, and employee onboarding and offboarding.',
+          'Atlas is also a prototype for a work assistant Runlayer plans to release to enterprise customers. Unlike individuals with a Mac mini, enterprises will want assistants running in their own cloud or on-premises environment.',
+        ],
+      },
+      {
+        title: 'Prioritizing and intentionality',
+        paragraphs: [
+          'When anything can be built, prioritization matters more. At Runlayer he prioritizes whatever will accelerate growth the most; customers asking for the work assistant is why it is being built. For students, he suggested multiplying excitement by how much money an idea could make.',
+          'He described himself as skeptical of skills. When Runlayer moved from Opus 4 to Opus 5, the newer model performed better with the right context and without the detailed skills written for the older one. He prefers to define the end state carefully and show it examples, links, screenshots, or videos. He dictates with Wispr Flow.',
+        ],
+      },
+      {
+        title: 'Where to look',
+        paragraphs: [
+          'He pointed to compute and inference infrastructure such as Modal, Baseten, and Fireworks; robotics, including robots handling parts of small-scale manufacturing in the U.S.; consumer AI; applied AI in healthcare, pharma, and biology; and data labeling and reinforcement learning infrastructure for the frontier labs.',
+          'Runlayer’s thesis is that enterprises need a control plane for AI before rolling it out widely, so agents do not delete a production database or run up $100,000 in tokens overnight. He keeps up with the field mainly through Twitter.',
+        ],
+      },
+      {
+        title: 'Frontier and open models',
+        paragraphs: [
+          'Usage will shift toward smaller models scoped to specific tasks and better routing between them; there is no reason to use a frontier model to read email. LLM gateways and automatic model selection are the leading approaches, and Runlayer’s product includes both. How far ahead the frontier labs stay is unresolved, though he expects their research talent to keep them in front.',
+          'If model progress stopped today, he believes the models could already do almost anything inside an enterprise. The remaining problems are giving them the right context, giving them tool access, and keeping long-running agents from drifting off task.',
+        ],
+      },
+      {
+        title: 'Closing',
+        paragraphs: [
+          'His advice was that it is the best time to be a builder: if you want to do something, do it, and if you want to learn fast, join a startup. The traits he looks for are taste and drive. His favorite UVA class was a public policy course on the challenges of the 21st century, with a different expert each week.',
+          'He also recommended a future speaker: the friend he started an earlier entrepreneurship club at UVA with, who now works at Anthropic.',
+        ],
+      },
+    ],
   },
   {
     slug: 'andrew-schoka',
