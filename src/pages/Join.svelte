@@ -109,12 +109,10 @@
 </div>
 
 <style>
-  /* same skeleton as /events: label, lede, then full-width rows under one rule */
+  /* same skeleton as /events: label, lede, then full-width rows */
   .join { display: grid; gap: var(--s4); }
   .lede { max-width: 30ch; }
 
-  /* rules sit between questions only */
-  form :global(.field + .field) { border-top: 1px solid var(--hair); }
   form :global(.field:first-child) { padding-top: 0; }
 
   input {
