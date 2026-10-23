@@ -72,6 +72,6 @@ Slashy was not hiring at the time of the talk, but he invited students to email 
 
 ## Published images
 
-![Students gathered for a group selfie in the classroom after Harsha’s talk.](../../public/events/harsha-gaddipati/selfie-1200.webp)
+![Students gathered for a group selfie in the classroom after Harsha’s talk.](../../../public/events/harsha-gaddipati/selfie-1200.webp)
 
 Source: https://www.uva.builders/events/harsha-gaddipati/selfie-1200.webp

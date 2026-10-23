@@ -6,9 +6,9 @@ Collected September 29, 2026 from the live event pages. The six exported images 
 
 | Event | Published page / recap and images | Organizer-reported attendance | Transcript or notes |
 | --- | --- | --- | --- |
-| Quan Huynh, September 10, 6 p.m. | [Collected recap and 3 photos](quan-huynh-recap.md) | 25 | No full transcript found. [Interview questions](../../quan.md) are notes, not a transcript. |
-| Vaibhav Gupta, September 17, 6 p.m. | [Collected recap and 2 images](vaibhav-gupta-recap.md) | 17 | [Existing machine-generated transcript](../../docs/events/vaibhav-gupta-transcript.md), with original caveats. |
-| Harsha Gaddipati, September 24, 6 p.m. | [Collected recap and 1 photo](harsha-gaddipati-recap.md) | 13 | [Existing machine-generated transcript](../../docs/events/harsha-gaddipati-transcript.md), with original caveats. |
+| Quan Huynh, September 10, 6 p.m. | [Collected recap and 3 photos](quan-huynh-recap.md) | 25 | No full transcript found. [Interview questions](../../events/quan-huynh-questions.md) are notes, not a transcript. |
+| Vaibhav Gupta, September 17, 6 p.m. | [Collected recap and 2 images](vaibhav-gupta-recap.md) | 17 | [Existing machine-generated transcript](../../events/vaibhav-gupta-transcript.md), with original caveats. |
+| Harsha Gaddipati, September 24, 6 p.m. | [Collected recap and 1 photo](harsha-gaddipati-recap.md) | 13 | [Existing machine-generated transcript](../../events/harsha-gaddipati-transcript.md), with original caveats. |
 
 The website publishes session recaps, not full transcripts. The two transcript files are existing Google Meet-derived repository records, not newly downloaded public-site transcripts. They are not fully audio-checked verbatim records. Quan's questions do not establish what was actually said. The Boundary pivot image is a reference graphic, not a photo of attendees.
 

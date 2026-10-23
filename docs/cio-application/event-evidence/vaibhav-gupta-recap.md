@@ -62,10 +62,10 @@ He is always hiring interns and full-timers. Send him the three most incredible 
 
 ## Published images
 
-![Boundary’s timeline of pivots from 2021 to BAML, from the 5 years, 12 pivots blog post.](../../public/events/vaibhav-gupta/pivots-1200.webp)
+![Boundary’s timeline of pivots from 2021 to BAML, from the 5 years, 12 pivots blog post.](../../../public/events/vaibhav-gupta/pivots-1200.webp)
 
 Source: https://www.uva.builders/events/vaibhav-gupta/pivots-1200.webp
 
-![Students around the classroom tables listening to the talk.](../../public/events/vaibhav-gupta/room-1200.webp)
+![Students around the classroom tables listening to the talk.](../../../public/events/vaibhav-gupta/room-1200.webp)
 
 Source: https://www.uva.builders/events/vaibhav-gupta/room-1200.webp

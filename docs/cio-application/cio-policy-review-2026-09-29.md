@@ -53,7 +53,7 @@ The older sample and application-guide nondiscrimination lists differ from the c
 
 ### 1. The next declaration cannot be supported by the inspected website
 
-**Observed:** the home, Apply, Events, and three September-event pages have no full independence notice. The footer contains copyright/brand text and a clock. The source in [Footer.svelte](../src/lib/Footer.svelte) confirms that structure. The home page displays University/program logos. See [the live home screenshot](evidence/website-2026-09-29.jpg).
+**Observed:** the home, Apply, Events, and three September-event pages have no full independence notice. The footer contains copyright/brand text and a clock. The source in [Footer.svelte](../../src/lib/Footer.svelte) confirms that structure. The home page displays University/program logos. See [the live home screenshot](evidence/website-2026-09-29.jpg).
 
 **Requirement:** P II.B requires the prescribed statement prominently on every club website page and in the covered communications. A §6, pp.3–4 covers websites, social media, publications, messages, and third-party dealings. The next live declaration certifies that this has been done and also acts as an electronic signature. See [the declaration screenshot](evidence/non-affiliation-gate-2026-09-29.jpg).
 
@@ -63,7 +63,7 @@ No organization-owned social pages are listed in the application. The visible Li
 
 ### 2. The default branding rules do not cover the displayed UVA wordmark
 
-**Observed:** the home page renders `/uva.svg` as a standard “University of Virginia” wordmark. It also displays The Foundry and UVA Engineering VentureForward logos as a row of linked marks. [App.svelte](../src/App.svelte) contains those three assets/links. No written permission or club partnership record was supplied.
+**Observed:** the home page renders `/uva.svg` as a standard “University of Virginia” wordmark. It also displays The Foundry and UVA Engineering VentureForward logos as a row of linked marks. [App.svelte](../../src/App.svelte) contains those three assets/links. No written permission or club partnership record was supplied.
 
 **Requirement:** B distinguishes CIOs from University agency/special-status groups: the ordinary University logo system is not the default permission for a CIO. It permits the customized split-V route and approved organization naming. P II.C addresses prior written permission and restrictive use of names/marks; A §7, p.4 gives the club-specific terms.
 

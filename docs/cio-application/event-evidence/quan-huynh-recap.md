@@ -54,14 +54,14 @@ Raise money to accelerate, not to validate. Revenue first, then scale.
 
 ## Published images
 
-![Harivansh speaking with Quan Huynh on the classroom display.](../../public/events/quan-huynh/dsc04129-1200.webp)
+![Harivansh speaking with Quan Huynh on the classroom display.](../../../public/events/quan-huynh/dsc04129-1200.webp)
 
 Source: https://www.uva.builders/events/quan-huynh/dsc04129-1200.webp
 
-![Students gathered around the classroom tables during the founder Q&A.](../../public/events/quan-huynh/dsc04128-1200.webp)
+![Students gathered around the classroom tables during the founder Q&A.](../../../public/events/quan-huynh/dsc04128-1200.webp)
 
 Source: https://www.uva.builders/events/quan-huynh/dsc04128-1200.webp
 
-![Harivansh and an attendee in conversation at the front of the room.](../../public/events/quan-huynh/dsc04120-1200.webp)
+![Harivansh and an attendee in conversation at the front of the room.](../../../public/events/quan-huynh/dsc04120-1200.webp)
 
 Source: https://www.uva.builders/events/quan-huynh/dsc04120-1200.webp
