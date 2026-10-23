@@ -20,13 +20,13 @@
     const p = route.path
     if (p === '/') return { name: 'home', title: 'builders@uva' }
     if (p === '/legal') return { name: 'legal', title: 'Legal · builders@uva' }
-    if (p === '/events') return { name: 'events', title: 'Thursdays' }
+    if (p === '/events') return { name: 'events', title: 'Events' }
     if (p === '/team') return { name: 'team', title: 'Team · builders@uva' }
     const registration = p.match(/^\/events\/([^/]+)\/register\/?$/)
     if (registration) return { name: 'register', slug: registration[1], title: 'Register' }
     if (p.startsWith('/events/')) {
       const slug = p.slice('/events/'.length)
-      return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Thursdays' }
+      return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Events' }
     }
     if (['/apply', '/apply/', '/join', '/join/'].includes(p)) return { name: 'join', title: 'Apply' }
     if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin' }
@@ -42,7 +42,7 @@
 <header class="header">
   <nav class="nav" aria-label="Pages">
     <a class="mark" href="/" aria-label="builders@uva home" aria-current={page.name === 'home' ? 'page' : undefined}><img src="/mark.svg" width="32" height="32" alt="*b" /></a>
-    <a class="tab" href="/events" aria-current={section === 'events' ? 'page' : undefined}><Brackets side="left" />Thursdays<Brackets side="right" /></a>
+    <a class="tab" href="/events" aria-current={section === 'events' ? 'page' : undefined}><Brackets side="left" />Events<Brackets side="right" /></a>
     <a class="tab" href="/team" aria-current={section === 'team' ? 'page' : undefined}><Brackets side="left" />Team<Brackets side="right" /></a>
     <a class="tab" href="/apply" aria-current={section === 'join' ? 'page' : undefined}><Brackets side="left" />Apply<Brackets side="right" /></a>
   </nav>

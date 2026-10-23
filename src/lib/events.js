@@ -413,6 +413,17 @@ export const events = [
     ],
   },
   {
+    slug: 'alex-becker',
+    name: 'Alex Becker',
+    tag: 'Anthropic',
+    date: '2026-11-11',
+    img: '/alex-becker.webp',
+    link: 'https://www.linkedin.com/in/alexandermbecker/',
+    // Bio and portrait: https://amb.horse/ and its /now page, which link this
+    // LinkedIn profile (checked October 23, 2026).
+    description: 'Alex Becker is a product engineer at Anthropic in New York. A UVA alumnus, he rowed for Virginia Men\'s Rowing and was part of the Virginia Entrepreneurship Organization, Contrary Capital, and the KP Product Fellowship. He joins us for a Q&A. Time and location to be announced.',
+  },
+  {
     slug: 'andrew-schoka',
     name: 'Andrew Schoka',
     tag: 'Hardshell',

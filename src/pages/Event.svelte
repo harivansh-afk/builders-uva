@@ -6,7 +6,7 @@
 </script>
 
 <div class="event">
-  <a class="back eyebrow" href="/events">← Thursdays</a>
+  <a class="back eyebrow" href="/events">← Events</a>
 
   {#if e}
     <header class="head">

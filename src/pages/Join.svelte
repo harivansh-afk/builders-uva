@@ -79,7 +79,7 @@
   {#if status === 'done'}
     <div class="done">
       <p>We'll review it and reach out at <span class="hl">{email.trim().toLowerCase()}</span>.</p>
-      <a class="next eyebrow" href="/events">Thursdays →</a>
+      <a class="next eyebrow" href="/events">Events →</a>
     </div>
   {:else}
     <form onsubmit={submit} novalidate>
