@@ -28,7 +28,7 @@
       const slug = p.slice('/events/'.length)
       return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Events' }
     }
-    if (['/apply', '/apply/', '/join', '/join/'].includes(p)) return { name: 'join', title: 'Apply' }
+    if (['/interest', '/interest/', '/apply', '/apply/', '/join', '/join/'].includes(p)) return { name: 'join', title: 'Interest' }
     if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin' }
     return { name: 'missing', title: 'Not found' }
   })
@@ -44,7 +44,7 @@
     <a class="mark" href="/" aria-label="builders@uva home" aria-current={page.name === 'home' ? 'page' : undefined}><img src="/mark.svg" width="32" height="32" alt="*b" /></a>
     <a class="tab" href="/events" aria-current={section === 'events' ? 'page' : undefined}><Brackets side="left" />Events<Brackets side="right" /></a>
     <a class="tab" href="/team" aria-current={section === 'team' ? 'page' : undefined}><Brackets side="left" />Team<Brackets side="right" /></a>
-    <a class="tab" href="/apply" aria-current={section === 'join' ? 'page' : undefined}><Brackets side="left" />Apply<Brackets side="right" /></a>
+    <a class="tab" href="/interest" aria-current={section === 'join' ? 'page' : undefined}><Brackets side="left" />Interest<Brackets side="right" /></a>
   </nav>
 </header>
 

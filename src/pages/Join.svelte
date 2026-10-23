@@ -70,15 +70,15 @@
 <div class="join">
   <header class="intro">
     {#if status === 'done'}
-      <h1 class="lede">Thanks, {fullName.trim().split(/\s+/)[0]}. Your application is <em>in.</em></h1>
+      <h1 class="lede">Thanks, {fullName.trim().split(/\s+/)[0]}. You're <em>on the list.</em></h1>
     {:else}
-      <h1 class="lede">Tell us a bit about yourself.</h1>
+      <h1 class="lede">Express interest in builders@uva.</h1>
     {/if}
   </header>
 
   {#if status === 'done'}
     <div class="done">
-      <p>We'll review it and reach out at <span class="hl">{email.trim().toLowerCase()}</span>.</p>
+      <p>We'll reach out at <span class="hl">{email.trim().toLowerCase()}</span>.</p>
       <a class="next eyebrow" href="/events">Events →</a>
     </div>
   {:else}
@@ -110,7 +110,7 @@
 
       <div class="actions">
         <button type="submit" class="go" disabled={status === 'sending'}>
-          {status === 'sending' ? 'Sending…' : 'Apply →'}
+          {status === 'sending' ? 'Sending…' : 'I\'m interested →'}
         </button>
         {#if status === 'error'}
           <p class="err" role="alert">{error}</p>
