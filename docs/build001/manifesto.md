@@ -1,25 +1,41 @@
 # Manifesto
 
-There is talent at UVA that is hungry to ship right now.
-Currently they mostly do so alone in a misguided fashion, usually aiming much lower than they should.
+There is a group of uniquely gifted, hungry, and taletned students at UVA poised to build and make tremdnous impact. 
+We are now ready to resource them. 
 
-We have built a community, united by founders we invite to share their college experiences.
-This has led to expansion in ambition and we are now ready to accept investment and confidently back these kids with a few thousand dollars.
+Higher education, especially at UVA, is struggling to equip its brightest students with the training, tools, and network needed to aim higher. 
 
-We believe that iwth the right guidance, there is nothing they cant achieve.
+There is no reason that the next billion dollar company should not come from the talent-dense & resourced students here
 
-We plan to do a single cohourt per semester. 
-Cohourt 1 will be 5-7 kids total.
+The university is failing to teach the importance of AI and bring in the right voices to guide the next wave of students in the AI economy. 
 
-The goal of a cohort is to get students on the right path so they are able to get the most out of their time at school.
-We have personally been though the struggles of working while in school and strongly beleive in the path of the early start.
+The "safe" path of joining a big corporation to do entry-level knowledge work may gradually, then suddenly, not be so safe. 
 
-to start with, each member will get a small grant and a mentor who meets with them weekly.
-in addition we will host weekly group check-in and dinners with the rest of the cohort, where they must present a tangible outcome 
-achieved in the last 7 days.
+The most important talent on the job market right now is the AI-engineer.
+the technical, high-agency & high-eq young graduate ready to make outsized impact. 
 
-builders is a non-profit, we take no equity
+Higher education is **not** curating this to say the least
+
+There is one certainty about windows of opportunity: they close.
+Today, there is a open window and we are ready to take it by storm
+
+We have built a community of like-minded & ambitious students through inviting and hosting founders who share their experiences and challenge our group to aim higher.
+
+We are now ready to take on our founding investment and to equip our first cohort with the means to build and create.
+
+We know that with the right guidance, there is nothing that students can't achieve.
+The founders of our organization can be taken as an initial case study.
+
+We plan to do a single cohort per semester, each cohort 1 will be 5-7 students only
+
+The goal of a cohort is to connect students with the brightest minds, provide resources and guidance to set students on the right path to do their life's work, starting with their time at UVA.
+
+Our founding team has each felt challenges of launching ventures, working full-time during school, and maintaing excellence with their social and academic conduct at UVA. 
+
+To start with, each member will get a small grant and a founding member who mentors them closely.
+
+Builders is a non-profit, we take no equity
 
 By the end of each cohort we hope to have progressed the career of each member in a tangible and measure-able manner.
 
-The fonding cohourt has responsibilities beyond their own relating to the growth of the organization.
+
