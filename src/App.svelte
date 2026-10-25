@@ -65,8 +65,10 @@
   .mark {
     position: absolute;
     z-index: 2;
-    top: max(16px, env(safe-area-inset-top));
-    left: max(20px, env(safe-area-inset-left));
+    /* the glyphs sit 3px inside the box: this lands their ink 22px from the
+       top and left, the footer text's distance from the right and bottom */
+    top: max(19px, env(safe-area-inset-top));
+    left: max(19px, env(safe-area-inset-left));
     font-family: var(--mono);
     font-size: 31px;
     font-weight: 300;

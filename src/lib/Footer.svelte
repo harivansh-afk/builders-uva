@@ -8,7 +8,7 @@
     <a href="/events">Events</a>
     <a href="https://www.instagram.com/builders.uva/" target="_blank" rel="noopener">Instagram</a>
     <a href="https://www.linkedin.com/company/uva-builders/" target="_blank" rel="noopener">LinkedIn</a>
-    <span>© {year} builders@uva</span>
+    <span class="copy">© {year} builders@uva</span>
   </nav>
 </footer>
 
@@ -38,7 +38,8 @@
     border-top: 1px solid var(--hair);
   }
   .links > * { white-space: nowrap; }
-  @media (max-width: 599px) { .links { gap: 10px 16px; } }
+  /* phones: the links fit one line without the copyright */
+  @media (max-width: 599px) { .foot { font-size: 17px; } .links { gap: 10px 16px; } .copy { display: none; } }
   a { transition: color 0.15s ease; }
   a:hover { color: var(--fg); }
 </style>

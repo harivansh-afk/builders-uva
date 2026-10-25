@@ -10,11 +10,6 @@ export const events = [
     tag: 'YC W26',
     date: '2026-09-10',
     time: '6PM',
-    photos: [
-      { file: 'dsc04129', alt: 'Harivansh speaking with Quan Huynh on the classroom display.', width: 1600, height: 2400 },
-      { file: 'dsc04128', alt: 'Students gathered around the classroom tables during the founder Q&A.', width: 2400, height: 1600 },
-      { file: 'dsc04120', alt: 'Harivansh and an attendee in conversation at the front of the room.', width: 2400, height: 1600 },
-    ],
     transcript: null,
     recap: [
       {
@@ -70,20 +65,17 @@ export const events = [
   },
   {
     slug: 'vaibhav-gupta',
+    youtube: 'N1GfBds-8lc',
     name: 'Vaibhav Gupta',
     tag: 'YC W23',
     date: '2026-09-17',
     time: '6PM',
     registration: 'closed',
-    photos: [
-      { file: 'pivots', alt: 'Boundary\u2019s timeline of pivots from 2021 to BAML, from the 5 years, 12 pivots blog post.', width: 1660, height: 1132, fit: 'contain' },
-      { file: 'room', alt: 'Students around the classroom tables listening to the talk.', width: 1280, height: 720 },
-    ],
     transcript: null,
     recap: [
       {
         paragraphs: [
-          'The co-founder of Boundary and creator of BAML joined us over Google Meet for a conversation about pivoting, picking a co-founder, and how to grow fast early in a career.',
+          'The co-founder of Boundary and creator of BAML joined us for a conversation about pivoting, picking a co-founder, and how to grow fast early in a career.',
         ],
       },
       {
@@ -146,19 +138,17 @@ export const events = [
   },
   {
     slug: 'harsha-gaddipati',
+    youtube: 'xWbcvfpUOn0',
     name: 'Harsha Gaddipati',
     tag: 'YC S25',
     date: '2026-09-24',
     time: '6PM',
     registration: 'closed',
-    photos: [
-      { file: 'selfie', alt: 'Students gathered for a group selfie in the classroom after Harsha’s talk.', width: 1600, height: 2133 },
-    ],
     transcript: null,
     recap: [
       {
         paragraphs: [
-          'The co-founder and CEO of Slashy joined us over Google Meet for a conversation about campus startups, pivoting from general agents to email, and what engineers need to know when AI writes the code.',
+          'The co-founder and CEO of Slashy joined us for a conversation about campus startups, pivoting from general agents to email, and what engineers need to know when AI writes the code.',
         ],
       },
       {
@@ -234,9 +224,6 @@ export const events = [
     tag: 'Carbon Black',
     date: '2026-10-01',
     description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital.',
-    photos: [
-      { file: 'conversation', alt: 'The room during our conversation with Dan Hall, with the speaker blurred for privacy.', width: 2400, height: 1800 },
-    ],
     recap: [
       {
         paragraphs: [
@@ -254,13 +241,10 @@ export const events = [
     // Bio: https://stevemorin.com/ (checked October 6, 2026).
     description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo.',
     registration: 'closed',
-    photos: [
-      { file: 'call', alt: 'Steve Morin on Google Meet beside Harivansh, Nathan, and members in the room.', width: 1675, height: 640 },
-    ],
     recap: [
       {
         paragraphs: [
-          'Steve joined us over Google Meet for a conversation about leading engineering teams, acquisitions, and what it takes to build a team people want to work on. He is VP of Engineering at Flox, which builds reproducible developer environments on Nix, and has held engineering leadership roles at Instagram, Asana, and Yahoo. He holds 14 U.S. patents and applications, advises early-stage developer-tools and AI companies, and has made more than 27 angel investments, including Raycast and CopilotKit.',
+          'Steve joined us for a conversation about leading engineering teams, acquisitions, and what it takes to build a team people want to work on. He is VP of Engineering at Flox, which builds reproducible developer environments on Nix, and has held engineering leadership roles at Instagram, Asana, and Yahoo. He holds 14 U.S. patents and applications, advises early-stage developer-tools and AI companies, and has made more than 27 angel investments, including Raycast and CopilotKit.',
         ],
       },
       {
@@ -298,6 +282,7 @@ export const events = [
   },
   {
     slug: 'maxwell-nardi',
+    youtube: 'jlQfz4_yK1M',
     name: 'Maxwell Nardi',
     tag: 'Runlayer',
     date: '2026-10-22',
@@ -305,13 +290,10 @@ export const events = [
     // Bio and portrait: his LinkedIn profile (checked October 7, 2026).
     description: 'Maxwell Nardi was the founding business hire at Runlayer, which helps companies connect AI agents to their tools and data securely. He studied at UVA.',
     registration: 'closed',
-    photos: [
-      { file: 'room', alt: 'Max on the Foundry display, with members gathered around.', width: 1745, height: 1308 },
-    ],
     recap: [
       {
         paragraphs: [
-          'Max joined us over Google Meet for a conversation about vibe coding with taste, what junior engineers can bring to a team, where startups can still build a moat, and the always-on agent he runs his work through.',
+          'Max joined us for a conversation about vibe coding with taste, what junior engineers can bring to a team, where startups can still build a moat, and the always-on agent he runs his work through.',
         ],
       },
       {

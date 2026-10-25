@@ -18,7 +18,7 @@
   // how far the hands sit from the centre (see createField). A tall pane runs
   // the hands near vertical, where the wide gap pushes them out into the faded
   // corners, so phones close it up.
-  const SPLIT = innerWidth / innerHeight < 0.8 ? [0.04, 0.06] : [0.15, 0.2]
+  const SPLIT = innerWidth / innerHeight < 0.8 ? [0, 0.02] : [0.08, 0.12]
 </script>
 
 <h1 class="sr-only">builders@uva</h1>
@@ -50,8 +50,14 @@
     background: radial-gradient(closest-side, rgba(10, 10, 11, 0.85), rgba(10, 10, 11, 0.4) 60%, transparent);
     pointer-events: none;
   }
+  /* centred on the window, where the gap between the fingertips is, rather
+     than on the space above the footer */
   .line {
-    position: relative;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    width: min(100% - 2 * var(--gutter), 40ch);
     font-size: clamp(22px, 1.82vw, 27px);
     letter-spacing: -0.005em;
     color: var(--soft);

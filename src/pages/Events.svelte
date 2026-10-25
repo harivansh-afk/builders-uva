@@ -9,7 +9,9 @@
     <li class="row">
       <a class="page" href="/events/{e.slug}">{e.name}{#if e.tag}<span class="tag">, {e.tag}</span>{/if}</a>
       {#if registrationOpen(e, today)}
-        <span class="upcoming"><time datetime={e.date}>{dayDate(e.date)}</time>, <a class="register ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a></span>
+        <span class="upcoming"><time datetime={e.date}>{dayDate(e.date)}</time>, <a class="action ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a></span>
+      {:else if e.youtube}
+        <a class="action ink" href="https://www.youtube.com/watch?v={e.youtube}" target="_blank" rel="noopener" aria-label="Recording of {e.name}">Recording</a>
       {/if}
     </li>
   {/each}
@@ -41,7 +43,7 @@
     color: var(--muted);
     white-space: nowrap;
   }
-  .register { color: var(--fg); }
+  .action { flex-shrink: 0; font-size: 20px; color: var(--fg); }
 
   @media (max-width: 599px) {
     .page { font-size: 22px; }

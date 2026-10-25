@@ -13,7 +13,9 @@
       <h1 class="name">{e.name}{#if e.tag}<span class="tag">, {e.tag}</span>{/if}</h1>
       <p class="meta"><time datetime={e.date}>{longDate(e.date)}</time>{#if e.time}, {e.time}{/if}{#if e.format}, {e.format}{/if}</p>
       {#if registrationOpen(e, today)}
-        <a class="register ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a>
+        <a class="action ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a>
+      {:else if e.youtube}
+        <a class="action ink" href="https://www.youtube.com/watch?v={e.youtube}" target="_blank" rel="noopener">Recording</a>
       {/if}
     </header>
 
@@ -77,7 +79,7 @@
     color: var(--muted);
   }
 
-  .register { display: inline-block; margin-top: 16px; font-size: 20px; }
+  .action { display: inline-block; margin-top: 16px; font-size: 20px; }
 
   .body { display: grid; gap: var(--s3); }
   .description { max-width: 62ch; font-size: 25px; line-height: 1.6; }
