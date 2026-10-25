@@ -24,8 +24,8 @@
     const resolve = enter * 0.75
 
     // The buffer shares the pane's aspect, so scaling the <pre> to the pane's
-    // width covers it exactly. The hands overshoot the corners by design and
-    // the mask fades them out before the edge.
+    // width covers it exactly. The hands overshoot the corners by design, so
+    // the arms leave through the edges.
     const fit = () => {
       if (!wrap || !pre || !pre.scrollWidth) return
       pre.style.transform = 'none'
@@ -96,10 +96,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    /* solid through the middle; the arms dissolve into the two corners they leave by */
-    -webkit-mask-image: linear-gradient(to top right, transparent 0%, #000 14%, #000 86%, transparent 100%);
-    mask-image: linear-gradient(to top right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+    overflow: hidden; /* the arms run on past the window's edges */
   }
   pre {
     margin: 0;
