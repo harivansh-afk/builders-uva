@@ -35,8 +35,6 @@
     {#if status === 'done'}
       <h1 class="lede">Thanks, {fullName.trim().split(/\s+/)[0]}.</h1>
       <p class="details">We'll reach out at {email.trim().toLowerCase()}.</p>
-    {:else}
-      <h1 class="lede">Apply to builders@uva.</h1>
     {/if}
   </header>
   {#if status === 'done'}
