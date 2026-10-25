@@ -13,16 +13,12 @@
   --dim: #5c5c61;    /* numerals and decoration */
   --hair: #242426;
   --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --serif: "EB Garamond", ui-serif, Georgia, "Times New Roman", serif;
   --mono: "Berkeley Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gutter: clamp(20px, 3.4vw, 48px);
-  /* the header and the home footer sit this far from the window's edges */
-  --edge: 20px;
   /* where the first label on any page sits, measured from the top */
-  --top: 128px;
+  --top: 96px;
 
   /* spacing scale: every vertical gap on the site is one of these */
-  --s2: 16px;
   --s3: 24px;
   --s4: 40px;
   --s5: 64px;
@@ -32,15 +28,13 @@
   /* lede type: 22–28px across desktop widths */
   --lede: clamp(22px, 1.9vw, 28px);
   --measure: 32ch;
-  /* the copy column on the home page */
-  --col: 600px;
 }
 /* one-column widths: scale the lede with the viewport, let it use the line */
 @media (max-width: 899px) {
   :root {
     --lede: clamp(20px, 3.2vw + 8px, 28px);
     --measure: 30ch;
-    --top: 96px;
+    --top: 72px;
     --s4: 32px;
     --s5: 48px;
     --s6: 72px;
@@ -87,19 +81,6 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   color: var(--muted);
 }
 
-/* ---------- shared page pieces (used by every page under src/pages) ---------- */
-/* equal room above and below every rule, so the rule sits between sections
-   rather than attached to the heading under it */
-.block {
-  padding: var(--s6) 0;
-  border-top: 1px solid var(--hair);
-}
-.block .eyebrow { margin-bottom: var(--s4); }
-/* the label fills its line box; body text does not, so pull the last line's
-   half-leading and descender space back to keep the rule optically centred */
-.block > :last-child { margin-bottom: -10px; }
-.hero { border-top: 0; }
-
 .lede {
   font-size: var(--lede);
   line-height: 1.32;
@@ -107,41 +88,8 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   max-width: var(--measure);
   text-wrap: pretty;
 }
-.lede em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.12em;
-  line-height: 1;
-}
-
-/* home and team stress words with an underline rather than italic, the rule
-   sitting just under the baseline */
-.lede.stress em {
-  font-family: inherit;
-  font-style: normal;
-  font-size: 1em;
-  line-height: inherit;
-  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 0.13em) / 100% 1px no-repeat;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-.hl {
-  font-family: var(--mono);
-  font-size: 0.8em;
-  letter-spacing: -0.02em;
-  background: rgba(242, 240, 234, 0.08);
-  padding: 0.06em 0.32em 0.1em;
-  margin: 0 0.04em;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-.hl .at { color: var(--muted); }
 
 /* links in running text, after hari.cafe: a faint fill that inverts on hover */
-.ink, .hl {
-  cursor: default;
-}
 a.ink {
   cursor: pointer;
   background: rgba(242, 240, 234, 0.08);
@@ -150,8 +98,7 @@ a.ink {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
-:is(a.ink, .hl):is(:hover, :focus-visible) { background: var(--fg); color: var(--bg); }
-:is(a.ink, .hl):is(:hover, :focus-visible) :is(em, .at) { color: inherit; }
+a.ink:is(:hover, :focus-visible) { background: var(--fg); color: var(--bg); }
 
 .sr-only {
   position: absolute;
@@ -166,12 +113,5 @@ a.ink {
   white-space: nowrap;
 }
 
-/* Speaker credential next to a name: metadata, so mono and muted. */
-.tag {
-  font-family: var(--mono);
-  font-size: 0.85em;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--muted);
-  white-space: nowrap;
-}
+/* Speaker credential after a name: the same type, muted. */
+.tag { color: var(--muted); }

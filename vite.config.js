@@ -33,6 +33,6 @@ export default defineConfig({
     host: '127.0.0.1',
     port: 8797,
     strictPort: true,
-    allowedHosts: ['spark-ix.tail368802.ts.net'],
+    allowedHosts: ['spark-ix.tail368802.ts.net', 'spark.taileb8b41.ts.net'],
   },
 })
