@@ -48,7 +48,7 @@
           {/each}
         </div>
       {:else}
-        <p class="soon">Coming soon.</p>
+        <p class="soon">soon</p>
       {/if}
       </section>
     {/if}
