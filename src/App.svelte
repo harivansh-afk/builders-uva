@@ -34,7 +34,7 @@
   {#if page.name === 'home'}
     <main class="home"><Home /></main>
   {:else}
-    <main class="page" class:admin-page={page.name === 'admin'}>
+    <main class="page" class:list={['events', 'cohorts'].includes(page.name)} class:admin-page={page.name === 'admin'}>
       {#key route.path}
         {#if page.name === 'events'}
           <Events />
@@ -87,6 +87,8 @@
     margin: 0 auto;
     padding: var(--top) var(--gutter) var(--s7);
   }
+  /* list pages sit in the middle of the window rather than at the top */
+  .list { display: grid; align-content: center; padding-bottom: var(--top); }
   .missing { display: grid; gap: var(--s4); }
   .back { border-bottom: 1px solid var(--dim); }
   .admin-page { width: min(1600px, 100%); }
