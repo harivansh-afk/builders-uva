@@ -75,7 +75,7 @@
   .lede { max-width: 30ch; }
   .details { margin-top: var(--s3); color: var(--muted); }
   form :global(.field:first-child) { padding-top: 0; }
-  input, textarea { width: 100%; max-width: 560px; padding: 10px 0 12px; border: 0; border-bottom: 1px solid var(--hair); border-radius: 0; background: transparent; color: var(--fg); font: inherit; font-size: 16px; }
+  input, textarea { width: 100%; max-width: 560px; padding: 10px 0 12px; border: 0; border-bottom: 1px solid var(--hair); border-radius: 0; background: transparent; color: var(--fg); font: inherit; font-size: 21px; }
   textarea { resize: vertical; line-height: 1.6; }
   input:focus, textarea:focus { outline: none; border-color: var(--fg); }
   input::placeholder, textarea::placeholder { color: var(--muted); }
@@ -88,7 +88,7 @@
     border: 0;
     color: var(--muted);
     font: inherit;
-    font-size: 15px;
+    font-size: 20px;
     text-decoration: underline;
     text-decoration-color: var(--dim);
     text-underline-offset: 0.2em;

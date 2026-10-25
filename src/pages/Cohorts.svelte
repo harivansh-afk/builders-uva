@@ -17,12 +17,12 @@
   }
   .name {
     padding: 10px 0;
-    font-size: 19px;
+    font-size: 25px;
     letter-spacing: -0.008em;
   }
-  .soon { font-size: 15px; color: var(--muted); }
+  .soon { font-size: 20px; color: var(--muted); }
 
   @media (max-width: 599px) {
-    .name { font-size: 17px; }
+    .name { font-size: 22px; }
   }
 </style>

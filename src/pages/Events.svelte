@@ -30,20 +30,20 @@
   }
   .page {
     padding: 10px 0;
-    font-size: 19px;
+    font-size: 25px;
     letter-spacing: -0.008em;
     transition: opacity 0.15s ease;
   }
   .page:hover { opacity: 0.7; }
   .upcoming {
     flex-shrink: 0;
-    font-size: 15px;
+    font-size: 20px;
     color: var(--muted);
     white-space: nowrap;
   }
   .register { color: var(--fg); }
 
   @media (max-width: 599px) {
-    .page { font-size: 17px; }
+    .page { font-size: 22px; }
   }
 </style>

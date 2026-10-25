@@ -19,18 +19,18 @@
   .field { padding: var(--s3) 0; }
   .body { display: grid; gap: 12px; min-width: 0; }
   .q {
-    font-size: 17px;
+    font-size: 22px;
     line-height: 1.35;
     letter-spacing: -0.008em;
     color: var(--fg);
   }
   .err {
-    font-size: 14px;
+    font-size: 18px;
     color: #c98484;
   }
 
   @media (max-width: 899px) {
     .field { padding: 20px 0; }
-    .q { font-size: 16px; }
+    .q { font-size: 21px; }
   }
 </style>

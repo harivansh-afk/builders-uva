@@ -11,11 +11,7 @@
   {#if e}
     <header>
       <h1 class="name">{e.name}{#if e.tag}<span class="tag">, {e.tag}</span>{/if}</h1>
-      <p class="meta">
-        <span><time datetime={e.date}>{longDate(e.date)}</time>{#if e.time}, {e.time}{/if}{#if e.format}, {e.format}{/if}</span>
-        {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
-        {#if e.video?.youtube}<span><a href="https://www.youtube.com/watch?v={e.video.youtube}" target="_blank" rel="noopener">Session recording</a></span>{/if}
-      </p>
+      <p class="meta"><time datetime={e.date}>{longDate(e.date)}</time>{#if e.time}, {e.time}{/if}{#if e.format}, {e.format}{/if}</p>
       {#if registrationOpen(e, today)}
         <a class="register ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a>
       {/if}
@@ -63,7 +59,7 @@
   .event { display: grid; gap: var(--s5); }
   .back {
     justify-self: start;
-    font-size: 15px;
+    font-size: 20px;
     color: var(--muted);
     transition: color 0.15s ease;
   }
@@ -77,36 +73,25 @@
   }
   .meta {
     margin-top: 14px;
-    font-size: 15px;
+    font-size: 20px;
     color: var(--muted);
-    display: grid;
-    justify-items: start;
-    gap: 6px;
   }
-  /* plain links: underlined, brighter on hover */
-  .meta a {
-    text-decoration: underline;
-    text-decoration-color: var(--dim);
-    text-underline-offset: 0.2em;
-    transition: color 0.15s ease, text-decoration-color 0.15s ease;
-  }
-  .meta a:hover { color: var(--fg); text-decoration-color: currentColor; }
 
-  .register { display: inline-block; margin-top: 16px; font-size: 15px; }
+  .register { display: inline-block; margin-top: 16px; font-size: 20px; }
 
   .body { display: grid; gap: var(--s3); }
-  .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
+  .description { max-width: 62ch; font-size: 25px; line-height: 1.6; }
   .recap { display: grid; gap: var(--s4); max-width: 62ch; }
   .recap section { display: grid; gap: 18px; }
-  .recap h3, .body h2 { font-size: 21px; font-weight: 400; }
-  .recap p { font-size: 17px; line-height: 1.6; }
+  .recap h3, .body h2 { font-size: 27px; font-weight: 400; }
+  .recap p { font-size: 22px; line-height: 1.6; }
   .soon {
     font-size: var(--lede);
     line-height: 1.32;
     color: var(--muted);
   }
   .transcript { display: grid; gap: 18px; max-width: 62ch; }
-  .transcript p { font-size: 17px; line-height: 1.6; }
+  .transcript p { font-size: 22px; line-height: 1.6; }
 
   @media (max-width: 599px) {
     .event { gap: 36px; }

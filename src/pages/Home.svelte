@@ -52,7 +52,7 @@
   }
   .line {
     position: relative;
-    font-size: clamp(17px, 1.4vw, 21px);
+    font-size: clamp(22px, 1.82vw, 27px);
     letter-spacing: -0.005em;
     color: var(--soft);
     text-align: center;

@@ -68,7 +68,7 @@
     top: max(16px, env(safe-area-inset-top));
     left: max(20px, env(safe-area-inset-left));
     font-family: var(--mono);
-    font-size: 24px;
+    font-size: 31px;
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.13em;

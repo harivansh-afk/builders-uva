@@ -15,7 +15,6 @@ export const events = [
       { file: 'dsc04128', alt: 'Students gathered around the classroom tables during the founder Q&A.', width: 2400, height: 1600 },
       { file: 'dsc04120', alt: 'Harivansh and an attendee in conversation at the front of the room.', width: 2400, height: 1600 },
     ],
-    link: 'https://www.linkedin.com/in/quanmhuynh/',
     transcript: null,
     recap: [
       {
@@ -75,9 +74,7 @@ export const events = [
     tag: 'YC W23',
     date: '2026-09-17',
     time: '6PM',
-    link: 'https://www.linkedin.com/in/vaigup/',
     registration: 'closed',
-    video: { youtube: 'N1GfBds-8lc' },
     photos: [
       { file: 'pivots', alt: 'Boundary\u2019s timeline of pivots from 2021 to BAML, from the 5 years, 12 pivots blog post.', width: 1660, height: 1132, fit: 'contain' },
       { file: 'room', alt: 'Students around the classroom tables listening to the talk.', width: 1280, height: 720 },
@@ -153,9 +150,7 @@ export const events = [
     tag: 'YC S25',
     date: '2026-09-24',
     time: '6PM',
-    link: 'https://www.linkedin.com/in/harsha-gaddipati-032bb820a/',
     registration: 'closed',
-    video: { youtube: 'xWbcvfpUOn0' },
     photos: [
       { file: 'selfie', alt: 'Students gathered for a group selfie in the classroom after Harsha’s talk.', width: 1600, height: 2133 },
     ],
@@ -238,8 +233,6 @@ export const events = [
     name: 'Dan Hall',
     tag: 'Carbon Black',
     date: '2026-10-01',
-    link: 'https://www.kyrus-tech.com/',
-    linkLabel: 'Kyrus Tech',
     description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital.',
     photos: [
       { file: 'conversation', alt: 'The room during our conversation with Dan Hall, with the speaker blurred for privacy.', width: 2400, height: 1800 },
@@ -258,7 +251,6 @@ export const events = [
     name: 'Steve Morin',
     tag: 'Instagram',
     date: '2026-10-08',
-    link: 'https://www.linkedin.com/in/stevebmorin/',
     // Bio: https://stevemorin.com/ (checked October 6, 2026).
     description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo.',
     registration: 'closed',
@@ -310,11 +302,9 @@ export const events = [
     tag: 'Runlayer',
     date: '2026-10-22',
     time: '6PM',
-    link: 'https://www.linkedin.com/in/maxwellnardi/',
     // Bio and portrait: his LinkedIn profile (checked October 7, 2026).
     description: 'Maxwell Nardi was the founding business hire at Runlayer, which helps companies connect AI agents to their tools and data securely. He studied at UVA.',
     registration: 'closed',
-    video: { youtube: 'jlQfz4_yK1M' },
     photos: [
       { file: 'room', alt: 'Max on the Foundry display, with members gathered around.', width: 1745, height: 1308 },
     ],
@@ -401,7 +391,6 @@ export const events = [
     name: 'Alex Becker',
     tag: 'Anthropic',
     date: '2026-11-05',
-    link: 'https://www.linkedin.com/in/alexandermbecker/',
     // Bio and portrait: https://amb.horse/ and its /now page, which link this
     // LinkedIn profile (checked October 23, 2026).
     description: 'Alex Becker is a product engineer at Anthropic in New York. A UVA alumnus, he rowed for Virginia Men\'s Rowing and was part of the Virginia Entrepreneurship Organization, Contrary Capital, and the KP Product Fellowship. He joins us for a Q&A. Time and location to be announced.',
@@ -411,7 +400,6 @@ export const events = [
     name: 'Andrew Schoka',
     tag: 'Hardshell',
     date: '2026-11-12',
-    link: 'https://www.linkedin.com/in/andrew-schoka/',
     // Bio and portrait: https://hardshell.ai/ team section, which links this
     // LinkedIn profile (checked October 22, 2026).
     description: 'Andrew Schoka is co-founder and CEO of Hardshell, which secures the data used to train AI systems. A former Army cyber operations officer at U.S. Cyber Command and U.S. Special Operations Command, he is a Darden MBA student and joins us in person for a Q&A. Time and location to be announced.',
@@ -421,8 +409,6 @@ export const events = [
     name: 'Alex Oliver',
     tag: 'a16z',
     date: '2026-11-19',
-    link: 'https://a16z.com/author/alex-oliver/',
-    linkLabel: 'a16z',
     // Bio and portrait: his a16z author page, which lists no LinkedIn
     // (checked October 22, 2026).
     description: 'Alex Oliver is a partner at Andreessen Horowitz, where he supports founders building in aerospace and national security. He spent 15 years as a U.S. Army infantry and intelligence officer, deploying to Iraq, Afghanistan, and West Africa, and led the maritime autonomy portfolio at the Defense Innovation Unit. He joins us in person for a Q&A. Time and location to be announced.',

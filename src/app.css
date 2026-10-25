@@ -26,13 +26,13 @@
   --s7: 160px;
 
   /* lede type: 22–28px across desktop widths */
-  --lede: clamp(22px, 1.9vw, 28px);
+  --lede: clamp(29px, 2.47vw, 36px);
   --measure: 32ch;
 }
 /* one-column widths: scale the lede with the viewport, let it use the line */
 @media (max-width: 899px) {
   :root {
-    --lede: clamp(20px, 3.2vw + 8px, 28px);
+    --lede: clamp(26px, 4.16vw + 10px, 36px);
     --measure: 30ch;
     --top: 72px;
     --s4: 32px;
@@ -57,7 +57,7 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: 21px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -73,7 +73,7 @@ p, h1, h2, h3, ol, ul { margin: 0; }
   align-items: baseline;
   gap: 14px;
   font-family: var(--mono);
-  font-size: 16.2px;
+  font-size: 21px;
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.16em;
