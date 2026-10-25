@@ -6,6 +6,7 @@
   import Footer from './lib/Footer.svelte'
   import Events from './pages/Events.svelte'
   import Cohorts from './pages/Cohorts.svelte'
+  import Apply from './pages/Apply.svelte'
   import { route } from './lib/router.svelte.js'
   import { eventBySlug } from './lib/events.js'
 
@@ -20,6 +21,7 @@
       const slug = p.slice('/events/'.length)
       return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Events' }
     }
+    if (['/apply', '/apply/', '/interest', '/interest/', '/join', '/join/'].includes(p)) return { name: 'apply', title: 'Apply' }
     if (p === '/admin' || p === '/admin/') return { name: 'admin', title: 'Admin' }
     return { name: 'missing', title: 'Not found' }
   })
@@ -44,6 +46,8 @@
           <Event slug={page.slug} />
         {:else if page.name === 'register'}
           <Register slug={page.slug} />
+        {:else if page.name === 'apply'}
+          <Apply />
         {:else if page.name === 'admin'}
           <Admin />
         {:else}

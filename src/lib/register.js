@@ -1,13 +1,5 @@
+import { EMAIL_RE, fullNameError } from './join.js'
 import { eventBySlug, registrationOpen } from './events.js'
-
-const EMAIL_RE = /^[a-z0-9][a-z0-9._-]{0,63}@virginia\.edu$/i
-
-function fullNameError(value) {
-  const name = typeof value === 'string' ? value.trim() : ''
-  if (name.split(/\s+/u).length < 2) return 'Enter your first and last name.'
-  if (name.length > 200) return 'Keep your full name under 201 characters.'
-  return ''
-}
 
 export function validateRegistration(body, today = new Date()) {
   if (!body || typeof body !== 'object') return { ok: false, error: 'Bad request.' }
