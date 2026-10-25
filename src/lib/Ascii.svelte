@@ -7,7 +7,8 @@
   import { onMount } from 'svelte'
   import { createField } from './field.js'
 
-  // `split` opens the gap between the fingertips (see createField). `only`
+  // `split` opens the gap between the fingertips (see createField), or is a
+  // function of the pane's aspect that returns it, re-read on resize. `only`
   // draws one hand (-1 Adam, +1 God); `from` is the corner it slides in from,
   // as [x, y] in half-pane units, `enter` how long that takes in ms, and
   // `delay` how long it waits before starting.
@@ -50,7 +51,7 @@
       const a = wrap.clientWidth / Math.max(1, wrap.clientHeight)
       if (!a || Math.abs(a - aspect) < 0.03) return fit()
       aspect = a
-      field = createField({ aspect, split, only })
+      field = createField({ aspect, split: typeof split === 'function' ? split(aspect) : split, only })
       cancelAnimationFrame(raf)
       pre.textContent = field.step(0, entering ? 0 : 1)
       last = -Infinity

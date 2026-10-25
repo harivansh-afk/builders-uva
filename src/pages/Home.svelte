@@ -15,10 +15,13 @@
   // the slide eases out hard, so the hands read as landed well before it ends
   const LINE = HANDS + ENTER * 0.7
 
-  // how far the hands sit from the centre (see createField). A tall pane runs
-  // the hands near vertical, where the wide gap pushes them out into the faded
-  // corners, so phones close it up.
-  const SPLIT = innerWidth / innerHeight < 0.8 ? [0, 0.02] : [0.08, 0.12]
+  // how far the hands sit from the centre (see createField), by the pane's
+  // shape. A tall pane runs the hands near vertical, where a wide gap pushes
+  // them out into the faded corners, so the gap closes as the pane narrows.
+  const SPLIT = (aspect) => {
+    const t = Math.min(1, Math.max(0, (aspect - 0.6) / 0.3))
+    return [0.08 * t, 0.02 + 0.1 * t]
+  }
 </script>
 
 <h1 class="sr-only">builders@uva</h1>

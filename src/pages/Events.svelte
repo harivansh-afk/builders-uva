@@ -10,8 +10,6 @@
       <a class="page" href="/events/{e.slug}">{e.name}{#if e.tag}<span class="tag">, {e.tag}</span>{/if}</a>
       {#if registrationOpen(e, today)}
         <span class="upcoming"><time datetime={e.date}>{dayDate(e.date)}</time>, <a class="action ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a></span>
-      {:else if e.youtube}
-        <a class="action ink" href="https://www.youtube.com/watch?v={e.youtube}" target="_blank" rel="noopener" aria-label="Recording of {e.name}">Recording</a>
       {/if}
     </li>
   {/each}
