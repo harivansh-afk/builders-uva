@@ -1,43 +1,35 @@
 <script>
-  import Instagram from './Instagram.svelte'
-  import LinkedIn from './LinkedIn.svelte'
-
   const year = new Date().getFullYear()
 </script>
 
-<!-- one row in the bottom-right corner on every page, mirroring the nav in the top-left -->
 <footer class="foot">
-  <div class="row">
+  <nav class="links" aria-label="Site">
+    <a href="/cohorts">Cohorts</a>
+    <a href="/events">Events</a>
+    <a href="https://www.instagram.com/builders.uva/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/company/uva-builders/" target="_blank" rel="noopener">LinkedIn</a>
     <span>© {year} builders@uva</span>
-    <a class="legal ink" href="/legal">Legal</a>
-    <a class="social ink" href="https://www.instagram.com/builders.uva/" target="_blank" rel="noopener" aria-label="builders@uva on Instagram" title="Instagram"><Instagram size={11} /></a>
-    <a class="social ink" href="https://www.linkedin.com/company/uva-builders/" target="_blank" rel="noopener" aria-label="builders@uva on LinkedIn" title="LinkedIn"><LinkedIn size={11} /></a>
-  </div>
+  </nav>
 </footer>
 
 <style>
   .foot {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 var(--edge) max(12px, env(safe-area-inset-bottom));
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: right;
-  }
-  /* the rule spans only the footer's own content, not the page */
-  .row {
+    position: relative; /* above the hands on home */
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: center;
-    gap: 8px 12px;
-    /* the same room above the row as below it, to the window's edge */
-    padding-top: 12px;
-    border-top: 1px solid var(--hair);
+    gap: 12px 24px;
+    /* the same distance from the right edge as from the bottom */
+    padding: 20px max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom));
+    font-size: 15px; /* the size of the site's other small text: meta, Register */
+    line-height: 1;
+    color: var(--muted);
   }
-  .legal { margin-left: 4px; }
-  .social :global(svg) { vertical-align: -0.1em; }
+  /* on a narrow screen the links wrap whole, right-aligned, never mid-link */
+  .links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 20px; }
+  .links > * { white-space: nowrap; }
+  @media (max-width: 599px) { .links { gap: 10px 16px; } }
+  a { transition: color 0.15s ease; }
+  a:hover { color: var(--fg); }
 </style>

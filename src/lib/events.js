@@ -1,5 +1,4 @@
-// Every event the club has hosted or will host. Newest last; the row number
-// on the events page is the array index + 1.
+// Every event the club has hosted or will host. Newest last.
 //
 // Upcoming event rows link to /events/<slug>/register while registrationOpen().
 // Registrations live in event_responses, independently of membership.
@@ -11,7 +10,6 @@ export const events = [
     tag: 'YC W26',
     date: '2026-09-10',
     time: '6PM',
-    img: '/quan.png',
     photos: [
       { file: 'dsc04129', alt: 'Harivansh speaking with Quan Huynh on the classroom display.', width: 1600, height: 2400 },
       { file: 'dsc04128', alt: 'Students gathered around the classroom tables during the founder Q&A.', width: 2400, height: 1600 },
@@ -21,7 +19,6 @@ export const events = [
     transcript: null,
     recap: [
       {
-        title: 'The session',
         paragraphs: [
           'A co-founder of Haladir joined us for a conversation about finding a problem, acquiring customers, and building a team.',
         ],
@@ -78,10 +75,9 @@ export const events = [
     tag: 'YC W23',
     date: '2026-09-17',
     time: '6PM',
-    img: '/vaibhav.jpeg',
     link: 'https://www.linkedin.com/in/vaigup/',
     registration: 'closed',
-    video: { youtube: 'N1GfBds-8lc', title: 'Vaibhav Gupta at builders@uva, September 17, 2026', thumbnail: '/events/vaibhav-gupta/thumbnail.jpg' },
+    video: { youtube: 'N1GfBds-8lc' },
     photos: [
       { file: 'pivots', alt: 'Boundary\u2019s timeline of pivots from 2021 to BAML, from the 5 years, 12 pivots blog post.', width: 1660, height: 1132, fit: 'contain' },
       { file: 'room', alt: 'Students around the classroom tables listening to the talk.', width: 1280, height: 720 },
@@ -89,7 +85,6 @@ export const events = [
     transcript: null,
     recap: [
       {
-        title: 'The session',
         paragraphs: [
           'The co-founder of Boundary and creator of BAML joined us over Google Meet for a conversation about pivoting, picking a co-founder, and how to grow fast early in a career.',
         ],
@@ -158,17 +153,15 @@ export const events = [
     tag: 'YC S25',
     date: '2026-09-24',
     time: '6PM',
-    img: '/harsha.jpg',
     link: 'https://www.linkedin.com/in/harsha-gaddipati-032bb820a/',
     registration: 'closed',
-    video: { youtube: 'xWbcvfpUOn0', title: 'Harsha Gaddipati at builders@uva, September 24, 2026', thumbnail: '/events/harsha-gaddipati/thumbnail.jpg?v=smile' },
+    video: { youtube: 'xWbcvfpUOn0' },
     photos: [
       { file: 'selfie', alt: 'Students gathered for a group selfie in the classroom after Harsha’s talk.', width: 1600, height: 2133 },
     ],
     transcript: null,
     recap: [
       {
-        title: 'The session',
         paragraphs: [
           'The co-founder and CEO of Slashy joined us over Google Meet for a conversation about campus startups, pivoting from general agents to email, and what engineers need to know when AI writes the code.',
         ],
@@ -245,9 +238,6 @@ export const events = [
     name: 'Dan Hall',
     tag: 'Carbon Black',
     date: '2026-10-01',
-    img: '/events/dan-hall/kyrus.png',
-    imgType: 'logo',
-    imgAlt: 'Kyrus Technology logo',
     link: 'https://www.kyrus-tech.com/',
     linkLabel: 'Kyrus Tech',
     description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital.',
@@ -256,7 +246,6 @@ export const events = [
     ],
     recap: [
       {
-        title: 'TL;DR',
         paragraphs: [
           'Dan joined us as our first in-person guest speaker for a conversation about his journey through tech, building companies, and the experience of selling them. It was a great evening at the Foundry—thanks to Dan and everyone who came out.',
           'We kept the conversation unrecorded to respect Dan’s preference for privacy.',
@@ -267,12 +256,10 @@ export const events = [
   {
     slug: 'steve-morin',
     name: 'Steve Morin',
-    tag: 'Instagram, Asana',
+    tag: 'Instagram',
     date: '2026-10-08',
-    img: '/steve-morin.webp',
     link: 'https://www.linkedin.com/in/stevebmorin/',
     // Bio: https://stevemorin.com/ (checked October 6, 2026).
-    // Portrait: his linked GitHub account, https://github.com/smorin.
     description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo.',
     registration: 'closed',
     photos: [
@@ -280,7 +267,6 @@ export const events = [
     ],
     recap: [
       {
-        title: 'The session',
         paragraphs: [
           'Steve joined us over Google Meet for a conversation about leading engineering teams, acquisitions, and what it takes to build a team people want to work on. He is VP of Engineering at Flox, which builds reproducible developer environments on Nix, and has held engineering leadership roles at Instagram, Asana, and Yahoo. He holds 14 U.S. patents and applications, advises early-stage developer-tools and AI companies, and has made more than 27 angel investments, including Raycast and CopilotKit.',
         ],
@@ -324,18 +310,16 @@ export const events = [
     tag: 'Runlayer',
     date: '2026-10-22',
     time: '6PM',
-    img: '/maxwell-nardi.webp',
     link: 'https://www.linkedin.com/in/maxwellnardi/',
     // Bio and portrait: his LinkedIn profile (checked October 7, 2026).
     description: 'Maxwell Nardi was the founding business hire at Runlayer, which helps companies connect AI agents to their tools and data securely. He studied at UVA.',
     registration: 'closed',
-    video: { youtube: 'jlQfz4_yK1M', title: 'Maxwell Nardi at builders@uva, October 22, 2026', thumbnail: '/events/maxwell-nardi/thumbnail.jpg' },
+    video: { youtube: 'jlQfz4_yK1M' },
     photos: [
       { file: 'room', alt: 'Max on the Foundry display, with members gathered around.', width: 1745, height: 1308 },
     ],
     recap: [
       {
-        title: 'The session',
         paragraphs: [
           'Max joined us over Google Meet for a conversation about vibe coding with taste, what junior engineers can bring to a team, where startups can still build a moat, and the always-on agent he runs his work through.',
         ],
@@ -416,8 +400,7 @@ export const events = [
     slug: 'alex-becker',
     name: 'Alex Becker',
     tag: 'Anthropic',
-    date: '2026-11-11',
-    img: '/alex-becker.webp',
+    date: '2026-11-05',
     link: 'https://www.linkedin.com/in/alexandermbecker/',
     // Bio and portrait: https://amb.horse/ and its /now page, which link this
     // LinkedIn profile (checked October 23, 2026).
@@ -428,7 +411,6 @@ export const events = [
     name: 'Andrew Schoka',
     tag: 'Hardshell',
     date: '2026-11-12',
-    img: '/andrew-schoka.webp',
     link: 'https://www.linkedin.com/in/andrew-schoka/',
     // Bio and portrait: https://hardshell.ai/ team section, which links this
     // LinkedIn profile (checked October 22, 2026).
@@ -439,7 +421,6 @@ export const events = [
     name: 'Alex Oliver',
     tag: 'a16z',
     date: '2026-11-19',
-    img: '/alex-oliver.webp',
     link: 'https://a16z.com/author/alex-oliver/',
     linkLabel: 'a16z',
     // Bio and portrait: his a16z author page, which lists no LinkedIn
@@ -455,17 +436,8 @@ export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
 export const registrationOpen = (e, today = new Date()) =>
   Boolean(e) && e.registration !== 'closed' && e.date >= today.toISOString().slice(0, 10)
 
-// Next event on or after today (UTC date), or undefined if none is upcoming.
-export function nextEvent(today = new Date()) {
-  const iso = today.toISOString().slice(0, 10)
-  return events.find((e) => e.date >= iso)
-}
-
-const fmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', timeZone: 'UTC' })
 const fmtLong = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
-export const shortDate = (iso) => fmt.format(new Date(iso + 'T00:00:00Z'))
 export const longDate = (iso) => fmtLong.format(new Date(iso + 'T00:00:00Z'))
+const fmtDay = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
+export const dayDate = (iso) => fmtDay.format(new Date(iso + 'T00:00:00Z'))
 
-const fmtMid = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', timeZone: 'UTC' })
-export const midDate = (iso) => fmtMid.format(new Date(iso + 'T00:00:00Z'))
-export const rsvpQuestion = (e) => `Can you make it ${midDate(e.date)}${e.time ? ` at ${e.time}` : ''}?`

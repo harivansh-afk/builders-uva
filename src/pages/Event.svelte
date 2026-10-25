@@ -6,22 +6,19 @@
 </script>
 
 <div class="event">
-  <a class="back eyebrow" href="/events">← Events</a>
+  <a class="back" href="/events" aria-label="Back to events">←</a>
 
   {#if e}
-    <header class="head">
-      <div>
-        <h1 class="name">{e.name}{#if e.tag}{' '}<span class="tag">[{e.tag}]</span>{/if}</h1>
-        <p class="meta">
-          <span><time datetime={e.date}>{longDate(e.date)}</time>{#if e.time}, {e.time}{/if}{#if e.format}, {e.format}{/if}</span>
-          {#if e.link}<span><a class="ink" href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
-          {#if e.video?.youtube}<span><a class="ink" href="https://www.youtube.com/watch?v={e.video.youtube}" target="_blank" rel="noopener">Session recording</a></span>{/if}
-        </p>
-        {#if registrationOpen(e, today)}
-          <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register →</a>
-        {/if}
-      </div>
-      <img class="pfp" class:logo={e.imgType === 'logo'} src={e.img} alt={e.imgAlt ?? e.name} width="160" height="160" decoding="async" />
+    <header>
+      <h1 class="name">{e.name}{#if e.tag}<span class="tag">, {e.tag}</span>{/if}</h1>
+      <p class="meta">
+        <span><time datetime={e.date}>{longDate(e.date)}</time>{#if e.time}, {e.time}{/if}{#if e.format}, {e.format}{/if}</span>
+        {#if e.link}<span><a href={e.link} target="_blank" rel="noopener">{e.linkLabel ?? 'LinkedIn'}</a></span>{/if}
+        {#if e.video?.youtube}<span><a href="https://www.youtube.com/watch?v={e.video.youtube}" target="_blank" rel="noopener">Session recording</a></span>{/if}
+      </p>
+      {#if registrationOpen(e, today)}
+        <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a>
+      {/if}
     </header>
 
     {#if e.description}
@@ -29,12 +26,11 @@
     {/if}
 
     {#if e.recap}
-      <section class="body" aria-labelledby="recap-title">
-        <h2 class="eyebrow" id="recap-title">Session recap</h2>
+      <section class="body">
         <div class="recap">
           {#each e.recap as section}
             <section>
-              <h3>{section.title}</h3>
+              {#if section.title}<h3>{section.title}</h3>{/if}
               {#each section.paragraphs as paragraph}
                 <p>{paragraph}</p>
               {/each}
@@ -46,7 +42,7 @@
 
     {#if e.transcript || !e.recap && !e.description}
       <section class="body">
-      <p class="eyebrow">Transcript</p>
+      <h2>Transcript</h2>
       {#if e.transcript}
         <div class="transcript">
           {#each e.transcript.split('\n\n') as para}
@@ -64,24 +60,15 @@
 </div>
 
 <style>
-  /* full page width so the rule under the header matches the footer's */
   .event { display: grid; gap: var(--s5); }
   .back {
     justify-self: start;
+    font-size: 15px;
     color: var(--muted);
     transition: color 0.15s ease;
   }
   .back:hover { color: var(--fg); }
 
-  .head {
-    display: flex;
-    align-items: center; /* name and meta sit centred on the portrait */
-    justify-content: space-between;
-    gap: 32px;
-    padding-bottom: var(--s5);
-    border-bottom: 1px solid var(--hair);
-  }
-  .head > div { min-width: 0; } /* the meta wraps instead of pushing the portrait off-screen */
   .name {
     font-size: var(--lede);
     font-weight: 400;
@@ -90,42 +77,28 @@
   }
   .meta {
     margin-top: 14px;
-    font-family: var(--mono);
-    font-size: 14px;
-    letter-spacing: 0.04em;
+    font-size: 15px;
     color: var(--muted);
     display: grid;
     justify-items: start;
     gap: 6px;
   }
-  .meta a { text-transform: uppercase; }
-  .meta a:not(.ink) { border-bottom: 1px solid var(--hair); transition: border-color 0.15s ease, color 0.15s ease; }
-  .meta a:not(.ink):hover { color: var(--fg); border-color: var(--muted); }
-
-  .register { display: inline-block; margin-top: 20px; padding: 12px; background: var(--fg); color: var(--bg); border: 1px solid var(--fg); font-family: var(--mono); font-size: 14px; transition: opacity 0.15s ease; }
-  .register:hover { opacity: 0.88; }
-  .register:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .register { transition: none; }
+  /* plain links: underlined, brighter on hover */
+  .meta a, .register {
+    text-decoration: underline;
+    text-decoration-color: var(--dim);
+    text-underline-offset: 0.2em;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
   }
+  .meta a:hover, .register:hover { color: var(--fg); text-decoration-color: currentColor; }
 
-  .pfp {
-    flex: 0 0 auto;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    filter: grayscale(1);
-    background: #17171a;
-  }
-
-  .pfp.logo { object-fit: contain; padding: 12px; border-radius: 50%; }
+  .register { display: inline-block; margin-top: 16px; font-size: 15px; }
 
   .body { display: grid; gap: var(--s3); }
   .description { max-width: 62ch; font-size: 19px; line-height: 1.6; }
-  .recap { display: grid; gap: var(--s4); }
+  .recap { display: grid; gap: var(--s4); max-width: 62ch; }
   .recap section { display: grid; gap: 18px; }
-  .recap h3 { font-size: 21px; font-weight: 400; }
+  .recap h3, .body h2 { font-size: 21px; font-weight: 400; }
   .recap p { font-size: 17px; line-height: 1.6; }
   .soon {
     font-size: var(--lede);
@@ -137,7 +110,5 @@
 
   @media (max-width: 599px) {
     .event { gap: 36px; }
-    .head { padding-bottom: 36px; }
-    .pfp { width: 80px; height: 80px; }
   }
 </style>

@@ -1,11 +1,9 @@
 <script>
-  // One numbered row of the application, laid out like a row on /events:
-  // number in a 4ch column, question and control in the rest.
-  let { n, q, id = '', err = '', children } = $props()
+  // One question on a form: the label, then its control.
+  let { q, id = '', err = '', children } = $props()
 </script>
 
 <div class="field" data-invalid={err || undefined}>
-  <span class="n">{n}</span>
   <div class="body">
     {#if id}
       <label class="q" for={id}>{q}</label>
@@ -18,19 +16,7 @@
 </div>
 
 <style>
-  .field {
-    display: grid;
-    grid-template-columns: 4ch minmax(0, 1fr);
-    align-items: baseline;
-    column-gap: 24px;
-    padding: var(--s3) 8px;
-  }
-  .n {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-  }
+  .field { padding: var(--s3) 0; }
   .body { display: grid; gap: 12px; min-width: 0; }
   .q {
     font-size: 17px;
@@ -39,16 +25,12 @@
     color: var(--fg);
   }
   .err {
-    font-family: var(--mono);
     font-size: 14px;
     color: #c98484;
   }
 
   @media (max-width: 899px) {
-    .field { padding: 20px 4px; column-gap: 18px; }
+    .field { padding: 20px 0; }
     .q { font-size: 16px; }
-  }
-  @media (max-width: 599px) {
-    .field { grid-template-columns: 3ch minmax(0, 1fr); }
   }
 </style>
