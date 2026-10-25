@@ -9,7 +9,7 @@
     <li class="row">
       <a class="page" href="/events/{e.slug}">{e.name}{#if e.tag}<span class="tag">, {e.tag}</span>{/if}</a>
       {#if registrationOpen(e, today)}
-        <span class="upcoming"><time datetime={e.date}>{dayDate(e.date)}</time>, <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a></span>
+        <span class="upcoming"><time datetime={e.date}>{dayDate(e.date)}</time>, <a class="register ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a></span>
       {/if}
     </li>
   {/each}
@@ -41,11 +41,7 @@
     color: var(--muted);
     white-space: nowrap;
   }
-  .register {
-    color: var(--muted);
-    transition: color 0.15s ease;
-  }
-  .register:hover { color: var(--fg); }
+  .register { color: var(--fg); }
 
   @media (max-width: 599px) {
     .page { font-size: 17px; }

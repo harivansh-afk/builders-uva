@@ -17,7 +17,7 @@
         {#if e.video?.youtube}<span><a href="https://www.youtube.com/watch?v={e.video.youtube}" target="_blank" rel="noopener">Session recording</a></span>{/if}
       </p>
       {#if registrationOpen(e, today)}
-        <a class="register" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a>
+        <a class="register ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a>
       {/if}
     </header>
 
@@ -84,13 +84,13 @@
     gap: 6px;
   }
   /* plain links: underlined, brighter on hover */
-  .meta a, .register {
+  .meta a {
     text-decoration: underline;
     text-decoration-color: var(--dim);
     text-underline-offset: 0.2em;
     transition: color 0.15s ease, text-decoration-color 0.15s ease;
   }
-  .meta a:hover, .register:hover { color: var(--fg); text-decoration-color: currentColor; }
+  .meta a:hover { color: var(--fg); text-decoration-color: currentColor; }
 
   .register { display: inline-block; margin-top: 16px; font-size: 15px; }
 
