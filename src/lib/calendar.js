@@ -15,7 +15,8 @@ function foldLine(line) {
   return result
 }
 
-export function calendarLinks(event) {
+// With an attendee, the .ics is an invite Outlook and Gmail show with Accept and Decline.
+export function calendarLinks(event, attendee) {
   const allDay = !event.startsAt
   const nextDay = new Date(`${event.date}T00:00:00Z`)
   nextDay.setUTCDate(nextDay.getUTCDate() + 1)
@@ -32,11 +33,14 @@ export function calendarLinks(event) {
   const dateType = allDay ? ';VALUE=DATE' : ''
   const ics = [
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//builders@uva//Events//EN', 'CALSCALE:GREGORIAN',
+    ...(attendee ? ['METHOD:REQUEST'] : []),
     'BEGIN:VEVENT', `UID:${event.slug}@uva.builders`, `DTSTAMP:${utcDate(new Date())}`,
     `DTSTART${dateType}:${start}`, ...(end ? [`DTEND${dateType}:${end}`] : []),
     `SUMMARY:${escapeText(title)}`, `DESCRIPTION:${escapeText(description)}`,
     `LOCATION:${escapeText(location)}`, `URL:${url}`, `TRANSP:${allDay ? 'TRANSPARENT' : 'OPAQUE'}`,
+    ...(attendee ? ['ORGANIZER;CN=builders@uva:mailto:team@uva.builders',
+      `ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:${attendee}`, 'SEQUENCE:0', 'STATUS:CONFIRMED'] : []),
     'END:VEVENT', 'END:VCALENDAR', '',
   ].map(foldLine).join('\r\n')
-  return { googleUrl, icsHref: `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}` }
+  return { googleUrl, ics, icsHref: `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}` }
 }

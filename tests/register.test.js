@@ -89,3 +89,24 @@ test('speaker question is required, bounded, and trimmed on page and API', async
   assert.equal(validateRegistration({ ...body, speakerQuestion: 'x'.repeat(2000) }, today).ok, true)
   assert.match(queryOptions(new URLSearchParams({ view: 'responses' })).rows, /r.speaker_question/)
 })
+
+test('a new registration emails a calendar invite and a duplicate does not', async t => {
+  t.mock.timers.enable({ apis: ['Date'], now: today.getTime() })
+  process.env.DATABASE_URL = 'postgres://unused'
+  process.env.RESEND_API_KEY = 'test'
+  t.after(() => { delete process.env.RESEND_API_KEY })
+  let inserts = 0
+  t.mock.method(pg.Pool.prototype, 'query', async (sql, values) => ({ rows: [], rowCount: values && ++inserts === 1 ? 1 : 0 }))
+  const sent = []
+  t.mock.method(globalThis, 'fetch', async (url, init) => { sent.push(JSON.parse(init.body)); return { ok: true } })
+  for (const code of [200, 409]) {
+    const res = response()
+    await handler({ method: 'POST', body }, res)
+    assert.equal(res.code, code)
+  }
+  assert.equal(sent.length, 1)
+  assert.deepEqual(sent[0].to, ['test@virginia.edu'])
+  const ics = Buffer.from(sent[0].attachments[0].content, 'base64').toString().replaceAll('\r\n ', '')
+  assert.match(ics, /METHOD:REQUEST/)
+  assert.match(ics, /ATTENDEE;.*:mailto:test@virginia.edu/)
+})

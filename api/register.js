@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import pg from 'pg'
 import { validateRegistration } from '../src/lib/register.js'
+import { sendInvite } from '../server/invite.js'
 
 let pool
 let ready
@@ -33,6 +34,8 @@ export default async function handler(req, res) {
       [d.email, d.fullName, d.eventSlug, d.speakerQuestion],
     )
     if (!rowCount) return res.status(409).json({ error: "You're already registered for this event." })
+    // the registration is saved either way; the invite is a courtesy
+    await sendInvite(d.eventSlug, d.email).catch(error => console.error('invite failed:', error.message))
     return res.status(200).json({ ok: true })
   } catch (error) {
     console.error('registration failed:', error.name)
