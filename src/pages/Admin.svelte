@@ -111,17 +111,21 @@
 
 <svelte:head><meta name="robots" content="noindex, nofollow" /></svelte:head>
 
+{#if status === 'loading'}
+  <p class="sr-only" role="status">Loading dashboard…</p>
+{:else if status === 'signed-out'}
+  <div class="login">
+    {#if error}<p class="error" role="alert">{error}</p>{/if}
+    <button class="google" onclick={() => authAction('signin/google')} disabled={busy}>Continue with Google</button>
+  </div>
+{:else}
 <section class="admin">
   <header>
     <div><p class="eyebrow">builders@uva</p><h1>Admin</h1></div>
     {#if user}<div class="account"><span>{user.email}</span><button onclick={() => authAction('signout')} disabled={busy}>Sign out</button></div>{/if}
   </header>
   {#if error}<p class="error" role="alert">{error}</p>{/if}
-  {#if status === 'loading'}
-    <p role="status">Loading dashboard…</p>
-  {:else if status === 'signed-out'}
-    <div class="login"><h2>A little behind the scenes.</h2><p>Sign in with your authorized Google account to review applications, members, and event responses.</p><button class="primary" onclick={() => authAction('signin/google')} disabled={busy}>Continue with Google</button></div>
-  {:else if status === 'error'}
+  {#if status === 'error'}
     <button onclick={load} disabled={busy}>Try again</button>
   {:else}
     <div class="tabs" aria-label="Database views">
@@ -178,13 +182,13 @@
     <div class="pagination"><button disabled={page <= 1 || busy} onclick={() => { page--; load() }}>Previous</button><span>Page {page} of {pages}</span><button disabled={page >= pages || busy} onclick={() => { page++; load() }}>Next</button></div>
   {/if}
 </section>
+{/if}
 
 <style>
   .admin { width: 100%; min-width: 0; }
   header, .account, .filters, .result-meta, .pagination { display: flex; align-items: center; gap: 16px; }
   header { justify-content: space-between; margin-bottom: 36px; flex-wrap: wrap; }
   h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 500; letter-spacing: -0.04em; margin-top: 12px; }
-  h2 { font-size: 24px; font-weight: 500; margin-bottom: 14px; }
   .account, .result-meta, .pagination, label { font-family: var(--mono); font-size: 12px; color: var(--muted); }
   .account { flex-wrap: wrap; }
   button, input, select { font: inherit; color: var(--fg); border: 1px solid var(--hair); background: transparent; border-radius: 3px; padding: 10px 14px; }
@@ -192,9 +196,10 @@
   button:hover:not(:disabled), button.active { background: var(--fg); color: var(--bg); }
   button:disabled { opacity: 0.4; cursor: default; }
   button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
-  .login { border-top: 1px solid var(--hair); padding: 36px 0; max-width: 520px; }
-  .login p { color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-  .primary { background: var(--fg); color: var(--bg); }
+  .login { display: grid; justify-items: center; gap: 20px; text-align: center; }
+  /* the site's highlighted link (a.ink in app.css), as a button */
+  .login .google { border: 0; border-radius: 0; padding: 0 0.18em; background: rgba(20, 20, 19, 0.07); font-family: var(--sans); font-size: 21px; transition: none; }
+  .login .google:is(:hover, :focus-visible):not(:disabled) { background: var(--fg); color: var(--bg); outline: 0; }
   .error { border: 1px solid var(--error); color: var(--error); padding: 14px; margin-bottom: 20px; }
   .review { display: flex; gap: 8px; }
   .tabs { display: flex; gap: 8px; margin-bottom: 24px; }
