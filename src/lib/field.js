@@ -96,9 +96,12 @@ export function inkAt(opts) {
 
 /**
  * Build a field for a pane of the given aspect (width / height).
- * Returns { step(now), cols, rows }. Options as for place().
+ * Returns { step(now), cols, rows }. Options as for place(), plus `light`:
+ * dark glyphs on a light page, where ink reads as shadow, so the ramp runs
+ * the other way and the highlights fall back to the paper.
  */
 export function createField(opts = {}) {
+  const { light = false } = opts
   const { BW, BH, S, cos, sin, shadeAt } = place(opts)
   const COLS = BW / 2, ROWS = BH / 2
 
@@ -189,7 +192,12 @@ export function createField(opts = {}) {
         if (g) { out += g; continue }
         const d = (axis[k] - centre) / WIDTH
         const v = Math.min(1, shade[k] * (0.85 + 0.4 * Math.exp(-d * d)))
-        out += lut[(v * 255) | 0]
+        if (!light) { out += lut[(v * 255) | 0]; continue }
+        // shade is averaged over the whole cell, so divide out the coverage to
+        // get the marble's own tone, then ink its shadow; every inked cell
+        // keeps at least a dot so the hands hold their shape
+        const cv = cover[k]
+        out += cv ? lut[Math.max(26, ((1 - Math.min(1, v / cv)) * cv * 255) | 0)] : ' '
       }
       if (r < ROWS - 1) out += '\n'
     }

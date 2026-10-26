@@ -51,7 +51,7 @@
       const a = wrap.clientWidth / Math.max(1, wrap.clientHeight)
       if (!a || Math.abs(a - aspect) < 0.03) return fit()
       aspect = a
-      field = createField({ aspect, split: typeof split === 'function' ? split(aspect) : split, only })
+      field = createField({ aspect, light: true, split: typeof split === 'function' ? split(aspect) : split, only })
       cancelAnimationFrame(raf)
       pre.textContent = field.step(0, entering ? 0 : 1)
       last = -Infinity
