@@ -46,23 +46,23 @@ test('Dan registration stays open through October 1 and closes afterward', () =>
   assert.equal(validateRegistration(registration, new Date('2026-10-02T12:00:00Z')).ok, false)
 })
 
-test('registration writes one event response and never a membership application', async t => {
+test('registration writes one event response, refuses a second, and never a membership application', async t => {
   t.mock.timers.enable({ apis: ['Date'], now: today.getTime() })
   process.env.DATABASE_URL = 'postgres://unused'
   const writes = []
   t.mock.method(pg.Pool.prototype, 'query', async (sql, values) => {
     if (values) writes.push({ sql, values })
-    return { rows: [] }
+    return { rows: [], rowCount: writes.length === 1 ? 1 : 0 }
   })
-  for (let i = 0; i < 2; i++) {
+  for (const code of [200, 409]) {
     const res = response()
     await handler({ method: 'POST', body }, res)
-    assert.equal(res.code, 200)
+    assert.equal(res.code, code)
   }
   assert.equal(writes.length, 2)
   for (const { sql, values } of writes) {
     assert.match(sql, /insert into event_responses/)
-    assert.match(sql, /on conflict \(email, event_slug\) do update/)
+    assert.match(sql, /on conflict \(email, event_slug\) do nothing/)
     assert.doesNotMatch(sql, /members/)
     assert.deepEqual(values, ['test@virginia.edu', 'Test Student', body.eventSlug, body.speakerQuestion])
   }

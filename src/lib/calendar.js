@@ -38,5 +38,5 @@ export function calendarLinks(event) {
     `LOCATION:${escapeText(location)}`, `URL:${url}`, `TRANSP:${allDay ? 'TRANSPARENT' : 'OPAQUE'}`,
     'END:VEVENT', 'END:VCALENDAR', '',
   ].map(foldLine).join('\r\n')
-  return { allDay, googleUrl, icsHref: `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}` }
+  return { googleUrl, icsHref: `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}` }
 }

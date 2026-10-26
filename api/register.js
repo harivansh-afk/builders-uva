@@ -26,14 +26,13 @@ export default async function handler(req, res) {
       throw error
     })
     await ready
-    await pool.query(
+    const { rowCount } = await pool.query(
       `insert into event_responses (email, full_name, event_slug, question, answer, speaker_question)
        values ($1, $2, $3, 'Event registration', 'yes', $4)
-       on conflict (email, event_slug) do update set
-         full_name = excluded.full_name, question = excluded.question,
-         answer = excluded.answer, speaker_question = excluded.speaker_question, created_at = now()`,
+       on conflict (email, event_slug) do nothing`,
       [d.email, d.fullName, d.eventSlug, d.speakerQuestion],
     )
+    if (!rowCount) return res.status(409).json({ error: "You're already registered for this event." })
     return res.status(200).json({ ok: true })
   } catch (error) {
     console.error('registration failed:', error.name)

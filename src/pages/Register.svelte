@@ -1,19 +1,22 @@
 <script>
   import { eventBySlug, longDate, registrationOpen } from '../lib/events.js'
   import { validateRegistration } from '../lib/register.js'
-  import { calendarLinks } from '../lib/calendar.js'
+  import { navigate } from '../lib/router.svelte.js'
   import Field from '../lib/Field.svelte'
 
   let { slug } = $props()
   const event = $derived(eventBySlug(slug))
   const open = $derived(registrationOpen(event))
-  const calendar = $derived(event ? calendarLinks(event) : null)
+  const confirmation = `/events/${slug}/registered`
   let fullName = $state('')
   let email = $state('')
   let speakerQuestion = $state('')
   let hp = $state('')
   let status = $state('idle')
   let error = $state('')
+
+  // this browser already registered: show the confirmation instead of the form
+  $effect(() => { if (event && localStorage.getItem(`registered:${slug}`)) navigate(confirmation, { replace: true }) })
 
   async function submit(e) {
     e.preventDefault()
@@ -29,41 +32,22 @@
       })
       const data = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(data.error || 'Could not save your registration. Try again.')
-      status = 'done'
-      window.scrollTo(0, 0)
+      localStorage.setItem(`registered:${slug}`, '1')
+      navigate(confirmation, { replace: true })
     } catch (err) { status = 'idle'; error = err.message }
   }
 </script>
 
 <div class="registration">
   <header>
-    {#if !event}
-      <h1 class="lede">Event not found.</h1>
-    {:else if status === 'done'}
-      <h1 class="lede">You're registered.</h1>
-      <p class="details">See you for the Q&amp;A with {event.name}.</p>
-    {:else}
+    {#if event}
       <h1 class="lede">{event.name}{#if event.tag}<span class="tag">, {event.tag}</span>{/if}</h1>
+      <p class="details">{longDate(event.date)}{#if event.time}, {event.time}{/if}{#if event.location}, {event.location}{/if}{#if event.format}, {event.format}{/if}</p>
+    {:else}
+      <h1 class="lede">Event not found.</h1>
     {/if}
-    {#if event}<p class="details">{longDate(event.date)}{#if event.time}<span class="detail-part">{` · ${event.time}`}</span>{/if}{#if event.location}<span class="detail-part">{` · ${event.location}`}</span>{/if}{#if event.format}<span class="detail-part">{` · ${event.format}`}</span>{/if}</p>{/if}
   </header>
-  {#if status === 'done'}
-    <section class="calendar" aria-labelledby="calendar-title">
-      <h2 id="calendar-title">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="16" rx="2" />
-          <path d="M7 3v4m10-4v4M3 11h18" />
-        </svg>
-        Add to calendar
-      </h2>
-      {#if calendar.allDay}<p class="calendar-note">Save the date. Time is to be announced.</p>{/if}
-      <div class="calendar-links">
-        <a href={calendar.googleUrl} target="_blank" rel="noopener noreferrer">Google Calendar <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        <a href={calendar.icsHref} download={`builders-uva-${event.slug}.ics`}>Apple / Outlook (.ics)</a>
-      </div>
-    </section>
-    <a class="back" href="/events/{slug}">Event details</a>
-  {:else if open}
+  {#if open}
     <form onsubmit={submit}>
       <Field q="Full name" id="full-name">
         <input id="full-name" name="fullName" bind:value={fullName} autocomplete="name" placeholder="First and last name" maxlength="200" required />
@@ -90,13 +74,6 @@
   .registration { display: grid; gap: var(--s5); }
   .lede { max-width: 30ch; }
   .details { margin-top: var(--s3); color: var(--muted); }
-  .detail-part { white-space: nowrap; }
-  .calendar { display: grid; gap: 12px; justify-items: start; }
-  .calendar h2 { display: flex; align-items: center; gap: 8px; font-size: 21px; font-weight: 500; }
-  .calendar-note { color: var(--muted); font-size: 17px; }
-  .calendar-links { display: flex; flex-wrap: wrap; gap: 12px var(--s3); }
-  .calendar-links a { font-size: 20px; text-decoration: underline; text-decoration-color: var(--dim); text-underline-offset: 0.2em; }
-  .calendar-links a:hover { text-decoration-color: currentColor; }
   form :global(.field:first-child) { padding-top: 0; }
   input, textarea { width: 100%; max-width: 560px; padding: 10px 0 12px; border: 0; border-bottom: 1px solid var(--hair); border-radius: 0; background: transparent; color: var(--fg); font: inherit; font-size: 21px; }
   textarea { resize: vertical; line-height: 1.6; }

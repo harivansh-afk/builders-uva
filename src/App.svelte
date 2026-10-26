@@ -2,6 +2,7 @@
   import Home from './pages/Home.svelte'
   import Event from './pages/Event.svelte'
   import Register from './pages/Register.svelte'
+  import Registered from './pages/Registered.svelte'
   import Admin from './pages/Admin.svelte'
   import Footer from './lib/Footer.svelte'
   import Events from './pages/Events.svelte'
@@ -17,6 +18,8 @@
     if (p === '/cohorts') return { name: 'cohorts', title: 'Cohorts' }
     const registration = p.match(/^\/events\/([^/]+)\/register\/?$/)
     if (registration) return { name: 'register', slug: registration[1], title: 'Register' }
+    const registered = p.match(/^\/events\/([^/]+)\/registered\/?$/)
+    if (registered) return { name: 'registered', slug: registered[1], title: 'Registered' }
     if (p.startsWith('/events/')) {
       const slug = p.slice('/events/'.length)
       return { name: 'event', slug, title: eventBySlug(slug)?.name ?? 'Events' }
@@ -46,6 +49,8 @@
           <Event slug={page.slug} />
         {:else if page.name === 'register'}
           <Register slug={page.slug} />
+        {:else if page.name === 'registered'}
+          <Registered slug={page.slug} />
         {:else if page.name === 'apply'}
           <Apply />
         {:else if page.name === 'admin'}
