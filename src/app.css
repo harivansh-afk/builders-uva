@@ -6,12 +6,13 @@
 }
 
 :root {
-  --bg: #0a0a0b;
-  --fg: #f2f0ea;
-  --soft: #b9b7b1;   /* secondary copy that still has to be read */
-  --muted: #8f8f94;  /* metadata: dates, tags, roles */
-  --dim: #5c5c61;    /* numerals and decoration */
-  --hair: #242426;
+  --bg: #f6f4ef;
+  --fg: #141413;
+  --soft: #45443f;   /* secondary copy that still has to be read */
+  --muted: #6c6b66;  /* metadata: dates, tags, roles */
+  --dim: #a3a19b;    /* numerals and decoration */
+  --hair: #dedbd4;
+  --error: #a8423a;
   --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "Berkeley Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gutter: clamp(20px, 3.4vw, 48px);
@@ -49,7 +50,7 @@
 html, body { overscroll-behavior: none; }
 html {
   -webkit-text-size-adjust: 100%;
-  color-scheme: dark;
+  color-scheme: light;
   background: var(--bg);
 }
 body {
@@ -92,7 +93,7 @@ p, h1, h2, h3, ol, ul { margin: 0; }
 /* links in running text, after hari.cafe: a faint fill that inverts on hover */
 a.ink {
   cursor: pointer;
-  background: rgba(242, 240, 234, 0.08);
+  background: rgba(20, 20, 19, 0.07);
   padding: 0 0.18em;
   margin: 0 -0.06em;
   box-decoration-break: clone;

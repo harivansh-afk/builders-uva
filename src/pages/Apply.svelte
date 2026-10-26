@@ -107,7 +107,7 @@
   }
   .submit:hover, .back:hover { color: var(--fg); text-decoration-color: currentColor; }
   .submit:disabled { opacity: 0.6; cursor: default; }
-  .error { color: #c98484; }
+  .error { color: var(--error); }
   .back { justify-self: start; }
   @media (max-width: 899px) { .apply { gap: var(--s4); } }
 </style>

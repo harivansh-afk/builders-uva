@@ -26,7 +26,7 @@
   }
   .err {
     font-size: 18px;
-    color: #c98484;
+    color: var(--error);
   }
 
   @media (max-width: 899px) {

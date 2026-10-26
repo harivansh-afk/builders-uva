@@ -195,7 +195,7 @@
   .login { border-top: 1px solid var(--hair); padding: 36px 0; max-width: 520px; }
   .login p { color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
   .primary { background: var(--fg); color: var(--bg); }
-  .error { border: 1px solid #a65b50; color: #efa697; padding: 14px; margin-bottom: 20px; }
+  .error { border: 1px solid var(--error); color: var(--error); padding: 14px; margin-bottom: 20px; }
   .review { display: flex; gap: 8px; }
   .tabs { display: flex; gap: 8px; margin-bottom: 24px; }
   .filters { align-items: end; flex-wrap: wrap; margin-bottom: 24px; }
@@ -217,7 +217,7 @@
   small { display: block; color: var(--muted); font-size: 11px; margin-top: 6px; }
   .date { white-space: nowrap; color: var(--muted); font-size: 12px; }
   .answer { text-transform: capitalize; }
-  .yes { color: #abd3a5; }
+  .yes { color: #3d7a3f; }
   .empty { padding: 40px; text-align: center; color: var(--muted); }
   .pagination { justify-content: end; margin-top: 20px; }
   @media (max-width: 600px) { .result-meta { font-size: 10px; } .account { font-size: 11px; } th, td { padding: 12px; } }

@@ -37,8 +37,13 @@
     border-top: 1px solid var(--hair);
   }
   .links > * { white-space: nowrap; }
-  /* phones: the links fit one line without the copyright */
-  @media (max-width: 599px) { .foot { font-size: 17px; } .links { gap: 10px 16px; } .copy { display: none; } }
+  /* phones: one line only. The copyright comes last, so when it doesn't fit
+     it wraps onto a second line, which is clipped away. The 6px under the
+     line leaves room for a focus outline. */
+  @media (max-width: 599px) {
+    .foot { font-size: 17px; }
+    .links { gap: 10px 16px; height: calc(20px + 1em + 6px); overflow: visible clip; }
+  }
   a { transition: color 0.15s ease; }
   a:hover { color: var(--fg); }
 </style>

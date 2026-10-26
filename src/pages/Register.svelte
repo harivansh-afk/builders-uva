@@ -97,7 +97,7 @@
   }
   button:hover, .back:hover { color: var(--fg); text-decoration-color: currentColor; }
   button:disabled { opacity: 0.6; cursor: default; }
-  .error { color: #c98484; }
+  .error { color: var(--error); }
   .back { justify-self: start; }
   @media (max-width: 899px) { .registration { gap: var(--s4); } }
 </style>

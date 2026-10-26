@@ -42,7 +42,7 @@
     opacity: 0.55;
     pointer-events: none;
   }
-  /* a soft pool of dark behind the line so it reads over the hands */
+  /* a soft pool of the page colour behind the line so it reads over the hands */
   .pool {
     position: fixed;
     left: 50%;
@@ -50,7 +50,7 @@
     width: min(760px, 120vw);
     height: min(320px, 50%);
     translate: -50% -50%;
-    background: radial-gradient(closest-side, rgba(10, 10, 11, 0.85), rgba(10, 10, 11, 0.4) 60%, transparent);
+    background: radial-gradient(closest-side, rgba(246, 244, 239, 0.85), rgba(246, 244, 239, 0.4) 60%, transparent);
     pointer-events: none;
   }
   /* centred on the window, where the gap between the fingertips is, rather
