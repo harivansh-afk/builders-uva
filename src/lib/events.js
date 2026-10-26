@@ -373,27 +373,36 @@ export const events = [
     name: 'Alex Becker',
     tag: 'Anthropic',
     date: '2026-11-05',
+    time: '6 PM ET',
+    startsAt: '2026-11-05T18:00:00-05:00',
+    location: 'The Foundry',
     // Bio and portrait: https://amb.horse/ and its /now page, which link this
     // LinkedIn profile (checked October 23, 2026).
-    description: 'Alex Becker is a product engineer at Anthropic in New York. A UVA alumnus, he rowed for Virginia Men\'s Rowing and was part of the Virginia Entrepreneurship Organization, Contrary Capital, and the KP Product Fellowship. He joins us for a Q&A. Time and location to be announced.',
+    description: 'Alex Becker is a product engineer at Anthropic in New York. A UVA alumnus, he rowed for Virginia Men\'s Rowing and was part of the Virginia Entrepreneurship Organization, Contrary Capital, and the KP Product Fellowship. He joins us for a Q&A.',
   },
   {
     slug: 'andrew-schoka',
     name: 'Andrew Schoka',
     tag: 'Hardshell',
     date: '2026-11-12',
+    time: '6 PM ET',
+    startsAt: '2026-11-12T18:00:00-05:00',
+    location: 'The Foundry',
     // Bio and portrait: https://hardshell.ai/ team section, which links this
     // LinkedIn profile (checked October 22, 2026).
-    description: 'Andrew Schoka is co-founder and CEO of Hardshell, which secures the data used to train AI systems. A former Army cyber operations officer at U.S. Cyber Command and U.S. Special Operations Command, he is a Darden MBA student and joins us in person for a Q&A. Time and location to be announced.',
+    description: 'Andrew Schoka is co-founder and CEO of Hardshell, which secures the data used to train AI systems. A former Army cyber operations officer at U.S. Cyber Command and U.S. Special Operations Command, he is a Darden MBA student and joins us in person for a Q&A.',
   },
   {
     slug: 'alex-oliver',
     name: 'Alex Oliver',
     tag: 'a16z',
     date: '2026-11-19',
+    time: '6 PM ET',
+    startsAt: '2026-11-19T18:00:00-05:00',
+    location: 'The Foundry',
     // Bio and portrait: his a16z author page, which lists no LinkedIn
     // (checked October 22, 2026).
-    description: 'Alex Oliver is a partner at Andreessen Horowitz, where he supports founders building in aerospace and national security. He spent 15 years as a U.S. Army infantry and intelligence officer, deploying to Iraq, Afghanistan, and West Africa, and led the maritime autonomy portfolio at the Defense Innovation Unit. He joins us in person for a Q&A. Time and location to be announced.',
+    description: 'Alex Oliver is a partner at Andreessen Horowitz, where he supports founders building in aerospace and national security. He spent 15 years as a U.S. Army infantry and intelligence officer, deploying to Iraq, Afghanistan, and West Africa, and led the maritime autonomy portfolio at the Defense Innovation Unit. He joins us in person for a Q&A.',
   },
 ]
 
