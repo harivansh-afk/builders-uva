@@ -1,2 +1,0 @@
-# Preserve the downloaded calendar files, including their required CRLF bytes.
-*.ics binary
