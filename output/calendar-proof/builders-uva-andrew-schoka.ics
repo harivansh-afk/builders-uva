@@ -1,0 +1,19 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//builders@uva//Events//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:andrew-schoka@uva.builders
+DTSTAMP:20261026T153836Z
+DTSTART:20261112T230000Z
+SUMMARY:builders@uva Q&A with Andrew Schoka
+DESCRIPTION:End time to be announced.\n\nAndrew Schoka is co-founder and CE
+ O of Hardshell\, which secures the data used to train AI systems. A former
+  Army cyber operations officer at U.S. Cyber Command and U.S. Special Oper
+ ations Command\, he is a Darden MBA student and joins us in person for a Q
+ &A.\n\nhttps://www.uva.builders/events/andrew-schoka
+LOCATION:The Foundry
+URL:https://www.uva.builders/events/andrew-schoka
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

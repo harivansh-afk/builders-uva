@@ -1,0 +1,116 @@
+[
+  {
+    "slug": "alex-becker",
+    "email": "calendar-qa-1793029115643@virginia.edu",
+    "status": 200,
+    "database": {
+      "full_name": "Calendar QA Student",
+      "answer": "yes",
+      "speaker_question": "How do you choose what to build?"
+    },
+    "uid": "alex-becker@uva.builders",
+    "start": "2026-11-05T23:00:00Z",
+    "end": null,
+    "location": "The Foundry",
+    "width": 1440,
+    "viewport": {
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "calendar": [
+        {
+          "text": "Google Calendar ↗(opens in a new tab)",
+          "x": 208,
+          "y": 530.21875,
+          "right": 381.25,
+          "bottom": 560.21875
+        },
+        {
+          "text": "Apple / Outlook (.ics)",
+          "x": 405.25,
+          "y": 530.21875,
+          "right": 598.15625,
+          "bottom": 560.21875
+        }
+      ]
+    },
+    "consoleErrors": [],
+    "parsedDownload": true
+  },
+  {
+    "slug": "andrew-schoka",
+    "email": "calendar-qa-1793029115643@virginia.edu",
+    "status": 200,
+    "database": {
+      "full_name": "Calendar QA Student",
+      "answer": "yes",
+      "speaker_question": "How do you choose what to build?"
+    },
+    "uid": "andrew-schoka@uva.builders",
+    "start": "2026-11-12T23:00:00Z",
+    "end": null,
+    "location": "The Foundry",
+    "width": 1440,
+    "viewport": {
+      "width": 1440,
+      "height": 1000,
+      "scrollWidth": 1440,
+      "calendar": [
+        {
+          "text": "Google Calendar ↗(opens in a new tab)",
+          "x": 208,
+          "y": 530.21875,
+          "right": 381.25,
+          "bottom": 560.21875
+        },
+        {
+          "text": "Apple / Outlook (.ics)",
+          "x": 405.25,
+          "y": 530.21875,
+          "right": 598.15625,
+          "bottom": 560.21875
+        }
+      ]
+    },
+    "consoleErrors": [],
+    "parsedDownload": true
+  },
+  {
+    "slug": "alex-oliver",
+    "email": "calendar-qa-1793029115643@virginia.edu",
+    "status": 200,
+    "database": {
+      "full_name": "Calendar QA Student",
+      "answer": "yes",
+      "speaker_question": "How do you choose what to build?"
+    },
+    "uid": "alex-oliver@uva.builders",
+    "start": "2026-11-19T23:00:00Z",
+    "end": null,
+    "location": "The Foundry",
+    "width": 375,
+    "viewport": {
+      "width": 375,
+      "height": 812,
+      "scrollWidth": 375,
+      "calendar": [
+        {
+          "text": "Google Calendar ↗(opens in a new tab)",
+          "x": 20,
+          "y": 439.40625,
+          "right": 193.25,
+          "bottom": 469.40625
+        },
+        {
+          "text": "Apple / Outlook (.ics)",
+          "x": 20,
+          "y": 481.40625,
+          "right": 212.90625,
+          "bottom": 511.40625
+        }
+      ]
+    },
+    "consoleErrors": [],
+    "parsedDownload": true
+  }
+]
