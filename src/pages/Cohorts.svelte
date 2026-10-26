@@ -2,7 +2,7 @@
 <ul class="rows">
   <li class="row">
     <span class="name">build 001</span>
-    <span class="soon">Coming soon</span>
+    <span class="soon">soon</span>
   </li>
 </ul>
 
