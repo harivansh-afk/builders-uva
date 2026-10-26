@@ -221,7 +221,7 @@ export const events = [
   {
     slug: 'dan-hall',
     name: 'Dan Hall',
-    tag: 'Carbon Black',
+    tag: 'Kyrus',
     date: '2026-10-01',
     description: 'Dan Hall co-founded Kyrus Tech, a cybersecurity firm acquired by SIXGEN in 2024, and is a managing partner at Legion Capital.',
     recap: [
