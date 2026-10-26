@@ -2,10 +2,6 @@
   <style>
     .bg { fill: #ffffff; }
     .fg { fill: #111; }
-    @media (prefers-color-scheme: dark) {
-      .bg { fill: #111; }
-      .fg { fill: #ececec; }
-    }
   </style>
   <rect class="bg" width="100" height="100" rx="8" ry="8"/>
   <g class="fg" font-family="'Berkeley Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
