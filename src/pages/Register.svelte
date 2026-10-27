@@ -42,7 +42,7 @@
   <header>
     {#if event}
       <h1 class="lede">{event.name}{#if event.tag}<span class="tag">, {event.tag}</span>{/if}</h1>
-      <p class="details">{longDate(event.date)}{#if event.time}, {event.time}{/if}{#if event.location}, {event.location}{/if}{#if event.format}, {event.format}{/if}</p>
+      <p class="details">{longDate(event.date)}{#if !event.detailsAfterRegistration}{#if event.time}, {event.time}{/if}{#if event.location}, {event.location}{/if}{/if}{#if event.format}, {event.format}{/if}</p>
     {:else}
       <h1 class="lede">Event not found.</h1>
     {/if}
