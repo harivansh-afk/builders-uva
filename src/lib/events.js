@@ -369,6 +369,17 @@ export const events = [
     ],
   },
   {
+    slug: 'mauricio-iglesias',
+    name: 'Mauricio Iglesias',
+    tag: 'Bastazo / HF0',
+    date: '2026-10-29',
+    time: '6 PM ET',
+    startsAt: '2026-10-29T18:00:00-04:00',
+    location: 'The Foundry',
+    detailsAfterRegistration: true,
+    description: 'Mauricio Iglesias is the former CEO of Bastazo, an HF0-backed cybersecurity company focused on protecting critical infrastructure. He previously worked in product at Capital One, founded FireCap, and worked as a product marketing engineer at Texas Instruments. He joins us for a Q&A about his path from engineering and product to starting and leading companies.',
+  },
+  {
     slug: 'alex-becker',
     name: 'Alex Becker',
     tag: 'Anthropic',

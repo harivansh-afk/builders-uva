@@ -11,7 +11,7 @@
   {#if e}
     <header>
       <h1 class="name">{e.name}{#if e.tag}<span class="tag">, {e.tag}</span>{/if}</h1>
-      <p class="meta"><time datetime={e.date}>{longDate(e.date)}</time>{#if e.time}, {e.time}{/if}{#if e.location}, {e.location}{/if}{#if e.format}, {e.format}{/if}</p>
+      <p class="meta"><time datetime={e.date}>{longDate(e.date)}</time>{#if !e.detailsAfterRegistration}{#if e.time}, {e.time}{/if}{#if e.location}, {e.location}{/if}{/if}{#if e.format}, {e.format}{/if}</p>
       {#if registrationOpen(e, today)}
         <a class="action ink" href="/events/{e.slug}/register" aria-label="Register for {e.name}">Register</a>
       {:else if e.youtube}
