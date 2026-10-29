@@ -13,7 +13,6 @@
   <p>To start with, each member will get a small grant and a founding member who mentors them closely. Every week the cohort meets for a check-in and dinner, where each member must present a tangible outcome achieved in the last 7 days.</p>
   <p>By the end of each cohort we hope to have progressed the career of each member in a tangible and measurable manner.</p>
   <p>Builders is a non-profit, we take no equity. We plan to be a 501(c)(3), so donations are tax-deductible. Our backers get a first look at everything the cohort builds and first bid at later investment rounds.</p>
-  <p>We answer to no university and no sponsor.</p>
   <p>Every cohort is trained to be capable enough to mentor and take over the next.</p>
 </div>
 
