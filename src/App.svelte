@@ -8,6 +8,7 @@
   import Events from './pages/Events.svelte'
   import Cohorts from './pages/Cohorts.svelte'
   import Apply from './pages/Apply.svelte'
+  import Manifesto from './pages/Manifesto.svelte'
   import { route } from './lib/router.svelte.js'
   import { eventBySlug } from './lib/events.js'
 
@@ -16,6 +17,7 @@
     if (p === '/') return { name: 'home', title: 'builders@uva' }
     if (p === '/events') return { name: 'events', title: 'Events' }
     if (p === '/cohorts') return { name: 'cohorts', title: 'Cohorts' }
+    if (p === '/manifesto') return { name: 'manifesto', title: 'Manifesto' }
     const registration = p.match(/^\/events\/([^/]+)\/register\/?$/)
     if (registration) return { name: 'register', slug: registration[1], title: 'Register' }
     const registered = p.match(/^\/events\/([^/]+)\/registered\/?$/)
@@ -45,6 +47,8 @@
           <Events />
         {:else if page.name === 'cohorts'}
           <Cohorts />
+        {:else if page.name === 'manifesto'}
+          <Manifesto />
         {:else if page.name === 'event'}
           <Event slug={page.slug} />
         {:else if page.name === 'register'}
