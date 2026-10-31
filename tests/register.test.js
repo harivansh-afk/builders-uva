@@ -110,3 +110,30 @@ test('a new registration emails a calendar invite and a duplicate does not', asy
   assert.match(ics, /METHOD:REQUEST/)
   assert.match(ics, /ATTENDEE;.*:mailto:test@virginia.edu/)
 })
+
+test('a capped event refuses new registrations once full but still recognizes duplicates', async t => {
+  t.mock.timers.enable({ apis: ['Date'], now: new Date('2026-11-01T12:00:00Z').getTime() })
+  process.env.DATABASE_URL = 'postgres://unused'
+  const event = eventBySlug('alex-oliver')
+  assert.equal(event.capacity, 100)
+  t.mock.method(pg.Pool.prototype, 'query', async () => ({ rows: [], rowCount: 0 }))
+  let state, inserts
+  const client = {
+    release() {},
+    async query(sql) {
+      if (/count\(\*\)/.test(sql)) return { rows: [state] }
+      if (/insert into event_responses/.test(sql)) { inserts++; return { rowCount: 1 } }
+      return { rows: [] }
+    },
+  }
+  t.mock.method(pg.Pool.prototype, 'connect', async () => client)
+  for (const [taken, mine, code, inserted] of [[99, false, 200, 1], [100, false, 409, 0], [100, true, 409, 0]]) {
+    state = { taken, mine }
+    inserts = 0
+    const res = response()
+    await handler({ method: 'POST', body: { ...body, eventSlug: event.slug } }, res)
+    assert.equal(res.code, code)
+    assert.equal(inserts, inserted)
+    if (code === 409) assert.match(res.body.error, mine ? /already registered/ : /full/)
+  }
+})

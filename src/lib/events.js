@@ -408,6 +408,7 @@ export const events = [
     date: '2026-11-19',
     time: '6 PM ET',
     startsAt: '2026-11-19T18:00:00-05:00',
+    capacity: 100,
     // Bio and portrait: his a16z author page, which lists no LinkedIn
     // (checked October 22, 2026).
     description: 'Alex Oliver is a partner at Andreessen Horowitz, where he supports founders building in aerospace and national security. He spent 15 years as a U.S. Army infantry and intelligence officer, deploying to Iraq, Afghanistan, and West Africa, and led the maritime autonomy portfolio at the Defense Innovation Unit. He joins us in person for a Q&A.',
