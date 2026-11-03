@@ -1,12 +1,14 @@
 <script>
   import Logos from './Logos.svelte'
+  // the logo strip shows on home only
+  let { logos = false } = $props()
   const year = new Date().getFullYear()
 </script>
 
 <footer class="foot">
   <!-- the logos run exactly as wide as the links row beneath them -->
   <div class="col">
-    <Logos />
+    {#if logos}<Logos />{/if}
     <nav class="links" aria-label="Site">
       <a href="/cohorts">Cohorts</a>
       <a href="/events">Events</a>

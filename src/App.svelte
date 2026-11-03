@@ -74,7 +74,7 @@
       {/key}
     </main>
   {/if}
-  <Footer />
+  <Footer logos={page.name === 'home'} />
 </div>
 
 <style>
