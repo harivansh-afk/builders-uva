@@ -198,7 +198,7 @@
   button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
   .login { display: grid; justify-items: center; gap: 20px; text-align: center; }
   /* the site's highlighted link (a.ink in app.css), as a button */
-  .login .google { border: 0; border-radius: 0; padding: 0 0.18em; background: rgba(20, 20, 19, 0.07); font-family: var(--sans); font-size: 21px; transition: none; }
+  .login .google { border: 0; border-radius: 0; padding: 0 0.18em; background: var(--wash); font-family: var(--sans); font-size: 21px; transition: none; }
   .login .google:is(:hover, :focus-visible):not(:disabled) { background: var(--fg); color: var(--bg); outline: 0; }
   .error { border: 1px solid var(--error); color: var(--error); padding: 14px; margin-bottom: 20px; }
   .review { display: flex; gap: 8px; }
@@ -222,7 +222,7 @@
   small { display: block; color: var(--muted); font-size: 11px; margin-top: 6px; }
   .date { white-space: nowrap; color: var(--muted); font-size: 12px; }
   .answer { text-transform: capitalize; }
-  .yes { color: #3d7a3f; }
+  .yes { color: var(--ok); }
   .empty { padding: 40px; text-align: center; color: var(--muted); }
   .pagination { justify-content: end; margin-top: 20px; }
   @media (max-width: 600px) { .result-meta { font-size: 10px; } .account { font-size: 11px; } th, td { padding: 12px; } }

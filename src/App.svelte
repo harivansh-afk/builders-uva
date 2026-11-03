@@ -11,6 +11,7 @@
   import Manifesto from './pages/Manifesto.svelte'
   import { route } from './lib/router.svelte.js'
   import { eventBySlug } from './lib/events.js'
+  import { theme, toggleTheme } from './lib/theme.svelte.js'
 
   const page = $derived.by(() => {
     const p = route.path
@@ -34,7 +35,12 @@
   $effect(() => { document.title = page.title })
 </script>
 
-<a class="mark" href="/" aria-label="builders@uva home">*<span class="b">b</span></a>
+<!-- on home the mark switches light and dark; everywhere else it goes home -->
+{#if page.name === 'home'}
+  <button class="mark" type="button" onclick={toggleTheme} aria-label={theme.dark ? 'Switch to light mode' : 'Switch to dark mode'}>*<span class="b">b</span></button>
+{:else}
+  <a class="mark" href="/" aria-label="builders@uva home">*<span class="b">b</span></a>
+{/if}
 
 <!-- the footer sits at the bottom of the window, or below the content when it runs longer -->
 <div class="shell">
@@ -89,6 +95,14 @@
     letter-spacing: -0.13em;
     transition: opacity 0.15s ease;
   }
+  button.mark {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  button.mark:focus-visible { outline: 1px solid var(--fg); outline-offset: 4px; }
   .mark .b { display: inline-block; transform: skewX(-12deg); }
   .mark:hover { opacity: 0.7; }
   .shell {

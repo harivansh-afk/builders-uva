@@ -1,14 +1,19 @@
 <script>
+  import Logos from './Logos.svelte'
   const year = new Date().getFullYear()
 </script>
 
 <footer class="foot">
-  <nav class="links" aria-label="Site">
-    <a href="/cohorts">Cohorts</a>
-    <a href="/events">Events</a>
-    <a href="/apply">Apply</a>
-    <span class="copy">© {year} builders@uva</span>
-  </nav>
+  <!-- the logos run exactly as wide as the links row beneath them -->
+  <div class="col">
+    <Logos />
+    <nav class="links" aria-label="Site">
+      <a href="/cohorts">Cohorts</a>
+      <a href="/events">Events</a>
+      <a href="/apply">Apply</a>
+      <span class="copy">© {year} builders@uva</span>
+    </nav>
+  </div>
 </footer>
 
 <style>
@@ -25,6 +30,7 @@
     line-height: 1;
     color: var(--muted);
   }
+  .col { display: grid; gap: 14px; min-width: 0; }
   /* on a narrow screen the links wrap whole, right-aligned, never mid-link */
   /* the rule spans only the footer's own content, not the page, with the
      same room above the row as below it */

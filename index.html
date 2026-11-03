@@ -6,7 +6,16 @@
     <title>builders@uva</title>
     <meta name="description" content="A culture of independent creation." />
     <meta name="theme-color" content="#f6f4ef" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- before first paint, so a dark visit never flashes light -->
+    <script>
+      try {
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.dataset.theme = 'dark'
+          document.querySelector('meta[name=theme-color]').content = '#141413'
+        }
+      } catch {}
+    </script>
     <meta property="og:type" content="website" />
     <meta property="og:title" content="builders@uva" />
     <meta property="og:description" content="A culture of independent creation." />

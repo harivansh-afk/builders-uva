@@ -50,7 +50,7 @@
     width: min(760px, 120vw);
     height: min(320px, 50%);
     translate: -50% -50%;
-    background: radial-gradient(closest-side, rgba(246, 244, 239, 0.85), rgba(246, 244, 239, 0.4) 60%, transparent);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--bg) 85%, transparent), color-mix(in srgb, var(--bg) 40%, transparent) 60%, transparent);
     pointer-events: none;
   }
   /* centred on the window, where the gap between the fingertips is, rather
