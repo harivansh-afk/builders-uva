@@ -388,7 +388,58 @@ export const events = [
     startsAt: '2026-11-05T18:00:00-05:00',
     // Bio and portrait: https://amb.horse/ and its /now page, which link this
     // LinkedIn profile (checked October 23, 2026).
-    description: 'Alex Becker is a product engineer at Anthropic in New York. A UVA alumnus, he rowed for Virginia Men\'s Rowing and was part of the Virginia Entrepreneurship Organization, Contrary Capital, and the KP Product Fellowship. He joins us for a Q&A.',
+    description: 'Alex Becker is a product engineer at Anthropic in New York. A UVA alumnus, he rowed for Virginia Men\'s Rowing and was part of the Virginia Entrepreneurship Organization, Contrary Capital, and the KP Product Fellowship.',
+    registration: 'closed',
+    recap: [
+      {
+        paragraphs: [
+          'Alex joined us for a conversation about working at the frontier, building ambitiously as a student, standing out without a target-school name, and why storytelling matters more than ever.',
+        ],
+      },
+      {
+        title: 'From UVA to Anthropic',
+        paragraphs: [
+          'He graduated from UVA in 2023 with a double major in computer science and finance at McIntire, after internships at a venture firm, Capital One, and Microsoft. After graduating he built credit cards at Imprint, spent about a year at Rippling, and is now an engineer at Anthropic. He came to us through Max Nardi, who spoke a few weeks earlier.',
+        ],
+      },
+      {
+        title: 'Working at the frontier',
+        paragraphs: [
+          'Compared with life at a large company, Anthropic has fewer walls: you can talk to anyone and work on whatever matters. The whole company is transparent, which he described as having unlimited context on everything going on.',
+          'His workflow has shifted toward having really good opinions about what he wants, removing the toil, and letting models execute. He called it working in the future: he gets to do for his job what other people do as side projects.',
+        ],
+      },
+      {
+        title: 'Building ambitiously as a student',
+        paragraphs: [
+          'The bar for ambition has completely shifted. A Yelp scraper took him weeks in college; a model now does it in one prompt. His target is to do in three weeks what would have taken a senior or staff engineer six months.',
+          'Do not overthink understanding every layer. Understand enough that you are not burdening someone else when it breaks, and beyond that keep pushing the abstraction boundary. If a layer interests you, dig in; if not, do not feel obligated.',
+          'To find ambitious problems, follow people making creative projects, such as Riley Walz on Twitter, and build variations of the things you find interesting. Let curiosity lead rather than fear of inadequacy. He productized one of Riley’s postcard ideas himself, and built an eval that impressed Anthropic during recruiting.',
+        ],
+      },
+      {
+        title: 'Standing out without a target-school name',
+        paragraphs: [
+          'School prestige matters less than deserving the thing you want. In his words, the average MIT student is no better than the average person in the room.',
+          'Most of his jobs came through serendipity and scrappiness, not cold applications. A rowing connection got him the venture firm, Capital One came through a build-a-project pipeline, and he got Imprint by cold-emailing them and proposing an internship they were not offering. Lean into being the underdog rather than hoping a recruiter picks your resume over an MIT student’s. As LeetCode-style interviews fade, referrals and relationships will matter more, not less.',
+        ],
+      },
+      {
+        title: 'Personal brand and storytelling',
+        paragraphs: [
+          'Everyone is building a brand whether they admit it or not. A LinkedIn profile, a website, and an Instagram are all curated to tell a story to people who do not know you yet, and perception is reality in a lot of ways.',
+          'He called storytelling the most important skill right now: it matters for raising money, getting projects funded internally, and getting hired. Practice it constantly by running club meetings and speaking at every opportunity. The story evolves, but it should always be honest. Small details, like the .horse domain on his website, signal intentionality. His advice: do things you find beautiful, do not take yourself seriously, and take your work seriously.',
+        ],
+      },
+      {
+        title: 'What to focus on',
+        paragraphs: [
+          'Agency is the differentiator: pulling context together, deciding, and acting. Choosing what to work on is still a human edge, since models are derivative when they choose. Think in two-to-six-month horizons rather than multi-year roadmaps, because a future model may build what you are building now, and be more ambitious than the models on timing: what they say takes six months can take you two days.',
+          'Areas he thinks are worth exploring include cognition, longevity, disease, and why models still cannot write well or be funny. He suggested asking professors about the hardest open questions they are curious about, and reading widely: the Anthropic and OpenAI blogs, Hacker News, personal blogs found through it, and Twitter, selectively.',
+          'The throughline was deserving the thing you want: build the projects, earn the referrals, and tell the honest story.',
+        ],
+      },
+    ],
   },
   {
     slug: 'andrew-schoka',
