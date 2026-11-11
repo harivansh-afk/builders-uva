@@ -10,7 +10,6 @@
   <div class="col">
     {#if logos}<Logos />{/if}
     <nav class="links" aria-label="Site">
-      <a href="/cohorts">Cohorts</a>
       <a href="/events">Events</a>
       <a href="/apply">Apply</a>
       <span class="copy">© {year} builders@uva</span>
