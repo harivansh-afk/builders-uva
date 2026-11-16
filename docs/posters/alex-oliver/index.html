@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=EB+Garamond:ital@1&display=block" rel="stylesheet">
+<style>
+@font-face{font-family:Berkeley;src:url('BerkeleyMono-Variable.woff2')}
+@page{size:8.5in 11in;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;background:#0a0a0b}
+.page{width:8.5in;height:11in;overflow:hidden;background:#0a0a0b;color:#f2f0ea;
+  font-family:"Instrument Sans",sans-serif;font-size:18px;line-height:1.5;
+  padding:.55in .7in;display:flex;flex-direction:column}
+.serif{font-family:"EB Garamond",serif;font-style:italic;font-weight:400}
+.hl{background:linear-gradient(rgba(236,235,230,.14),rgba(236,235,230,.14)) 0 70%/100% .86em no-repeat;padding:0 .1em;margin:0 -.04em}
+.mono{font-family:Berkeley,monospace}
+.muted{color:rgba(242,240,234,.6)}
+
+.top{text-align:right}
+
+main{flex:1;display:flex;flex-direction:column;justify-content:center}
+
+h1{margin:0;font-weight:500;font-size:76px;line-height:.98;letter-spacing:-.035em}
+h1 .serif{display:block;font-size:80px;letter-spacing:-.01em;margin-top:6px}
+
+.body{margin-top:.4in;display:flex;align-items:center;gap:.5in}
+.bio{flex:1}
+.bio p{margin:0;color:rgba(242,240,234,.88)}
+.bio p + p{margin-top:.16in}
+.photo{width:3in;height:3in;flex-shrink:0;border-radius:50%;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05)}
+
+.details{margin-top:.45in;border-top:1px solid rgba(242,240,234,.16)}
+.details div{padding:13px 0;border-bottom:1px solid rgba(242,240,234,.16);display:flex}
+.details .k{width:1.1in;flex-shrink:0}
+
+.foot{display:flex;align-items:flex-start;gap:.25in}
+.qr{width:1in;height:1in;background:#f2f0ea;padding:5px;border-radius:2px}
+.qr img{width:100%;height:100%;display:block}
+</style></head><body>
+<div class="page">
+  <div class="top muted">builders@uva</div>
+
+  <main>
+    <h1>Alex Oliver<span class="serif">partner at <span class="hl">a16z</span>.</span></h1>
+
+    <div class="body">
+      <div class="bio">
+        <p>Alex spent fifteen years as an Army infantry and intelligence officer, deploying to
+          Iraq, Afghanistan and West Africa. At the Defense Innovation Unit he ran maritime
+          autonomy, taking autonomous systems from prototype into the Navy and Marine Corps.</p>
+        <p>Today he backs founders building in aerospace and
+          national security, betting that the hardest defense problems of our
+          era will be solved by startups.</p>
+      </div>
+      <div class="photo"><img src="portrait.png" alt="Alex Oliver"></div>
+    </div>
+
+    <div class="details">
+      <div><span class="k muted">When</span>Thursday, November 19, 6 – 8 PM</div>
+      <div><span class="k muted">Where</span>Rouss-Robertson Hall, Room 123</div>
+      <div><span class="k muted">Dress</span>Business casual</div>
+    </div>
+  </main>
+
+  <div class="foot">
+    <div class="qr"><img src="qr.svg" alt=""></div>
+    <div>Register to attend<div class="muted">uva.builders/events/alex-oliver/register</div></div>
+  </div>
+</div>
+<script>Promise.all([document.fonts.ready,document.querySelector('.photo img').decode()]).then(()=>document.body.dataset.ready='true')</script>
+</body></html>
