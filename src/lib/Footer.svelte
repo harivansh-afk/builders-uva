@@ -12,7 +12,7 @@
     <nav class="links" aria-label="Site">
       <a href="/events">Events</a>
       <a href="/apply">Apply</a>
-      <span class="copy">© {year} builders@uva</span>
+      <span class="copy">© {year} Builders</span>
     </nav>
   </div>
 </footer>
