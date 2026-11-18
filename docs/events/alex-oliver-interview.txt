@@ -1,0 +1,149 @@
+ALEX OLIVER — INTERVIEW FLOW
+November 19, 2026 | 50-minute conversation + 20-minute audience Q&A
+
+Direction: his experience → what to build → how to scale → where to draw limits.
+Ask the main question. Use one follow-up if useful. Leave room for stories.
+
+INTRO | 0–4 min
+
+“Alex Oliver is a partner at Andreessen Horowitz in American Dynamism,
+the firm's practice backing companies in areas like defense, aerospace
+and manufacturing. He helps aerospace and national-security founders
+bring their technology into use. Before a16z, he served as an Army infantry
+and intelligence officer, led maritime autonomy at the Defense Innovation
+Unit, and advised Special Operations Command on technology.
+
+Alex, thanks for being here. Would you give us a short introduction in your
+own words—and tell us what drew you from the military into working with founders?”
+
+Leave his venture-firm fellowship out; let him tell that turning point.
+Title: partner, go-to-market. Don't introduce him as a GP.
+
+1. EXPERIENCE → JUDGMENT | 4–10 min
+Niche: military users, intelligence, prototype adoption.
+
+What did your deployments and government work teach you that you would
+have missed if you'd gone straight into venture capital?
+
+Concrete follow-up: At DIU, you worked on amphibious mine-clearing robots.
+What did operators need that the technology teams initially misunderstood?
+
+Know: DIU named him on A2RV in 2022; two teams selected from 67 submissions.
+Later Marine Corps orders establish procurement, not his role in every award.
+
+Bridge: “How does that change which problems you encourage founders to tackle?”
+
+2. WHY BUILD IN DEFENSE? | 10–17 min
+Niche: overlooked advantages, real demand, political risk.
+
+For a student choosing between defense and enterprise software, what is
+an advantage of defense that outsiders underestimate?
+
+Follow-up: Who would you advise against building here?
+
+How does a founder build around a need that survives elections?
+After this month's election, what do you expect to change for defense
+startups—and through which budgets or procurement decisions?
+
+Listen for: user versus buyer; durable mission versus temporary priority.
+Treat election effects as his forecast, not an established outcome.
+
+Bridge: “Even with demand, someone has to build the capacity to deliver.”
+
+3. PEACETIME INDUSTRY | 17–25 min — GO DEEP
+Niche: readiness, commercial manufacturing, incentives.
+
+What does the ideal defense industrial base look like during peacetime?
+Which capacity must we pay to keep ready, and which should come from
+commercial factories that can switch to defense production?
+
+Challenge: How do you preserve readiness without insulating suppliers
+from competition and rewarding poor performance?
+
+Follow-up: What cannot realistically be built or converted after a war starts?
+
+Know: commercial production and military surge capacity aren't interchangeable.
+Ask about tooling, skilled labor, qualification and time—not just factory count.
+
+Bridge: “That gets us to your argument about magazine depth.”
+
+4. AFFORDABLE MASS | 25–33 min — GO DEEP
+Niche: cost per useful effect, mission requirements, production rate.
+
+A criticism of your magazine-depth argument is that cheaper missiles do
+different jobs. Where is that objection right, and where does it miss your point?
+
+Follow-up: Is the bigger opportunity replacing expensive systems, changing
+the mix of systems, or redesigning how we produce them?
+
+Press: What would force a successful new supplier to keep innovating once
+it becomes an incumbent?
+
+Know: his essay favors a mix. Compare mission, reliability, support costs and
+replacement rate. Don't assume a cheaper weapon offers identical capability.
+
+Bridge: “The same question applies to lessons we take from current wars.”
+
+5. WHAT TRANSFERS FROM UKRAINE? | 33–38 min
+Niche: drones, contested airspace, electronic warfare, standoff.
+
+How much of the cheap-drone lesson from Ukraine depends on that particular
+battlefield? Where would you expect it to transfer—and where would it fail?
+
+Follow-up: Can we choose to fight at standoff, or can an adversary force
+us into conditions where cheap drones matter?
+
+Know: standoff means operating beyond the opponent's effective reach.
+Don't equate remotely piloted drones with autonomous swarms, or assume
+Ukraine and Iran demonstrate the same systems under comparable conditions.
+
+Bridge: “Your case for autonomy also rests on protecting people.”
+
+6. VALUES, LIMITS AND AI COMPETITION | 38–47 min
+Niche: protection versus enhancement; human judgment; arms-race incentives.
+
+Your essay argues that protecting soldiers gives us a moral reason to
+develop autonomy. Where does that obligation stop?
+
+Optional thought experiment: Body armor protects a soldier. Hypothetical
+genetic enhancement might also improve survival. What principle separates
+an acceptable protective technology from an unacceptable intervention?
+
+If useful: How do consent, reversibility and risks to civilians change the answer?
+
+On AI: How do we avoid a race where every country deploys systems it doesn't
+trust because it fears the others will deploy first?
+
+Follow-up: What restraint could be verified without leaving the country
+that accepts it at a serious disadvantage?
+
+Ground it: What decision would you delegate to AI today, and what would
+you require a human to retain—even if that makes us slower?
+
+Optional cyber branch: If AI makes finding vulnerabilities cheap, does the
+hard problem become deploying fixes? What should government prioritize?
+
+7. CLOSE → AUDIENCE | 47–50 min
+
+What's one problem students here could investigate with a real user
+over the next six weeks—and what would tell them it's worth pursuing?
+
+“Let's bring in the room.” Protect 20 minutes for questions.
+Final question if time: What have you changed your mind about recently?
+
+IF TIME RUNS SHORT
+Keep his story, industrial capacity, affordable mass and one AI question.
+Cut the genetic-enhancement hypothetical and cyber branch first.
+For any abstract answer: “Can you give us one example?”
+
+SOURCE ANCHORS
+Biography: https://a16z.com/author/alex-oliver/
+American Dynamism: https://a16z.com/american-dynamism/
+A2RV: https://www.diu.mil/latest/diu-usmc-prototyping-two-state-of-the-art-autonomous-amphibious-response
+Values: https://a16z.com/no-man-left-behind-american-technology-ships-with-our-values/
+Magazine depth: https://a16z.com/magazine-depth-affordability-is-a-choice/
+Contracting: https://a16z.com/dow-contracting-for-startups-101/
+
+X comments supplied without links: used as objections, not verified quotations
+or evidence of a consensus. Peacetime industry is a discussion topic here,
+not an attributed Oliver quotation. Full evidence remains in the research notes.
