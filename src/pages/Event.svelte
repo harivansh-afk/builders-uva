@@ -38,18 +38,14 @@
       </section>
     {/if}
 
-    {#if e.transcript || !e.recap && !e.description}
+    {#if e.transcript}
       <section class="body">
-      <h2>Transcript</h2>
-      {#if e.transcript}
+        <h2>Transcript</h2>
         <div class="transcript">
           {#each e.transcript.split('\n\n') as para}
             <p>{para}</p>
           {/each}
         </div>
-      {:else}
-        <p class="soon">soon</p>
-      {/if}
       </section>
     {/if}
   {:else}
@@ -87,11 +83,6 @@
   .recap section { display: grid; gap: 18px; }
   .recap h3, .body h2 { font-size: 27px; font-weight: 400; }
   .recap p { font-size: 22px; line-height: 1.6; }
-  .soon {
-    font-size: var(--lede);
-    line-height: 1.32;
-    color: var(--muted);
-  }
   .transcript { display: grid; gap: 18px; max-width: 62ch; }
   .transcript p { font-size: 22px; line-height: 1.6; }
 
