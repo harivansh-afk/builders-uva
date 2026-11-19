@@ -9,6 +9,6 @@ export function toggleTheme() {
   theme.dark = !theme.dark
   if (theme.dark) root.dataset.theme = 'dark'
   else delete root.dataset.theme
-  document.querySelector('meta[name=theme-color]')?.setAttribute('content', theme.dark ? '#141413' : '#f6f4ef')
+  document.querySelector('meta[name=theme-color]')?.setAttribute('content', theme.dark ? '#000000' : '#f6f4ef')
   try { localStorage.setItem('theme', theme.dark ? 'dark' : 'light') } catch {}
 }

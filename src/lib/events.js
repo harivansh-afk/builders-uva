@@ -464,6 +464,12 @@ export const events = [
     // (checked October 22, 2026).
     description: 'Alex Oliver is a partner at Andreessen Horowitz, where he supports founders building in aerospace and national security. He spent 15 years as a U.S. Army infantry and intelligence officer, deploying to Iraq, Afghanistan, and West Africa, and led the maritime autonomy portfolio at the Defense Innovation Unit. He joins us in person for a Q&A.',
   },
+  {
+    slug: 'dex-horthy',
+    name: 'Dexter Horthy',
+    tag: 'HumanLayer (YC F24) / Factory',
+    date: null,
+  },
 ]
 
 export const eventBySlug = (slug) => events.find((e) => e.slug === slug)
@@ -474,7 +480,7 @@ export const registrationOpen = (e, today = new Date()) =>
   Boolean(e) && e.registration !== 'closed' && e.date >= today.toISOString().slice(0, 10)
 
 const fmtLong = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
-export const longDate = (iso) => fmtLong.format(new Date(iso + 'T00:00:00Z'))
+export const longDate = (iso) => iso ? fmtLong.format(new Date(iso + 'T00:00:00Z')) : 'Date TBD'
 const fmtDay = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })
-export const dayDate = (iso) => fmtDay.format(new Date(iso + 'T00:00:00Z'))
+export const dayDate = (iso) => iso ? fmtDay.format(new Date(iso + 'T00:00:00Z')) : 'TBD'
 

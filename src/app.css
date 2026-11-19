@@ -34,7 +34,7 @@
 }
 /* dark: toggled from the mark on home (see lib/theme.svelte.js) */
 :root[data-theme="dark"] {
-  --bg: #141413;
+  --bg: #000000;
   --fg: #ecebe6;
   --soft: #c2c0b9;
   --muted: #8f8d87;
