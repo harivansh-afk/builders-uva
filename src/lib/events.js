@@ -236,7 +236,7 @@ export const events = [
   {
     slug: 'steve-morin',
     name: 'Steve Morin',
-    tag: 'Instagram',
+    tag: 'Instagram / Asana / Flox',
     date: '2026-10-08',
     // Bio: https://stevemorin.com/ (checked October 6, 2026).
     description: 'Steve Morin is VP of Engineering at Flox. He has led engineering teams at Instagram, Asana, and Yahoo, and was CTO of Tripping.com through its acquisition by HomeToGo.',
