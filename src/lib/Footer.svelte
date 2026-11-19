@@ -12,7 +12,7 @@
     <nav class="links" aria-label="Site">
       <a href="/events">Events</a>
       <a href="/apply">Apply</a>
-      <span class="copy">© {year} Builders</span>
+      <span class="copy">© {year} Builders, a 501(c)(3) nonprofit</span>
     </nav>
   </div>
 </footer>
