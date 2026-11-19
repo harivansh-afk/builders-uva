@@ -469,7 +469,7 @@ export const events = [
     name: 'Dexter Horthy',
     tag: 'HumanLayer (YC F24)',
     date: null,
-    description: 'Dexter Horthy is the founder and CEO of HumanLayer, which builds tools for engineering teams to review and steer coding agents. HumanLayer went through Y Combinator in Fall 2024 and was recently acquired by Factory for an undisclosed amount. He wrote 12-Factor Agents, coined the term context engineering, and previously spent seven years at Replicated after starting out coding at NASA\'s Jet Propulsion Laboratory. He joins us for a Q&A.',
+    description: 'Dexter Horthy is the founder and CEO of HumanLayer, which builds tools for engineering teams to review and steer coding agents. HumanLayer went through Y Combinator in Fall 2024 and was recently acquired by Factory for an undisclosed amount. A regular speaker at AI Engineer, he wrote 12-Factor Agents and coined several terms now central to agentic programming, including context engineering, harness engineering, verification engineering, and the dumb zone. He previously spent seven years at Replicated after starting out coding at NASA\'s Jet Propulsion Laboratory. He joins us for a Q&A.',
   },
 ]
 
