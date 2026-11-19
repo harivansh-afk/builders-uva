@@ -371,7 +371,7 @@ export const events = [
   {
     slug: 'mauricio-iglesias',
     name: 'Mauricio Iglesias',
-    tag: 'Bastazo / HF0',
+    tag: 'Bastazo (HF0)',
     date: '2026-10-29',
     time: '6 PM ET',
     startsAt: '2026-10-29T18:00:00-04:00',
