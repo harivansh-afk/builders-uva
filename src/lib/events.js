@@ -471,7 +471,7 @@ export const events = [
     date: '2026-12-03',
     time: '6 PM ET',
     startsAt: '2026-12-03T18:00:00-05:00',
-    description: 'Dexter Horthy has shaped how the industry builds with AI agents. He coined context engineering, along with harness engineering and the dumb zone. His AI Engineer keynotes on agentic coding have drawn over a million views. He founded HumanLayer, which went through Y Combinator in Fall 2024 and was recently acquired by Factory for an undisclosed amount. Before that he spent seven years at Replicated, after writing his first code at NASA\'s Jet Propulsion Laboratory in high school. He joins us for a Q&A.',
+    description: 'Dexter Horthy coined context engineering, harness engineering, and the dumb zone, and his AI Engineer keynotes on agentic coding have drawn over a million views. He founded HumanLayer, which went through Y Combinator and was recently acquired by Factory. Before that he spent seven years at Replicated. He joins us for a Q&A.',
   },
 ]
 
