@@ -471,7 +471,7 @@ export const events = [
     date: '2026-12-03',
     time: '6 PM ET',
     startsAt: '2026-12-03T18:00:00-05:00',
-    description: 'Dexter Horthy coined context engineering and harness engineering, and his AI Engineer keynotes on agentic coding have drawn over a million views. He founded HumanLayer, which went through Y Combinator and was recently acquired by Factory. Before that he spent seven years at Replicated.',
+    description: 'Dexter Horthy coined context engineering and harness engineering, and his AI Engineer keynotes on agentic coding have drawn over a million views. He founded HumanLayer, which went through Y Combinator and was recently acquired by Factory. He wrote his first code at NASA\'s Jet Propulsion Laboratory in high school.',
   },
 ]
 
